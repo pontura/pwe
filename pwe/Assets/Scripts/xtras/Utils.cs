@@ -7,9 +7,14 @@ using System.Security.Cryptography;
 using System;
 using System.Globalization;
 using System.Text;
+using UnityEngine.UI;
 
 public static class Utils {
 
+    public static long GetTimeStamp()
+    {
+        return new DateTimeOffset(DateTime.Now).ToUnixTimeSeconds();
+    }
     public static float GetRandomFloatBetween(float a, float b)
     {
         return (float)UnityEngine.Random.Range(a * 10, b * 10) / 10;
@@ -71,7 +76,7 @@ public static class Utils {
         {
             int nums = (int)num;
             string s = nums.ToString("N0");
-            return s.Replace(".", ",");
+            return s.Replace(".", ","); 
 
             //return string.Format("{0:#,#}", num);
            // return num.ToString("N0");
@@ -97,9 +102,9 @@ public static class Utils {
         string[] date = arr[0].Split("-");
         if (date == null || date.Length < 2) return text;
 
-        Debug.Log("date0" + date[0]);
-        Debug.Log("date1" + date[1]);
-        Debug.Log("date2" + date[2]);
+        //Debug.Log("date0" + date[0]);
+        //Debug.Log("date1" + date[1]);
+        //Debug.Log("date2" + date[2]);
 
         string ordinal = "";
         int day = int.Parse(date[2]);
@@ -128,12 +133,12 @@ public static class Utils {
 
         return monthString + " " + dayString + ", " + date[0];
     }
-    public static string UnixTimeStampToDateTime(string _unixTimeStamp)
+    public static string UnixTimeStampToDateTime(string _unixTimeStamp, bool getTime = false)
     {
         double unixTimeStamp = 0;
         double.TryParse(_unixTimeStamp, out unixTimeStamp);
         if ( unixTimeStamp > 0)
-            return UnixTimeStampToDateTime(unixTimeStamp);
+            return UnixTimeStampToDateTime(unixTimeStamp, getTime);
         return "";
     }
     public static string UnixTimeStampToHours(long unixTimeStamp)
@@ -144,7 +149,7 @@ public static class Utils {
         int m = dat_Time.Minute;
         return h + ":" + m;
     }
-    public static string UnixTimeStampToDateTime(double unixTimeStamp)
+    public static string UnixTimeStampToDateTime(double unixTimeStamp, bool getTime = false)
     {
         System.DateTime dat_Time = new System.DateTime(1970, 1, 1, 0, 0, 0, 0);
         dat_Time = dat_Time.AddSeconds(unixTimeStamp/1000);
@@ -170,9 +175,19 @@ public static class Utils {
                 break;
         }
         if (dat_Time.Day < 10)
-            return string.Format("{0:d}{2} {1:MMM yyyy}", dat_Time.Day, dat_Time, ordinal);
+        {
+            if(getTime)
+                return string.Format("{0:d}{2} {1:MMM yyyy - hh:mm:ss tt}", dat_Time.Day, dat_Time, ordinal);
+            else
+                return string.Format("{0:d}{2} {1:MMM yyyy}", dat_Time.Day, dat_Time, ordinal);
+        }
         else
-            return string.Format("{0:dd}{1} {0:MMM yyyy}", dat_Time, ordinal);
+        {
+            if (getTime)
+                return string.Format("{0:dd}{1} {0:MMM yyyy - hh:mm:ss tt}", dat_Time, ordinal);
+            else
+                return string.Format("{0:dd}{1} {0:MMM yyyy}", dat_Time, ordinal);
+        }
     }
     public static string ToFormattedString(this double rawNumber)
     {
@@ -329,6 +344,7 @@ public static class Utils {
     }
     public static void OpenURL(string url)
     {
+        Debug.Log("OpenURL: " + url);
         Application.OpenURL(url);
     }
     public static void ResizeRectTransform(RectTransform rt, float maxWidth, float original_h, float original_w)
@@ -349,14 +365,20 @@ public static class Utils {
         rt.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, other.rect.height);
         rt.pivot = myPrevPivot;
     }
+    public static string StripHTML(string input)
+    {
+        return Regex.Replace(input, "<.*?>", String.Empty);
+    }
     public static string MaxLetters(string s, int maxCharacters, string stringToAdd = "...")
     {
-        if(s.Length>maxCharacters)
+        s = StripHTML(s);
+        if (s.Length>maxCharacters)
             return s.Substring(0, maxCharacters)+ stringToAdd;
         return s;
     }
     public static string CleanString(string str)
     {
+        str = StripHTML(str);
         Regex rich = new Regex(@"<[^>]*>");
 
         if (rich.IsMatch(str))
@@ -389,5 +411,13 @@ public static class Utils {
         decryptedData = rsa.Decrypt(ciphertext, true);
         rsa.Dispose();
         return decryptedData;
+    }
+    public static void ReCalculateRectTransform(RectTransform rectTransform)
+    {
+        LayoutRebuilder.ForceRebuildLayoutImmediate(rectTransform);
+    }
+    public static void ReCalculateRectTransform(TMPro.TMP_Text field)
+    {
+        LayoutRebuilder.ForceRebuildLayoutImmediate(field.GetComponent<RectTransform>());
     }
 }
