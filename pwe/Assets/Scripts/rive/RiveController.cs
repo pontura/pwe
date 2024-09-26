@@ -150,7 +150,7 @@ namespace Pwe
         //}
         private void Update()
         {
-           // HitTesting();
+            HitTesting();
 
             if (m_stateMachine != null)
             {
@@ -161,48 +161,48 @@ namespace Pwe
         bool m_wasMouseDown = false;
         private Vector2 m_lastMousePosition;
 
-        //void HitTesting()
-        //{
-        //    Camera camera = Camera.main;
+        void HitTesting()
+        {
+            Camera camera = Camera.main;
 
-        //    if (camera == null || m_renderTexture == null || m_artboard == null) return;
+            if (camera == null || m_renderTexture == null || m_artboard == null) return;
 
-        //    if (!Physics.Raycast(camera.ScreenPointToRay(Input.mousePosition), out RaycastHit hit))
-        //        return;
+            if (!Physics.Raycast(camera.ScreenPointToRay(Input.mousePosition), out RaycastHit hit))
+                return;
 
-        //    UnityEngine.Renderer rend = hit.transform.GetComponent<UnityEngine.Renderer>();
-        //    MeshCollider meshCollider = hit.collider as MeshCollider;
+            UnityEngine.Renderer rend = hit.transform.GetComponent<UnityEngine.Renderer>();
+            MeshCollider meshCollider = hit.collider as MeshCollider;
 
-        //    if (rend == null || rend.sharedMaterial == null || rend.sharedMaterial.mainTexture == null || meshCollider == null)
-        //        return;
+            if (rend == null || rend.sharedMaterial == null || rend.sharedMaterial.mainTexture == null || meshCollider == null)
+                return;
 
 
-        //    Vector2 pixelUV = hit.textureCoord;
+            Vector2 pixelUV = hit.textureCoord;
 
-        //    pixelUV.x *= m_renderTexture.width;
-        //    pixelUV.y *= m_renderTexture.height;
+            pixelUV.x *= m_renderTexture.width;
+            pixelUV.y *= m_renderTexture.height;
 
-        //    Vector3 mousePos = camera.ScreenToViewportPoint(Input.mousePosition);
-        //    Vector2 mouseRiveScreenPos = new (mousePos.x* camera.pixelWidth, (1 - mousePos.y) *camera.pixelHeight);
+            Vector3 mousePos = camera.ScreenToViewportPoint(Input.mousePosition);
+            Vector2 mouseRiveScreenPos = new (mousePos.x* camera.pixelWidth, (1 - mousePos.y) *camera.pixelHeight);
 
-        //    if (m_lastMousePosition != mouseRiveScreenPos || transform.hasChanged)
-        //    {
-        //        Vector2 local = m_artboard.LocalCoordinate(pixelUV, new Rect(0, 0, m_renderTexture.width, m_renderTexture.height), fit, alignment);
-        //        m_stateMachine?.PointerMove(local);
-        //        m_lastMousePosition = mouseRiveScreenPos;
-        //    }
-        //    if (Input.GetMouseButtonDown(0))
-        //    {
-        //        Vector2 local = m_artboard.LocalCoordinate(pixelUV, new Rect(0, 0, m_renderTexture.width, m_renderTexture.height), fit, alignment);
-        //        m_stateMachine?.PointerDown(local);
-        //        m_wasMouseDown = true;
-        //    }
-        //    else if (m_wasMouseDown)
-        //    {
-        //        m_wasMouseDown = false; Vector2 local = m_artboard.LocalCoordinate(mouseRiveScreenPos, new Rect(0, 0, m_renderTexture.width, m_renderTexture.height), fit, alignment);
-        //        m_stateMachine?.PointerUp(local);
-        //    }
-        //}
+            if (m_lastMousePosition != mouseRiveScreenPos || transform.hasChanged)
+            {
+                Vector2 local = m_artboard.LocalCoordinate(pixelUV, new Rect(0, 0, m_renderTexture.width, m_renderTexture.height), fit, alignment);
+                m_stateMachine?.PointerMove(local);
+                m_lastMousePosition = mouseRiveScreenPos;
+            }
+            if (Input.GetMouseButtonDown(0))
+            {
+                Vector2 local = m_artboard.LocalCoordinate(pixelUV, new Rect(0, 0, m_renderTexture.width, m_renderTexture.height), fit, alignment);
+                m_stateMachine?.PointerDown(local);
+                m_wasMouseDown = true;
+            }
+            else if (m_wasMouseDown)
+            {
+                m_wasMouseDown = false; Vector2 local = m_artboard.LocalCoordinate(mouseRiveScreenPos, new Rect(0, 0, m_renderTexture.width, m_renderTexture.height), fit, alignment);
+                m_stateMachine?.PointerUp(local);
+            }
+        }
 
         private void OnDisable()
         {
