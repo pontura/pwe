@@ -9,7 +9,7 @@ using System.Globalization;
 using System.Text;
 using UnityEngine.UI;
 
-namespace YaguarLib.Xtras
+namespace YaguarLib.Utils
 {
     public static class Utils
     {
