@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Meme.UI
+namespace YaguarLib.Xtras
 {
     public class PoolObjects : MonoBehaviour
     {

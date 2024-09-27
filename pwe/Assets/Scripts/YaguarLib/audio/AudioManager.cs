@@ -1,9 +1,7 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 using System;
-using Meme.UI;
 
-namespace Meme
+namespace YaguarLib.Audio
 {
     public class AudioManager : MonoBehaviour
     {
@@ -65,16 +63,16 @@ namespace Meme
                     m.audioSource = gameObject.AddComponent<AudioSource>();
                 m.audioSource.volume = m.volume;
             }
-            Events.OnPlaySound += OnPlaySound;
-            Events.OnPlaySoundInChannel += OnPlaySoundInChannel;
-            Events.Mute += Mute;
+            YaguarLib.Events.Events.OnPlaySound += OnPlaySound;
+            YaguarLib.Events.Events.OnPlaySoundInChannel += OnPlaySoundInChannel;
+            YaguarLib.Events.Events.Mute += Mute;
             SetMuteValues();
         }
         void OnDestroy()
         {
-            Events.OnPlaySound -= OnPlaySound;
-            Events.OnPlaySoundInChannel -= OnPlaySoundInChannel;
-            Events.Mute -= Mute;
+            YaguarLib.Events.Events.OnPlaySound -= OnPlaySound;
+            YaguarLib.Events.Events.OnPlaySoundInChannel -= OnPlaySoundInChannel;
+            YaguarLib.Events.Events.Mute -= Mute;
         }
         public bool mute;
         void Mute(bool mute)

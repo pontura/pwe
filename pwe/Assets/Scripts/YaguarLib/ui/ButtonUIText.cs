@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Meme.UI
+namespace YaguarLib.UI
 {
     [RequireComponent(typeof(Button))]
 

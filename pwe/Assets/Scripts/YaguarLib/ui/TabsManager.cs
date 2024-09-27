@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
 using System;
 using System.Collections.Generic;
+using YaguarLib.Xtras;
 
-namespace Meme.UI
+namespace YaguarLib.UI
 {
     public class TabsManager : MonoBehaviour
     {

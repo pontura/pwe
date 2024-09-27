@@ -1,7 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
+using YaguarLib.Audio;
 
-namespace Meme.UI
+namespace YaguarLib.UI
 {
     [RequireComponent(typeof(Button))]
     public class ButtonUI : MonoBehaviour
@@ -12,12 +13,12 @@ namespace Meme.UI
         public virtual void Init(System.Action<int> OnClick, int id)
         {
             button = GetComponent<Button>();
-            button.onClick.AddListener(() => { OnClick(id); Events.OnPlaySound(audioType); });
+            button.onClick.AddListener(() => { OnClick(id); YaguarLib.Events.Events.OnPlaySound(audioType); });
         }
         public virtual void Init(System.Action OnClick)
         {
             button = GetComponent<Button>();
-            button.onClick.AddListener(() => { OnClick(); Events.OnPlaySound(audioType); });
+            button.onClick.AddListener(() => { OnClick(); YaguarLib.Events.Events.OnPlaySound(audioType); });
         }
         private void OnDestroy()
         {

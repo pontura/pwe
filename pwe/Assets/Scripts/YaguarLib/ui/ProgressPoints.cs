@@ -1,7 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
+using YaguarLib.Xtras;
 
-namespace Meme.UI.Overlay
+namespace YaguarLib.UI
 {
     public class ProgressPoints : MonoBehaviour
     {
