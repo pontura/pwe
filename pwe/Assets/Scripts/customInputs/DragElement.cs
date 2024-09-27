@@ -12,6 +12,16 @@ namespace Yaguar.Inputs
             IDLE,
             DRAGGING
         }
+
+        BoxCollider coll;
+        InteractiveElement ie;
+        void Start()
+        {
+            coll = GetComponent<BoxCollider>();
+            coll.isTrigger = true;
+            ie = GetComponent<InteractiveElement>();
+        }
+
         public void InitDrag(Vector2 pos)
         {
             if (state == states.DRAGGING) return;
@@ -36,6 +46,20 @@ namespace Yaguar.Inputs
             Vector3 worldPos = Camera.main.ScreenToWorldPoint(pos);
             worldPos.z = transform.position.z;
             return worldPos;
+        }
+        private void OnTriggerEnter(Collider other)
+        {
+            if (state != states.DRAGGING) return;
+            InteractiveElement ie = other.GetComponent<InteractiveElement>();
+            if (ie != null)
+                ie.OnIECollisionEnter(ie);
+        }
+        private void OnTriggerExit(Collider other)
+        {
+            if (state != states.DRAGGING) return;
+            InteractiveElement ie = other.GetComponent<InteractiveElement>();
+            if (ie != null)
+                ie.OnIECollisionExit(ie);
         }
     }
 }

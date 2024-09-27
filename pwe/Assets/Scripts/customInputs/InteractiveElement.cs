@@ -13,6 +13,8 @@ namespace Yaguar.Inputs
             OnInit();
         }
         public virtual void OnInit() { }
+        public virtual void OnIECollisionEnter(InteractiveElement ie)  { Debug.Log("OnCollision Enter: " + ie.name); }
+        public virtual void OnIECollisionExit(InteractiveElement ie)  { Debug.Log("OnCollision Exit: " + ie.name); }
 
     }
 }

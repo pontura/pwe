@@ -40,8 +40,6 @@ namespace Yaguar.Inputs
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, 100))
             {
-                Debug.Log(hit.transform.name);
-                Debug.Log("hit");
                 return hit.collider.gameObject.GetComponent<DragElement>();
             }
             return null;

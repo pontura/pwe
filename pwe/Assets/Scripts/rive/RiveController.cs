@@ -46,6 +46,9 @@ namespace Pwe
             UnityEngine.Renderer cubeRenderer = GetComponent<UnityEngine.Renderer>();
             Material mat = cubeRenderer.material;
             mat.mainTexture = m_renderTexture;
+#if UNITY_EDITOR
+            transform.localEulerAngles = new Vector3(0, 0, -180);
+#endif
 
             if (!FlipY())
             {
