@@ -113,6 +113,7 @@ namespace Pwe
         }
         public void Clicked()
         {
+            if (m_stateMachine == null) return;
             SMITrigger someTrigger = m_stateMachine.GetTrigger("Click");
             if (someTrigger != null)
             {

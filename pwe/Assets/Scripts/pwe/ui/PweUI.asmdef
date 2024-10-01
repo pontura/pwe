@@ -1,0 +1,17 @@
+{
+    "name": "PweUI",
+    "rootNamespace": "",
+    "references": [
+        "GUID:1f135ef5de371dd49a112feda0977450",
+        "GUID:d0354d8b8c90938459ebea238754fd89"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
