@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,7 +7,7 @@ namespace Pwe.Games
     {
         private void Awake()
         {
-            if (SceneManager.GetActiveScene().name != "Main")
+          //  if (SceneManager.GetActiveScene().name != "Main")
                 OnInit();
         }
         public virtual void OnInit()  { }

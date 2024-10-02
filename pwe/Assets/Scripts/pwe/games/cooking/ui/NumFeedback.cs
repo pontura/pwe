@@ -14,6 +14,8 @@ namespace Pwe.Games.Cooking.UI
         }
         public void Init(int num)
         {
+            panel.SetActive(false);
+            CancelInvoke();
             panel.SetActive(true);
             field.text = num.ToString();
             Invoke("Reset", 1);

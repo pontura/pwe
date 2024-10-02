@@ -16,6 +16,7 @@ namespace Yaguar.Inputs2D
         }
         public override void OnInitPress(Vector2 pos)
         {
+            if (dragElement != null) return;
             dragElement = CheckDrag();
             if (dragElement == null) return;
             dragElement.InitDrag(pos);
@@ -33,10 +34,17 @@ namespace Yaguar.Inputs2D
         }
         DragElement CheckDrag()
         {
-            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+            RaycastHit2D[] hits = Physics2D.RaycastAll(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
 
-            if (hit.collider != null)
-                return hit.collider.gameObject.GetComponent<DragElement>();
+            foreach (RaycastHit2D hit in hits)
+            {
+                if (hit.collider != null)
+                {
+                    DragElement d = hit.collider.gameObject.GetComponent<DragElement>();
+                    if (d != null)
+                        return hit.collider.gameObject.GetComponent<DragElement>();
+                }
+            }
 
             return null;
         }

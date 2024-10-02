@@ -38,6 +38,7 @@ namespace Pwe.Core
             GameObject g = GetGame(_game);
             newGame = Instantiate(g, container);
             newGame.SetActive(true);
+          //  newGame.SendMessage("OnInit");
         }
         GameObject GetGame(GAMES game)
         {

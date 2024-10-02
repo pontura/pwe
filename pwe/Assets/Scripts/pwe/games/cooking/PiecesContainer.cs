@@ -19,6 +19,7 @@ namespace Pwe.Games.Cooking
             riveController.Clicked();
             Vector2 pos = Input.mousePosition;
             dragInputManager.ForceDrag(pos, dragElement);
+            print("FORCE DRAG");
         }
     }
 }
