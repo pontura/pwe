@@ -223,10 +223,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4733591918642898653, guid: 41c9eab2edc7c474faa1c6d6d499d5b9, type: 3}
-      propertyPath: m_Name
-      value: MainPiece
-      objectReference: {fileID: 0}
     - target: {fileID: 5073353217931750912, guid: 41c9eab2edc7c474faa1c6d6d499d5b9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -270,14 +266,6 @@ PrefabInstance:
     - target: {fileID: 5161400804714119547, guid: 41c9eab2edc7c474faa1c6d6d499d5b9, type: 3}
       propertyPath: m_Name
       value: Game_Cooking
-      objectReference: {fileID: 0}
-    - target: {fileID: 5523028810138714259, guid: 41c9eab2edc7c474faa1c6d6d499d5b9, type: 3}
-      propertyPath: m_Name
-      value: PiecesContainer
-      objectReference: {fileID: 0}
-    - target: {fileID: 8976474879634949986, guid: 41c9eab2edc7c474faa1c6d6d499d5b9, type: 3}
-      propertyPath: m_Name
-      value: DragPiece
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
