@@ -6,6 +6,7 @@ namespace Pwe.Games.Cooking
 {
     public class CookingMainPiece : InteractiveElement
     {
+        [SerializeField] Cooking cooking;
         RiveController riveController;
         bool pieceOver;
         private void Awake()
@@ -25,7 +26,7 @@ namespace Pwe.Games.Cooking
         public void OnPieceReleased()
         {
             if (pieceOver == false) return;
-
+            cooking.OnPieceAdded();
             Debug.Log("On Piece Released over!");
             riveController.Clicked();
             pieceOver = false;
