@@ -27,6 +27,7 @@ namespace Pwe.Games.Cooking
 
             Debug.Log("On Piece Released over!");
             riveController.Clicked();
+            pieceOver = false;
         }
     }
 }
