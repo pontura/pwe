@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEditor;
 
-namespace Yaguar.Inputs
+namespace Yaguar.Inputs2D
 {
     [RequireComponent(typeof(Collider2D))]
     public class InteractiveElement : MonoBehaviour

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Yaguar.Inputs
+namespace Yaguar.Inputs2D
 {
     public class DragElement : InteractiveElement
     {

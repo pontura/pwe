@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Yaguar.Inputs;
+using Yaguar.Inputs2D;
 
 namespace Pwe.Games.Cooking
 {

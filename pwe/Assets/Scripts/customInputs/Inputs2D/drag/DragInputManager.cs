@@ -1,7 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Yaguar.Inputs;
 
-namespace Yaguar.Inputs
+namespace Yaguar.Inputs2D
 {
     public class DragInputManager : InputManager
     {
