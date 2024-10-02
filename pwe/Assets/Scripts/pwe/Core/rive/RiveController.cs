@@ -69,7 +69,6 @@ namespace Pwe
                 List<SMIInput> inputs = m_stateMachine.Inputs();
                 foreach (SMIInput input in inputs)
                 {
-                    print("input : " +input.Name);
                     switch (input)
                     {
                         case SMITrigger smiTrigger:

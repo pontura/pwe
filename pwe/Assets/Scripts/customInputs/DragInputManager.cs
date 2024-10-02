@@ -5,17 +5,13 @@ namespace Yaguar.Inputs
 {
     public class DragInputManager : InputManager
     {
-        public List<DragElement> elements;
         DragElement dragElement;
 
-        public override void OnInit()
+        public void ForceDrag(Vector2 screenPos, DragElement dragElement)
         {
-            base.OnInit();
-        }
-        public void AddElement(DragElement e)
-        {
-            elements.Add(e);
-            e.Init(elements.Count);
+            this.dragElement = dragElement;
+            dragElement.ForcePosition(screenPos);
+            dragElement.InitDrag(screenPos);
         }
         public override void OnInitPress(Vector2 pos)
         {
@@ -36,12 +32,11 @@ namespace Yaguar.Inputs
         }
         DragElement CheckDrag()
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, 100))
-            {
+            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+
+            if (hit.collider != null)
                 return hit.collider.gameObject.GetComponent<DragElement>();
-            }
+
             return null;
         }
     }
