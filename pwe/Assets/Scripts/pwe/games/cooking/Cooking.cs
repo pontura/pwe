@@ -11,6 +11,7 @@ namespace Pwe.Games.Cooking
         [SerializeField] CookingMenuUI menu;
         [SerializeField] NumFeedback numFeedback;
         int total;
+
         public override void OnInit()
         {
             List<CookingItemData> items = cookingData.GetItems();
@@ -25,11 +26,9 @@ namespace Pwe.Games.Cooking
             numFeedback.Init(total - num);
 
             if (num < 1)
-                Debug.Log("Done");
-             else
-            {
+                Next();
+            else
                 menu.Refresh(cookingData.items[0]);
-            }
         }
     }
 }
