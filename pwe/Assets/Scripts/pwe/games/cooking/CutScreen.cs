@@ -14,7 +14,9 @@ namespace Pwe.Games.Cooking
         [SerializeField] bool right_left = true;
         [SerializeField] float lineCutSize = 4.3f;
         [SerializeField] float totalDragX = 4;
+        [SerializeField] float delayToEnd = 1;
         float smooth = 10;
+
         public float v;
         states state;
         enum states
@@ -36,10 +38,12 @@ namespace Pwe.Games.Cooking
         }
         public override void OnUpdate()
         {
-            if(state == states.done) return;
-            v = slider.value;
-            if (v <= 0)
-                Done();
+            if (state == states.playing)
+            {
+                v = slider.value;
+                if (v <= 0)
+                    Done();
+            }
             SetValues();
         }
         void Done()
@@ -47,7 +51,7 @@ namespace Pwe.Games.Cooking
             v = 0;
             lineCut.gameObject.SetActive(false);
             state = states.done;
-            Invoke("Skip", 0.5f);
+            Invoke("Skip", delayToEnd);
         }
         void SetValues()
         {

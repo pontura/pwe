@@ -386,6 +386,7 @@ MonoBehaviour:
   right_left: 0
   lineCutSize: 4.3
   totalDragX: 4
+  delayToEnd: 1
   v: 0.25
 --- !u!1 &1050440904791781343
 GameObject:
@@ -1956,8 +1957,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -10.6279}
-  m_SizeDelta: {x: 473.5, y: 247.2308}
+  m_AnchoredPosition: {x: 0, y: 24.134796}
+  m_SizeDelta: {x: 473.5, y: 316.7562}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &7340853525498381697
 MonoBehaviour:
