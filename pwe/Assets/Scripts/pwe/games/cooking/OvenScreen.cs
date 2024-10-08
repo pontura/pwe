@@ -21,9 +21,6 @@ namespace Pwe.Games.Cooking
         public override void OnUpdate()
         {
             float _a = (float)num * 360 / (float)totalNums;
-
-            print(_a);
-
             float _rot = Mathf.Lerp(clockGO.transform.localEulerAngles.z, _a, 0.05f);
             clockGO.transform.localEulerAngles = new Vector3(0, 0, _rot);
         }
