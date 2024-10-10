@@ -8,7 +8,7 @@ namespace Pwe.Games.SolarSystem
     {
         // Start is called before the first frame update
         public void Init(Transform sun, SpaceData spaceData, PlanetData pd) {
-            base.Init(sun, spaceData, pd.orbitData);
+            base.Init((int)pd.planetName, sun, spaceData, pd.orbitData, pd.sprite);
             //transform.localScale = transform.localScale * pd.size * spaceData.SizeFactor;
             transform.localScale = spaceData.GetSize(pd.size);
         }        
