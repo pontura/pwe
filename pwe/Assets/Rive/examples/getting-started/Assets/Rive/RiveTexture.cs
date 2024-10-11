@@ -78,7 +78,6 @@ public class RiveTexture : MonoBehaviour
             {
                 Camera.main.AddCommandBuffer(CameraEvent.AfterEverything, m_commandBuffer);
             }
-
         }
 
     }

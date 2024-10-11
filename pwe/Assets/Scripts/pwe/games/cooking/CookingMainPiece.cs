@@ -12,6 +12,7 @@ namespace Pwe.Games.Cooking
 
         [SerializeField] string states_pizza;
         [SerializeField] string trigger;
+        [SerializeField] PiecesContainer piecesContainer;
 
         public void Init(string ingredient)
         {
@@ -35,11 +36,20 @@ namespace Pwe.Games.Cooking
         }
         public void OnPieceReleased()
         {
-            if (pieceOver == false) return;
-            cooking.OnPieceAdded();
-            Debug.Log("On Piece Released over!");
-            riveTexture.SetTrigger("add");
-            pieceOver = false;
+            if (pieceOver == false)
+            {
+                OnDropItemOut();
+            }
+            else {
+                cooking.OnPieceAdded();
+                Debug.Log("On Piece Released over!");
+                riveTexture.SetTrigger("add");
+                pieceOver = false;
+            }
+        }
+        void OnDropItemOut()
+        {
+            piecesContainer.Add();
         }
     }
 }

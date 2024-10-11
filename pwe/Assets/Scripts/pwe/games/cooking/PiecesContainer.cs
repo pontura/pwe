@@ -25,5 +25,9 @@ namespace Pwe.Games.Cooking
             dragInputManager.ForceDrag(pos, dragElement);
             print("FORCE DRAG");
         }
+        public void Add() // if drop item out:
+        {
+            riveTexture.SetTrigger("add");
+        }
     }
 }
