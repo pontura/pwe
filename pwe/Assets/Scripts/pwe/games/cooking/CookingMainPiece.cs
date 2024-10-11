@@ -7,11 +7,17 @@ namespace Pwe.Games.Cooking
     public class CookingMainPiece : InteractiveElement
     {
         [SerializeField] Cooking cooking;
-        RiveController riveController;
+        RiveTexture riveTexture;
         bool pieceOver;
-        private void Awake()
+
+        [SerializeField] string states_pizza;
+        [SerializeField] string trigger;
+
+        public void Init(string ingredient)
         {
-            riveController = GetComponent<RiveController>();
+            riveTexture = GetComponent<RiveTexture>();
+            riveTexture.Init();
+            InitIngredient(ingredient);
         }
         public override void OnIECollisionEnter(InteractiveElement ie)
         {
@@ -23,12 +29,16 @@ namespace Pwe.Games.Cooking
             pieceOver = false;
             Debug.Log("Piece is out...");
         }
+        public void InitIngredient(string ingredient)
+        {
+            riveTexture.SetTrigger(ingredient);
+        }
         public void OnPieceReleased()
         {
             if (pieceOver == false) return;
             cooking.OnPieceAdded();
             Debug.Log("On Piece Released over!");
-            riveController.Clicked();
+            riveTexture.SetTrigger("add");
             pieceOver = false;
         }
     }

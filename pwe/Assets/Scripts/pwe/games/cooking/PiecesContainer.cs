@@ -6,17 +6,21 @@ namespace Pwe.Games.Cooking
 {
     public class PiecesContainer : InteractiveElement
     {
-        RiveController riveController;
+        RiveTexture riveTexture;
         [SerializeField] DragInputManager dragInputManager;
         [SerializeField] DragElement dragElement;
 
         private void Awake()
         {
-            riveController = GetComponent<RiveController>();
+            riveTexture = GetComponent<RiveTexture>();
+        }
+        private void Start()
+        {
+            riveTexture.Init();
         }
         public override void OnClicked()
         {
-            riveController.Clicked();
+            riveTexture.SetTrigger("remove");
             Vector2 pos = Input.mousePosition;
             dragInputManager.ForceDrag(pos, dragElement);
             print("FORCE DRAG");

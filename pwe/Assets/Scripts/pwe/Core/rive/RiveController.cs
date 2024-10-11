@@ -10,6 +10,9 @@ namespace Pwe
 {
     public class RiveController : MonoBehaviour
     {
+
+
+
         public Rive.Asset asset;
         public Fit fit = Fit.contain;
         public Alignment alignment = Alignment.Center;
@@ -65,6 +68,17 @@ namespace Pwe
                 m_file = Rive.File.Load(asset);
                 m_artboard = m_file.Artboard(0);
                 m_stateMachine = m_artboard?.StateMachine();
+
+                for (uint a = 0; a< m_file.ArtboardCount; a++)
+                {
+                    Artboard artb = m_file.Artboard(a);
+
+                    for (uint b = 0; b < artb.StateMachineCount; b++)
+                    {
+                        Debug.Log(a + "   artb: " + artb.StateMachineName(b));
+                    }
+
+                }
 
                 List<SMIInput> inputs = m_stateMachine.Inputs();
                 foreach (SMIInput input in inputs)

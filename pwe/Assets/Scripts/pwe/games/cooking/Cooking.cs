@@ -10,6 +10,7 @@ namespace Pwe.Games.Cooking
         [SerializeField] CookingData cookingData;
         [SerializeField] CookingMenuUI menu;
         [SerializeField] NumFeedback numFeedback;
+        [SerializeField] CookingMainPiece mainPiece;
         int total;
 
         public override void OnInit()
@@ -17,7 +18,13 @@ namespace Pwe.Games.Cooking
             List<CookingItemData> items = cookingData.GetItems();
             menu.Init(items);
             total = items[0].num;
+            Delayed();
         }
+        void Delayed()
+        {
+            mainPiece.Init("init_olives");
+        }
+        
         public void OnPieceAdded()
         {
             cookingData.PieceDone();
