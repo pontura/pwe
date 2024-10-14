@@ -22,6 +22,7 @@ namespace Pwe.Games.SolarSystem
 
         void Start() {
             _lineRenderer = GetComponent<LineRenderer>();
+            DrawBezierCurve();
         }
 
 
