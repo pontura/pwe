@@ -41,3 +41,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: helpers
+    uniqueID: 1591750539
+    locked: 0

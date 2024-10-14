@@ -13,19 +13,19 @@ namespace Pwe.Games.SolarSystem
         int total;
 
         public override void OnInit() {
-            SetPlanets();
+            InitPlanets();
 
             /*List<CookingItemData> items = cookingData.GetItems();
             menu.Init(items);
             total = items[0].num;*/
         }
 
-        public void SetPlanets() {
-            planetsManager.Init(planetsData);
+        public void InitPlanets() {
             planetsManager.RemoveAllPlanets();
-            foreach (PlanetData pd in planetsData.planets) {
+            planetsManager.Init(planetsData);            
+            /*foreach (PlanetData pd in planetsData.planets) {
                 planetsManager.AddPlanet(pd);
-            }
+            }*/
         }
 
         public void OnPieceAdded()
@@ -51,7 +51,7 @@ namespace Pwe.Games.SolarSystem
             SolarSystem solarSystem = (SolarSystem)target;
             //SolarSystem.SetPlanets = EditorGUILayout.Toggle("Hello World"); //Returns true when user clicks
             if (GUILayout.Button("Reload Planets")) {
-                solarSystem.SetPlanets();
+                solarSystem.InitPlanets();
             }
         }
     }

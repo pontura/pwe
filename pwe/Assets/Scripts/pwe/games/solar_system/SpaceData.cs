@@ -1,14 +1,12 @@
+using System;
 using UnityEngine;
+using System.Collections.Generic;
 
 namespace Pwe.Games.SolarSystem
 {
     [CreateAssetMenu(fileName = "NewSpaceData", menuName = "SolarSystem/Data/Space", order = 0)]
     public class SpaceData : ScriptableObject
     {        
-        [field: SerializeField] public float SizeFactor { get; private set; }
-        [field: SerializeField] public float SpeedFactor { get; private set; }
-        [field: SerializeField] public float DistanceFactor { get; private set; }
-
         //[Range(1, 6)]
         [field: SerializeField] public float MinDistance { get; private set; }
         [field: SerializeField] public float MaxDistance { get; private set; }
@@ -25,6 +23,10 @@ namespace Pwe.Games.SolarSystem
 
         public AnimationCurve sizeCurve;
 
+        [field: SerializeField] public List<LevelItem> LevelItems { get; private set; }
+
+        [field: SerializeField] public float orbitSpeedFactor;
+
         [HideInInspector]
         public Vector2 _minmaxSpeed;
         [HideInInspector]
@@ -32,9 +34,17 @@ namespace Pwe.Games.SolarSystem
         [HideInInspector]
         public Vector2 _minmaxDistance;
 
+        [Serializable]
+        public class LevelItem
+        {
+            public OrbitalItem orbitalItem;
+            public OrbitalPath orbitalPath;
+            public PlanetName planetName;
+        }
+
         public float GetSpeed(float speed) {
             float index = (speed - _minmaxSpeed.x) / (_minmaxSpeed.y - _minmaxSpeed.x);
-            return MinSpeed + speedCurve.Evaluate(index) * (MaxSpeed-MinSpeed);
+            return orbitSpeedFactor * (MinSpeed + speedCurve.Evaluate(index) * (MaxSpeed-MinSpeed));
         }
 
         public Vector3 GetSize(float size) {

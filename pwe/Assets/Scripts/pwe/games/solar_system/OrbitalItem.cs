@@ -13,6 +13,8 @@ namespace Pwe.Games.SolarSystem
         protected SpaceData _spaceData;
         SpriteRenderer _sr;
         protected Transform _sun;
+        protected float _orbitPosition;
+        protected OrbitalPath _path;
 
         private void Awake() {
             _sr = GetComponent<SpriteRenderer>();
@@ -30,6 +32,16 @@ namespace Pwe.Games.SolarSystem
             _sr.sprite = sprite;
             Orbit(Random.Range(0.1f, 360f));
         }
+
+        public virtual void Init(int id, SpaceData spaceData, OrbitData od, Sprite sprite, OrbitalPath oPath) {
+            base.Init(id);
+            _spaceData = spaceData;
+            orbitData = od;
+            _sr.sprite = sprite;
+            _path = oPath;
+            OrbitCurve(Random.value);
+        }
+
         protected void Orbit(float time=0) {
             if (orbitData != null) {
                 time = time == 0 ? Time.deltaTime : time;
@@ -38,8 +50,20 @@ namespace Pwe.Games.SolarSystem
             //transform.RotateAround(_sun.position, _sun.transform.forward, orbitData.speed * Time.deltaTime * _spaceData.SpeedFactor);
         }
 
+        protected void OrbitCurve(float position = 0) {
+            if (orbitData != null) {
+                _orbitPosition = position==0 ? _orbitPosition : position;
+                _orbitPosition += _spaceData.GetSpeed(orbitData.speed) * Time.deltaTime;
+                if (_orbitPosition > 1f)
+                    _orbitPosition = 0f;
+            }
+            transform.localPosition = _path.FollowPath(_orbitPosition);
+            //transform.RotateAround(_sun.position, _sun.transform.forward, orbitData.speed * Time.deltaTime * _spaceData.SpeedFactor);
+        }
+
         private void Update() {
-            Orbit();
+            OrbitCurve();
+            //Orbit();
         }
     }
 }
