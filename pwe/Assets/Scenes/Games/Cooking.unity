@@ -392,6 +392,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Game_Cooking
       objectReference: {fileID: 0}
+    - target: {fileID: 6910866388624311303, guid: 41c9eab2edc7c474faa1c6d6d499d5b9, type: 3}
+      propertyPath: allRivNames.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6910866388624311303, guid: 41c9eab2edc7c474faa1c6d6d499d5b9, type: 3}
+      propertyPath: allRivNames.Array.data[0]
+      value: pwa-pizza
+      objectReference: {fileID: 0}
+    - target: {fileID: 6910866388624311303, guid: 41c9eab2edc7c474faa1c6d6d499d5b9, type: 3}
+      propertyPath: allRivNames.Array.data[1]
+      value: pwa-bowl
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

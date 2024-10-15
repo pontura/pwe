@@ -10,22 +10,26 @@ namespace Pwe.Games
         [SerializeField] GameMain[] screens;
         [SerializeField] int screenID;
         GameMain active;
+        [SerializeField] string[] allRivNames;
 
         void Start()
         {
             foreach (GameMain gm in screens) gm.Initialize(this);
-
-            if (SceneManager.GetActiveScene().name == "Main")
-                screenID = 0;
-
-            List<string> arr = new List<string>();
-            arr.Add("pwa-bowl.riv");
-            arr.Add("pwa-pizza.riv");
-            MainApp.Instance.riveFilesManager.PreloadRivs(arr, AllRivesLoaded);            
+           
+            if (allRivNames != null && allRivNames.Length > 0)
+            {
+                MainApp.Instance.riveFilesManager.PreloadRivs(allRivNames, AllRivesLoaded);
+            }
+            else
+            {
+                AllRivesLoaded();
+            }
         }
         void AllRivesLoaded()
         {
             Debug.Log("All Rives Loaded");
+            if (SceneManager.GetActiveScene().name == "Main")
+                screenID = 0;
             SetScreen();
         }
         void SetScreen()

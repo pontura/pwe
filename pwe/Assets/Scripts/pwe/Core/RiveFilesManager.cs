@@ -60,11 +60,11 @@ namespace Pwe.Core
         int totalLoaded;
         int totalRives;
         System.Action AllPreloaded;
-        public void PreloadRivs(List<string> rives, System.Action AllPreloaded)
+        public void PreloadRivs(string[] rives, System.Action AllPreloaded)
         {
             this.AllPreloaded = AllPreloaded;
             totalLoaded = 0;
-            totalRives = rives.Count;
+            totalRives = rives.Length;
             foreach (string s in rives)
             {
                 if (all.ContainsKey(s))
@@ -75,7 +75,7 @@ namespace Pwe.Core
                 else
                 {
                     Debug.Log("Loading: " + s + " - " + totalLoaded + " of " + totalRives);
-                    string finalURL = s;
+                    string finalURL = s + ".riv";
                     StartCoroutine(LoadC(finalURL, OnPreloaded));
                 }
             }
