@@ -16,6 +16,8 @@ namespace Pwe.Games.SolarSystem
         protected float _orbitPosition;
         protected OrbitalPath _path;
 
+        [field: SerializeField] public bool Moving { get; set; }
+
         private void Awake() {
             _sr = GetComponent<SpriteRenderer>();
         }
@@ -40,6 +42,7 @@ namespace Pwe.Games.SolarSystem
             _sr.sprite = sprite;
             _path = oPath;
             OrbitCurve(Random.value);
+            Moving = true;
         }
 
         protected void Orbit(float time=0) {
@@ -62,7 +65,8 @@ namespace Pwe.Games.SolarSystem
         }
 
         private void Update() {
-            OrbitCurve();
+            if(Moving)
+                OrbitCurve();
             //Orbit();
         }
     }

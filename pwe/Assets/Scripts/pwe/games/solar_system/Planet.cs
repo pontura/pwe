@@ -20,7 +20,8 @@ namespace Pwe.Games.SolarSystem
 
         private void Update() {
             //Orbit();
-            OrbitCurve();
+            if (Moving)
+                OrbitCurve();
         }
     }
 }

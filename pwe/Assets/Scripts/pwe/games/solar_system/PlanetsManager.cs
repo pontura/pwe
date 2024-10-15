@@ -55,6 +55,12 @@ namespace Pwe.Games.SolarSystem
             }
         }
 
+        public void Play(bool enable) {
+            foreach (OrbitalItem op in planetsContainer.GetComponentsInChildren<OrbitalItem>()) {
+                op.Moving = enable;
+            }
+        }
+
         public void ToggleOrbits() {
             foreach(OrbitalPath op in orbitsContainer.GetComponentsInChildren<OrbitalPath>()) {
                 op.ToggleLine();
