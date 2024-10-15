@@ -16,7 +16,7 @@ namespace Pwe.Games.Cooking
         }
         private void Start()
         {
-            riveTexture.Init();
+            riveTexture.Init("pwa-bowl.riv");
         }
         public override void OnClicked()
         {

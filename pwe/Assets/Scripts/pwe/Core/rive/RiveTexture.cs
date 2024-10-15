@@ -2,6 +2,7 @@ using UnityEngine;
 using Rive;
 using UnityEngine.Rendering;
 using System.Linq;
+using Pwe.Core;
 
 namespace Pwe
 {
@@ -13,6 +14,7 @@ namespace Pwe
         public Fit fit = Fit.contain;
         public Alignment alignment = Alignment.Center;
 
+
         private Rive.RenderQueue m_renderQueue;
         private Rive.Renderer m_riveRenderer;
         private CommandBuffer m_commandBuffer;
@@ -22,23 +24,20 @@ namespace Pwe
         private StateMachine m_stateMachine;
 
         private Camera m_camera;
+        System.Action OnReady;
 
-        public void Init()
+        void OnDone(byte[] data, string riveName)
         {
-            Vector3 s = transform.localScale;
-            s.y *= -1;
-            transform.localScale = s;
+            m_file = Rive.File.Load(riveName, data, data.GetHashCode());
 
-            // If on D3d11, this is required
-            renderTexture.enableRandomWrite = true;
             m_renderQueue = new Rive.RenderQueue(renderTexture);
             m_riveRenderer = m_renderQueue.Renderer();
-            if (asset != null)
-            {
-                m_file = Rive.File.Load(asset);
+            //if (asset != null)
+            //{
+            //    m_file = Rive.File.Load(asset);
                 m_artboard = m_file.Artboard(0);
                 m_stateMachine = m_artboard?.StateMachine();
-            }
+            //}
             if (m_artboard != null && renderTexture != null)
             {
                 m_riveRenderer.Align(fit, alignment, m_artboard);
@@ -54,6 +53,19 @@ namespace Pwe
                     Camera.main.AddCommandBuffer(CameraEvent.AfterEverything, m_commandBuffer);
                 }
             }
+            renderTexture.enableRandomWrite = true;
+            if(OnReady != null)
+                OnReady();
+        }
+        public void Init(string riveFileName, System.Action OnReady = null)
+        {
+            this.OnReady = OnReady;
+            Vector3 s = transform.localScale;
+            s.y *= -1;
+            transform.localScale = s;
+
+            // If on D3d11, this is required
+            MainApp.Instance.riveFilesManager.Load(riveFileName, OnDone);
             //for (uint a = 0; a < m_file.ArtboardCount; a++)
             //{
             //    Artboard artb = m_file.Artboard(a);

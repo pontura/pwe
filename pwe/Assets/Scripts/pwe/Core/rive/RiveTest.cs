@@ -10,10 +10,11 @@ namespace Pwe
         [SerializeField] InputField input;
         [SerializeField] InputField input2;
         [SerializeField] RiveTexture riveTexture;
+        [SerializeField] string riveName;
 
         private void Start()
         {
-            riveTexture.Init();
+            riveTexture.Init(riveName, null);
         }
         public void Clicked()
         {

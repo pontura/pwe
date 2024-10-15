@@ -18,10 +18,6 @@ namespace Pwe.Games.Cooking
             List<CookingItemData> items = cookingData.GetItems();
             menu.Init(items);
             total = items[0].num;
-            Delayed();
-        }
-        void Delayed()
-        {
             mainPiece.Init("init_olives");
         }
         

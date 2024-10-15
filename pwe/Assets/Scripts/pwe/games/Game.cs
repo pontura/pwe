@@ -1,3 +1,5 @@
+using Pwe.Core;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -15,6 +17,15 @@ namespace Pwe.Games
 
             if (SceneManager.GetActiveScene().name == "Main")
                 screenID = 0;
+
+            List<string> arr = new List<string>();
+            arr.Add("pwa-bowl.riv");
+            arr.Add("pwa-pizza.riv");
+            MainApp.Instance.riveFilesManager.PreloadRivs(arr, AllRivesLoaded);            
+        }
+        void AllRivesLoaded()
+        {
+            Debug.Log("All Rives Loaded");
             SetScreen();
         }
         void SetScreen()

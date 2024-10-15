@@ -13,11 +13,16 @@ namespace Pwe.Games.Cooking
         [SerializeField] string states_pizza;
         [SerializeField] string trigger;
         [SerializeField] PiecesContainer piecesContainer;
+        string ingredient;
 
         public void Init(string ingredient)
         {
+            this.ingredient = ingredient;
             riveTexture = GetComponent<RiveTexture>();
-            riveTexture.Init();
+            riveTexture.Init("pwa-pizza.riv", OnReady);
+        }
+        void OnReady()
+        {
             InitIngredient(ingredient);
         }
         public override void OnIECollisionEnter(InteractiveElement ie)
