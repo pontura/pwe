@@ -1051,7 +1051,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64d01fcceb0f2614289c1d60bca6b7c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  asset: {fileID: -4516626237390682484, guid: fb3310e57e55d1649bce848b932e7af3, type: 3}
+  asset: {fileID: 0}
   fit: 1
 --- !u!114 &2948228419298478712
 MonoBehaviour:
@@ -2284,27 +2284,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8471283464050403474, guid: 8cbb8258f004e184a8bfedab8963930d, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8471283464050403474, guid: 8cbb8258f004e184a8bfedab8963930d, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8471283464050403474, guid: 8cbb8258f004e184a8bfedab8963930d, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8471283464050403474, guid: 8cbb8258f004e184a8bfedab8963930d, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8471283464050403474, guid: 8cbb8258f004e184a8bfedab8963930d, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 200
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8471283464050403474, guid: 8cbb8258f004e184a8bfedab8963930d, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 200
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8471283464050403474, guid: 8cbb8258f004e184a8bfedab8963930d, type: 3}
       propertyPath: m_LocalPosition.x

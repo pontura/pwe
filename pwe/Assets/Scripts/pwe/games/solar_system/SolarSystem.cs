@@ -36,19 +36,19 @@ namespace Pwe.Games.SolarSystem
         void Takeshot(Vector2 pos) {
             if (!_paused) {
                 _paused = true;
-                screenshot.TakeShot(pos, OnCaptureDone);
-                planetsManager.Play(false);
+                screenshot.TakeShot(pos, (tex) => OnCaptureDone(tex,pos));
+                //planetsManager.Play(false);
                 dinoFlash.SetActive(true);
             }
         }
 
-        void OnCaptureDone(Texture2D tex) {
-            photoUI.Init(tex, OnContinueMoving);            
+        void OnCaptureDone(Texture2D tex, Vector2 pos) {
+            photoUI.Init(tex, OnContinueMoving, pos);            
         }
 
         void OnContinueMoving() {
             _paused = false;
-            planetsManager.Play(true);
+            //planetsManager.Play(true);
             dinoFlash.SetActive(false);
         }
 
