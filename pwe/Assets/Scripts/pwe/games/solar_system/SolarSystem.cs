@@ -58,7 +58,7 @@ namespace Pwe.Games.SolarSystem
             /*foreach (PlanetData pd in planetsData.planets) {
                 planetsManager.AddPlanet(pd);
             }*/
-        }        
+        }
     }
 
 #if UNITY_EDITOR

@@ -42,12 +42,15 @@ namespace Pwe.Games.SolarSystem
 
         public void AddPlanet(PlanetData pd, OrbitalPath path) {
             Planet p = Instantiate(planet_prefab, planetsContainer);
-            p.Init(spaceData, pd, path);
+            p.Init(spaceData, pd, path, () => OnPlanetClicked(pd.planetName));
         }
 
         public void AddOvni(int index, OrbitalItem oi, OrbitalPath path) {
             OrbitalItem p = Instantiate(oi, planetsContainer);
-            p.Init(index, spaceData, path);
+            p.Init(index, spaceData, path, () => OnPlanetClicked(PlanetName.none));
+        }
+        void OnPlanetClicked(PlanetName planetName) {
+            Debug.Log("# " + planetName.ToString());
         }
 
         public void RemoveAllPlanets() {

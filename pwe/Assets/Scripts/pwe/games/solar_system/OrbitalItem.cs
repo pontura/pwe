@@ -16,6 +16,8 @@ namespace Pwe.Games.SolarSystem
         protected float _orbitPosition;
         protected OrbitalPath _path;
 
+        protected System.Action onClick;
+
         [field: SerializeField] public bool Moving { get; set; }
 
         public virtual void Init(int id, Transform sun, SpaceData spaceData, OrbitData od, Sprite sprite) {
@@ -31,21 +33,25 @@ namespace Pwe.Games.SolarSystem
             Orbit(Random.Range(0.1f, 360f));
         }
 
-        public virtual void Init(int id, SpaceData spaceData, OrbitData od, Sprite sprite, OrbitalPath oPath) {
+        public virtual void Init(int id, SpaceData spaceData, OrbitData od, Sprite sprite, OrbitalPath oPath, System.Action onclick) {
             base.Init(id);
             _spaceData = spaceData;
             orbitData = od;
             _itemSR.sprite = sprite;
+            CircleCollider2D collider = GetComponent<CircleCollider2D>();
+            collider.radius = (_itemSR.bounds.size*0.15f).magnitude;
             _path = oPath;
             OrbitCurve(Random.value);
+            onClick = onclick;
             Moving = true;
         }
 
-        public virtual void Init(int id, SpaceData spaceData, OrbitalPath oPath) {
+        public virtual void Init(int id, SpaceData spaceData, OrbitalPath oPath, System.Action onclick) {
             base.Init(id);
             _spaceData = spaceData;
             _path = oPath;
             OrbitCurve(Random.value);
+            onClick = onclick;
             Moving = true;
         }
 
@@ -72,6 +78,12 @@ namespace Pwe.Games.SolarSystem
             if(Moving)
                 OrbitCurve();
             //Orbit();
+        }
+
+        public override void OnClicked() {
+            Debug.Log("OnClicked: " + this is Planet);
+            if (onClick != null)
+                onClick();
         }
     }
 }
