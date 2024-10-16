@@ -19,26 +19,35 @@ namespace Pwe.Games.SolarSystem
             spaceData._minmaxSpeed = planetsData.GetMinMaxSpeed();
 
             RemoveAllOrbits();
+            int index = 0;
             foreach (SpaceData.LevelItem li in spaceData.LevelItems) {
                 Debug.Log("#" + li.planetName.ToString());
                 if ((int)li.planetName > 0) {
                     PlanetData pd = planetsData.planets.Find(x => x.planetName == li.planetName);
                     Debug.Log("#" + (pd!=null));
                     AddPlanet(pd, li.orbitalPath);
+                } else {
+                    AddOvni(index, li.orbitalItem, li.orbitalPath);
                 }
 
-                OrbitalPath op = Instantiate(li.orbitalPath, orbitsContainer);                
+                OrbitalPath op = Instantiate(li.orbitalPath, orbitsContainer);
+                index++;
             }
         }
 
         public void AddPlanet(PlanetData pd) {
             Planet p = Instantiate(planet_prefab, planetsContainer);            
             p.Init(sun, spaceData, pd);
-        }
+        }        
 
         public void AddPlanet(PlanetData pd, OrbitalPath path) {
             Planet p = Instantiate(planet_prefab, planetsContainer);
             p.Init(spaceData, pd, path);
+        }
+
+        public void AddOvni(int index, OrbitalItem oi, OrbitalPath path) {
+            OrbitalItem p = Instantiate(oi, planetsContainer);
+            p.Init(index, spaceData, path);
         }
 
         public void RemoveAllPlanets() {

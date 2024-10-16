@@ -100,6 +100,9 @@ MonoBehaviour:
   - orbitalItem: {fileID: 0}
     orbitalPath: {fileID: 2355899697140836453, guid: 783489c487bc3e44683f96303265fa91, type: 3}
     planetName: 4
+  - orbitalItem: {fileID: -4921058695821818843, guid: 29ef99a01b831b94d9fed71416c295fb, type: 3}
+    orbitalPath: {fileID: 2355899697140836453, guid: 783489c487bc3e44683f96303265fa91, type: 3}
+    planetName: 0
   orbitSpeedFactor: 0.5
   _minmaxSpeed: {x: 0.006, y: 4.15}
   _minmaxSize: {x: 0.35, y: 11}

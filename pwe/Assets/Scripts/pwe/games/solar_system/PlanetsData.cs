@@ -29,6 +29,7 @@ namespace Pwe.Games.SolarSystem
     }
     public enum PlanetName
     {
+        none=0,
         mercury = 1,
         venus = 2,
         earth = 3,

@@ -11,16 +11,12 @@ namespace Pwe.Games.SolarSystem
     {
         [SerializeField] protected OrbitData orbitData;
         protected SpaceData _spaceData;
-        SpriteRenderer _sr;
+        [SerializeField] SpriteRenderer _itemSR;
         protected Transform _sun;
         protected float _orbitPosition;
         protected OrbitalPath _path;
 
         [field: SerializeField] public bool Moving { get; set; }
-
-        private void Awake() {
-            _sr = GetComponent<SpriteRenderer>();
-        }
 
         public virtual void Init(int id, Transform sun, SpaceData spaceData, OrbitData od, Sprite sprite) {
             base.Init(id);
@@ -31,7 +27,7 @@ namespace Pwe.Games.SolarSystem
             float distance = spaceData.GetDistance(od.distance);
             Debug.Log("#Distance: " + distance);
             transform.position = new Vector3(_sun.position.x + distance, _sun.position.y, _sun.position.z);            
-            _sr.sprite = sprite;
+            _itemSR.sprite = sprite;
             Orbit(Random.Range(0.1f, 360f));
         }
 
@@ -39,7 +35,15 @@ namespace Pwe.Games.SolarSystem
             base.Init(id);
             _spaceData = spaceData;
             orbitData = od;
-            _sr.sprite = sprite;
+            _itemSR.sprite = sprite;
+            _path = oPath;
+            OrbitCurve(Random.value);
+            Moving = true;
+        }
+
+        public virtual void Init(int id, SpaceData spaceData, OrbitalPath oPath) {
+            base.Init(id);
+            _spaceData = spaceData;
             _path = oPath;
             OrbitCurve(Random.value);
             Moving = true;
