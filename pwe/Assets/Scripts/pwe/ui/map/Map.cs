@@ -7,16 +7,24 @@ namespace Pwe.UI
 {
     public class Map : MainScreen
     {
-        [SerializeField] ButtonUIText cookingButton; //TO-DO
+        [SerializeField] ButtonUIText[] games; //TO-DO
 
         public override void OnInitialize()
         {
-            cookingButton.Init(OnCook);
+            for(int a  = 0; a< games.Length; a++)
+                games[a].Init(OnClick, a);
         }
-
-        private void OnCook()
+        private void OnClick(int id)
         {
-            Events.OnPlayGame(GamesManager.GAMES.COOKING);
+            switch(id)
+            {
+                case 0:
+                    Events.OnPlayGame(GamesManager.GAMES.COOKING);
+                    break;
+                case 1:
+                    Events.OnPlayGame(GamesManager.GAMES.PHOTOS);
+                    break;
+            }
         }
     }
 }
