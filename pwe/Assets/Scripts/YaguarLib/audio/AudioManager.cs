@@ -30,7 +30,6 @@ namespace YaguarLib.Audio
         {
             public string sourceName;
             public AudioSource audioSource;
-            public float volume = 1;
         }
         [Serializable]
         public class AudioData
@@ -61,7 +60,6 @@ namespace YaguarLib.Audio
             {
                 if (m.audioSource == null)
                     m.audioSource = gameObject.AddComponent<AudioSource>();
-                m.audioSource.volume = m.volume;
             }
             YaguarLib.Events.Events.OnPlaySound += OnPlaySound;
             YaguarLib.Events.Events.OnPlaySoundInChannel += OnPlaySoundInChannel;

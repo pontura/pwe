@@ -1,3 +1,4 @@
+using Pwe.Core;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,6 +20,7 @@ namespace Pwe.Games.Cooking.UI
             panel.SetActive(true);
             field.text = num.ToString();
             Invoke("Reset", 1);
+            Events.OnSayNumber(num);
         }
         private void Reset()
         {
