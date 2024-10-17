@@ -43,8 +43,8 @@ namespace YaguarLib.Xtras
             }
 
             if (takeShot) {
-                Debug.Log("Screen: "+Screen.width + " x " + Screen.height);
-                Debug.Log("Center: " + shotCenter.x + " x " + shotCenter.y);
+                //Debug.Log("Screen: "+Screen.width + " x " + Screen.height);
+                //Debug.Log("Center: " + shotCenter.x + " x " + shotCenter.y);
                 RenderTexture rt = new RenderTexture(Screen.width, Screen.height, 32);
                 texture = new Texture2D(shotRes.x, shotRes.y, TextureFormat.RGB24, false);                
 
