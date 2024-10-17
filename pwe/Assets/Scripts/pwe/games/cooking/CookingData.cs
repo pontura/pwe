@@ -21,11 +21,11 @@ namespace Pwe.Games.Cooking
         {
             return items;
         }
-        public void PieceDone()
+        public void PieceDone(int itemID)
         {
-            items[0].num--;
-            if (items[0].num <= 0)
-                items[0].num = 0;
+            items[itemID].num--;
+            if (items[itemID].num <= 0)
+                items[itemID].num = 0;
         }
     }
 

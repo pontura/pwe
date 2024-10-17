@@ -11,6 +11,7 @@ namespace Pwe.Games.Cooking
         [SerializeField] CookingMenuUI menu;
         [SerializeField] NumFeedback numFeedback;
         [SerializeField] CookingMainPiece mainPiece;
+        [SerializeField] PiecesContainer piecesContainer;
         int total;
         List<CookingItemData> items;
         int itemID;
@@ -23,11 +24,13 @@ namespace Pwe.Games.Cooking
         void InitIngredient()
         {
             total = items[itemID].num;
-            mainPiece.Init("init_" + items[itemID].item.ToString());
+            string ingredient = items[itemID].item.ToString();
+            mainPiece.Init("init_" + ingredient);
+            piecesContainer.InitIngredient(items[itemID].item, total);
         }
         public void OnPieceAdded()
         {
-            cookingData.PieceDone();
+            cookingData.PieceDone(itemID);
             int num = cookingData.items[itemID].num;
 
             numFeedback.Init(total - num);
