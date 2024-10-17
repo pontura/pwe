@@ -1,4 +1,5 @@
 using Pwe.Games.Cooking.UI;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static Pwe.Games.Cooking.CookingData;
@@ -7,6 +8,12 @@ namespace Pwe.Games.Cooking
 {
     public class Cooking : GameMain
     {
+        public states state;
+        public enum states
+        {
+            playing,
+            done
+        }
         [SerializeField] CookingData cookingData;
         [SerializeField] CookingMenuUI menu;
         [SerializeField] NumFeedback numFeedback;
@@ -19,14 +26,17 @@ namespace Pwe.Games.Cooking
         {
             items = cookingData.GetItems();
             menu.Init(items);
+            mainPiece.Init();
             InitIngredient();
         }
         void InitIngredient()
         {
+            state = states.playing;
             total = items[itemID].num;
             string ingredient = items[itemID].item.ToString();
-            mainPiece.Init("init_" + ingredient);
-            piecesContainer.InitIngredient(items[itemID].item, total);
+            mainPiece.InitIngredient("init_" + ingredient);
+            piecesContainer.Initialize();
+            piecesContainer.InitIngredient(this, items[itemID].item, total);
         }
         public void OnPieceAdded()
         {
@@ -36,12 +46,15 @@ namespace Pwe.Games.Cooking
             numFeedback.Init(total - num);
 
             if (num < 1)
-                NextIngredient();
+               StartCoroutine( NextIngredient() );
             else
                 menu.Refresh(cookingData.items[itemID]);
         }
-        void NextIngredient()
+        IEnumerator NextIngredient()
         {
+            YaguarLib.Events.Events.OnPlaySound(YaguarLib.Audio.AudioManager.types.REWARD);
+            state = states.done;
+            yield return new WaitForSeconds(2);
             itemID++;
             if (itemID >= items.Count)
                 Next();
@@ -49,6 +62,10 @@ namespace Pwe.Games.Cooking
             {
                 InitIngredient();
             }
+        }
+        public bool CanMove()
+        {
+            return state == states.playing;
         }
     }
 }

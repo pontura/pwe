@@ -13,17 +13,19 @@ namespace Pwe.Games.Cooking
         string actionKey;
         string actionKeyQty;
         int num;
+        Cooking cooking;
 
         private void Awake()
         {
             riveTexture = GetComponent<RiveTexture>();
         }
-        void Start()
+        public void Initialize()
         {
             riveTexture.Init("pwa-bowl.riv");
         }
-        public void InitIngredient(CookingData.Items item, int num)
+        public void InitIngredient(Cooking cooking, CookingData.Items item, int num)
         {
+            this.cooking = cooking;
             this.num = num;
             this.actionKey = item.ToString();
             actionKeyQty = actionKey + "_qty";
@@ -32,6 +34,7 @@ namespace Pwe.Games.Cooking
         }
         public override void OnClicked()
         {
+            if (!cooking.CanMove()) return;
             Remove();
             Vector2 pos = Input.mousePosition;
             dragInputManager.ForceDrag(pos, dragElement);

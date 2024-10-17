@@ -11,14 +11,9 @@ namespace YaguarLib.Audio
         public enum types
         {
             UI_GENERIC,
-            CHARACTER,
             REWARD,
             POPUP,
             CANCEL,
-            BUY,
-            LEVEL_UP,
-            TAB,
-            UPGRADE,
             NONE
         }
 
@@ -111,7 +106,7 @@ namespace YaguarLib.Audio
         void OnPlaySound(types type)
         {
             string audioSource = "ui";
-            if (type == types.REWARD || type == types.UPGRADE)
+            if (type == types.REWARD)
                 audioSource = "ui2";
             OnPlaySoundInChannel(type, audioSource);
         }
