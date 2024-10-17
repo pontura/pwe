@@ -8,6 +8,7 @@ namespace Pwe.Core
 {
     public class RiveFilesManager : MonoBehaviour
     {
+        [SerializeField] bool useLocalRives;
         const string serverURL = "https://pontura.github.io/pwe/pwe/Assets/Rive/";
 
         Dictionary<string, byte[]> all;
@@ -31,7 +32,12 @@ namespace Pwe.Core
         }
         IEnumerator LoadC(string riveFile, System.Action<byte[], string> OnDone)
         {
-            string finalURL = serverURL + riveFile;
+            string finalURL;
+            if (useLocalRives)
+                finalURL = Application.dataPath + "/Rive/" + riveFile;
+            else
+                finalURL = serverURL + riveFile;
+
             Debug.Log("load: " + finalURL);
             UnityWebRequest www = UnityWebRequest.Get(finalURL);
             yield return www.SendWebRequest();

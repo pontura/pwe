@@ -101,14 +101,23 @@ namespace Pwe
         //}
         public void SetTrigger(string triggerName)
         {
-            print("trigger: " + triggerName);
+            print("Set trigger: " + triggerName);
 
             SMITrigger someTrigger = m_stateMachine.GetTrigger(triggerName);
             if (someTrigger != null)
             {
-                print("TRIGGER : " + triggerName);
+                print("Set TRIGGER done! : " + triggerName);
                 someTrigger.Fire();
             }
+        }
+        public void SetNumber(string triggerName, int number)
+        {
+            print("SetNumber : " + triggerName + " num: " + number);
+            SMINumber someNumber = m_stateMachine.GetNumber(triggerName);
+            if (someNumber == null) return;
+            someNumber.Value = number;
+            print("SetNumber Done");
+
         }
         private void Update()
         {

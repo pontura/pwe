@@ -36,5 +36,9 @@ namespace YaguarLib.UI
                 button.interactable = true;
             }
         }
+        public void SetInteraction(bool isOn)
+        {
+            button.interactable = isOn;
+        }
     }
 }

@@ -1,6 +1,7 @@
 using UnityEngine;
 using Yaguar.Inputs;
 using Yaguar.Inputs2D;
+using static Pwe.Games.Cooking.CookingData;
 
 namespace Pwe.Games.Cooking
 {
@@ -9,25 +10,44 @@ namespace Pwe.Games.Cooking
         RiveTexture riveTexture;
         [SerializeField] DragInputManager dragInputManager;
         [SerializeField] DragElement dragElement;
+        string actionKey;
+        string actionKeyQty;
+        int num;
+        Cooking cooking;
 
         private void Awake()
         {
             riveTexture = GetComponent<RiveTexture>();
         }
-        private void Start()
+        public void Initialize()
         {
             riveTexture.Init("pwa-bowl.riv");
         }
+        public void InitIngredient(Cooking cooking, CookingData.Items item, int num)
+        {
+            this.cooking = cooking;
+            this.num = num;
+            this.actionKey = item.ToString();
+            actionKeyQty = actionKey + "_qty";
+            riveTexture.SetTrigger(actionKey);
+            riveTexture.SetNumber(actionKeyQty, num);
+        }
         public override void OnClicked()
         {
-            riveTexture.SetTrigger("remove");
+            if (!cooking.CanMove()) return;
+            Remove();
             Vector2 pos = Input.mousePosition;
             dragInputManager.ForceDrag(pos, dragElement);
-            print("FORCE DRAG");
         }
         public void Add() // if drop item out:
         {
-            riveTexture.SetTrigger("add");
+            num++;
+            riveTexture.SetNumber(actionKeyQty, num);
+        }
+        public void Remove() // if drop item out:
+        {
+            num--;
+            riveTexture.SetNumber(actionKeyQty, num);
         }
     }
 }
