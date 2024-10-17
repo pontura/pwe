@@ -1,6 +1,7 @@
 using UnityEngine;
 using Yaguar.Inputs;
 using Yaguar.Inputs2D;
+using static Pwe.Games.Cooking.CookingData;
 
 namespace Pwe.Games.Cooking
 {
@@ -14,9 +15,13 @@ namespace Pwe.Games.Cooking
         {
             riveTexture = GetComponent<RiveTexture>();
         }
-        private void Start()
+        void Start()
         {
             riveTexture.Init("pwa-bowl.riv");
+        }
+        public void Init(CookingData.Items item)
+        {
+            riveTexture.SetTrigger("remove");
         }
         public override void OnClicked()
         {

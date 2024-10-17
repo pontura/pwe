@@ -12,26 +12,40 @@ namespace Pwe.Games.Cooking
         [SerializeField] NumFeedback numFeedback;
         [SerializeField] CookingMainPiece mainPiece;
         int total;
-
+        List<CookingItemData> items;
+        int itemID;
         public override void OnInit()
         {
-            List<CookingItemData> items = cookingData.GetItems();
+            items = cookingData.GetItems();
             menu.Init(items);
-            total = items[0].num;
-            mainPiece.Init("init_olives");
+            InitIngredient();
         }
-        
+        void InitIngredient()
+        {
+            total = items[itemID].num;
+            mainPiece.Init("init_" + items[itemID].item.ToString());
+        }
         public void OnPieceAdded()
         {
             cookingData.PieceDone();
-            int num = cookingData.items[0].num;
+            int num = cookingData.items[itemID].num;
 
             numFeedback.Init(total - num);
 
             if (num < 1)
+                NextIngredient();
+            else
+                menu.Refresh(cookingData.items[itemID]);
+        }
+        void NextIngredient()
+        {
+            itemID++;
+            if (itemID >= items.Count)
                 Next();
             else
-                menu.Refresh(cookingData.items[0]);
+            {
+                InitIngredient();
+            }
         }
     }
 }

@@ -9,8 +9,8 @@ namespace Pwe.Games.Cooking
 
         public enum Items
         {
-            TOMATOE,
-            ONION
+            tomatoes,
+            olives
         }
         [Serializable] public class CookingItemData
         {
