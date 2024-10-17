@@ -9,13 +9,14 @@ namespace Pwe.Games.UI
     {
         [SerializeField] RectTransform frame;
         [SerializeField] RawImage photoTex;
-        [SerializeField] Image flash;
+        [SerializeField] GameObject flash;
+        [SerializeField] GameObject fullFlash;
         [SerializeField] float _delay = 2;
 
         private Action onDone;        
 
         public void Init(Texture2D tex, Action callback) {
-            flash.gameObject.SetActive(true);
+            fullFlash.SetActive(true);
             Invoke(nameof(TurnFlashOff), 0.1f);
             onDone = callback;
             photoTex.texture = tex;
@@ -41,7 +42,7 @@ namespace Pwe.Games.UI
         }
 
         void TurnFlashOff() {
-            flash.gameObject.SetActive(false);
+            fullFlash.SetActive(false);
         }
 
         void Close() {
