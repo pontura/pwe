@@ -18,6 +18,9 @@ namespace Pwe.Games.SolarSystem
         [SerializeField] PhotoUI photoUI;
         [SerializeField] GameObject dinoFlash;
 
+
+        [SerializeField] Vector2 shotInitialSize, shotFinalSize;
+
         bool _paused;
 
         public override void OnInit() {
@@ -43,7 +46,10 @@ namespace Pwe.Games.SolarSystem
         }
 
         void OnCaptureDone(Texture2D tex, Vector2 pos) {
-            photoUI.Init(tex, OnContinueMoving, pos);            
+            photoUI.Init(tex, OnContinueMoving);
+            photoUI.FadeSize(shotInitialSize, shotFinalSize, 0.2f);
+            photoUI.FadePosition(pos, Vector2.Lerp(pos,new Vector2(Screen.width*0.5f, Screen.height*0.5f),0.25f), 0.2f);
+            photoUI.FadeAngle(Vector3.zero, new Vector3(0,0,Random.Range(-15,15)), 0.2f);
         }
 
         void OnContinueMoving() {

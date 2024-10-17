@@ -355,6 +355,8 @@ MonoBehaviour:
   screenshot: {fileID: 2346381606477202024}
   photoUI: {fileID: 1797126396426129356}
   dinoFlash: {fileID: 217337550829801768}
+  shotInitialSize: {x: 190, y: 190}
+  shotFinalSize: {x: 300, y: 300}
 --- !u!114 &3534683824791078328
 MonoBehaviour:
   m_ObjectHideFlags: 0

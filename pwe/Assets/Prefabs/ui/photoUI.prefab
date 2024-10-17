@@ -32,10 +32,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 7323664425321327913}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 280, y: 280}
+  m_SizeDelta: {x: -40, y: -40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &477508031485721667
 CanvasRenderer:
@@ -162,9 +162,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9c0a0fa430d35540956fac421665b65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  frame: {fileID: 7323664425321327913}
   photoTex: {fileID: 8697356391610987142}
   flash: {fileID: 2851141657360070007}
-  _delay: 2
+  _delay: 1
 --- !u!1 &7184281416579475928
 GameObject:
   m_ObjectHideFlags: 0
