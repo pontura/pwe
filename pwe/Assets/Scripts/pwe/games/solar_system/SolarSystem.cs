@@ -27,7 +27,8 @@ namespace Pwe.Games.SolarSystem
 
         public override void OnInit() {
             camClickInput.OnClickInput += Takeshot;
-            planetsManager.OnPlanetClicked += menuUI.SetDone;
+            planetsManager.OnPlanetClicked += levelsManager.OnPlanetClicked;
+            levelsManager.OnPlanetDone += menuUI.SetPlanetDone;
             InitPlanets();
 
             /*List<CookingItemData> items = cookingData.GetItems();
@@ -37,7 +38,8 @@ namespace Pwe.Games.SolarSystem
 
         private void OnDestroy() {
             camClickInput.OnClickInput -= Takeshot;
-            planetsManager.OnPlanetClicked -= menuUI.SetDone;
+            planetsManager.OnPlanetClicked -= levelsManager.OnPlanetClicked;
+            levelsManager.OnPlanetDone -= menuUI.SetPlanetDone;
         }
 
         void Takeshot(Vector2 pos) {
@@ -54,6 +56,10 @@ namespace Pwe.Games.SolarSystem
             photoUI.FadeSize(shotInitialSize, shotFinalSize, 0.2f);
             photoUI.FadePosition(pos, Vector2.Lerp(pos,new Vector2(Screen.width*0.5f, Screen.height*0.5f),0.25f), 0.2f);
             photoUI.FadeAngle(Vector3.zero, new Vector3(0,0,Random.Range(-15,15)), 0.2f);
+        }
+
+        void OnPlanetClicked(PlanetName planetName) {
+
         }
 
         void OnContinueMoving() {

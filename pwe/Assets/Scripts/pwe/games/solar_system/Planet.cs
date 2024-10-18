@@ -18,8 +18,8 @@ namespace Pwe.Games.SolarSystem
             //transform.localScale = transform.localScale * pd.size * spaceData.SizeFactor;
             Init(spaceData, pd);
         }
-        public void Init(SpaceData spaceData, PlanetData pd, OrbitalPath path, System.Action onClick) {
-            base.Init((int)pd.planetName, spaceData, pd.orbitData, pd.sprite, path, onClick);
+        public void Init(SpaceData spaceData, PlanetData pd, float colliderRadius, OrbitalPath path, System.Action onClick) {
+            base.Init((int)pd.planetName, spaceData, pd.orbitData, pd.sprite, colliderRadius, path, onClick);
             //transform.localScale = transform.localScale * pd.size * spaceData.SizeFactor;
             Init(spaceData, pd);
         }

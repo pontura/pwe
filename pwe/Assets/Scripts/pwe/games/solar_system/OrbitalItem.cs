@@ -34,12 +34,13 @@ namespace Pwe.Games.SolarSystem
             Orbit(Random.Range(0.1f, 360f));
         }
 
-        public virtual void Init(int id, SpaceData spaceData, OrbitData od, Sprite sprite, OrbitalPath oPath, System.Action onclick) {
+        public virtual void Init(int id, SpaceData spaceData, OrbitData od, Sprite sprite, float colliderRadius, OrbitalPath oPath, System.Action onclick) {
             base.Init(id);
             _spaceData = spaceData;
             orbitData = od;
-            _itemSR.sprite = sprite;            
-            _itemCollider.radius = (_itemSR.bounds.size*0.15f).magnitude;
+            _itemSR.sprite = sprite;
+            //_itemCollider.radius = (_itemSR.bounds.size*0.15f).magnitude;
+            _itemCollider.radius = colliderRadius;
             _path = oPath;
             OrbitCurve(Random.value);
             onClick = onclick;

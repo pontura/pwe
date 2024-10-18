@@ -37,7 +37,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 10, y: -100}
-  m_SizeDelta: {x: 100, y: 0}
+  m_SizeDelta: {x: 80, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &6619654463916350899
 MonoBehaviour:
@@ -475,6 +475,7 @@ MonoBehaviour:
   levels:
   - {fileID: 11400000, guid: 60bae7d58899023418ab1a669163a51d, type: 2}
   <CurrentLevelIndex>k__BackingField: 0
+  clickedPlanets: 
 --- !u!114 &3534683824791078328
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2139,11 +2140,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7007337732035681089, guid: bd4da98a0c821574e9496442b2b5dd08, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 80
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 7007337732035681089, guid: bd4da98a0c821574e9496442b2b5dd08, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 80
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 7007337732035681089, guid: bd4da98a0c821574e9496442b2b5dd08, type: 3}
       propertyPath: m_LocalPosition.x

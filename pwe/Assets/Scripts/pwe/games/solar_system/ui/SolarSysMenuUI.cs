@@ -23,7 +23,7 @@ namespace Pwe.Games.SolarSystem.UI
             }
         }
 
-        public void SetDone(PlanetName planetName) {
+        public void SetPlanetDone(PlanetName planetName) {
             PlanetItem pi = allItems.Find(x => x.Planet_Name == planetName);
             if (pi != null)
                 pi.SetDone();
