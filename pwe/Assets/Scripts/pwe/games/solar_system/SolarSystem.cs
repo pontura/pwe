@@ -4,14 +4,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using YaguarLib.Xtras;
+using System.Linq;
 
 namespace Pwe.Games.SolarSystem
 {
     public class SolarSystem : GameMain
     {
         [SerializeField] PlanetsData planetsData;
+        [SerializeField] LevelsManager levelsManager;
         [SerializeField] PlanetsManager planetsManager;        
-        [SerializeField] SolarSysMenuUI menu;
+        [SerializeField] SolarSysMenuUI menuUI;
         [SerializeField] CamClickInput camClickInput;
         [SerializeField] Screenshot screenshot;
 
@@ -25,6 +27,7 @@ namespace Pwe.Games.SolarSystem
 
         public override void OnInit() {
             camClickInput.OnClickInput += Takeshot;
+            planetsManager.OnPlanetClicked += menuUI.SetDone;
             InitPlanets();
 
             /*List<CookingItemData> items = cookingData.GetItems();
@@ -34,6 +37,7 @@ namespace Pwe.Games.SolarSystem
 
         private void OnDestroy() {
             camClickInput.OnClickInput -= Takeshot;
+            planetsManager.OnPlanetClicked -= menuUI.SetDone;
         }
 
         void Takeshot(Vector2 pos) {
@@ -60,10 +64,10 @@ namespace Pwe.Games.SolarSystem
 
         public void InitPlanets() {
             planetsManager.RemoveAllPlanets();
-            planetsManager.Init(planetsData);            
-            /*foreach (PlanetData pd in planetsData.planets) {
-                planetsManager.AddPlanet(pd);
-            }*/
+            SpaceData sd = levelsManager.GetCurrentLevel();
+            planetsManager.Init(planetsData, sd);
+            IEnumerable<PlanetData> levelPlanetsData = planetsData.planets.Where(item => sd.LevelItems.Any(category => category.planetName == item.planetName));
+            menuUI.Init(levelPlanetsData);       
         }
     }
 

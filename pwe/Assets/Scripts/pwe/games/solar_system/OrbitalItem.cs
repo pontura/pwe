@@ -12,6 +12,7 @@ namespace Pwe.Games.SolarSystem
         [SerializeField] protected OrbitData orbitData;
         protected SpaceData _spaceData;
         [SerializeField] SpriteRenderer _itemSR;
+        [SerializeField] CircleCollider2D _itemCollider;
         protected Transform _sun;
         protected float _orbitPosition;
         protected OrbitalPath _path;
@@ -37,9 +38,8 @@ namespace Pwe.Games.SolarSystem
             base.Init(id);
             _spaceData = spaceData;
             orbitData = od;
-            _itemSR.sprite = sprite;
-            CircleCollider2D collider = GetComponent<CircleCollider2D>();
-            collider.radius = (_itemSR.bounds.size*0.15f).magnitude;
+            _itemSR.sprite = sprite;            
+            _itemCollider.radius = (_itemSR.bounds.size*0.15f).magnitude;
             _path = oPath;
             OrbitCurve(Random.value);
             onClick = onclick;

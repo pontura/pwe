@@ -11,7 +11,7 @@ namespace Pwe.Games.SolarSystem.UI
         [SerializeField] Transform container;
         List<PlanetItem> allItems;
 
-        public void Init(List<PlanetData> items)
+        public void Init(IEnumerable<PlanetData> items)
         {
             allItems = new List<PlanetItem>();
             Utils.RemoveAllChildsIn(container);
@@ -22,19 +22,11 @@ namespace Pwe.Games.SolarSystem.UI
                 allItems.Add(ci);
             }
         }
-        public void Refresh(PlanetData itemData)
-        {
-            PlanetItem c = GetItem(itemData);
-            c.Init(itemData);
-        }
-        PlanetItem GetItem(PlanetData itemData)
-        {
-            foreach (PlanetItem c in allItems)
-            {
-                if (c.data == itemData)
-                    return c;
-            }
-            return null;
+
+        public void SetDone(PlanetName planetName) {
+            PlanetItem pi = allItems.Find(x => x.Planet_Name == planetName);
+            if (pi != null)
+                pi.SetDone();
         }
     }
 }

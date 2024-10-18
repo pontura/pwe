@@ -7,13 +7,14 @@ namespace Pwe.Games.SolarSystem
 {
     public class PlanetsManager : MonoBehaviour
     {
-        [SerializeField] SpaceData spaceData;
         [SerializeField] Transform sun;
         [SerializeField] Transform planetsContainer;
         [SerializeField] Transform orbitsContainer;
         [SerializeField] Planet planet_prefab;
 
-        public void Init(PlanetsData planetsData) {
+        public event System.Action<PlanetName> OnPlanetClicked;
+
+        public void Init(PlanetsData planetsData, SpaceData spaceData) {
             spaceData._minmaxDistance = planetsData.GetMinMaxDistance();
             spaceData._minmaxSize = planetsData.GetMinMaxSize();
             spaceData._minmaxSpeed = planetsData.GetMinMaxSpeed();
@@ -25,9 +26,9 @@ namespace Pwe.Games.SolarSystem
                 if ((int)li.planetName > 0) {
                     PlanetData pd = planetsData.planets.Find(x => x.planetName == li.planetName);
                     Debug.Log("#" + (pd!=null));
-                    AddPlanet(pd, li.orbitalPath);
+                    AddPlanet(pd, li.orbitalPath, spaceData);
                 } else {
-                    AddOvni(index, li.orbitalItem, li.orbitalPath);
+                    AddOvni(index, li.orbitalItem, li.orbitalPath, spaceData);
                 }
 
                 OrbitalPath op = Instantiate(li.orbitalPath, orbitsContainer);
@@ -35,23 +36,20 @@ namespace Pwe.Games.SolarSystem
             }
         }
 
-        public void AddPlanet(PlanetData pd) {
+        public void AddPlanet(PlanetData pd, SpaceData spaceData) {
             Planet p = Instantiate(planet_prefab, planetsContainer);            
             p.Init(sun, spaceData, pd);
         }        
 
-        public void AddPlanet(PlanetData pd, OrbitalPath path) {
+        public void AddPlanet(PlanetData pd, OrbitalPath path, SpaceData spaceData) {
             Planet p = Instantiate(planet_prefab, planetsContainer);
             p.Init(spaceData, pd, path, () => OnPlanetClicked(pd.planetName));
         }
 
-        public void AddOvni(int index, OrbitalItem oi, OrbitalPath path) {
+        public void AddOvni(int index, OrbitalItem oi, OrbitalPath path, SpaceData spaceData) {
             OrbitalItem p = Instantiate(oi, planetsContainer);
             p.Init(index, spaceData, path, () => OnPlanetClicked(PlanetName.none));
-        }
-        void OnPlanetClicked(PlanetName planetName) {
-            Debug.Log("# " + planetName.ToString());
-        }
+        }        
 
         public void RemoveAllPlanets() {
             foreach (Transform child in planetsContainer) {

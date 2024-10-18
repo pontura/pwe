@@ -7,11 +7,17 @@ namespace Pwe.Games.SolarSystem.UI
     public class PlanetItem : MonoBehaviour
     {
         [SerializeField] Image image;
-        public PlanetData data;
+        [SerializeField] GameObject done;
+        [field:SerializeField] public PlanetName Planet_Name { get; private set; }        
 
         public void Init(PlanetData data)
         {
-            this.data = data;
+            Planet_Name = data.planetName;
+            image.sprite = data.sprite;
+        }
+
+        public void SetDone() {
+            done.SetActive(true);
         }
 
     }
