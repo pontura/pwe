@@ -47,8 +47,8 @@ namespace Pwe.Games.Cooking
 
             if (num < 1)
                StartCoroutine( NextIngredient() );
-            else
-                menu.Refresh(cookingData.items[itemID]);
+
+          //  menu.Refresh(cookingData.items[itemID]);
         }
         IEnumerator NextIngredient()
         {
