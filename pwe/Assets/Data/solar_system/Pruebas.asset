@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b01ef64e713e22a4d89342076734c948, type: 3}
-  m_Name: SpaceDat_realTest
+  m_Name: Pruebas
   m_EditorClassIdentifier: 
   <MinDistance>k__BackingField: 1
   <MaxDistance>k__BackingField: 15
@@ -38,8 +38,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  <MinSpeed>k__BackingField: 0.3
-  <MaxSpeed>k__BackingField: 0.6
+  <MinSpeed>k__BackingField: 0.2
+  <MaxSpeed>k__BackingField: 0.5
   speedCurve:
     serializedVersion: 2
     m_Curve:
@@ -100,7 +100,7 @@ MonoBehaviour:
     orbitalPath: {fileID: 8412587118133278462, guid: 4ec3b056846ff5d4ea580ff878a175c5, type: 3}
     planetName: 3
     colliderRadius: 1.25
-    animClip: {fileID: 7400000, guid: 7b562d074ca4e5548b7c3f8ee7339c09, type: 2}
+    animClip: {fileID: 7400000, guid: 4701f76026a01f640b4bed69f548208d, type: 2}
   - orbitalItem: {fileID: 0}
     orbitalPath: {fileID: 2355899697140836453, guid: 783489c487bc3e44683f96303265fa91, type: 3}
     planetName: 4

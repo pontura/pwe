@@ -450,6 +450,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1472948662031635338, guid: 2a4ae9fed5e940f418d5a3a255ac8c42, type: 3}
+      propertyPath: levels.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 552c7bb5806cb694e800840b0336400a, type: 2}
     - target: {fileID: 1926237861091070250, guid: 2a4ae9fed5e940f418d5a3a255ac8c42, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
