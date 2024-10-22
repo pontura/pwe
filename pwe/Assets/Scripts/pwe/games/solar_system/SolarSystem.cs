@@ -29,6 +29,8 @@ namespace Pwe.Games.SolarSystem
             camClickInput.OnClickInput += Takeshot;
             planetsManager.OnPlanetClicked += levelsManager.OnPlanetClicked;
             levelsManager.OnPlanetDone += menuUI.SetPlanetDone;
+            levelsManager.OnPlanetDone += SetPhotoDone;
+
             InitPlanets();
 
             /*List<CookingItemData> items = cookingData.GetItems();
@@ -40,11 +42,13 @@ namespace Pwe.Games.SolarSystem
             camClickInput.OnClickInput -= Takeshot;
             planetsManager.OnPlanetClicked -= levelsManager.OnPlanetClicked;
             levelsManager.OnPlanetDone -= menuUI.SetPlanetDone;
+            levelsManager.OnPlanetDone -= SetPhotoDone;
         }
 
         void Takeshot(Vector2 pos) {
             if (!_paused) {
                 _paused = true;
+                camClickInput.SetShotSize(screenshot.shotRes);
                 screenshot.TakeShot(pos, (tex) => OnCaptureDone(tex,pos));
                 //planetsManager.Play(false);
                 dinoFlash.SetActive(true);
@@ -58,8 +62,8 @@ namespace Pwe.Games.SolarSystem
             photoUI.FadeAngle(Vector3.zero, new Vector3(0,0,Random.Range(-15,15)), 0.2f);
         }
 
-        void OnPlanetClicked(PlanetName planetName) {
-
+        void SetPhotoDone(PlanetName planetName) {
+            photoUI.SetDone(planetName != PlanetName.none);
         }
 
         void OnContinueMoving() {

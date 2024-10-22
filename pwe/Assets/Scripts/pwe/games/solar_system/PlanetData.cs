@@ -10,5 +10,6 @@ namespace Pwe.Games.SolarSystem
         public OrbitData orbitData;
         public float size;
         public Sprite sprite;
+        public Color color;
     }
 }

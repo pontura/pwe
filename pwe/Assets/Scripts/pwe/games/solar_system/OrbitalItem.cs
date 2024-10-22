@@ -11,13 +11,13 @@ namespace Pwe.Games.SolarSystem
     {
         [SerializeField] protected OrbitData orbitData;
         protected SpaceData _spaceData;
-        [SerializeField] SpriteRenderer _itemSR;
+        [SerializeField] protected SpriteRenderer _itemSR;
         [SerializeField] CircleCollider2D _itemCollider;
         protected Transform _sun;
         protected float _orbitPosition;
         protected OrbitalPath _path;
 
-        protected System.Action onClick;
+        protected System.Action<bool> onClick;
 
         [field: SerializeField] public bool Moving { get; set; }
 
@@ -34,7 +34,7 @@ namespace Pwe.Games.SolarSystem
             Orbit(Random.Range(0.1f, 360f));
         }
 
-        public virtual void Init(int id, SpaceData spaceData, OrbitData od, Sprite sprite, float colliderRadius, OrbitalPath oPath, System.Action onclick) {
+        public virtual void Init(int id, SpaceData spaceData, OrbitData od, Sprite sprite, float colliderRadius, OrbitalPath oPath, System.Action<bool> onclick) {
             base.Init(id);
             _spaceData = spaceData;
             orbitData = od;
@@ -47,7 +47,7 @@ namespace Pwe.Games.SolarSystem
             Moving = true;
         }
 
-        public virtual void Init(int id, SpaceData spaceData, OrbitalPath oPath, System.Action onclick) {
+        public virtual void Init(int id, SpaceData spaceData, OrbitalPath oPath, System.Action<bool> onclick) {
             base.Init(id);
             _spaceData = spaceData;
             _path = oPath;
@@ -81,10 +81,11 @@ namespace Pwe.Games.SolarSystem
             //Orbit();
         }
 
-        public override void OnClicked() {
-            Debug.Log("OnClicked: " + this is Planet);
-            if (onClick != null)
-                onClick();
+        public void OnClicked(Vector3 min, Vector3 max) {
+            if (onClick != null) {
+                Debug.Log(((PlanetName)id).ToString()+" x: "+_itemSR.bounds.max.x+" > "+max.x +" || y: "+_itemSR.bounds.max.y+" > "+max.y +" || x: "+_itemSR.bounds.min.x+" < "+min.x+" || y: "+_itemSR.bounds.min.y+" < "+min.y);
+                onClick(!(_itemSR.bounds.max.x > max.x || _itemSR.bounds.max.y > max.y || _itemSR.bounds.min.x < min.x || _itemSR.bounds.min.y < min.y));
+            }
         }
     }
 }

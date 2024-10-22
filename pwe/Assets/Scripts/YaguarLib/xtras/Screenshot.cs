@@ -7,7 +7,6 @@ namespace YaguarLib.Xtras
 {
     public class Screenshot : MonoBehaviour
     {
-        public Vector2Int thumbRes;
         public Vector2Int shotRes;
         public Vector2 shotCenter;
         public Camera cameraToScreen;

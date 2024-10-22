@@ -94,19 +94,23 @@ MonoBehaviour:
   - orbitalItem: {fileID: 0}
     orbitalPath: {fileID: 2853541376672596798, guid: bcaf3cc4285148b418d85d02c3d3c4bf, type: 3}
     planetName: 1
-    colliderRadius: 0.8
+    colliderRadius: 1
+    animClip: {fileID: 7400000, guid: c43fcb7673b486447be168f609c23158, type: 2}
   - orbitalItem: {fileID: 0}
     orbitalPath: {fileID: 8412587118133278462, guid: 4ec3b056846ff5d4ea580ff878a175c5, type: 3}
     planetName: 3
     colliderRadius: 0.5
+    animClip: {fileID: 7400000, guid: e9fb90ba6f6e6a24db296f554f8148fc, type: 2}
   - orbitalItem: {fileID: 0}
     orbitalPath: {fileID: 2355899697140836453, guid: 783489c487bc3e44683f96303265fa91, type: 3}
     planetName: 4
-    colliderRadius: 0.8
+    colliderRadius: 1
+    animClip: {fileID: 7400000, guid: 5f371993c9186834c895d9dbed8e5270, type: 2}
   - orbitalItem: {fileID: -4921058695821818843, guid: 2e0dbdf1e47865e4597700f391440068, type: 3}
     orbitalPath: {fileID: 2355899697140836453, guid: 783489c487bc3e44683f96303265fa91, type: 3}
     planetName: 0
     colliderRadius: 0
+    animClip: {fileID: 0}
   orbitSpeedFactor: 0.5
   _minmaxSpeed: {x: 0.006, y: 4.15}
   _minmaxSize: {x: 0.35, y: 11}

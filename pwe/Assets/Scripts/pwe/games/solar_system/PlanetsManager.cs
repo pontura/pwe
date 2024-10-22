@@ -26,7 +26,7 @@ namespace Pwe.Games.SolarSystem
                 if ((int)li.planetName > 0) {
                     PlanetData pd = planetsData.planets.Find(x => x.planetName == li.planetName);
                     Debug.Log("#" + (pd!=null));
-                    AddPlanet(pd, li.orbitalPath, li.colliderRadius, spaceData);
+                    AddPlanet(pd, li.orbitalPath, li.colliderRadius, li.animClip, spaceData);
                 } else {
                     AddOvni(index, li.orbitalItem, li.orbitalPath, spaceData);
                 }
@@ -41,14 +41,20 @@ namespace Pwe.Games.SolarSystem
             p.Init(sun, spaceData, pd);
         }        
 
-        public void AddPlanet(PlanetData pd, OrbitalPath path, float colliderRadius, SpaceData spaceData) {
+        public void AddPlanet(PlanetData pd, OrbitalPath path, float colliderRadius, AnimationClip animClip, SpaceData spaceData) {
             Planet p = Instantiate(planet_prefab, planetsContainer);
-            p.Init(spaceData, pd, colliderRadius, path, () => OnPlanetClicked(pd.planetName));
+            p.Init(spaceData, pd, colliderRadius, path, animClip, (correct) => {
+                Debug.Log("# " + pd.planetName + ": " + correct);
+                OnPlanetClicked(correct ? pd.planetName : PlanetName.none);
+            });
         }
 
         public void AddOvni(int index, OrbitalItem oi, OrbitalPath path, SpaceData spaceData) {
             OrbitalItem p = Instantiate(oi, planetsContainer);
-            p.Init(index, spaceData, path, () => OnPlanetClicked(PlanetName.none));
+            p.Init(index, spaceData, path, (correct) => {
+                Debug.Log("# " + PlanetName.none + ": " + correct);
+                OnPlanetClicked(PlanetName.none);
+            });
         }        
 
         public void RemoveAllPlanets() {

@@ -12,6 +12,7 @@ namespace Pwe.Games.UI
         [SerializeField] GameObject flash;
         [SerializeField] GameObject fullFlash;
         [SerializeField] float _delay = 2;
+        [SerializeField] GameObject done;
 
         private Action onDone;        
 
@@ -22,6 +23,10 @@ namespace Pwe.Games.UI
             photoTex.texture = tex;
             gameObject.SetActive(true);
             Invoke(nameof(Close), _delay);            
+        }
+
+        public void SetDone(bool enable) {
+            done.SetActive(enable);
         }
 
         public void FadeSize(Vector2 initSize, Vector2 finalSize, float dur) {

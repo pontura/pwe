@@ -164,7 +164,7 @@ GameObject:
   - component: {fileID: 5361656144580200686}
   - component: {fileID: 1310433865806104265}
   - component: {fileID: 7681112034561725513}
-  - component: {fileID: 3853372014997785309}
+  - component: {fileID: 6432124185439119767}
   m_Layer: 0
   m_Name: Planet
   m_TagString: Untagged
@@ -294,24 +294,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 3
---- !u!95 &3853372014997785309
-Animator:
-  serializedVersion: 5
+--- !u!111 &6432124185439119767
+Animation:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9101197940763059804}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 56b4f1843ade28346b108861d071c5ac, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  serializedVersion: 3
+  m_Animation: {fileID: 0}
+  m_Animations: []
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0

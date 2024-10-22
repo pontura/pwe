@@ -4,13 +4,13 @@ using UnityEngine;
 
 namespace Pwe.Games.SolarSystem
 {
-    [RequireComponent(typeof(Animator))]
+    [RequireComponent(typeof(Animation))]
     public class Planet : OrbitalItem
     {
         private PlanetData _planetData;
-        private Animator _anim;
+        private Animation _anim;
         private void Awake() {
-            _anim = GetComponent<Animator>();
+            _anim = GetComponent<Animation>();
         }
 
         public void Init(Transform sun, SpaceData spaceData, PlanetData pd) {
@@ -18,16 +18,18 @@ namespace Pwe.Games.SolarSystem
             //transform.localScale = transform.localScale * pd.size * spaceData.SizeFactor;
             Init(spaceData, pd);
         }
-        public void Init(SpaceData spaceData, PlanetData pd, float colliderRadius, OrbitalPath path, System.Action onClick) {
+        public void Init(SpaceData spaceData, PlanetData pd, float colliderRadius, OrbitalPath path, AnimationClip animClip, System.Action<bool> onClick) {
             base.Init((int)pd.planetName, spaceData, pd.orbitData, pd.sprite, colliderRadius, path, onClick);
             //transform.localScale = transform.localScale * pd.size * spaceData.SizeFactor;
+            _anim.AddClip(animClip,"animClip");            
+            _anim.Play("animClip");
             Init(spaceData, pd);
         }
 
         void Init(SpaceData spaceData, PlanetData pd) {
             transform.localScale = spaceData.GetSize(pd.size);
-            _planetData = pd;
-            _anim.Play("planet_" +Random.Range(1,6));
+            _itemSR.color = pd.color;
+            _planetData = pd;            
         }
 
         private void Update() {

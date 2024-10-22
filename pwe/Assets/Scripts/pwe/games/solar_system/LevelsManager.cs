@@ -30,8 +30,10 @@ namespace Pwe.Games.SolarSystem
         IEnumerator CheckLevelDone() {
             yield return new WaitForEndOfFrame();
             if (clickedPlanets.Count == 1) {
-                if(OnPlanetDone!=null)
+                if (OnPlanetDone != null) {
+                    Debug.Log("# CheckLevelDone: Done");
                     OnPlanetDone(clickedPlanets[0]);
+                }                
             }
             yield return new WaitForEndOfFrame();
             clickedPlanets = new List<PlanetName>();

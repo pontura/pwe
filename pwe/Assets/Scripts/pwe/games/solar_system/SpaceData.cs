@@ -41,6 +41,7 @@ namespace Pwe.Games.SolarSystem
             public OrbitalPath orbitalPath;
             public PlanetName planetName;
             public float colliderRadius;
+            public AnimationClip animClip;
         }
 
         public float GetSpeed(float speed) {
