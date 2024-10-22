@@ -19,6 +19,8 @@ namespace Pwe.Games.SolarSystem
 
         protected System.Action<bool> onClick;
 
+        float extentFactor = 0.5f;
+
         [field: SerializeField] public bool Moving { get; set; }
 
         public virtual void Init(int id, Transform sun, SpaceData spaceData, OrbitData od, Sprite sprite) {
@@ -82,9 +84,10 @@ namespace Pwe.Games.SolarSystem
         }
 
         public void OnClicked(Vector3 min, Vector3 max) {
-            if (onClick != null) {
-                Debug.Log(((PlanetName)id).ToString()+" x: "+_itemSR.bounds.max.x+" > "+max.x +" || y: "+_itemSR.bounds.max.y+" > "+max.y +" || x: "+_itemSR.bounds.min.x+" < "+min.x+" || y: "+_itemSR.bounds.min.y+" < "+min.y);
-                onClick(!(_itemSR.bounds.max.x > max.x || _itemSR.bounds.max.y > max.y || _itemSR.bounds.min.x < min.x || _itemSR.bounds.min.y < min.y));
+            if (onClick != null) {                
+                //Debug.Log(((PlanetName)id).ToString()+" x: "+(_itemSR.bounds.center.x + extentFactor * _itemSR.bounds.extents.x) +" > "+max.x +" || y: "+(_itemSR.bounds.center.y + extentFactor * _itemSR.bounds.extents.y) +" > "+max.y +" || x: "+(_itemSR.bounds.center.x - extentFactor * _itemSR.bounds.extents.x) +" < "+min.x+" || y: "+(_itemSR.bounds.center.y + extentFactor * _itemSR.bounds.extents.y) +" < "+min.y);
+                //Debug.Log(_itemSR.bounds.min.x + " "+_itemSR.bounds.min.y + ", " + _itemSR.bounds.max.x + " " + _itemSR.bounds.max.y);
+                onClick(!(_itemSR.bounds.center.x + extentFactor * _itemSR.bounds.extents.x > max.x || _itemSR.bounds.center.y + extentFactor * _itemSR.bounds.extents.y > max.y || _itemSR.bounds.center.x - extentFactor * _itemSR.bounds.extents.x < min.x || _itemSR.bounds.center.y - extentFactor * _itemSR.bounds.extents.y < min.y));
             }
         }
     }

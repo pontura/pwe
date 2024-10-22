@@ -52,6 +52,7 @@ namespace Pwe.Games.UI
 
         void Close() {
             gameObject.SetActive(false);
+            done.SetActive(false);
             onDone();
         }
 

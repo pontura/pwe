@@ -99,7 +99,7 @@ MonoBehaviour:
   - orbitalItem: {fileID: 0}
     orbitalPath: {fileID: 8412587118133278462, guid: 4ec3b056846ff5d4ea580ff878a175c5, type: 3}
     planetName: 3
-    colliderRadius: 0.5
+    colliderRadius: 1
     animClip: {fileID: 7400000, guid: 7b562d074ca4e5548b7c3f8ee7339c09, type: 2}
   - orbitalItem: {fileID: 0}
     orbitalPath: {fileID: 2355899697140836453, guid: 783489c487bc3e44683f96303265fa91, type: 3}
