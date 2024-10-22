@@ -7,6 +7,7 @@ namespace Pwe.Games.UI
 {
     public class PhotoUI : MonoBehaviour
     {
+        [SerializeField] Camera cam;
         [SerializeField] RectTransform frame;
         [SerializeField] RawImage photoTex;
         [SerializeField] GameObject flash;
@@ -34,9 +35,14 @@ namespace Pwe.Games.UI
             StartCoroutine(FadeVector(initSize, finalSize, dur, (vector) => frame.sizeDelta=vector));
         }
 
-        public void FadePosition(Vector2 initPos, Vector2 finalPos, float dur) {
-            Vector2 initCenter = initPos - new Vector2(Screen.width * 0.5f, Screen.height * 0.5f);
-            Vector2 finalCenter = finalPos - new Vector2(Screen.width * 0.5f, Screen.height * 0.5f);
+        public void FadePosition(Vector2 initPos, Vector2 finalPos, float dur) {                     
+
+            //Vector2 initCenter = initPos - new Vector2(Screen.width * 0.5f, Screen.height * 0.5f);
+            Vector2 initCenter = new Vector2();
+            RectTransformUtility.ScreenPointToLocalPointInRectangle((RectTransform)transform, initPos, cam, out initCenter);
+            //Vector2 finalCenter = finalPos - new Vector2(Screen.width * 0.5f, Screen.height * 0.5f);
+            Vector2 finalCenter = new Vector2();
+            RectTransformUtility.ScreenPointToLocalPointInRectangle((RectTransform)transform, finalPos, cam, out finalCenter);
             frame.localPosition = initCenter;
             StartCoroutine(FadeVector(initCenter, finalCenter, dur, (vector) => frame.localPosition = vector));
         }

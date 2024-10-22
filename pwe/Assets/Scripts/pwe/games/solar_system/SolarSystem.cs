@@ -20,6 +20,7 @@ namespace Pwe.Games.SolarSystem
         [SerializeField] PhotoUI photoUI;
         [SerializeField] GameObject dinoFlash;
 
+        [SerializeField] float shotSizeScreenHeightFactor;
 
         [SerializeField] Vector2 shotInitialSize, shotFinalSize;
 
@@ -30,6 +31,8 @@ namespace Pwe.Games.SolarSystem
             planetsManager.OnPlanetClicked += levelsManager.OnPlanetClicked;
             levelsManager.OnPlanetDone += menuUI.SetPlanetDone;
             levelsManager.OnPlanetDone += SetPhotoDone;
+
+            screenshot.shotRes = new Vector2Int((int)(shotSizeScreenHeightFactor * Screen.height), (int)(shotSizeScreenHeightFactor * Screen.height));
 
             InitPlanets();
 
@@ -47,6 +50,7 @@ namespace Pwe.Games.SolarSystem
 
         void Takeshot(Vector2 pos) {
             if (!_paused) {
+                //Debug.Log("#Mouse Pos: " + pos.x + ", " + pos.y);
                 _paused = true;
                 camClickInput.SetShotSize(screenshot.shotRes);
                 screenshot.TakeShot(pos, (tex) => OnCaptureDone(tex,pos));

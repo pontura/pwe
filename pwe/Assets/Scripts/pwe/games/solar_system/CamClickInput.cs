@@ -33,7 +33,7 @@ namespace Pwe.Games.SolarSystem
                 if (hit.collider != null) {
                     OrbitalItem oi = hit.collider.transform.parent.parent.gameObject.GetComponent<OrbitalItem>();
                     if (oi == null) continue;
-                    oi.OnClicked(Camera.main.ScreenToWorldPoint(Input.mousePosition- _halfShotSize), Camera.main.ScreenToWorldPoint(Input.mousePosition + _halfShotSize));
+                    oi.OnClicked(Camera.main.ScreenToWorldPoint(Input.mousePosition - _halfShotSize), Camera.main.ScreenToWorldPoint(Input.mousePosition + _halfShotSize));
                 }
             }
         }
