@@ -21,8 +21,8 @@ namespace Pwe.Games.SolarSystem
         public void Init(SpaceData spaceData, PlanetData pd, float colliderRadius, OrbitalPath path, AnimationClip animClip, System.Action<bool> onClick) {
             base.Init((int)pd.planetName, spaceData, pd.orbitData, pd.sprite, colliderRadius, path, onClick);
             //transform.localScale = transform.localScale * pd.size * spaceData.SizeFactor;
-            _anim.AddClip(animClip,"animClip");            
-            _anim.Play("animClip");
+            _anim.AddClip(animClip, animClip.name);            
+            _anim.Play(animClip.name);
             Init(spaceData, pd);
         }
 

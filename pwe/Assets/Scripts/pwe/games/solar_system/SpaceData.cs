@@ -6,12 +6,12 @@ namespace Pwe.Games.SolarSystem
 {
     [CreateAssetMenu(fileName = "NewSpaceData", menuName = "SolarSystem/Data/Space", order = 0)]
     public class SpaceData : ScriptableObject
-    {        
+    {
         //[Range(1, 6)]
-        [field: SerializeField] public float MinDistance { get; private set; }
-        [field: SerializeField] public float MaxDistance { get; private set; }
+        [HideInInspector] [field: SerializeField] public float MinDistance { get; private set; }
+        [HideInInspector] [field: SerializeField] public float MaxDistance { get; private set; }
 
-        public AnimationCurve distanceCurve;
+        [HideInInspector] public AnimationCurve distanceCurve;
 
         [field: SerializeField] public float MinSpeed { get; private set; }
         [field: SerializeField] public float MaxSpeed { get; private set; }
