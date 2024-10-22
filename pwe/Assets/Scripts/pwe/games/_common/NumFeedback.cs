@@ -2,7 +2,7 @@ using Pwe.Core;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Pwe.Games.Cooking.UI
+namespace Pwe.Games.Common
 {
     public class NumFeedback : MonoBehaviour
     {

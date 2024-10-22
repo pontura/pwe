@@ -1,4 +1,5 @@
 using Pwe.Core;
+using Pwe.Games.Common;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -12,26 +13,31 @@ namespace Pwe.Games.Cooking
         enum states
         {
             playing,
+            playing_done,
             cooking,
             done
         }
         [SerializeField] ButtonUI btnNext;
         [SerializeField] ButtonUI btnPrev;
         [SerializeField] GameObject clockGO;
+        [SerializeField] NumFeedback numFeedback;
+        [SerializeField] BigNumberSignal bigNumberSignal;
         int num;
         int finalNum = 4;
         int totalNums = 10;
-        float speedWhenDone = 50;
+        float speedWhenDone = 60;
+        float speed = 2;
 
         public override void OnInitialize()
         {
+            bigNumberSignal.Init(finalNum);
             btnNext.Init(NextClicked);
             btnPrev.Init(PrevClicked);
             btnPrev.SetInteraction(false);
         }
         public override void OnUpdate()
         {
-            if (state == states.playing)
+            if (state == states.playing || state == states.playing_done)
                 UpdateClicks();
             else if (state == states.cooking)
                 UpdateCooking();
@@ -50,7 +56,7 @@ namespace Pwe.Games.Cooking
         void UpdateClicks()
         {
             float _a = (float)num * 360 / (float)totalNums;
-            float _rot = Mathf.Lerp(clockGO.transform.localEulerAngles.z, _a, Time.deltaTime);
+            float _rot = Mathf.Lerp(clockGO.transform.localEulerAngles.z, _a, speed*Time.deltaTime);
             clockGO.transform.localEulerAngles = new Vector3(0, 0, _rot);
         }
         public override void OnInit()
@@ -63,6 +69,7 @@ namespace Pwe.Games.Cooking
             if (num >= finalNum) return;
             if (state != states.playing) return;
             num++;
+            numFeedback.Init(num);
             Events.OnSayNumber(num);
             if (num >= finalNum)
                 StartCooking();
@@ -78,11 +85,17 @@ namespace Pwe.Games.Cooking
         }
         void SetButtonsState()
         {
-            btnPrev.SetInteraction(true);
+            if(state == states.playing)
+                btnPrev.SetInteraction(true);
             if (num<=0)
                 btnPrev.SetInteraction(false);
             else if (num >= finalNum)
+            {
+                state = states.playing_done;
                 btnNext.SetInteraction(false);
+                btnPrev.SetInteraction(false);
+                YaguarLib.Events.Events.OnPlaySound(YaguarLib.Audio.AudioManager.types.REWARD);
+            }
         }
         void StartCooking()
         {
@@ -98,8 +111,7 @@ namespace Pwe.Games.Cooking
             StartCoroutine(NextIngredient());
         }
         IEnumerator NextIngredient()
-        {
-            YaguarLib.Events.Events.OnPlaySound(YaguarLib.Audio.AudioManager.types.REWARD);            
+        {       
             yield return new WaitForSeconds(2);
             Next();
         }

@@ -60,8 +60,8 @@ namespace Pwe
         public void Init(string riveFileName, System.Action OnReady = null)
         {
             this.OnReady = OnReady;
-            Vector3 s = transform.localScale;
-            s.y *= -1;
+            Vector2 s = transform.localScale;
+            s.y = Mathf.Abs(transform.localScale.y)*-1;
             transform.localScale = s;
 
             // If on D3d11, this is required
