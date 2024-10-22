@@ -23,6 +23,7 @@ namespace Pwe.Games.Cooking
         int total;
         List<CookingItemData> items;
         int itemID;
+        string lastIngredient;
         public override void OnInit()
         {
             items = cookingData.GetItems();
@@ -35,7 +36,9 @@ namespace Pwe.Games.Cooking
             state = states.playing;
             total = items[itemID].num;
             string ingredient = items[itemID].item.ToString();
-            mainPiece.InitIngredient("init_" + ingredient);
+            mainPiece.InitIngredient("qty_" + ingredient, total);
+            if(lastIngredient != "")  mainPiece.InitIngredient("qty_" + lastIngredient, 0); // RESET LAST
+            lastIngredient = ingredient;
             piecesContainer.Initialize();
             piecesContainer.InitIngredient(this, items[itemID].item, total);
         }

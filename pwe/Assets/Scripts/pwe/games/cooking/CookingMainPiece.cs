@@ -31,10 +31,10 @@ namespace Pwe.Games.Cooking
             pieceOver = false;
             Debug.Log("Piece is out...");
         }
-        public void InitIngredient(string ingredient)
+        public void InitIngredient(string ingredient, int num)
         {
             this.ingredient = ingredient;
-            riveTexture.SetTrigger(ingredient);
+            riveTexture.SetNumber(ingredient, num);
         }
         public void OnPieceReleased()
         {
