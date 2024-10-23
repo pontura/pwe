@@ -28,5 +28,10 @@ namespace Pwe.Games.SolarSystem.UI
             if (pi != null)
                 pi.SetDone();
         }
+
+        public Vector3 GetItemPosition(PlanetName planetName) {
+            PlanetItem pi = allItems.Find(x => x.Planet_Name == planetName);
+            return pi != null ? pi.transform.position : Vector3.zero;
+        }
     }
 }

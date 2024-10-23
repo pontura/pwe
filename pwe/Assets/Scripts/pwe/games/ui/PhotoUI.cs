@@ -13,6 +13,7 @@ namespace Pwe.Games.UI
         [SerializeField] GameObject flash;
         [SerializeField] GameObject fullFlash;
         [SerializeField] float _delay = 2;
+        [SerializeField] float _flyDelay = 0.3f;
         [SerializeField] GameObject done;
 
         private Action onDone;        
@@ -23,11 +24,18 @@ namespace Pwe.Games.UI
             onDone = callback;
             photoTex.texture = tex;
             gameObject.SetActive(true);
-            Invoke(nameof(Close), _delay);            
+            Invoke(nameof(OnClose), _delay);            
         }
 
         public void SetDone(bool enable) {
             done.SetActive(enable);
+        }
+
+        bool _photoFly;
+        Vector3 _photoFlyToPos;
+        public void FlyToMenu(Vector3 pos) {
+            _photoFlyToPos = pos;
+            _photoFly = true;
         }
 
         public void FadeSize(Vector2 initSize, Vector2 finalSize, float dur) {
@@ -56,7 +64,20 @@ namespace Pwe.Games.UI
             fullFlash.SetActive(false);
         }
 
+        void OnClose() {
+            if (_photoFly) {
+                Debug.Log("#localPosition: "+ frame.localPosition);
+                Debug.Log("#_photoFlyToPos: " + _photoFlyToPos);
+                StartCoroutine(FadeVector(frame.position, _photoFlyToPos, 0.3f, (vector) => frame.position = vector, Close));
+                StartCoroutine(FadeVector(frame.eulerAngles, Vector3.zero, 0.3f, (vector) => frame.eulerAngles = vector));
+                StartCoroutine(FadeVector(frame.sizeDelta, new Vector2(60,60), 0.3f, (vector) => frame.sizeDelta = vector));
+            } else {
+                Close();
+            }
+        }
+
         void Close() {
+            _photoFly = false;
             gameObject.SetActive(false);
             done.SetActive(false);
             onDone();
@@ -77,7 +98,7 @@ namespace Pwe.Games.UI
             }            
         }
 
-        IEnumerator FadeVector(Vector3 init, Vector3 final, float dur, Action<Vector3> SetVector) {
+        IEnumerator FadeVector(Vector3 init, Vector3 final, float dur, Action<Vector3> SetVector, Action onDone=null) {
             float startTime = Time.realtimeSinceStartup;
             float timeOut = Time.realtimeSinceStartup + dur;
             float invDur = 1f / dur;
@@ -86,6 +107,8 @@ namespace Pwe.Games.UI
                 SetVector(result);
                 yield return new WaitForEndOfFrame();
             }
+            if (onDone != null)
+                onDone();
         }
     }
 }

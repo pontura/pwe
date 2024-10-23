@@ -60,6 +60,7 @@ namespace Pwe.Games.SolarSystem
         }
 
         void OnCaptureDone(Texture2D tex, Vector2 pos) {
+            Debug.Log("#OnCaptureDone");
             photoUI.Init(tex, OnContinueMoving);
             photoUI.FadeSize(shotInitialSize, shotFinalSize, 0.2f);
             photoUI.FadePosition(pos, Vector2.Lerp(pos,new Vector2(Screen.width*0.5f, Screen.height*0.5f),0.25f), 0.2f);
@@ -67,7 +68,10 @@ namespace Pwe.Games.SolarSystem
         }
 
         void SetPhotoDone(PlanetName planetName) {
+            Debug.Log("#SetPhotoDone");
             photoUI.SetDone(planetName != PlanetName.none);
+            if (planetName != PlanetName.none)
+                photoUI.FlyToMenu(menuUI.GetItemPosition(planetName));
         }
 
         void OnContinueMoving() {
