@@ -346,7 +346,6 @@ GameObject:
   m_Component:
   - component: {fileID: 9140110801355716874}
   - component: {fileID: 2227039788019846856}
-  - component: {fileID: 6824729045825004891}
   - component: {fileID: 1472948662031635338}
   - component: {fileID: 3534683824791078328}
   - component: {fileID: 1664705559699885796}
@@ -392,7 +391,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOn: 0
-  planetsData: {fileID: 6824729045825004891}
+  planetsData: {fileID: 6412669494029910803}
   levelsManager: {fileID: 1472948662031635338}
   planetsManager: {fileID: 3534683824791078328}
   menuUI: {fileID: 6619654463916350899}
@@ -403,75 +402,6 @@ MonoBehaviour:
   shotSizeScreenHeightFactor: 0.25
   shotInitialSize: {x: 190, y: 190}
   shotFinalSize: {x: 300, y: 300}
---- !u!114 &6824729045825004891
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2032732051771238932}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 189a2cc3578f7f540bf405577af90de3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  planets:
-  - planetName: 1
-    orbitData:
-      speed: 4.15
-      distance: 36
-    size: 0.35
-    sprite: {fileID: 21300000, guid: 6d006f8d8c02d9649a5cf3b2422cc81e, type: 3}
-    color: {r: 1, g: 1, b: 1, a: 1}
-  - planetName: 2
-    orbitData:
-      speed: 1.62
-      distance: 67
-    size: 1
-    sprite: {fileID: 21300000, guid: 0eaddf91c9b9c0e4ca3b50a43ade3876, type: 3}
-    color: {r: 1, g: 0, b: 0.41911507, a: 1}
-  - planetName: 3
-    orbitData:
-      speed: 1
-      distance: 93
-    size: 1
-    sprite: {fileID: 21300000, guid: 7f6c97ed9dd415441b6273abf4046554, type: 3}
-    color: {r: 0, g: 0.5335841, b: 1, a: 1}
-  - planetName: 4
-    orbitData:
-      speed: 0.5
-      distance: 141
-    size: 0.5
-    sprite: {fileID: 21300000, guid: 6d006f8d8c02d9649a5cf3b2422cc81e, type: 3}
-    color: {r: 1, g: 0, b: 0, a: 1}
-  - planetName: 5
-    orbitData:
-      speed: 0.083
-      distance: 483
-    size: 11
-    sprite: {fileID: 21300000, guid: 7fd1afcff6577d549b027e81f44da1d2, type: 3}
-    color: {r: 1, g: 0.7238611, b: 0, a: 1}
-  - planetName: 6
-    orbitData:
-      speed: 0.034
-      distance: 889
-    size: 9
-    sprite: {fileID: 21300000, guid: d55ba5a7e324e5246ac1cd141e337ea8, type: 3}
-    color: {r: 1, g: 0.5556786, b: 0, a: 1}
-  - planetName: 7
-    orbitData:
-      speed: 0.011
-      distance: 1800
-    size: 4
-    sprite: {fileID: 21300000, guid: 7fd1afcff6577d549b027e81f44da1d2, type: 3}
-    color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  - planetName: 8
-    orbitData:
-      speed: 0.006
-      distance: 2800
-    size: 4
-    sprite: {fileID: 21300000, guid: 7fd1afcff6577d549b027e81f44da1d2, type: 3}
-    color: {r: 0.2, g: 0.19283019, b: 0.19283019, a: 1}
 --- !u!114 &1472948662031635338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1196,6 +1126,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5073353217931750912}
   - component: {fileID: 6910866388624311303}
+  - component: {fileID: 6412669494029910803}
   m_Layer: 0
   m_Name: Game_Solar_System
   m_TagString: Untagged
@@ -1242,6 +1173,75 @@ MonoBehaviour:
   - {fileID: 1735480234814030325}
   screenID: 0
   allRivNames: []
+--- !u!114 &6412669494029910803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5161400804714119547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 189a2cc3578f7f540bf405577af90de3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  planets:
+  - planetName: 1
+    orbitData:
+      speed: 4.15
+      distance: 36
+    size: 0.35
+    sprite: {fileID: 21300000, guid: 6d006f8d8c02d9649a5cf3b2422cc81e, type: 3}
+    color: {r: 1, g: 1, b: 1, a: 1}
+  - planetName: 2
+    orbitData:
+      speed: 1.62
+      distance: 67
+    size: 1
+    sprite: {fileID: 21300000, guid: 0eaddf91c9b9c0e4ca3b50a43ade3876, type: 3}
+    color: {r: 1, g: 0, b: 0.41911507, a: 1}
+  - planetName: 3
+    orbitData:
+      speed: 1
+      distance: 93
+    size: 1
+    sprite: {fileID: 21300000, guid: 7f6c97ed9dd415441b6273abf4046554, type: 3}
+    color: {r: 0, g: 0.5335841, b: 1, a: 1}
+  - planetName: 4
+    orbitData:
+      speed: 0.5
+      distance: 141
+    size: 0.5
+    sprite: {fileID: 21300000, guid: 6d006f8d8c02d9649a5cf3b2422cc81e, type: 3}
+    color: {r: 1, g: 0, b: 0, a: 1}
+  - planetName: 5
+    orbitData:
+      speed: 0.083
+      distance: 483
+    size: 11
+    sprite: {fileID: 21300000, guid: 7fd1afcff6577d549b027e81f44da1d2, type: 3}
+    color: {r: 1, g: 0.7238611, b: 0, a: 1}
+  - planetName: 6
+    orbitData:
+      speed: 0.034
+      distance: 889
+    size: 9
+    sprite: {fileID: 21300000, guid: d55ba5a7e324e5246ac1cd141e337ea8, type: 3}
+    color: {r: 1, g: 0.5556786, b: 0, a: 1}
+  - planetName: 7
+    orbitData:
+      speed: 0.011
+      distance: 1800
+    size: 4
+    sprite: {fileID: 21300000, guid: 7fd1afcff6577d549b027e81f44da1d2, type: 3}
+    color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  - planetName: 8
+    orbitData:
+      speed: 0.006
+      distance: 2800
+    size: 4
+    sprite: {fileID: 21300000, guid: 7fd1afcff6577d549b027e81f44da1d2, type: 3}
+    color: {r: 0.2, g: 0.19283019, b: 0.19283019, a: 1}
 --- !u!1 &5523028810138714259
 GameObject:
   m_ObjectHideFlags: 0

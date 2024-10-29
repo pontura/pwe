@@ -70,8 +70,10 @@ namespace Pwe.Games.SolarSystem
         void SetPhotoDone(PlanetName planetName) {
             Debug.Log("#SetPhotoDone");
             photoUI.SetDone(planetName != PlanetName.none);
-            if (planetName != PlanetName.none)
+            if (planetName != PlanetName.none) {
                 photoUI.FlyToMenu(menuUI.GetItemPosition(planetName));
+                planetsData.SavePlanetLastPhoto(planetName, screenshot.Texture);
+            }
         }
 
         void OnContinueMoving() {

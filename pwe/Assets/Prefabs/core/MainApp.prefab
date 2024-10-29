@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3082083521794560394}
   - component: {fileID: 3346755435758390591}
   - component: {fileID: 4861105084368569451}
+  - component: {fileID: 1138951900386525806}
   m_Layer: 0
   m_Name: MainApp
   m_TagString: Untagged
@@ -49,6 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   riveFilesManager: {fileID: 0}
+  photosManager: {fileID: 0}
 --- !u!114 &3082083521794560394
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,6 +112,19 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 9e4f7bb2e740bca43bf800276e422194, type: 3}
   - {fileID: 8300000, guid: b9b8397cc23e8a746bc8238c33be25ee, type: 3}
   audioSource: {fileID: 5146807794517545658}
+--- !u!114 &1138951900386525806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 551733170204227029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf31a3960ba383e4388c1304aecba1ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  photosFolder: Photos
 --- !u!1 &1052819774583708511
 GameObject:
   m_ObjectHideFlags: 0

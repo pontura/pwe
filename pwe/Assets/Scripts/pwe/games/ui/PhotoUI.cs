@@ -25,7 +25,7 @@ namespace Pwe.Games.UI
             photoTex.texture = tex;
             gameObject.SetActive(true);
             Invoke(nameof(OnClose), _delay);            
-        }
+        }        
 
         public void SetDone(bool enable) {
             done.SetActive(enable);

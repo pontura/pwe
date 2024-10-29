@@ -10,6 +10,7 @@ namespace Pwe.Core
         public MainApp mInstance { get { return Instance; } }
 
         public RiveFilesManager riveFilesManager;
+        public PhotosManager photosManager;
 
         private void Awake()
         {
@@ -19,6 +20,7 @@ namespace Pwe.Core
                 DontDestroyOnLoad(gameObject); // Persist this object across scenes
             }
             riveFilesManager = GetComponent<RiveFilesManager>();
+            photosManager = GetComponent<PhotosManager>();
         }
     }
 

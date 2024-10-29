@@ -5,14 +5,13 @@ using System.Linq;
 
 namespace YaguarLib.Xtras
 {
-    public class Screenshot : MonoBehaviour
-    {
+    public class Screenshot : MonoBehaviour {
         public Vector2Int shotRes;
         public Vector2 shotCenter;
         public Camera cameraToScreen;
         private bool takeShot = false;
         private bool copyTex = false;
-        private Texture2D texture;
+        [field: SerializeField] public Texture2D Texture { get; private set; }
         private System.Action<Texture2D> CopyTexture;
 
         // Start is called before the first frame update
@@ -37,7 +36,7 @@ namespace YaguarLib.Xtras
         void LateUpdate() {
 
             if (copyTex) {
-                CopyTexture(texture);
+                CopyTexture(Texture);
                 copyTex = false;
             }
 
@@ -45,7 +44,7 @@ namespace YaguarLib.Xtras
                 //Debug.Log("Screen: "+Screen.width + " x " + Screen.height);
                 //Debug.Log("Center: " + shotCenter.x + " x " + shotCenter.y);
                 RenderTexture rt = new RenderTexture(Screen.width, Screen.height, 32);
-                texture = new Texture2D(shotRes.x, shotRes.y, TextureFormat.RGB24, false);                
+                Texture = new Texture2D(shotRes.x, shotRes.y, TextureFormat.RGB24, false);                
 
                 cameraToScreen.targetTexture = rt;
 
@@ -59,9 +58,9 @@ namespace YaguarLib.Xtras
                 r.yMin = System.Math.Max(0, (int)(Screen.height - (shotCenter.y + (0.5f * shotRes.y))));
                 r.xMax = System.Math.Min(Screen.width, (int)(shotCenter.x + (0.5f * shotRes.x)));
                 r.yMax = System.Math.Min(Screen.height, (int)(Screen.height - (shotCenter.y - (0.5f * shotRes.y))));                
-                texture.ReadPixels(r, 0, 0);
+                Texture.ReadPixels(r, 0, 0);
 
-                texture.Apply();
+                Texture.Apply();
 
                 cameraToScreen.targetTexture = null;
                 RenderTexture.active = null; // JC: added to avoid errors
