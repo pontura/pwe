@@ -26,13 +26,17 @@ namespace Pwe.Games.SolarSystem
 
         bool _paused;
 
-        public override void OnInit() {
+        public override void OnInitialize() {
             camClickInput.OnClickInput += Takeshot;
             planetsManager.OnPlanetClicked += levelsManager.OnPlanetClicked;
             levelsManager.OnPlanetDone += menuUI.SetPlanetDone;
             levelsManager.OnPlanetDone += SetPhotoDone;
 
             screenshot.shotRes = new Vector2Int((int)(shotSizeScreenHeightFactor * Screen.height), (int)(shotSizeScreenHeightFactor * Screen.height));
+        }
+
+        public override void OnInit() {
+            base.OnInit();
 
             InitPlanets();
 
