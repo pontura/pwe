@@ -19,6 +19,8 @@ namespace Pwe.Games.SolarSystem
 
         void Start() {
             clickedPlanets = new List<PlanetName>();
+
+            //CurrentLevelIndex = PlayerPrefs.GetInt("solar_system_level", 0);
         }
 
         public SpaceData InitLevel() {
@@ -43,8 +45,13 @@ namespace Pwe.Games.SolarSystem
                     OnPlanetDone(clickedPlanets[0]);
                     if (levelPlanets.Count > 0) {
                         levelPlanets.Remove(clickedPlanets[0]);
-                        if (levelPlanets.Count == 0 && OnLevelCompleted != null)
+                        if (levelPlanets.Count == 0 && OnLevelCompleted != null) {
+                            CurrentLevelIndex++;
+                            if (CurrentLevelIndex >= levels.Count)
+                                CurrentLevelIndex = 0;
+                            PlayerPrefs.SetInt("solar_system_level", CurrentLevelIndex);
                             OnLevelCompleted();
+                        }
                     }
                 }                
             }

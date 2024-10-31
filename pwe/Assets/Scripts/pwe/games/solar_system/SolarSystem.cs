@@ -95,7 +95,7 @@ namespace Pwe.Games.SolarSystem
 
         void OnLevelCompleted() {
             Debug.Log("#OnLevelCompleted");
-            levelCompletedPopup.Popup("LEVEL COMPLETED!", delay:2f);
+            levelCompletedPopup.Popup("LEVEL COMPLETED!", delay:2f, onContinue:Back);
         }
 
         public void InitPlanets() {

@@ -13,11 +13,13 @@ namespace YaguarLib.UI
         public virtual void Init(System.Action<int> OnClick, int id)
         {
             button = GetComponent<Button>();
+            button.onClick.RemoveAllListeners();
             button.onClick.AddListener(() => { OnClick(id); YaguarLib.Events.Events.OnPlaySound(audioType); });
         }
         public virtual void Init(System.Action OnClick)
         {
             button = GetComponent<Button>();
+            button.onClick.RemoveAllListeners();
             button.onClick.AddListener(() => { OnClick(); YaguarLib.Events.Events.OnPlaySound(audioType); });
         }
         private void OnDestroy()

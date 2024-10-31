@@ -58,6 +58,7 @@ namespace Pwe.Games
         }
 
         public void Back() {
+            Debug.Log("Back");
             if (active) active.Hide();
             screenID--;
             SetScreen();

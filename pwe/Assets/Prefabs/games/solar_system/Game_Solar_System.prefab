@@ -818,8 +818,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levels:
-  - {fileID: 11400000, guid: f0d359746cf4bb04db68eccb015ef7ae, type: 2}
   - {fileID: 11400000, guid: 2dd15040333b6a84e9287fd1689fb26c, type: 2}
+  - {fileID: 11400000, guid: 6d2ca508c5b7b0541ae750c83d8b71b4, type: 2}
+  - {fileID: 11400000, guid: f0d359746cf4bb04db68eccb015ef7ae, type: 2}
   <CurrentLevelIndex>k__BackingField: 0
   clickedPlanets: 
   levelPlanets: 

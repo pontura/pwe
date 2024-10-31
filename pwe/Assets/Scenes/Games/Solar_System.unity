@@ -506,7 +506,7 @@ PrefabInstance:
     - target: {fileID: 1472948662031635338, guid: 2a4ae9fed5e940f418d5a3a255ac8c42, type: 3}
       propertyPath: levels.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: f0d359746cf4bb04db68eccb015ef7ae, type: 2}
+      objectReference: {fileID: 11400000, guid: 6d2ca508c5b7b0541ae750c83d8b71b4, type: 2}
     - target: {fileID: 2227039788019846856, guid: 2a4ae9fed5e940f418d5a3a255ac8c42, type: 3}
       propertyPath: shotFinalSize.x
       value: 350
