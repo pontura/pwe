@@ -1,8 +1,7 @@
-using System.Collections.Generic;
 using UnityEngine;
 using Yaguar.Inputs;
 using System;
-using Yaguar.Inputs2D;
+using UnityEngine.EventSystems;
 
 namespace Pwe.Games.SolarSystem
 {
@@ -14,6 +13,8 @@ namespace Pwe.Games.SolarSystem
 
         public override void OnInitPress(Vector2 pos)
         {
+            if (EventSystem.current.IsPointerOverGameObject())
+                return;
             OnClickInput(pos);
             Check();
         }
@@ -26,7 +27,7 @@ namespace Pwe.Games.SolarSystem
             OnClickInput = null;
         }
 
-        void Check() {
+        void Check() {            
             RaycastHit2D[] hits = Physics2D.RaycastAll(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
             for (int i = 0; i < hits.Length; i++) {
                 RaycastHit2D hit = hits[i];

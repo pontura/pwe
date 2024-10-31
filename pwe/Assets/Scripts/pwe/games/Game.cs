@@ -40,19 +40,26 @@ namespace Pwe.Games
         }
         GameMain GetScreen()
         {
-            if(screenID >= screens.Length)
-            {
+            if (screenID >= screens.Length) {
                 Core.Events.ExitGame();
-               // Debug.LogError("No more screens");
-            }
-            else
+                // Debug.LogError("No more screens");
+            } else {
+                if (screenID < 0)
+                    screenID = 0;
                 return screens[screenID];
+            }
             return null;
         }
         public void Next()
         {
             if (active) active.Hide();
             screenID++;
+            SetScreen();
+        }
+
+        public void Back() {
+            if (active) active.Hide();
+            screenID--;
             SetScreen();
         }
     }

@@ -7,6 +7,7 @@ namespace Pwe.Games.Cooking
     public class Cutscene : GameMain
     {
         [SerializeField] ButtonUI skipButton;
+        [SerializeField] bool backToContinue;
 
         public override void OnInitialize()
         {
@@ -18,7 +19,10 @@ namespace Pwe.Games.Cooking
         }
         void Skip()
         {
-            Next();
+            if (backToContinue)
+                Back();
+            else
+                Next();
         }
     }
 }

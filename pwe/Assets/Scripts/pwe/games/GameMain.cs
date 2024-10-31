@@ -26,6 +26,8 @@ namespace Pwe.Games
         }
         public void Next() { game.Next(); }
 
+        public void Back() { game.Back(); }
+
         private void Update()  {  if (isOn) OnUpdate();  }
 
         public virtual void OnInitialize() { }

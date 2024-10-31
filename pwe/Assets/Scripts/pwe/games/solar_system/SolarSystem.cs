@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using YaguarLib.Xtras;
+using YaguarLib.UI;
 using System.Linq;
 
 namespace Pwe.Games.SolarSystem
@@ -14,6 +15,8 @@ namespace Pwe.Games.SolarSystem
         [SerializeField] LevelsManager levelsManager;
         [SerializeField] PlanetsManager planetsManager;        
         [SerializeField] SolarSysMenuUI menuUI;
+        [SerializeField] ButtonUI backButton;
+        [SerializeField] IngamePopup levelCompletedPopup;
         [SerializeField] CamClickInput camClickInput;
         [SerializeField] Screenshot screenshot;
 
@@ -31,8 +34,11 @@ namespace Pwe.Games.SolarSystem
             planetsManager.OnPlanetClicked += levelsManager.OnPlanetClicked;
             levelsManager.OnPlanetDone += menuUI.SetPlanetDone;
             levelsManager.OnPlanetDone += SetPhotoDone;
+            levelsManager.OnLevelCompleted += OnLevelCompleted;
 
             screenshot.shotRes = new Vector2Int((int)(shotSizeScreenHeightFactor * Screen.height), (int)(shotSizeScreenHeightFactor * Screen.height));
+
+            backButton.Init(Back);
         }
 
         public override void OnInit() {
@@ -50,6 +56,7 @@ namespace Pwe.Games.SolarSystem
             planetsManager.OnPlanetClicked -= levelsManager.OnPlanetClicked;
             levelsManager.OnPlanetDone -= menuUI.SetPlanetDone;
             levelsManager.OnPlanetDone -= SetPhotoDone;
+            levelsManager.OnLevelCompleted -= OnLevelCompleted;
         }
 
         void Takeshot(Vector2 pos) {
@@ -86,9 +93,14 @@ namespace Pwe.Games.SolarSystem
             dinoFlash.SetActive(false);
         }
 
+        void OnLevelCompleted() {
+            Debug.Log("#OnLevelCompleted");
+            levelCompletedPopup.Popup("LEVEL COMPLETED!", delay:2f);
+        }
+
         public void InitPlanets() {
             planetsManager.RemoveAllPlanets();
-            SpaceData sd = levelsManager.GetCurrentLevel();
+            SpaceData sd = levelsManager.InitLevel();
             planetsManager.Init(planetsData, sd);
             IEnumerable<PlanetData> levelPlanetsData = planetsData.planets.Where(item => sd.LevelItems.Any(category => category.planetName == item.planetName));
             menuUI.Init(levelPlanetsData);       
