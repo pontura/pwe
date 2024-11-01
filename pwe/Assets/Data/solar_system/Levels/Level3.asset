@@ -110,13 +110,8 @@ MonoBehaviour:
     planetName: 5
     colliderRadius: 1
     animClip: {fileID: 7400000, guid: 0b544850194f4514484012941e24e4d5, type: 2}
-  - orbitalItem: {fileID: 0}
-    orbitalPath: {fileID: 8412587118133278462, guid: 4ec3b056846ff5d4ea580ff878a175c5, type: 3}
-    planetName: 6
-    colliderRadius: 1.25
-    animClip: {fileID: 7400000, guid: 7b562d074ca4e5548b7c3f8ee7339c09, type: 2}
   - orbitalItem: {fileID: -4921058695821818843, guid: 2e0dbdf1e47865e4597700f391440068, type: 3}
-    orbitalPath: {fileID: 2355899697140836453, guid: 5d1fc75ce0e9f814db7e217c2f366476, type: 3}
+    orbitalPath: {fileID: 8412587118133278462, guid: 4ec3b056846ff5d4ea580ff878a175c5, type: 3}
     planetName: 0
     colliderRadius: 0
     animClip: {fileID: 0}

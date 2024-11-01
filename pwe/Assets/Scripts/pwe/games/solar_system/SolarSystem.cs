@@ -102,8 +102,9 @@ namespace Pwe.Games.SolarSystem
             planetsManager.RemoveAllPlanets();
             SpaceData sd = levelsManager.InitLevel();
             planetsManager.Init(planetsData, sd);
-            IEnumerable<PlanetData> levelPlanetsData = planetsData.planets.Where(item => sd.LevelItems.Any(category => category.planetName == item.planetName));
-            menuUI.Init(levelPlanetsData);       
+            List<PlanetName> levelPlanetNanes = sd.LevelItems.Select(item => item.planetName).ToList();
+            //IEnumerable<PlanetData> levelPlanetsData = planetsData.planets.Where(item => sd.LevelItems.Any(category => category.planetName == item.planetName));
+            menuUI.Init(planetsData.planets, levelPlanetNanes);       
         }
     }
 

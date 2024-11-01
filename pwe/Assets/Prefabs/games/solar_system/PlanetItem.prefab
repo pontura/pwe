@@ -127,8 +127,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef719e611eb49c540acf366d51efdc97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bg: {fileID: 5524316758537053261}
   image: {fileID: 1085376630292718287}
   done: {fileID: 991484292493044669}
+  frame: {fileID: 0}
   <Planet_Name>k__BackingField: 0
 --- !u!222 &522957243405359895
 CanvasRenderer:

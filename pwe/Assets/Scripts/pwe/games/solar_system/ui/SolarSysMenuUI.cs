@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using YaguarLib.Xtras;
 using static Pwe.Games.SolarSystem.PlanetsData;
+using System.Linq;
 
 namespace Pwe.Games.SolarSystem.UI
 {
@@ -11,14 +12,17 @@ namespace Pwe.Games.SolarSystem.UI
         [SerializeField] Transform container;
         List<PlanetItemUI> allItems;
 
-        public void Init(IEnumerable<PlanetData> items)
+        public void Init(List<PlanetData> allPlanets, List<PlanetName> itemsNames)
         {
             allItems = new List<PlanetItemUI>();
             Utils.RemoveAllChildsIn(container);
-            foreach(PlanetData c in items)
+            foreach(PlanetData c in allPlanets)
             {
+                Color bgColor = c.lastPhoto==null?Color.grey:Color.green;
+                if (itemsNames.Any(name => name == c.planetName))
+                    bgColor = Color.white;
                 PlanetItemUI ci = Instantiate(items_to_add, container);
-                ci.Init(c);
+                ci.Init(c,bgColor);
                 allItems.Add(ci);
             }
         }
