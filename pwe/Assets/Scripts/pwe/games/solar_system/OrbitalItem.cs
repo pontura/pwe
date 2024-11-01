@@ -53,7 +53,7 @@ namespace Pwe.Games.SolarSystem
             base.Init(id);
             _spaceData = spaceData;
             _path = oPath;
-            OrbitCurve(Random.value);
+            //OrbitCurve(Random.value);
             onClick = onclick;
             Moving = true;
         }

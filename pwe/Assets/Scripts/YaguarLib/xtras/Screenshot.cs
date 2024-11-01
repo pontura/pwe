@@ -54,10 +54,17 @@ namespace YaguarLib.Xtras
                 //Debug.Log("# " + (Screen.height - (int)(shotCenter.y + (0.5f * shotRes.y))));
                 //texture.ReadPixels(new Rect(0, 0, rt.width, rt.height), (int) (shotCenter.x-(0.5f*shotRes.x)), (int) (shotCenter.y - (0.5f * shotRes.y)));
                 Rect r = new Rect();
+#if UNITY_EDITOR
                 r.xMin = System.Math.Max(0, (int)(shotCenter.x - (0.5f * shotRes.x)));
                 r.yMin = System.Math.Max(0, (int)(Screen.height - (shotCenter.y + (0.5f * shotRes.y))));
                 r.xMax = System.Math.Min(Screen.width, (int)(shotCenter.x + (0.5f * shotRes.x)));
-                r.yMax = System.Math.Min(Screen.height, (int)(Screen.height - (shotCenter.y - (0.5f * shotRes.y))));                
+                r.yMax = System.Math.Min(Screen.height, (int)(Screen.height - (shotCenter.y - (0.5f * shotRes.y))));
+#elif UNITY_ANDROID
+                r.xMin = System.Math.Max(0, (int)(shotCenter.x - (0.5f * shotRes.x)));
+                r.yMin = System.Math.Max(0, (int)(shotCenter.y - (0.5f * shotRes.y)));
+                r.xMax = System.Math.Min(Screen.width, (int)(shotCenter.x + (0.5f * shotRes.x)));
+                r.yMax = System.Math.Min(Screen.height, (int)(shotCenter.y + (0.5f * shotRes.y)));
+#endif
                 Texture.ReadPixels(r, 0, 0);
 
                 Texture.Apply();

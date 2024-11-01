@@ -15,6 +15,10 @@ namespace Pwe.Games.SolarSystem
         {
             if (EventSystem.current.IsPointerOverGameObject())
                 return;
+            if (Input.touchCount > 0)
+                if (EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
+                    return;
+            
             OnClickInput(pos);
             Check();
         }
