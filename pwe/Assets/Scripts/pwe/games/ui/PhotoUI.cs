@@ -12,8 +12,8 @@ namespace Pwe.Games.UI
         [SerializeField] RawImage photoTex;
         [SerializeField] GameObject flash;
         [SerializeField] GameObject fullFlash;
-        [SerializeField] float _delay = 2;
-        [SerializeField] float _flyDelay = 0.3f;
+        [field: SerializeField] public float CloseDelay { get; private set; } //2f
+        [field:SerializeField] public float FlyDelay { get; private set; } //0.3f
         [SerializeField] GameObject done;
 
         private Action onDone;        
@@ -24,7 +24,7 @@ namespace Pwe.Games.UI
             onDone = callback;
             photoTex.texture = tex;
             gameObject.SetActive(true);
-            Invoke(nameof(OnClose), _delay);            
+            Invoke(nameof(OnClose), CloseDelay);            
         }        
 
         public void SetDone(bool enable) {
@@ -68,9 +68,9 @@ namespace Pwe.Games.UI
             if (_photoFly) {
                 Debug.Log("#localPosition: "+ frame.localPosition);
                 Debug.Log("#_photoFlyToPos: " + _photoFlyToPos);
-                StartCoroutine(FadeVector(frame.position, _photoFlyToPos, 0.3f, (vector) => frame.position = vector, Close));
-                StartCoroutine(FadeVector(frame.eulerAngles, Vector3.zero, 0.3f, (vector) => frame.eulerAngles = vector));
-                StartCoroutine(FadeVector(frame.sizeDelta, new Vector2(60,60), 0.3f, (vector) => frame.sizeDelta = vector));
+                StartCoroutine(FadeVector(frame.position, _photoFlyToPos, FlyDelay, (vector) => frame.position = vector, Close));
+                StartCoroutine(FadeVector(frame.eulerAngles, Vector3.zero, FlyDelay, (vector) => frame.eulerAngles = vector));
+                StartCoroutine(FadeVector(frame.sizeDelta, new Vector2(60,60), FlyDelay, (vector) => frame.sizeDelta = vector));
             } else {
                 Close();
             }
