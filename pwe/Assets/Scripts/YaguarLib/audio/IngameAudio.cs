@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace YaguarLib.Audio
 {
-    public class IngameAudioManager : MonoBehaviour
+    public class IngameAudio : MonoBehaviour
     {
         [SerializeField] SoundLibrary soundLibrary;
         [SerializeField] AudioSource source;

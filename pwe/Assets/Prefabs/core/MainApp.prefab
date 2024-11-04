@@ -90,6 +90,8 @@ MonoBehaviour:
     audioSource: {fileID: 2958729439338651313}
   - sourceName: ui2
     audioSource: {fileID: 9030740187780080846}
+  - sourceName: voices
+    audioSource: {fileID: 5146807794517545658}
 --- !u!114 &4861105084368569451
 MonoBehaviour:
   m_ObjectHideFlags: 0

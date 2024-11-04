@@ -6,6 +6,7 @@ using UnityEditor;
 using YaguarLib.Xtras;
 using YaguarLib.UI;
 using System.Linq;
+using YaguarLib.Audio;
 
 namespace Pwe.Games.SolarSystem
 {
@@ -20,6 +21,7 @@ namespace Pwe.Games.SolarSystem
         [SerializeField] CamClickInput camClickInput;
         [SerializeField] Screenshot screenshot;
 
+        [SerializeField] IngameAudio ingameVoiceOvers;
         [SerializeField] PhotoUI photoUI;
         [SerializeField] GameObject dinoFlash;
 
@@ -104,7 +106,7 @@ namespace Pwe.Games.SolarSystem
             planetsManager.Init(planetsData, sd);
             List<PlanetName> levelPlanetNanes = sd.LevelItems.Select(item => item.planetName).ToList();
             //IEnumerable<PlanetData> levelPlanetsData = planetsData.planets.Where(item => sd.LevelItems.Any(category => category.planetName == item.planetName));
-            menuUI.Init(planetsData.planets, levelPlanetNanes);       
+            menuUI.Init(planetsData.planets, levelPlanetNanes, ingameVoiceOvers.Play);       
         }
     }
 

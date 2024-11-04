@@ -12,7 +12,7 @@ namespace Pwe.Games.SolarSystem.UI
         [SerializeField] Transform container;
         List<PlanetItemUI> allItems;
 
-        public void Init(List<PlanetData> allPlanets, List<PlanetName> itemsNames)
+        public void Init(List<PlanetData> allPlanets, List<PlanetName> itemsNames, System.Action<string,string> onClick)
         {
             allItems = new List<PlanetItemUI>();
             Utils.RemoveAllChildsIn(container);
@@ -22,7 +22,7 @@ namespace Pwe.Games.SolarSystem.UI
                 if (itemsNames.Any(name => name == c.planetName))
                     bgColor = Color.white;
                 PlanetItemUI ci = Instantiate(items_to_add, container);
-                ci.Init(c,bgColor);
+                ci.Init(c, bgColor, () => onClick(c.planetName.ToString(),"voices"));
                 allItems.Add(ci);
             }
         }
