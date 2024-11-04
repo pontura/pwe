@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System;
+using UnityEngine.Audio;
 
 namespace YaguarLib.Audio
 {
@@ -17,8 +18,15 @@ namespace YaguarLib.Audio
             NONE
         }
 
+        float masterVol, musicVol, sfxVol;
+        [SerializeField] AudioMixerGroup masterGroup;
+        [SerializeField] AudioMixerGroup musicGroup;
+        [SerializeField] AudioMixerGroup sfxGroup;
+
         public AudioData[] audios;
         public AudioSourceManager[] all;
+
+        public bool Mute { get; private set; }
 
         [Serializable]
         public class AudioSourceManager
@@ -45,8 +53,17 @@ namespace YaguarLib.Audio
             if (!mInstance)
                 mInstance = this;
 
+            if (!masterGroup.audioMixer.GetFloat("masterVol", out masterVol))
+                masterVol = 0f;
+
+            if (!musicGroup.audioMixer.GetFloat("musicVol", out musicVol))
+                musicVol = 0f;
+
+            if (!sfxGroup.audioMixer.GetFloat("sfxVol", out sfxVol))
+                sfxVol = 0f;
+
             int muteValue = PlayerPrefs.GetInt("mute", 0);
-            if (muteValue == 1) mute = true;
+            if (muteValue == 1) Mute = true;
             DontDestroyOnLoad(this);
         }
         void Start()
@@ -58,35 +75,35 @@ namespace YaguarLib.Audio
             }
             YaguarLib.Events.Events.OnPlaySound += OnPlaySound;
             YaguarLib.Events.Events.OnPlaySoundInChannel += OnPlaySoundInChannel;
-            YaguarLib.Events.Events.Mute += Mute;
-            SetMuteValues();
         }
         void OnDestroy()
         {
             YaguarLib.Events.Events.OnPlaySound -= OnPlaySound;
             YaguarLib.Events.Events.OnPlaySoundInChannel -= OnPlaySoundInChannel;
-            YaguarLib.Events.Events.Mute -= Mute;
         }
-        public bool mute;
-        void Mute(bool mute)
-        {
-            int muteValue = 0;
-            if (mute) muteValue = 1;
-            PlayerPrefs.SetInt("mute", muteValue);
-            this.mute = mute;
-            SetMuteValues();
+
+        public void MusicEnable(bool enable) {
+            Debug.Log("MusicEnable " + enable);
+            float val = enable ? musicVol : -80f;
+            musicGroup.audioMixer.SetFloat("musicVol", val);
         }
-        void SetMuteValues()
-        {
-            float value = 0;
-            if (!mute)
-                value = 1;
-            foreach (AudioSourceManager s in all)
-                s.audioSource.volume = value;           
+        public void SoundEnable(bool enable) {
+            Debug.Log("SoundEnable " + enable);
+            PlayerPrefs.SetInt("mute", enable ? 0 : 1);
+            Mute = !enable;
+            float val = enable ? masterVol : -80f;
+            masterGroup.audioMixer.SetFloat("masterVol", val);
         }
+
+        public void SfxEnable(bool enable) {
+            Debug.Log("SfxEnable " + enable);
+            float val = enable ? sfxVol : -80f;
+            sfxGroup.audioMixer.SetFloat("sfxVol", val);
+        }
+
         public bool CanPlay()
         {
-            if (mute) return false;
+            if (Mute) return false;
             return true;
         }
         public void StopAudioSource(string audioSourceName)
@@ -153,10 +170,7 @@ namespace YaguarLib.Audio
                 if (audioSource.clip == audioClip && audioSource.isPlaying)
                     return;
             }
-            audioSource.clip = audioClip;
-            audioSource.loop = loop;
-            audioSource.volume = volume;
-            audioSource.Play();
+            PlaySound(audioSource, audioClip, volume, loop);
         }
 
         public void PlaySoundOneShot(string sourceName, string audioName, bool noRepeat = false)
@@ -179,6 +193,23 @@ namespace YaguarLib.Audio
             }
             audioSource.PlayOneShot(clip);
         }
+
+        public void PlaySound(AudioSource source, AudioClip clip, float volume = 1, bool loop = false) {
+            source.volume = volume;
+            source.clip = clip;
+            source.loop = loop;
+            source.Play();
+        }
+
+        public void PlaySoundOneShot(AudioSource source, ClipData clip) {
+            PlaySoundOneShot(source, clip.clip, clip.vol);
+        }
+
+        public void PlaySoundOneShot(AudioSource source, AudioClip clip, float volume = 1) {
+            source.volume = volume;
+            source.PlayOneShot(clip);
+        }
+
         AudioSource GetAudioSource(string sourceName)
         {
             foreach (AudioSourceManager m in all)
