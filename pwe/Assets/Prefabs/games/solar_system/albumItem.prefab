@@ -87,6 +87,7 @@ GameObject:
   - component: {fileID: 1845052990881634326}
   - component: {fileID: 8554538927437695148}
   - component: {fileID: 6219915005817596694}
+  - component: {fileID: 1617930730609458259}
   m_Layer: 0
   m_Name: albumItem
   m_TagString: Untagged
@@ -164,7 +165,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef719e611eb49c540acf366d51efdc97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bg: {fileID: 0}
   image: {fileID: 2342185244661915174}
   done: {fileID: 0}
   frame: {fileID: 8554538927437695148}
   <Planet_Name>k__BackingField: 1
+--- !u!95 &1617930730609458259
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7148354492192779253}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1bdf6d4f46595734b9e7ff2da4ab5067, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
