@@ -42,6 +42,7 @@ namespace Pwe.Games.SolarSystem
             if (pd == null)
                 return;
             pd.lastPhoto = tex;
+            pd.hasNewPhoto = true;
             MainApp.Instance.photosManager.SavePhoto(pd.planetName.ToString() + lastPhoto_file_suffix, tex);
         }
     }

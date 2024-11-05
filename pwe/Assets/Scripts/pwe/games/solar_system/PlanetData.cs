@@ -12,5 +12,6 @@ namespace Pwe.Games.SolarSystem
         public Sprite sprite;
         public Color color;
         public Texture2D lastPhoto;
+        public bool hasNewPhoto;
     }
 }

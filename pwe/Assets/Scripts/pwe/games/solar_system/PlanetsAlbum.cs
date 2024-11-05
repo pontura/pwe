@@ -27,7 +27,7 @@ namespace Pwe.Games.SolarSystem
             foreach(PlanetItemUI piui in albumItems) {
                 PlanetData pd = planetsData.planets.Find(x => x.planetName == piui.Planet_Name);
                 if (pd != null) {
-                    piui.SetImage(pd.lastPhoto);
+                    piui.SetImage(pd);
                 } 
                 piui.SetButton(() => ingameVoiceOvers.Play(piui.Planet_Name.ToString(), "voices"));
             }

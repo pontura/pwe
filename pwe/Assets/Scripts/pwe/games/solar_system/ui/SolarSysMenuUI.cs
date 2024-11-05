@@ -18,11 +18,11 @@ namespace Pwe.Games.SolarSystem.UI
             Utils.RemoveAllChildsIn(container);
             foreach(PlanetData c in allPlanets)
             {
-                Color bgColor = c.lastPhoto==null?Color.grey:Color.green;
+                PlanetItemUI.PlanetState planetState = c.lastPhoto==null ? PlanetItemUI.PlanetState.undone : PlanetItemUI.PlanetState.done;
                 if (itemsNames.Any(name => name == c.planetName))
-                    bgColor = Color.white;
+                    planetState = PlanetItemUI.PlanetState.photo;
                 PlanetItemUI ci = Instantiate(items_to_add, container);
-                ci.Init(c, bgColor, () => onClick(c.planetName.ToString(),"voices"));
+                ci.Init(c, planetState, () => onClick(c.planetName.ToString(),"voices"));
                 allItems.Add(ci);
             }
         }
