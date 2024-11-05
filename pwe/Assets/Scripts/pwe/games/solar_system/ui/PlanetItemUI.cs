@@ -17,27 +17,36 @@ namespace Pwe.Games.SolarSystem.UI
         Button _button;
         Animator _anim;
 
+        System.Action _onButtonSelected;
+
         PlanetState planetState;
         public enum PlanetState
         {
             done,
             undone,
-            photo
+            normal,
+            win
         }
 
         public void Init(PlanetData data, PlanetState state, System.Action onClick = null) {
             SetButton(onClick);
             Planet_Name = data.planetName;
             image.sprite = data.sprite;
+            image.color = data.color;
             planetState = state;
             _anim = GetComponent<Animator>();
             _anim.Play("entry");
-            if (planetState != PlanetState.photo)
+            if (planetState != PlanetState.normal)
                 Invoke(nameof(SetPlanetExit), 1);
         }
 
         void SetPlanetExit() {
             _anim.Play("exit");
+        }
+
+        public void UpdatePlanetSate() {
+            Debug.Log("#UpdatePlanetSate: " + planetState.ToString());
+            _anim.Play(planetState.ToString());
         }
 
         public void SetDone() {
@@ -58,6 +67,19 @@ namespace Pwe.Games.SolarSystem.UI
                 _anim.Play("new");
             } else
                 _anim.Play("on");
+        }
+
+        public void SetAsButton(PlanetName planetName, System.Action callback) {
+            _anim.Play("buttonize");
+            string animName = planetName == Planet_Name ? "button_right" : "button_wrong";
+            _onButtonSelected = () => {
+                _anim.Play(animName);
+                if (planetName == Planet_Name) {
+                    planetState = PlanetState.win;
+                    callback();
+                }
+            };
+            _button.onClick.AddListener(() => _onButtonSelected());
         }
 
         public void SetButton(System.Action onClick) {

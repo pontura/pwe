@@ -84,10 +84,19 @@ namespace Pwe.Games.SolarSystem
             Debug.Log("#SetPhotoDone");
             photoUI.SetDone(planetName != PlanetName.none);
             if (planetName != PlanetName.none) {
+                planetsManager.Play(false);
                 photoUI.FlyToMenu(menuUI.GetItemPosition(planetName));
+                menuUI.OpenSlotDialog(photoUI.FlyToMenu, planetName, OnSelectSlotDone);                     
                 planetsData.SavePlanetLastPhoto(planetName, screenshot.Texture);
                 ingameVoiceOvers.Play(planetName.ToString(), "voices");
             }
+        }
+
+        void OnSelectSlotDone() {
+            planetsManager.Play(true);
+            photoUI.Invoke(nameof(photoUI.Fly), 1);
+            if(_levelCompleted)
+                levelCompletedPopup.Popup("LEVEL COMPLETED!", delay: photoUI.CloseDelay + photoUI.FlyDelay, onContinue: Back);
         }
 
         void OnContinueMoving() {
@@ -96,12 +105,15 @@ namespace Pwe.Games.SolarSystem
             dinoFlash.SetActive(false);
         }
 
+        bool _levelCompleted;
         void OnLevelCompleted() {
             Debug.Log("#OnLevelCompleted");
-            levelCompletedPopup.Popup("LEVEL COMPLETED!", delay: photoUI.CloseDelay+photoUI.FlyDelay, onContinue:Back);
+            _levelCompleted = true;
+            //levelCompletedPopup.Popup("LEVEL COMPLETED!", delay: photoUI.CloseDelay+photoUI.FlyDelay, onContinue:Back);
         }
 
         public void InitPlanets() {
+            _levelCompleted = false;
             planetsManager.RemoveAllPlanets();
             SpaceData sd = levelsManager.InitLevel();
             planetsManager.Init(planetsData, sd);

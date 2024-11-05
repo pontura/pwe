@@ -973,6 +973,7 @@ GameObject:
   - component: {fileID: 5629767059299494776}
   - component: {fileID: 5509319760919004140}
   - component: {fileID: 6718217283841486691}
+  - component: {fileID: 9126531123057401266}
   m_Layer: 0
   m_Name: jupiterItem
   m_TagString: Untagged
@@ -1098,6 +1099,27 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!95 &9126531123057401266
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2071046949893548581}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2147929223548431453
 GameObject:
   m_ObjectHideFlags: 0
@@ -2009,6 +2031,81 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &4129482153118194790
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 778921321460713257}
+  - component: {fileID: 7986196024082777256}
+  - component: {fileID: 5975733488089045257}
+  m_Layer: 0
+  m_Name: blockpanel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &778921321460713257
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4129482153118194790}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8326368808787400845}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &7986196024082777256
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4129482153118194790}
+  m_CullTransparentMesh: 1
+--- !u!114 &5975733488089045257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4129482153118194790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.8}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &4158203697891444647
 GameObject:
   m_ObjectHideFlags: 0
@@ -2022,6 +2119,7 @@ GameObject:
   - component: {fileID: 163723602283557770}
   - component: {fileID: 4806683864782453594}
   - component: {fileID: 7931247355577365284}
+  - component: {fileID: 4117517827338547091}
   m_Layer: 0
   m_Name: uranusItem
   m_TagString: Untagged
@@ -2147,6 +2245,27 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!95 &4117517827338547091
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4158203697891444647}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &4194344426216433879
 GameObject:
   m_ObjectHideFlags: 0
@@ -2354,11 +2473,12 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7642536782091750681}
+  - {fileID: 778921321460713257}
   - {fileID: 414697742716160349}
   - {fileID: 9192053459943184378}
   - {fileID: 2067248616038310362}
   - {fileID: 5683355195269574017}
+  - {fileID: 7642536782091750681}
   - {fileID: 9187292250420458949}
   m_Father: {fileID: 9140110801355716874}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2443,6 +2563,7 @@ GameObject:
   - component: {fileID: 5982248287867243351}
   - component: {fileID: 285811175362924400}
   - component: {fileID: 8516826452959975243}
+  - component: {fileID: 7897284958605984862}
   m_Layer: 0
   m_Name: neptuneItem
   m_TagString: Untagged
@@ -2568,6 +2689,27 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!95 &7897284958605984862
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4382812546179214841}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &4468999783458207463
 GameObject:
   m_ObjectHideFlags: 0
@@ -2581,6 +2723,7 @@ GameObject:
   - component: {fileID: 8143299208550223358}
   - component: {fileID: 1423166927295206060}
   - component: {fileID: 8561102086878976693}
+  - component: {fileID: 7902164674874211273}
   m_Layer: 0
   m_Name: earthItem
   m_TagString: Untagged
@@ -2706,6 +2849,27 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!95 &7902164674874211273
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4468999783458207463}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &4539570205841223387
 GameObject:
   m_ObjectHideFlags: 0
@@ -3593,6 +3757,7 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: 6d006f8d8c02d9649a5cf3b2422cc81e, type: 3}
     color: {r: 1, g: 1, b: 1, a: 1}
     lastPhoto: {fileID: 0}
+    hasNewPhoto: 0
   - planetName: 2
     orbitData:
       speed: 1.62
@@ -3601,6 +3766,7 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: 0eaddf91c9b9c0e4ca3b50a43ade3876, type: 3}
     color: {r: 1, g: 0, b: 0.41911507, a: 1}
     lastPhoto: {fileID: 0}
+    hasNewPhoto: 0
   - planetName: 3
     orbitData:
       speed: 1
@@ -3609,6 +3775,7 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: 7f6c97ed9dd415441b6273abf4046554, type: 3}
     color: {r: 0, g: 0.5335841, b: 1, a: 1}
     lastPhoto: {fileID: 0}
+    hasNewPhoto: 0
   - planetName: 4
     orbitData:
       speed: 0.5
@@ -3617,6 +3784,7 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: 6d006f8d8c02d9649a5cf3b2422cc81e, type: 3}
     color: {r: 1, g: 0, b: 0, a: 1}
     lastPhoto: {fileID: 0}
+    hasNewPhoto: 0
   - planetName: 5
     orbitData:
       speed: 0.083
@@ -3625,6 +3793,7 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: 7fd1afcff6577d549b027e81f44da1d2, type: 3}
     color: {r: 1, g: 0.7238611, b: 0, a: 1}
     lastPhoto: {fileID: 0}
+    hasNewPhoto: 0
   - planetName: 6
     orbitData:
       speed: 0.034
@@ -3633,6 +3802,7 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: d55ba5a7e324e5246ac1cd141e337ea8, type: 3}
     color: {r: 1, g: 0.5556786, b: 0, a: 1}
     lastPhoto: {fileID: 0}
+    hasNewPhoto: 0
   - planetName: 7
     orbitData:
       speed: 0.011
@@ -3641,6 +3811,7 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: 7fd1afcff6577d549b027e81f44da1d2, type: 3}
     color: {r: 0, g: 1, b: 0.95051575, a: 1}
     lastPhoto: {fileID: 0}
+    hasNewPhoto: 0
   - planetName: 8
     orbitData:
       speed: 0.006
@@ -3649,6 +3820,7 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: 7fd1afcff6577d549b027e81f44da1d2, type: 3}
     color: {r: 0.11199522, g: 0, b: 1, a: 1}
     lastPhoto: {fileID: 0}
+    hasNewPhoto: 0
 --- !u!114 &6712749723797333973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4007,6 +4179,7 @@ GameObject:
   - component: {fileID: 4477446498231636010}
   - component: {fileID: 8822806725034742771}
   - component: {fileID: 842217124468447511}
+  - component: {fileID: 3235387179709560717}
   m_Layer: 0
   m_Name: saturnItem
   m_TagString: Untagged
@@ -4132,6 +4305,27 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!95 &3235387179709560717
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5687424264172281522}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &5740624675992249968
 GameObject:
   m_ObjectHideFlags: 0
@@ -4304,6 +4498,7 @@ GameObject:
   - component: {fileID: 570518127151637692}
   - component: {fileID: 3621124920273809836}
   - component: {fileID: 2602332931303694145}
+  - component: {fileID: 9083621559321610314}
   m_Layer: 0
   m_Name: marsItem
   m_TagString: Untagged
@@ -4429,6 +4624,27 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!95 &9083621559321610314
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5917046356584714511}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6391485277271731002
 GameObject:
   m_ObjectHideFlags: 0
@@ -4530,7 +4746,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &9192053459943184378
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4898,6 +5114,7 @@ GameObject:
   - component: {fileID: 3031135407470786031}
   - component: {fileID: 2953399071297323563}
   - component: {fileID: 6264580100878353443}
+  - component: {fileID: 3883600988817502212}
   m_Layer: 0
   m_Name: venusItem
   m_TagString: Untagged
@@ -5024,6 +5241,27 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!95 &3883600988817502212
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8461683718825043700}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &8652511672588723370
 GameObject:
   m_ObjectHideFlags: 0
@@ -5298,6 +5536,14 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 7f6c97ed9dd415441b6273abf4046554, type: 3}
+    - target: {fileID: 2342185244661915174, guid: 99317be43b4f29747b06f43647fd1390, type: 3}
+      propertyPath: m_Color.g
+      value: 0.53333336
+      objectReference: {fileID: 0}
+    - target: {fileID: 2342185244661915174, guid: 99317be43b4f29747b06f43647fd1390, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6219915005817596694, guid: 99317be43b4f29747b06f43647fd1390, type: 3}
       propertyPath: <Planet_Name>k__BackingField
       value: 3
@@ -5560,6 +5806,14 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 6d006f8d8c02d9649a5cf3b2422cc81e, type: 3}
+    - target: {fileID: 2342185244661915174, guid: 99317be43b4f29747b06f43647fd1390, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2342185244661915174, guid: 99317be43b4f29747b06f43647fd1390, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6219915005817596694, guid: 99317be43b4f29747b06f43647fd1390, type: 3}
       propertyPath: <Planet_Name>k__BackingField
       value: 4
@@ -7635,6 +7889,14 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 7fd1afcff6577d549b027e81f44da1d2, type: 3}
+    - target: {fileID: 2342185244661915174, guid: 99317be43b4f29747b06f43647fd1390, type: 3}
+      propertyPath: m_Color.b
+      value: 0.9490196
+      objectReference: {fileID: 0}
+    - target: {fileID: 2342185244661915174, guid: 99317be43b4f29747b06f43647fd1390, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6219915005817596694, guid: 99317be43b4f29747b06f43647fd1390, type: 3}
       propertyPath: <Planet_Name>k__BackingField
       value: 7
@@ -7941,6 +8203,14 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: d55ba5a7e324e5246ac1cd141e337ea8, type: 3}
+    - target: {fileID: 2342185244661915174, guid: 99317be43b4f29747b06f43647fd1390, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2342185244661915174, guid: 99317be43b4f29747b06f43647fd1390, type: 3}
+      propertyPath: m_Color.g
+      value: 0.5568628
+      objectReference: {fileID: 0}
     - target: {fileID: 2342185244661915174, guid: 99317be43b4f29747b06f43647fd1390, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -11558,6 +11828,14 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 0eaddf91c9b9c0e4ca3b50a43ade3876, type: 3}
+    - target: {fileID: 2342185244661915174, guid: 99317be43b4f29747b06f43647fd1390, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2342185244661915174, guid: 99317be43b4f29747b06f43647fd1390, type: 3}
+      propertyPath: m_Color.r
+      value: 0.11372549
+      objectReference: {fileID: 0}
     - target: {fileID: 6219915005817596694, guid: 99317be43b4f29747b06f43647fd1390, type: 3}
       propertyPath: <Planet_Name>k__BackingField
       value: 8
@@ -11683,6 +11961,14 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 0eaddf91c9b9c0e4ca3b50a43ade3876, type: 3}
+    - target: {fileID: 2342185244661915174, guid: 99317be43b4f29747b06f43647fd1390, type: 3}
+      propertyPath: m_Color.b
+      value: 0.41960785
+      objectReference: {fileID: 0}
+    - target: {fileID: 2342185244661915174, guid: 99317be43b4f29747b06f43647fd1390, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6219915005817596694, guid: 99317be43b4f29747b06f43647fd1390, type: 3}
       propertyPath: <Planet_Name>k__BackingField
       value: 2
@@ -13829,6 +14115,14 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 7fd1afcff6577d549b027e81f44da1d2, type: 3}
+    - target: {fileID: 2342185244661915174, guid: 99317be43b4f29747b06f43647fd1390, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2342185244661915174, guid: 99317be43b4f29747b06f43647fd1390, type: 3}
+      propertyPath: m_Color.g
+      value: 0.7254902
+      objectReference: {fileID: 0}
     - target: {fileID: 6219915005817596694, guid: 99317be43b4f29747b06f43647fd1390, type: 3}
       propertyPath: <Planet_Name>k__BackingField
       value: 5

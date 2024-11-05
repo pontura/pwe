@@ -8,8 +8,10 @@ namespace Pwe.Games.UI
         [SerializeField] TMPro.TextMeshProUGUI title;
         [SerializeField] ButtonUI continueButton;
 
+        bool _activeSelf;
         private void Start() {
-            gameObject.SetActive(false);
+            gameObject.SetActive(true);
+            Invoke(nameof(SetActive), Time.deltaTime*2);
         }
 
         public void Popup(string title, float delay = 0, System.Action onContinue=null) {
@@ -20,15 +22,16 @@ namespace Pwe.Games.UI
                 if (onContinue != null)
                     onContinue();
             });
-            if (delay > 0)
+            if (delay > 0) {
+                _activeSelf = true;
                 Invoke(nameof(SetActive), delay);
-            else
+            } else
                 gameObject.SetActive(true);
         }
 
         void SetActive() {
             Debug.Log("#SetActive");
-            gameObject.SetActive(true);
+            gameObject.SetActive(_activeSelf);
         }
     }
 }

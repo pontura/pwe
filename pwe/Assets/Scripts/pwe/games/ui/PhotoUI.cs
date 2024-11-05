@@ -48,16 +48,24 @@ namespace Pwe.Games.UI
             //Vector2 initCenter = initPos - new Vector2(Screen.width * 0.5f, Screen.height * 0.5f);
             Vector2 initCenter = new Vector2();
             RectTransformUtility.ScreenPointToLocalPointInRectangle((RectTransform)transform, initPos, cam, out initCenter);
+            frame.localPosition = initCenter;
+            FadePosition(finalPos, dur);
             //Vector2 finalCenter = finalPos - new Vector2(Screen.width * 0.5f, Screen.height * 0.5f);
+        }
+
+        public void FadePosition(Vector2 finalPos, float dur) {
             Vector2 finalCenter = new Vector2();
             RectTransformUtility.ScreenPointToLocalPointInRectangle((RectTransform)transform, finalPos, cam, out finalCenter);
-            frame.localPosition = initCenter;
-            StartCoroutine(FadeVector(initCenter, finalCenter, dur, (vector) => frame.localPosition = vector));
+            StartCoroutine(FadeVector(frame.localPosition, finalCenter, dur, (vector) => frame.localPosition = vector));
         }
 
         public void FadeAngle(Vector3 initAngle, Vector3 finalAngle, float dur) {
             frame.eulerAngles = initAngle;
-            StartCoroutine(FadeVector(initAngle, finalAngle, dur, (vector) => frame.eulerAngles = vector));
+            FadeAngle(finalAngle, dur);
+        }
+
+        public void FadeAngle(Vector3 finalAngle, float dur) {
+            StartCoroutine(FadeVector(frame.eulerAngles, finalAngle, dur, (vector) => frame.eulerAngles = vector));
         }
 
         void TurnFlashOff() {
@@ -65,15 +73,20 @@ namespace Pwe.Games.UI
         }
 
         void OnClose() {
-            if (_photoFly) {
-                Debug.Log("#localPosition: "+ frame.localPosition);
-                Debug.Log("#_photoFlyToPos: " + _photoFlyToPos);
-                StartCoroutine(FadeVector(frame.position, _photoFlyToPos, FlyDelay, (vector) => frame.position = vector, Close));
-                StartCoroutine(FadeVector(frame.eulerAngles, Vector3.zero, FlyDelay, (vector) => frame.eulerAngles = vector));
-                StartCoroutine(FadeVector(frame.sizeDelta, new Vector2(60,60), FlyDelay, (vector) => frame.sizeDelta = vector));
-            } else {
+            if (!_photoFly) { 
                 Close();
+            } else {
+                FadePosition(new Vector2(Screen.width * 0.5f, Screen.height * 0.5f), 0.2f);
+                FadeAngle(Vector3.zero, 0.2f);
             }
+        }
+
+        public void Fly() {
+            Debug.Log("#localPosition: " + frame.localPosition);
+            Debug.Log("#_photoFlyToPos: " + _photoFlyToPos);
+            StartCoroutine(FadeVector(frame.position, _photoFlyToPos, FlyDelay, (vector) => frame.position = vector, Close));
+            StartCoroutine(FadeVector(frame.eulerAngles, Vector3.zero, FlyDelay, (vector) => frame.eulerAngles = vector));
+            StartCoroutine(FadeVector(frame.sizeDelta, new Vector2(60, 60), FlyDelay, (vector) => frame.sizeDelta = vector));
         }
 
         void Close() {
