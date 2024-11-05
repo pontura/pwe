@@ -86,6 +86,7 @@ namespace Pwe.Games.SolarSystem
             if (planetName != PlanetName.none) {
                 photoUI.FlyToMenu(menuUI.GetItemPosition(planetName));
                 planetsData.SavePlanetLastPhoto(planetName, screenshot.Texture);
+                ingameVoiceOvers.Play(planetName.ToString(), "voices");
             }
         }
 
