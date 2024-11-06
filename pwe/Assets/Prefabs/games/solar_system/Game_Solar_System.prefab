@@ -1055,6 +1055,7 @@ MonoBehaviour:
   done: {fileID: 0}
   frame: {fileID: 0}
   <Planet_Name>k__BackingField: 5
+  planetState: 0
 --- !u!114 &6718217283841486691
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2201,6 +2202,7 @@ MonoBehaviour:
   done: {fileID: 0}
   frame: {fileID: 0}
   <Planet_Name>k__BackingField: 7
+  planetState: 0
 --- !u!114 &7931247355577365284
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2645,6 +2647,7 @@ MonoBehaviour:
   done: {fileID: 0}
   frame: {fileID: 0}
   <Planet_Name>k__BackingField: 8
+  planetState: 0
 --- !u!114 &8516826452959975243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2805,6 +2808,7 @@ MonoBehaviour:
   done: {fileID: 0}
   frame: {fileID: 0}
   <Planet_Name>k__BackingField: 3
+  planetState: 0
 --- !u!114 &8561102086878976693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3781,7 +3785,7 @@ MonoBehaviour:
       speed: 0.5
       distance: 141
     size: 0.5
-    sprite: {fileID: 21300000, guid: 6d006f8d8c02d9649a5cf3b2422cc81e, type: 3}
+    sprite: {fileID: 21300000, guid: 9450e9ca97d925c4dbb0a91748606a1d, type: 3}
     color: {r: 1, g: 0, b: 0, a: 1}
     lastPhoto: {fileID: 0}
     hasNewPhoto: 0
@@ -3808,7 +3812,7 @@ MonoBehaviour:
       speed: 0.011
       distance: 1800
     size: 4
-    sprite: {fileID: 21300000, guid: 7fd1afcff6577d549b027e81f44da1d2, type: 3}
+    sprite: {fileID: 21300000, guid: d74c8a2b99b00cb4695d8259a82459ef, type: 3}
     color: {r: 0, g: 1, b: 0.95051575, a: 1}
     lastPhoto: {fileID: 0}
     hasNewPhoto: 0
@@ -3817,7 +3821,7 @@ MonoBehaviour:
       speed: 0.006
       distance: 2800
     size: 4
-    sprite: {fileID: 21300000, guid: 7fd1afcff6577d549b027e81f44da1d2, type: 3}
+    sprite: {fileID: 21300000, guid: d72d9f5b85f247c4a809bc1dece24028, type: 3}
     color: {r: 0.11199522, g: 0, b: 1, a: 1}
     lastPhoto: {fileID: 0}
     hasNewPhoto: 0
@@ -4261,6 +4265,7 @@ MonoBehaviour:
   done: {fileID: 0}
   frame: {fileID: 0}
   <Planet_Name>k__BackingField: 6
+  planetState: 0
 --- !u!114 &842217124468447511
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4580,6 +4585,7 @@ MonoBehaviour:
   done: {fileID: 0}
   frame: {fileID: 0}
   <Planet_Name>k__BackingField: 4
+  planetState: 0
 --- !u!114 &2602332931303694145
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5197,6 +5203,7 @@ MonoBehaviour:
   done: {fileID: 0}
   frame: {fileID: 0}
   <Planet_Name>k__BackingField: 2
+  planetState: 0
 --- !u!114 &6264580100878353443
 MonoBehaviour:
   m_ObjectHideFlags: 0
