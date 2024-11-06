@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using UnityEngine;
 using Yaguar.Inputs;
 using Yaguar.Inputs2D;
@@ -13,7 +14,8 @@ namespace Pwe.Games.Cooking
         [SerializeField] string states_pizza;
         [SerializeField] string trigger;
         [SerializeField] PiecesContainer piecesContainer;
-        string ingredient;
+
+        public string Ingredient { get { return piecesContainer.ActionKey; }  }
 
         public void Init()
         {
@@ -31,10 +33,9 @@ namespace Pwe.Games.Cooking
             pieceOver = false;
             Debug.Log("Piece is out...");
         }
-        public void InitIngredient(string ingredient, int num)
+        public void InitIngredient(string key, int num)
         {
-            this.ingredient = ingredient;
-            riveTexture.SetNumber(ingredient, num);
+            riveTexture.SetNumber(key, num);
         }
         public void OnPieceReleased()
         {
