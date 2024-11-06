@@ -19,15 +19,21 @@ namespace Pwe.UI
             }
             Events.OnPlayGame += OnPlayGame;
             Events.ExitGame += ExitGame;
+            Events.GamePlayed += GamePlayed;
             ShowMap();
         }
         private void OnDestroy()
         {
             Events.OnPlayGame -= OnPlayGame;
             Events.ExitGame -= ExitGame;
+            Events.GamePlayed -= GamePlayed;
         }
 
         private void ExitGame()
+        {
+            ShowMap();
+        }
+        private void GamePlayed()
         {
             ShowMap();
         }
@@ -36,7 +42,7 @@ namespace Pwe.UI
         {
             OnShowScreen(MainScreen.SCREENS.MAP);
         }
-        private void OnPlayGame(GamesManager.GAMES obj)
+        private void OnPlayGame(GameData.GAMES game)
         {
             OnShowScreen(MainScreen.SCREENS.GAME);
         }

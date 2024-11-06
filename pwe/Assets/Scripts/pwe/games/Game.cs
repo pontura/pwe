@@ -41,8 +41,7 @@ namespace Pwe.Games
         GameMain GetScreen()
         {
             if (screenID >= screens.Length) {
-                Core.Events.ExitGame();
-                // Debug.LogError("No more screens");
+                Core.Events.GamePlayed();
             } else {
                 if (screenID < 0)
                     screenID = 0;

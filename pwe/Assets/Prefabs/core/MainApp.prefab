@@ -49,8 +49,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e0af502d22e33646b8a6c0b2b07b45a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  riveFilesManager: {fileID: 0}
-  photosManager: {fileID: 0}
+  riveFilesManager: {fileID: 3082083521794560394}
+  photosManager: {fileID: 1138951900386525806}
 --- !u!114 &3082083521794560394
 MonoBehaviour:
   m_ObjectHideFlags: 0

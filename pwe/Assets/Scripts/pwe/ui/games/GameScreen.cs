@@ -1,3 +1,4 @@
+using Pwe.Core;
 using System;
 using UnityEngine;
 using YaguarLib.UI;
@@ -22,7 +23,7 @@ namespace Pwe.UI
 
         private void Done()
         {
-            Core.Events.ExitGame();
+            Core.Events.GamePlayed();
         }
     }
 }

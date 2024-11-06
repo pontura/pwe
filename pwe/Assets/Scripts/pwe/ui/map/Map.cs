@@ -19,10 +19,10 @@ namespace Pwe.UI
             switch(id)
             {
                 case 0:
-                    Events.OnPlayGame(GamesManager.GAMES.COOKING);
+                    Events.OnPlayGame(GameData.GAMES.COOKING);
                     break;
                 case 1:
-                    Events.OnPlayGame(GamesManager.GAMES.PHOTOS);
+                    Events.OnPlayGame(GameData.GAMES.PHOTOS);
                     break;
             }
         }
