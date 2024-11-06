@@ -96,6 +96,11 @@ MonoBehaviour:
     planetName: 1
     colliderRadius: 1
     animClip: {fileID: 7400000, guid: 8ae1f45c6e9ce7d4e8ed49d595b999a8, type: 2}
+  - orbitalItem: {fileID: 4874681517020087938, guid: c226ca83067129e4b8a20ac5a0035cce, type: 3}
+    orbitalPath: {fileID: 2355899697140836453, guid: 5d1fc75ce0e9f814db7e217c2f366476, type: 3}
+    planetName: 0
+    colliderRadius: 1
+    animClip: {fileID: 7400000, guid: e9fb90ba6f6e6a24db296f554f8148fc, type: 2}
   orbitSpeedFactor: 0.5
   _minmaxSpeed: {x: 0.006, y: 4.15}
   _minmaxSize: {x: 0.35, y: 11}
