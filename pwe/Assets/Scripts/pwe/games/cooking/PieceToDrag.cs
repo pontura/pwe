@@ -10,14 +10,17 @@ namespace Pwe.Games.Cooking
     {
         [SerializeField] CookingMainPiece mainPiece;
         RiveTexture riveTexture;
-        public override void OnInitDrag()
+        void Start()
         {
             riveTexture = GetComponent<RiveTexture>();
             riveTexture.Init("pwa-ingredient.riv", OnReady);
         }
-        void OnReady() {
-            riveTexture.SetTrigger(mainPiece.Ingredient);        
+        public override void OnInitDrag()
+        {
+            Debug.Log(riveTexture + " OnInitDrag " + mainPiece.Ingredient);
+            riveTexture.SetTrigger(mainPiece.Ingredient);
         }
+        void OnReady() { }
         public override void OnEndDrag()
         {
             mainPiece.OnPieceReleased();
