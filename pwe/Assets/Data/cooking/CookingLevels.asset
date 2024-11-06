@@ -16,6 +16,8 @@ MonoBehaviour:
   - ingredients:
     - item: 0
       num: 3
+    - item: 1
+      num: 2
   - ingredients:
     - item: 0
       num: 2

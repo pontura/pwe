@@ -12,11 +12,12 @@ namespace Pwe.Games.Cooking
         RiveTexture riveTexture;
         public override void OnInitDrag()
         {
-            Debug.Log("OnInitDrag"); 
             riveTexture = GetComponent<RiveTexture>();
             riveTexture.Init("pwa-ingredient.riv", OnReady);
         }
-        void OnReady() { }
+        void OnReady() {
+            riveTexture.SetTrigger(mainPiece.Ingredient);        
+        }
         public override void OnEndDrag()
         {
             mainPiece.OnPieceReleased();

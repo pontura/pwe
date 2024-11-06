@@ -2412,7 +2412,7 @@ MonoBehaviour:
   allRivNames:
   - pwa-pizza
   - pwa-bowl
-  - pwa_ingredient
+  - pwa-ingredient
 --- !u!1 &5523028810138714259
 GameObject:
   m_ObjectHideFlags: 0

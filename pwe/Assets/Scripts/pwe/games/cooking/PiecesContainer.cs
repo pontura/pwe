@@ -11,6 +11,7 @@ namespace Pwe.Games.Cooking
         [SerializeField] DragInputManager dragInputManager;
         [SerializeField] DragElement dragElement;
         string actionKey;
+        public string ActionKey { get { return actionKey; } }
         string actionKeyQty;
         int num;
         Cooking cooking;
