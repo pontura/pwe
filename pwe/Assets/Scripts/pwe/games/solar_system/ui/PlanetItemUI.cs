@@ -61,7 +61,7 @@ namespace Pwe.Games.SolarSystem.UI
                 _anim.Play("off");
                 return;
             }
-            transform.localScale = 0.35f * Vector3.one;            
+            transform.localScale = 0.35f * Vector3.one;
             //frame.enabled = true;
             image.sprite = Sprite.Create(pd.lastPhoto, new Rect(0, 0, pd.lastPhoto.width, pd.lastPhoto.height), Vector2.zero);
             if (pd.hasNewPhoto) {

@@ -15,10 +15,15 @@ namespace Pwe.Games.UI
         [field: SerializeField] public float CloseDelay { get; private set; } //2f
         [field:SerializeField] public float FlyDelay { get; private set; } //0.3f
         [SerializeField] GameObject done;
+        [SerializeField] GameObject wrong;
+        [SerializeField] Vector3 _flyToWrong = new Vector2(Screen.width, Screen.height);
 
-        private Action onDone;        
+        private Action onDone;
+
+        bool _isRight;
 
         public void Init(Texture2D tex, Action callback) {
+            Debug.Log("#Init");
             fullFlash.SetActive(true);
             Invoke(nameof(TurnFlashOff), 0.1f);
             onDone = callback;
@@ -28,14 +33,30 @@ namespace Pwe.Games.UI
         }        
 
         public void SetDone(bool enable) {
-            done.SetActive(enable);
+            _isRight = enable;
         }
 
+        public void SetDelayedFly(bool enable) {
+            _delayedFly = enable;
+        }
+
+        bool _delayedFly;
         bool _photoFly;
+        bool _flyOnWrong;
         Vector3 _photoFlyToPos;
-        public void FlyToMenu(Vector3 pos) {
+        
+        public void FlyTo(Vector3 pos) {
+            Debug.Log("#FlyTo: " + pos);
             _photoFlyToPos = pos;
+            Debug.Log("#FlyTo: " + _photoFlyToPos);
             _photoFly = true;
+        }
+
+        public void FlyOnWrong(Vector3 pos) {
+            Debug.Log("#FlyOnWrong: " + pos);
+            _flyToWrong = pos;
+            _flyOnWrong = true;
+            _photoFlyToPos = new Vector3(_flyToWrong.x, _flyToWrong.y, _flyToWrong.z);
         }
 
         public void FadeSize(Vector2 initSize, Vector2 finalSize, float dur) {
@@ -73,11 +94,17 @@ namespace Pwe.Games.UI
         }
 
         void OnClose() {
-            if (!_photoFly) { 
-                Close();
-            } else {
+            Debug.Log("# Right: " + _isRight);
+            Debug.Log("# _delayedFly: " + _delayedFly);
+            Debug.Log("# _photoFly: " + _photoFly);
+            done.SetActive(_isRight);
+            if (_delayedFly) {
                 FadePosition(new Vector2(Screen.width * 0.5f, Screen.height * 0.5f), 0.2f);
                 FadeAngle(Vector3.zero, 0.2f);
+            } else if (_photoFly || _flyOnWrong) { 
+                Fly();
+            } else {
+                Close();
             }
         }
 
@@ -90,10 +117,16 @@ namespace Pwe.Games.UI
         }
 
         void Close() {
+            Debug.Log("#Close");
             _photoFly = false;
+            _delayedFly = false;
+            _isRight = false;            
             gameObject.SetActive(false);
             done.SetActive(false);
+            wrong.SetActive(false);
             onDone();
+            if(_flyOnWrong)
+                _photoFlyToPos = new Vector3(_flyToWrong.x, _flyToWrong.y, _flyToWrong.z);
         }
 
         private void Update() {

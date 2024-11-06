@@ -78,15 +78,17 @@ namespace Pwe.Games.SolarSystem
             photoUI.FadeSize(shotInitialSize, shotFinalSize, 0.2f);
             photoUI.FadePosition(pos, Vector2.Lerp(pos,new Vector2(Screen.width*0.5f, Screen.height*0.5f),0.25f), 0.2f);
             photoUI.FadeAngle(Vector3.zero, new Vector3(0,0,Random.Range(-15,15)), 0.2f);
+            //photoUI.FlyTo(new Vector2(Screen.width, Screen.height));
         }
 
         void SetPhotoDone(PlanetName planetName) {
             Debug.Log("#SetPhotoDone");
-            photoUI.SetDone(planetName != PlanetName.none);
             if (planetName != PlanetName.none) {
+                photoUI.SetDone(true);
+                photoUI.SetDelayedFly(true);
                 planetsManager.Play(false);
-                photoUI.FlyToMenu(menuUI.GetItemPosition(planetName));
-                menuUI.OpenSlotDialog(photoUI.FlyToMenu, planetName, OnSelectSlotDone);                     
+                photoUI.FlyTo(menuUI.GetItemPosition(planetName));
+                menuUI.OpenSlotDialog(photoUI.FlyTo, planetName, OnSelectSlotDone);                     
                 planetsData.SavePlanetLastPhoto(planetName, screenshot.Texture);
                 ingameVoiceOvers.Play(planetName.ToString(), "voices");
             }
@@ -119,7 +121,8 @@ namespace Pwe.Games.SolarSystem
             planetsManager.Init(planetsData, sd);
             List<PlanetName> levelPlanetNanes = sd.LevelItems.Select(item => item.planetName).ToList();
             //IEnumerable<PlanetData> levelPlanetsData = planetsData.planets.Where(item => sd.LevelItems.Any(category => category.planetName == item.planetName));
-            menuUI.Init(planetsData.planets, levelPlanetNanes, ingameVoiceOvers.Play);       
+            menuUI.Init(planetsData.planets, levelPlanetNanes, ingameVoiceOvers.Play);
+            photoUI.FlyOnWrong(new Vector2(Screen.width, Screen.height));
         }
     }
 
