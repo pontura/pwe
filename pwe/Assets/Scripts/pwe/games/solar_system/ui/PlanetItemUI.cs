@@ -19,13 +19,13 @@ namespace Pwe.Games.SolarSystem.UI
 
         System.Action _onButtonSelected;
 
-        PlanetState planetState;
+        [SerializeField] PlanetState planetState;
         public enum PlanetState
         {
             done,
             undone,
             normal,
-            win
+            won
         }
 
         public void Init(PlanetData data, PlanetState state, System.Action onClick = null) {
@@ -47,6 +47,8 @@ namespace Pwe.Games.SolarSystem.UI
         public void UpdatePlanetSate() {
             Debug.Log("#UpdatePlanetSate: " + planetState.ToString());
             _anim.Play(planetState.ToString());
+            if(_buttonizeCall!=null)
+                _button.onClick.RemoveListener(_buttonizeCall);
         }
 
         public void SetDone() {
@@ -69,17 +71,18 @@ namespace Pwe.Games.SolarSystem.UI
                 _anim.Play("on");
         }
 
+        UnityEngine.Events.UnityAction _buttonizeCall = null;
         public void SetAsButton(PlanetName planetName, System.Action callback) {
             _anim.Play("buttonize");
             string animName = planetName == Planet_Name ? "button_right" : "button_wrong";
-            _onButtonSelected = () => {
+            _buttonizeCall = () => {
                 _anim.Play(animName);
-                if (planetName == Planet_Name) {
-                    planetState = PlanetState.win;
+                if (planetName == Planet_Name) {                    
+                    planetState = PlanetState.won;
                     callback();
                 }
             };
-            _button.onClick.AddListener(() => _onButtonSelected());
+            _button.onClick.AddListener(_buttonizeCall);
         }
 
         public void SetButton(System.Action onClick) {
