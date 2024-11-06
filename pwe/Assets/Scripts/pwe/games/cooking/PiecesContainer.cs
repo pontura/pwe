@@ -23,7 +23,7 @@ namespace Pwe.Games.Cooking
         {
             riveTexture.Init("pwa-bowl.riv");
         }
-        public void InitIngredient(Cooking cooking, CookingData.Items item, int num)
+        public void InitIngredient(Cooking cooking, ItemData.Items item, int num)
         {
             this.cooking = cooking;
             this.num = num;

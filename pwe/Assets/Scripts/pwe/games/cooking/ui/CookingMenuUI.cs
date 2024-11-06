@@ -11,23 +11,23 @@ namespace Pwe.Games.Cooking.UI
         [SerializeField] Transform container;
         List<CookingItem> allItems;
 
-        public void Init(List<CookingItemData> items)
+        public void Init(List<ItemData> items)
         {
             allItems = new List<CookingItem>();
             Utils.RemoveAllChildsIn(container);
-            foreach(CookingItemData c in items)
+            foreach(ItemData c in items)
             {
                 CookingItem ci = Instantiate(items_to_add, container);
                 ci.Init(c);
                 allItems.Add(ci);
             }
         }
-        public void Refresh(CookingItemData itemData)
+        public void Refresh(ItemData itemData)
         {
             CookingItem c = GetItem(itemData);
             c.Init(itemData);
         }
-        CookingItem GetItem(CookingItemData itemData)
+        CookingItem GetItem(ItemData itemData)
         {
             foreach (CookingItem c in allItems)
             {

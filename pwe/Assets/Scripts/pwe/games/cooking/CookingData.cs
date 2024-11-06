@@ -1,31 +1,26 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using static Pwe.Games.Cooking.LevelsData;
 namespace Pwe.Games.Cooking
 {
     public class CookingData : MonoBehaviour
     {
-        public List<CookingItemData> items;
+        [SerializeField] LevelsData levelsData;
+        int num;
 
-        public enum Items
+        public List<ItemData> GetItems()
         {
-            tomatoes,
-            olives
-        }
-        [Serializable] public class CookingItemData
-        {
-            public Items item;
-            public int num;
-        }
-        public List<CookingItemData> GetItems()
-        {
+            LevelData levelData = levelsData.levels[0];
+            List<ItemData> items = levelData.ingredients;
+            num = items[num].num;  
             return items;
         }
         public void PieceDone(int itemID)
         {
-            items[itemID].num--;
-            if (items[itemID].num <= 0)
-                items[itemID].num = 0;
+            num--;
+            if (num <= 0)
+                num = 0;
         }
     }
 

@@ -21,18 +21,21 @@ namespace Pwe.Games.Cooking
         [SerializeField] CookingMainPiece mainPiece;
         [SerializeField] PiecesContainer piecesContainer;
         int total;
-        List<CookingItemData> items;
+        int num;
+        List<ItemData> items;
         int itemID;
         string lastIngredient;
         public override void OnInit()
         {
             items = cookingData.GetItems();
+            print("items: " + items.Count);
             menu.Init(items);
             mainPiece.Init();
             InitIngredient();
         }
         void InitIngredient()
         {
+            num = 0;
             state = states.playing;
             total = items[itemID].num;
             string ingredient = items[itemID].item.ToString();
@@ -45,11 +48,11 @@ namespace Pwe.Games.Cooking
         public void OnPieceAdded()
         {
             cookingData.PieceDone(itemID);
-            int num = cookingData.items[itemID].num;
+            total--; num++;
 
-            numFeedback.Init(total - num);
+            numFeedback.Init(num);
 
-            if (num < 1)
+            if (total <= 0)
                StartCoroutine( NextIngredient() );
 
           //  menu.Refresh(cookingData.items[itemID]);

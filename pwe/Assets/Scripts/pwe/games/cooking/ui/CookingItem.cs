@@ -8,9 +8,9 @@ namespace Pwe.Games.Cooking.UI
     {
         [SerializeField] Image image;
         [SerializeField] TMPro.TMP_Text field;
-        public CookingItemData data;
+        public ItemData data;
 
-        public void Init(CookingItemData data)
+        public void Init(ItemData data)
         {
             this.data = data;
             field.text = "x" + data.num;
