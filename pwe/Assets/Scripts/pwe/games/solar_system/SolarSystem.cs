@@ -31,6 +31,8 @@ namespace Pwe.Games.SolarSystem
 
         bool _paused;
 
+        CameraPan _cameraPan;
+
         public override void OnInitialize() {
             camClickInput.OnClickInput += Takeshot;
             planetsManager.OnPlanetClicked += levelsManager.OnPlanetClicked;
@@ -40,6 +42,8 @@ namespace Pwe.Games.SolarSystem
 
             screenshot.shotRes = new Vector2Int((int)(shotSizeScreenHeightFactor * Screen.height), (int)(shotSizeScreenHeightFactor * Screen.height));
 
+            _cameraPan = GetComponent<CameraPan>();
+
             backButton.Init(Back);
         }
 
@@ -48,9 +52,7 @@ namespace Pwe.Games.SolarSystem
 
             InitPlanets();
 
-            /*List<CookingItemData> items = cookingData.GetItems();
-            menu.Init(items);
-            total = items[0].num;*/
+            _cameraPan.Panning = true;
         }
 
         private void OnDestroy() {
@@ -97,8 +99,10 @@ namespace Pwe.Games.SolarSystem
         void OnSelectSlotDone() {
             planetsManager.Play(true);
             photoUI.Invoke(nameof(photoUI.Fly), 1);
-            if(_levelCompleted)
+            if (_levelCompleted) {
+                _cameraPan.Panning = false;
                 levelCompletedPopup.Popup("LEVEL COMPLETED!", delay: photoUI.CloseDelay + photoUI.FlyDelay, onContinue: Back);
+            }
         }
 
         void OnContinueMoving() {

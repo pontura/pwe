@@ -14,8 +14,7 @@ namespace Pwe.Games.UI
         [SerializeField] GameObject fullFlash;
         [field: SerializeField] public float CloseDelay { get; private set; } //2f
         [field:SerializeField] public float FlyDelay { get; private set; } //0.3f
-        [SerializeField] GameObject done;
-        [SerializeField] GameObject wrong;
+        [SerializeField] Animator anim;
         [SerializeField] Vector3 _flyToWrong = new Vector2(Screen.width, Screen.height);
 
         private Action onDone;
@@ -97,7 +96,9 @@ namespace Pwe.Games.UI
             Debug.Log("# Right: " + _isRight);
             Debug.Log("# _delayedFly: " + _delayedFly);
             Debug.Log("# _photoFly: " + _photoFly);
-            done.SetActive(_isRight);
+            string animName = _isRight ? "photo__right" : "photo__wrong";
+            anim.Play(animName);
+            //done.SetActive(_isRight);
             if (_delayedFly) {
                 FadePosition(new Vector2(Screen.width * 0.5f, Screen.height * 0.5f), 0.2f);
                 FadeAngle(Vector3.zero, 0.2f);
@@ -122,8 +123,6 @@ namespace Pwe.Games.UI
             _delayedFly = false;
             _isRight = false;            
             gameObject.SetActive(false);
-            done.SetActive(false);
-            wrong.SetActive(false);
             onDone();
             if(_flyOnWrong)
                 _photoFlyToPos = new Vector3(_flyToWrong.x, _flyToWrong.y, _flyToWrong.z);
