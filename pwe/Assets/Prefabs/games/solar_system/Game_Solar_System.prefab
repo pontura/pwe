@@ -917,7 +917,6 @@ GameObject:
   - component: {fileID: 2227039788019846856}
   - component: {fileID: 1472948662031635338}
   - component: {fileID: 3534683824791078328}
-  - component: {fileID: 1664705559699885796}
   - component: {fileID: 3441783755040834749}
   - component: {fileID: 2346381606477202024}
   - component: {fileID: 1762378699218725685}
@@ -1007,19 +1006,6 @@ MonoBehaviour:
   planetsContainer: {fileID: 5072833388451456629}
   orbitsContainer: {fileID: 1122212230153824969}
   planet_prefab: {fileID: 1310433865806104265, guid: 32e6b823c4e91fc4ca62d710aef767f8, type: 3}
---- !u!114 &1664705559699885796
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2032732051771238932}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6b674f985c32e54fab9975979741716, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isOn: 0
 --- !u!114 &3441783755040834749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1033,6 +1019,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOn: 0
+  cam: {fileID: 8977960211059086314}
 --- !u!114 &2346381606477202024
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1061,7 +1048,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e15563370f4c6df42bce0e0b3f15f98a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 0}
+  cam: {fileID: 8977960211059086314}
   speed: 0.001
   horizontalLimits: {x: -11, y: 15}
   initialPosition: {x: 0, y: 0, z: 0}

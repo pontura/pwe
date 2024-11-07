@@ -9,6 +9,8 @@ namespace Pwe.Games.SolarSystem
     {
         public event Action<Vector2> OnClickInput;
 
+        [SerializeField] Camera cam;
+
         Vector3 _halfShotSize;
 
         public override void OnInitPress(Vector2 pos)
@@ -32,13 +34,15 @@ namespace Pwe.Games.SolarSystem
         }
 
         void Check() {            
-            RaycastHit2D[] hits = Physics2D.RaycastAll(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+            RaycastHit2D[] hits = Physics2D.RaycastAll(cam.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+            Debug.Log("#hits: " + hits.Length);
             for (int i = 0; i < hits.Length; i++) {
                 RaycastHit2D hit = hits[i];
                 if (hit.collider != null) {
                     OrbitalItem oi = hit.collider.transform.parent.parent.gameObject.GetComponent<OrbitalItem>();
                     if (oi == null) continue;
-                    oi.OnClicked(Camera.main.ScreenToWorldPoint(Input.mousePosition - _halfShotSize), Camera.main.ScreenToWorldPoint(Input.mousePosition + _halfShotSize));
+                    Debug.Log("#oi: " + oi.gameObject.name);
+                    oi.OnClicked(cam.ScreenToWorldPoint(Input.mousePosition - _halfShotSize), cam.ScreenToWorldPoint(Input.mousePosition + _halfShotSize));
                 }
             }
         }
