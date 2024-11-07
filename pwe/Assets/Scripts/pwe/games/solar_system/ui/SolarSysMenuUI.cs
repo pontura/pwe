@@ -3,6 +3,7 @@ using UnityEngine;
 using YaguarLib.Xtras;
 using static Pwe.Games.SolarSystem.PlanetsData;
 using System.Linq;
+using System.Collections;
 
 namespace Pwe.Games.SolarSystem.UI
 {
@@ -10,8 +11,12 @@ namespace Pwe.Games.SolarSystem.UI
     {
         [SerializeField] PlanetItemUI items_to_add;
         [SerializeField] Transform container;
+        [SerializeField] float normalYPos;
+        [SerializeField] float dialogYPos;
         List<PlanetItemUI> allItems;
         List<PlanetItemUI> photoItems;
+        [field:SerializeField] public float Menu2Delay { get; private set; }
+
 
         public void Init(List<PlanetData> allPlanets, List<PlanetName> itemsNames, System.Action<string,string> onClick)
         {
@@ -42,15 +47,28 @@ namespace Pwe.Games.SolarSystem.UI
             return pi != null ? pi.transform.position : Vector3.zero;
         }
 
-        public void OpenSlotDialog(System.Action<Vector3> onDone, PlanetName planetName, System.Action OnDone) {
+        public IEnumerator OpenSlotDialog(System.Action<Vector3> onDone, PlanetName planetName, System.Action OnDone) {
+            foreach (PlanetItemUI piui in allItems) {
+                piui.gameObject.SetActive(false);
+            }
+            Vector3 pos = transform.position;
+            transform.position = new Vector3(pos.x, dialogYPos, pos.z);
+            yield return new WaitForSecondsRealtime(Menu2Delay);
             foreach(PlanetItemUI piui in photoItems) {
-                piui.SetAsButton(planetName, () => {
-                    UpdatePhotoItemsState();
+                piui.gameObject.SetActive(true);
+                piui.SetAsButton(planetName, () => {                    
+                    StartCoroutine(UpdatePhotoItemsState());
                     OnDone();
                 });
             }
         }
-        void UpdatePhotoItemsState() {
+        IEnumerator UpdatePhotoItemsState() {            
+            yield return new WaitForSecondsRealtime(Menu2Delay);
+            Vector3 pos = transform.position;
+            transform.position = new Vector3(pos.x, normalYPos, pos.z);
+            foreach (PlanetItemUI piui in allItems) {
+                piui.gameObject.SetActive(true);
+            }
             foreach (PlanetItemUI piui in photoItems) {
                 piui.UpdatePlanetSate();
             }

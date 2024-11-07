@@ -737,6 +737,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6619654463916350899, guid: 2a4ae9fed5e940f418d5a3a255ac8c42, type: 3}
+      propertyPath: dialogYPos
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 6619654463916350899, guid: 2a4ae9fed5e940f418d5a3a255ac8c42, type: 3}
+      propertyPath: <Menu2Delay>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7737518708562996028, guid: 2a4ae9fed5e940f418d5a3a255ac8c42, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 

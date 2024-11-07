@@ -90,7 +90,7 @@ namespace Pwe.Games.SolarSystem
                 photoUI.SetDelayedFly(true);
                 planetsManager.Play(false);
                 photoUI.FlyTo(menuUI.GetItemPosition(planetName));
-                menuUI.OpenSlotDialog(photoUI.FlyTo, planetName, OnSelectSlotDone);                     
+                StartCoroutine(menuUI.OpenSlotDialog(photoUI.FlyTo, planetName, OnSelectSlotDone));
                 planetsData.SavePlanetLastPhoto(planetName, screenshot.Texture);
                 ingameVoiceOvers.Play(planetName.ToString(), "voices");
             }
@@ -101,7 +101,7 @@ namespace Pwe.Games.SolarSystem
             photoUI.Invoke(nameof(photoUI.Fly), 1);
             if (_levelCompleted) {
                 _cameraPan.Panning = false;
-                levelCompletedPopup.Popup("LEVEL COMPLETED!", delay: photoUI.CloseDelay + photoUI.FlyDelay, onContinue: Back);
+                levelCompletedPopup.Popup("LEVEL COMPLETED!", delay: photoUI.CloseDelay + photoUI.FlyDelay + menuUI.Menu2Delay, onContinue: Back);
             }
         }
 

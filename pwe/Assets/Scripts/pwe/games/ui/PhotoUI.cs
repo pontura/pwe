@@ -100,7 +100,7 @@ namespace Pwe.Games.UI
             anim.Play(animName);
             //done.SetActive(_isRight);
             if (_delayedFly) {
-                FadePosition(new Vector2(Screen.width * 0.5f, Screen.height * 0.5f), 0.2f);
+                FadePosition(new Vector2(Screen.width * 0.5f, Screen.height * 0.65f), 0.2f);
                 FadeAngle(Vector3.zero, 0.2f);
             } else if (_photoFly || _flyOnWrong) { 
                 Fly();
