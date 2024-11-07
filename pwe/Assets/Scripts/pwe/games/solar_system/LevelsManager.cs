@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Pwe.Core;
 
 namespace Pwe.Games.SolarSystem
 {
@@ -17,8 +18,16 @@ namespace Pwe.Games.SolarSystem
         public event System.Action<PlanetName> OnPlanetDone;
         public event System.Action OnLevelCompleted;
 
-        void Start() {
+        void Awake() {
             clickedPlanets = new List<PlanetName>();
+
+            CurrentLevelIndex = GamesManager.Instance.All[(int)GameData.GAMES.PHOTOS].level;
+            Debug.Log("CurrentLevelIndex: " + CurrentLevelIndex);
+
+            if (CurrentLevelIndex >= levels.Count) {
+                CurrentLevelIndex = 0;
+                GamesManager.Instance.All[(int)GameData.GAMES.PHOTOS].level = 0;
+            }            
 
             //CurrentLevelIndex = PlayerPrefs.GetInt("solar_system_level", 0);
         }
@@ -47,6 +56,7 @@ namespace Pwe.Games.SolarSystem
                         levelPlanets.Remove(clickedPlanets[0]);
                         if (levelPlanets.Count == 0 && OnLevelCompleted != null) {
                             CurrentLevelIndex++;
+                            GamesManager.Instance.All[(int)GameData.GAMES.PHOTOS].LevelUp();
                             if (CurrentLevelIndex >= levels.Count)
                                 CurrentLevelIndex = 0;
                             PlayerPrefs.SetInt("solar_system_level", CurrentLevelIndex);
