@@ -9,10 +9,30 @@ namespace Pwe.UI
     {
         [SerializeField] ButtonUIText[] games; //TO-DO
 
+        private void Awake()
+        {
+            Events.Reset += Reset;
+            Events.GameLeveled += GameLeveled;
+        }
+        private void OnDestroy()
+        {
+            Events.Reset -= Reset;
+            Events.GameLeveled -= GameLeveled;
+        }
+       
         public override void OnInitialize()
         {
-            for(int a  = 0; a< games.Length; a++)
+            SetData();
+        }
+        void SetData()
+        {
+            for (int a = 0; a < games.Length; a++)
+            {
                 games[a].Init(OnClick, a);
+                GameData gameData = GamesManager.Instance.All[a];
+                string text = gameData.game.ToString() + " (" + gameData.level + ")";
+                games[a].SetText(text);
+            }
         }
         private void OnClick(int id)
         {
@@ -25,6 +45,15 @@ namespace Pwe.UI
                     Events.OnPlayGame(GameData.GAMES.PHOTOS);
                     break;
             }
+        }
+        private void GameLeveled(GameData.GAMES game, int level)
+        {
+            SetData();
+        }
+
+        private void Reset()
+        {
+            SetData();
         }
     }
 }

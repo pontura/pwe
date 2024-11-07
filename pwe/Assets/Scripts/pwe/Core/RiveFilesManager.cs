@@ -75,12 +75,11 @@ namespace Pwe.Core
             {
                 if (all.ContainsKey(s))
                 {
+                    Debug.Log("Load done: " + s);
                     totalLoaded++;
-                    Debug.Log("Was loaded: " + s + " - " + totalLoaded + " of "  + totalRives);
                 }
                 else
                 {
-                    Debug.Log("Loading: " + s + " - " + totalLoaded + " of " + totalRives);
                     string finalURL = s + ".riv";
                     StartCoroutine(LoadC(finalURL, OnPreloaded));
                 }
@@ -93,6 +92,7 @@ namespace Pwe.Core
         }
         void CheckIfAllPreloaded()
         {
+            Debug.Log("Loaded: " + totalLoaded + " of " + totalRives);
             if (totalLoaded >= totalRives)
                 AllPreloaded();
         }

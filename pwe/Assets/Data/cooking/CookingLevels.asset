@@ -19,12 +19,12 @@ MonoBehaviour:
     - item: 1
       num: 2
   - ingredients:
-    - item: 0
+    - item: 1
       num: 2
     - item: 0
       num: 4
   - ingredients:
     - item: 0
-      num: 0
-    - item: 0
-      num: 0
+      num: 5
+    - item: 1
+      num: 6

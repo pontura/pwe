@@ -7,9 +7,16 @@ namespace Pwe.Core
     {
         [SerializeField] Transform container;      
         [SerializeField] GameData[] all;
+        public GameData[] All { get { return all; } }
+        public static GamesManager Instance { get; private set; }
 
         GameObject newGame;
         GameData active;
+        private void Awake()
+        {
+            Instance = this;
+            InitGamesData();
+        }
         private void Start()
         {
             Events.OnPlayGame += OnPlayGame;
@@ -34,7 +41,7 @@ namespace Pwe.Core
             newGame.SetActive(true);
           //  newGame.SendMessage("OnInit");
         }
-        GameData GetGame(GameData.GAMES game)
+        public GameData GetGame(GameData.GAMES game)
         {
             foreach (GameData g in all)
                 if (g.game == game)
@@ -48,6 +55,18 @@ namespace Pwe.Core
             Debug.Log("GamePlayed: " + active.game);
             if (active != null)
                 active.LevelUp();
+        }
+        void InitGamesData()
+        {
+            foreach (GameData gameData in all)
+                gameData.Init();
+        }
+        public void Reset()
+        {
+            PlayerPrefs.DeleteAll();
+            foreach (GameData gameData in all)
+                gameData.Reset();
+            Events.Reset();
         }
 
     }

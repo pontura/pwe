@@ -9,9 +9,14 @@ namespace Pwe.Games.Cooking
         [SerializeField] LevelsData levelsData;
         int num;
 
-        public List<ItemData> GetItems()
+        public List<ItemData> GetItems(int level)
         {
-            LevelData levelData = levelsData.levels[0];
+            if (level >= levelsData.levels.Count - 1)
+                level = levelsData.levels.Count - 1;
+
+            Debug.Log("Cooking Get Items level: " + level);
+
+            LevelData levelData = levelsData.levels[level];
             List<ItemData> items = levelData.ingredients;
             num = items[num].num;  
             return items;

@@ -1,3 +1,4 @@
+using Pwe.Core;
 using Pwe.Games.Common;
 using Pwe.Games.Cooking.UI;
 using System.Collections;
@@ -27,7 +28,12 @@ namespace Pwe.Games.Cooking
         string lastIngredient;
         public override void OnInit()
         {
-            items = cookingData.GetItems();
+            int level = 0;
+
+            if(GamesManager.Instance != null)
+                level = GamesManager.Instance.GetGame(GameData.GAMES.COOKING).level;
+
+            items = cookingData.GetItems(level);
             print("items: " + items.Count);
             menu.Init(items);
             mainPiece.Init();

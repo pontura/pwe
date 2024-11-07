@@ -20,6 +20,12 @@ namespace Pwe.Core
         {
             Debug.Log("LevelUp");
             level++;
+            PlayerPrefs.SetInt(game.ToString(), level);
+            Events.GameLeveled(game, level);
+        }
+        public void Init()
+        {
+            level = PlayerPrefs.GetInt(game.ToString(), level);
         }
         public void Reset()
         {
