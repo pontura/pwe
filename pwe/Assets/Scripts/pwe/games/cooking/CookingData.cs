@@ -21,6 +21,14 @@ namespace Pwe.Games.Cooking
             num = items[num].num;  
             return items;
         }
+        public LevelData GetLevelData(int level)
+        {
+            if (level >= levelsData.levels.Count - 1)
+                level = levelsData.levels.Count - 1;
+
+            Debug.Log("GetLevelData: " + level);
+            return levelsData.levels[level];
+        }
         public void PieceDone(int itemID)
         {
             num--;

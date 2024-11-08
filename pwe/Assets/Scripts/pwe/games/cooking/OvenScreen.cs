@@ -1,9 +1,11 @@
+using log4net.Core;
 using Pwe.Core;
 using Pwe.Games.Common;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using YaguarLib.UI;
+using static ItemData;
 
 namespace Pwe.Games.Cooking
 {
@@ -23,14 +25,20 @@ namespace Pwe.Games.Cooking
         [SerializeField] NumFeedback numFeedback;
         [SerializeField] BigNumberSignal bigNumberSignal;
         int num;
-        int finalNum = 4;
+        int ovenDuration = 4;
         int totalNums = 10;
         float speedWhenDone = 60;
         float speed = 2;
 
         public override void OnInitialize()
         {
-            bigNumberSignal.Init(finalNum);
+            if (GamesManager.Instance != null)
+            {
+                int level = GamesManager.Instance.GetGame(GameData.GAMES.COOKING).level;
+                ovenDuration = Game.CookingData.GetLevelData(level).ovenDuration;
+            }
+
+            bigNumberSignal.Init(ovenDuration);
             btnNext.Init(NextClicked);
             btnPrev.Init(PrevClicked);
             btnPrev.SetInteraction(false);
@@ -66,18 +74,18 @@ namespace Pwe.Games.Cooking
         }
         void NextClicked()
         {
-            if (num >= finalNum) return;
+            if (Ended()) return;
             if (state != states.playing) return;
             num++;
             numFeedback.Init(num);
             Events.OnSayNumber(num);
-            if (num >= finalNum)
+            if (num >= ovenDuration)
                 StartCooking();
             SetButtonsState();
         }
         void PrevClicked()
         {
-            if (num >= finalNum) return;
+            if (Ended()) return;
             if (state != states.playing) return;
             num--;
             if (num < 0) num = 0;
@@ -89,13 +97,17 @@ namespace Pwe.Games.Cooking
                 btnPrev.SetInteraction(true);
             if (num<=0)
                 btnPrev.SetInteraction(false);
-            else if (num >= finalNum)
+            else if (Ended())
             {
                 state = states.playing_done;
                 btnNext.SetInteraction(false);
                 btnPrev.SetInteraction(false);
                 YaguarLib.Events.Events.OnPlaySound(YaguarLib.Audio.AudioManager.types.REWARD);
             }
+        }
+        bool Ended()
+        {
+            return (num >= ovenDuration);
         }
         void StartCooking()
         {

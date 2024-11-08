@@ -14,6 +14,7 @@ namespace Pwe.Games.Cooking
         public class LevelData
         {
             public List<ItemData> ingredients;
+            public int ovenDuration;
         }
     }
 }
