@@ -21,7 +21,7 @@ namespace Pwe.Games.SolarSystem
         [SerializeField] CamClickInput camClickInput;
         [SerializeField] Screenshot screenshot;
 
-        [SerializeField] IngameAudio ingameVoiceOvers;
+        [SerializeField] IngameAudio ingameAudio;
         [SerializeField] PhotoUI photoUI;
         [SerializeField] GameObject dinoFlash;
 
@@ -90,9 +90,18 @@ namespace Pwe.Games.SolarSystem
                 photoUI.SetDelayedFly(true);
                 planetsManager.Play(false);
                 photoUI.FlyTo(menuUI.GetItemPosition(planetName));
-                StartCoroutine(menuUI.OpenSlotDialog(photoUI.FlyTo, planetName, OnSelectSlotDone));
+                StartCoroutine(menuUI.OpenSlotDialog(planetName, OnSelectSlot));
                 planetsData.SavePlanetLastPhoto(planetName, screenshot.Texture);
-                ingameVoiceOvers.Play(planetName.ToString(), "voices");
+                ingameAudio.Play(planetName.ToString(), "voices");
+            }
+        }
+
+        void OnSelectSlot(bool isRight) {
+            if (isRight) {
+                ingameAudio.Play("click_right", "ui");
+                OnSelectSlotDone();
+            } else {
+                ingameAudio.Play("click_wrong", "ui");
             }
         }
 
@@ -123,9 +132,9 @@ namespace Pwe.Games.SolarSystem
             planetsManager.RemoveAllPlanets();
             SpaceData sd = levelsManager.InitLevel();
             planetsManager.Init(planetsData, sd);
-            List<PlanetName> levelPlanetNanes = sd.LevelItems.Select(item => item.planetName).ToList();
+            List<PlanetName> levelPlanetNames = sd.LevelItems.Select(item => item.planetName).ToList();
             //IEnumerable<PlanetData> levelPlanetsData = planetsData.planets.Where(item => sd.LevelItems.Any(category => category.planetName == item.planetName));
-            menuUI.Init(planetsData.planets, levelPlanetNanes, ingameVoiceOvers.Play);
+            menuUI.Init(planetsData.planets, levelPlanetNames, ingameAudio.Play);
             photoUI.FlyOnWrong(new Vector2(Screen.width, Screen.height));
         }
     }
