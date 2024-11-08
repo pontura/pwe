@@ -37,16 +37,13 @@ MonoBehaviour:
   - key: venus
     clip: {fileID: 8300000, guid: df4e40a7d74733b4181810b8fa1263fb, type: 3}
     vol: 1
-  - key: photo_right
-    clip: {fileID: 8300000, guid: 670f53fbe52f2444eb89aa2a3b2665ab, type: 3}
-    vol: 1
-  - key: photo_wrong
-    clip: {fileID: 8300000, guid: b02bbea884a005c44b82153f7633af6f, type: 3}
-    vol: 1
   - key: click_right
     clip: {fileID: 8300000, guid: 0e8dc5f1ceb1f2d408364f2e2e9eef48, type: 3}
     vol: 1
   - key: click_wrong
     clip: {fileID: 8300000, guid: 68478ab2625749a4bbf4a0f0e3859a7a, type: 3}
     vol: 1
+  - key: photo
+    clip: {fileID: 8300000, guid: 516108579817da746a875a28e5f034c1, type: 3}
+    vol: 0.35
   audioClipGroups: []

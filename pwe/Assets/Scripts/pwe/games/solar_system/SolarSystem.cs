@@ -80,6 +80,7 @@ namespace Pwe.Games.SolarSystem
             photoUI.FadeSize(shotInitialSize, shotFinalSize, 0.2f);
             photoUI.FadePosition(pos, Vector2.Lerp(pos,new Vector2(Screen.width*0.5f, Screen.height*0.5f),0.25f), 0.2f);
             photoUI.FadeAngle(Vector3.zero, new Vector3(0,0,Random.Range(-15,15)), 0.2f);
+            ingameAudio.Play("photo", "ui");
             //photoUI.FlyTo(new Vector2(Screen.width, Screen.height));
         }
 
@@ -93,6 +94,7 @@ namespace Pwe.Games.SolarSystem
                 StartCoroutine(menuUI.OpenSlotDialog(planetName, OnSelectSlot));
                 planetsData.SavePlanetLastPhoto(planetName, screenshot.Texture);
                 ingameAudio.Play(planetName.ToString(), "voices");
+                ingameAudio.Play("click_right", "ui");
             }
         }
 
