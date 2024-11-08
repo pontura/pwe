@@ -1,4 +1,5 @@
 using Pwe.Core;
+using Pwe.Games.Cooking;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -11,6 +12,8 @@ namespace Pwe.Games
         [SerializeField] int screenID;
         GameMain active;
         [SerializeField] string[] allRivNames;
+        [SerializeField] CookingData cookingData;
+        public CookingData CookingData { get { return cookingData; } }
 
         void Start()
         {

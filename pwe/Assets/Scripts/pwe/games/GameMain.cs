@@ -5,6 +5,8 @@ namespace Pwe.Games
     public class GameMain : MonoBehaviour
     {
         Game game;
+        public Game Game { get { return game; } }
+
         public bool isOn;
         public void Initialize(Game game)
         {

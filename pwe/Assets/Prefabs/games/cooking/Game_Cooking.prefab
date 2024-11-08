@@ -717,7 +717,6 @@ GameObject:
   m_Component:
   - component: {fileID: 9140110801355716874}
   - component: {fileID: 6547004750030210574}
-  - component: {fileID: 7570390876781333758}
   - component: {fileID: 1664705559699885796}
   - component: {fileID: 8073790473648607465}
   m_Layer: 0
@@ -760,24 +759,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isOn: 0
   state: 0
-  cookingData: {fileID: 7570390876781333758}
   menu: {fileID: 3864617202372189060}
   numFeedback: {fileID: 216458014547713740}
   mainPiece: {fileID: 2948228419298478712}
   piecesContainer: {fileID: 5982345324886334979}
---- !u!114 &7570390876781333758
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2032732051771238932}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe6bb71bdd97aa74db38361ae33a7a14, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  levelsData: {fileID: 11400000, guid: f5dbc968aa905ff4b97818a6ccd55d85, type: 2}
 --- !u!114 &1664705559699885796
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2358,6 +2343,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5073353217931750912}
   - component: {fileID: 6910866388624311303}
+  - component: {fileID: 1196181890562534829}
   m_Layer: 0
   m_Name: Game_Cooking
   m_TagString: Untagged
@@ -2413,6 +2399,20 @@ MonoBehaviour:
   - pwa-pizza
   - pwa-bowl
   - pwa-ingredient
+  cookingData: {fileID: 1196181890562534829}
+--- !u!114 &1196181890562534829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5161400804714119547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6bb71bdd97aa74db38361ae33a7a14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelsData: {fileID: 11400000, guid: f5dbc968aa905ff4b97818a6ccd55d85, type: 2}
 --- !u!1 &5523028810138714259
 GameObject:
   m_ObjectHideFlags: 0

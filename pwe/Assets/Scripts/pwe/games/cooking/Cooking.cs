@@ -16,7 +16,6 @@ namespace Pwe.Games.Cooking
             playing,
             done
         }
-        [SerializeField] CookingData cookingData;
         [SerializeField] CookingMenuUI menu;
         [SerializeField] NumFeedback numFeedback;
         [SerializeField] CookingMainPiece mainPiece;
@@ -33,7 +32,7 @@ namespace Pwe.Games.Cooking
             if(GamesManager.Instance != null)
                 level = GamesManager.Instance.GetGame(GameData.GAMES.COOKING).level;
 
-            items = cookingData.GetItems(level);
+            items = Game.CookingData.GetItems(level);
             print("items: " + items.Count);
             menu.Init(items);
             mainPiece.Init();
@@ -53,7 +52,7 @@ namespace Pwe.Games.Cooking
         }
         public void OnPieceAdded()
         {
-            cookingData.PieceDone(itemID);
+            Game.CookingData.PieceDone(itemID);
             total--; num++;
 
             numFeedback.Init(num);
