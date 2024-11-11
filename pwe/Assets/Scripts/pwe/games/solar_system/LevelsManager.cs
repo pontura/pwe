@@ -20,8 +20,8 @@ namespace Pwe.Games.SolarSystem
 
         void Awake() {
             clickedPlanets = new List<PlanetName>();
-
-            CurrentLevelIndex = GamesManager.Instance.All[(int)GameData.GAMES.PHOTOS].level;
+            if(GamesManager.Instance!=null)
+                CurrentLevelIndex = GamesManager.Instance.All[(int)GameData.GAMES.PHOTOS].level;
             Debug.Log("CurrentLevelIndex: " + CurrentLevelIndex);
 
             if (CurrentLevelIndex >= levels.Count) {
@@ -56,7 +56,8 @@ namespace Pwe.Games.SolarSystem
                         levelPlanets.Remove(clickedPlanets[0]);
                         if (levelPlanets.Count == 0 && OnLevelCompleted != null) {
                             CurrentLevelIndex++;
-                            GamesManager.Instance.All[(int)GameData.GAMES.PHOTOS].LevelUp();
+                            if(GamesManager.Instance!=null)
+                                GamesManager.Instance.All[(int)GameData.GAMES.PHOTOS].LevelUp();
                             if (CurrentLevelIndex >= levels.Count)
                                 CurrentLevelIndex = 0;
                             PlayerPrefs.SetInt("solar_system_level", CurrentLevelIndex);
