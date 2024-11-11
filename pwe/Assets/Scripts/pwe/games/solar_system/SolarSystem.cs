@@ -112,7 +112,7 @@ namespace Pwe.Games.SolarSystem
             photoUI.Invoke(nameof(photoUI.Fly), 1);
             if (_levelCompleted) {
                 _cameraPan.Panning = false;
-                levelCompletedPopup.Popup("LEVEL COMPLETED!", delay: photoUI.CloseDelay + photoUI.FlyDelay + menuUI.Menu2Delay, onContinue: Core.Events.ExitGame);
+                levelCompletedPopup.Popup("LEVEL COMPLETED!", delay: photoUI.CloseDelay + photoUI.FlyDelay + menuUI.Menu2Delay, onContinue: Pwe.Core.GamesManager.Instance != null ? Core.Events.ExitGame : Back);
             }
         }
 

@@ -1,4 +1,3 @@
-using log4net.Core;
 using Pwe.Core;
 using Pwe.Games.Common;
 using System.Collections;
