@@ -15,9 +15,13 @@ namespace Pwe.Core
         private void Awake()
         {
             all = new Dictionary<string, byte[]>();
+#if !UNITY_EDITOR
+            useLocalRives = false;
+#endif
+
         }
 
-       
+
         public void Load(string riveFile, System.Action<byte[], string> OnDone)
         {
             if (all.ContainsKey(riveFile))

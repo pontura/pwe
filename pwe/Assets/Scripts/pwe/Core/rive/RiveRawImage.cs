@@ -70,6 +70,14 @@ namespace Pwe
 
             if (OnReady != null)
                 OnReady();
+            Invoke("Invoked", 0.5f);
+        }
+        private void Invoked()
+        {
+            if (m_camera != null && m_commandBuffer != null)
+            {
+                m_camera.RemoveCommandBuffer(CameraEvent.AfterEverything, m_commandBuffer);
+            }
         }
         //StateMachine GetArtboard(string s)
         //{

@@ -35,6 +35,7 @@ namespace Pwe.Games.Cooking
         }
         public override void OnClicked()
         {
+            print("OnClicked");
             if (!cooking.CanMove()) return;
             Remove();
             Vector2 pos = Input.mousePosition;

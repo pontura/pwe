@@ -4,32 +4,33 @@ using UnityEngine.Rendering;
 using System.Linq;
 using Pwe.Core;
 using UnityEngine.UI;
+using System.Collections.Generic;
+using System.Collections;
 
 namespace Pwe
 {
 
     public class RiveTexture : MonoBehaviour
     {
-        public RenderTexture renderTexture;
-        public RawImage image;
+        //public RenderTexture renderTexture;
+        [SerializeField] Vector2 size = new Vector2(256, 256);
+        private RenderTexture renderTexture;
         public Fit fit = Fit.contain;
         public Alignment alignment = Alignment.Center;
 
-
-        private Rive.RenderQueue m_renderQueue;
-        private Rive.Renderer m_riveRenderer;
         private CommandBuffer m_commandBuffer;
 
         private Rive.File m_file;
         private Artboard m_artboard;
         private StateMachine m_stateMachine;
 
-        private Camera m_camera;
+        Camera m_camera;
         System.Action OnReady;
 
         
         public void Init(string riveFileName, System.Action OnReady = null)
         {
+            print("_________________________Init " + gameObject);
             this.OnReady = OnReady;
             Vector2 s = transform.localScale;
             s.y = Mathf.Abs(transform.localScale.y)*-1;
@@ -59,17 +60,21 @@ namespace Pwe
         {
             m_file = Rive.File.Load(riveName, data, data.GetHashCode());
 
-            m_renderQueue = new Rive.RenderQueue(renderTexture);
+            renderTexture = new RenderTexture(TextureHelper.Descriptor((int)size.x, (int)size.y));
+            renderTexture.Create();
 
-            if(image != null)
-                image.texture = renderTexture;
+            MeshRenderer cubeRenderer = GetComponent<MeshRenderer>();
+            Material mat = cubeRenderer.material;
+            mat.mainTexture = renderTexture;
 
-            m_riveRenderer = m_renderQueue.Renderer();
+            Rive.RenderQueue m_renderQueue = new Rive.RenderQueue(renderTexture);
+            Rive.Renderer m_riveRenderer = m_renderQueue.Renderer();
             //if (asset != null)
             //{
             //    m_file = Rive.File.Load(asset);
             m_artboard = m_file.Artboard(0);
             m_stateMachine = m_artboard?.StateMachine();
+           // renderTexture.enableRandomWrite = true;
             //}
             if (m_artboard != null && renderTexture != null)
             {
@@ -81,12 +86,12 @@ namespace Pwe
                 m_commandBuffer.ClearRenderTarget(true, true, UnityEngine.Color.clear, 0.0f);
                 m_riveRenderer.AddToCommandBuffer(m_commandBuffer);
                 m_camera = Camera.main;
+
                 if (m_camera != null)
                 {
-                    Camera.main.AddCommandBuffer(CameraEvent.AfterEverything, m_commandBuffer);
+                    m_camera.AddCommandBuffer(CameraEvent.AfterEverything, m_commandBuffer);
                 }
             }
-            renderTexture.enableRandomWrite = true;
             if (OnReady != null)
                 OnReady();
         }
@@ -123,11 +128,10 @@ namespace Pwe
             if (someNumber == null) return;
             someNumber.Value = number;
             print("SetNumber Done");
-
         }
         private void Update()
         {
-            if (m_stateMachine != null)
+            if ( m_stateMachine != null)
             {
                 m_stateMachine.Advance(Time.deltaTime);
             }
@@ -141,13 +145,16 @@ namespace Pwe
             }
         }
 
-
+        void OnDestroy()
+        {
+            // Release the RenderTexture when it's no longer needed
+            if (renderTexture != null)
+                renderTexture.Release();
+        }
 
 
         public void PlayStateMachine(string stateMachine, string triggerName)
         {
-            print("PlayStateMachine: " + stateMachine + " trigger: " + triggerName);
-
             SMITrigger someTrigger = m_stateMachine.GetTrigger(triggerName);
             if (someTrigger != null)
             {
