@@ -7,10 +7,9 @@ using UnityEngine.UI;
 
 namespace Pwe
 {
-
-    public class RiveTexture : MonoBehaviour
+    public class RiveRawImage : MonoBehaviour
     {
-        public RenderTexture renderTexture;
+        public RenderTexture _renderTexture;
         public RawImage image;
         public Fit fit = Fit.contain;
         public Alignment alignment = Alignment.Center;
@@ -24,50 +23,30 @@ namespace Pwe
         private Artboard m_artboard;
         private StateMachine m_stateMachine;
 
-        private Camera m_camera;
         System.Action OnReady;
+        private Camera m_camera;
 
-        
+
         public void Init(string riveFileName, System.Action OnReady = null)
         {
             this.OnReady = OnReady;
             Vector2 s = transform.localScale;
             s.y = Mathf.Abs(transform.localScale.y)*-1;
             transform.localScale = s;
-
-            // If on D3d11, this is required
             MainApp.Instance.riveFilesManager.Load(riveFileName, OnDone);
-            //for (uint a = 0; a < m_file.ArtboardCount; a++)
-            //{
-            //    Artboard artb = m_file.Artboard(a);
-            //    // Try using the GetName() method or similar alternatives
-            //    for (uint b = 0; b < artb?.StateMachineCount; b++)
-            //    {
-            //       // StateMachine s = artb?.StateMachineName(b);
-            //        Debug.Log(a + " StateMachine: " + artb?.StateMachineName(b));
-            //    }
-            //}
-            //foreach (var reportedEvent in m_stateMachine?.ReportedEvents() ?? Enumerable.Empty<ReportedEvent>())
-            //{
-            //    Debug.Log($"Event received, name: \"{reportedEvent.Name}\", secondsDelay: {reportedEvent.SecondsDelay}");
-            //}
-
-            //// Important! Call `advance` after accessing events.
-            //m_stateMachine?.Advance(Time.deltaTime);
         }
         void OnDone(byte[] data, string riveName)
         {
             m_file = Rive.File.Load(riveName, data, data.GetHashCode());
 
+            RenderTexture renderTexture = new RenderTexture(_renderTexture);
+            _renderTexture = null;
             m_renderQueue = new Rive.RenderQueue(renderTexture);
 
-            if(image != null)
-                image.texture = renderTexture;
+            
 
             m_riveRenderer = m_renderQueue.Renderer();
-            //if (asset != null)
-            //{
-            //    m_file = Rive.File.Load(asset);
+
             m_artboard = m_file.Artboard(0);
             m_stateMachine = m_artboard?.StateMachine();
             //}
@@ -87,6 +66,8 @@ namespace Pwe
                 }
             }
             renderTexture.enableRandomWrite = true;
+            image.texture = renderTexture;
+
             if (OnReady != null)
                 OnReady();
         }
@@ -133,13 +114,13 @@ namespace Pwe
             }
         }
 
-        private void OnDisable()
-        {
-            if (m_camera != null && m_commandBuffer != null)
-            {
-                m_camera.RemoveCommandBuffer(CameraEvent.AfterEverything, m_commandBuffer);
-            }
-        }
+        //private void OnDisable()
+        //{
+        //    if (m_camera != null && m_commandBuffer != null)
+        //    {
+        //        m_camera.RemoveCommandBuffer(CameraEvent.AfterEverything, m_commandBuffer);
+        //    }
+        //}
 
 
 
