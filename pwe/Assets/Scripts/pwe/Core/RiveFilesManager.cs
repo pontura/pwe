@@ -94,7 +94,6 @@ namespace Pwe.Core
                 if (all.ContainsKey(riveName))
                 {
                     Debug.Log("Load done: " + s);
-                    totalLoaded++;
                     OnPreloaded(all[riveName], riveName);
                 }
                 else
