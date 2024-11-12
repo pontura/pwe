@@ -52,6 +52,7 @@ namespace Pwe.Core
 
         void GamePlayed()
         {
+            ExitGame();
             Debug.Log("GamePlayed: " + active.game);
             if (active != null)
                 active.LevelUp();

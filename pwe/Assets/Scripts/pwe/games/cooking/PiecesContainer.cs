@@ -20,9 +20,9 @@ namespace Pwe.Games.Cooking
         {
             riveTexture = GetComponent<RiveTexture>();
         }
-        public void Initialize()
+        public void Initialize(System.Action OnReady)
         {
-            riveTexture.Init("pwa-bowl.riv");
+            riveTexture.Init("pwa-bowl.riv", OnReady);
         }
         public void InitIngredient(Cooking cooking, ItemData.Items item, int num)
         {
@@ -35,7 +35,6 @@ namespace Pwe.Games.Cooking
         }
         public override void OnClicked()
         {
-            print("OnClicked");
             if (!cooking.CanMove()) return;
             Remove();
             Vector2 pos = Input.mousePosition;

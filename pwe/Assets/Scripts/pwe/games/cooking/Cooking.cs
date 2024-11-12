@@ -35,20 +35,31 @@ namespace Pwe.Games.Cooking
             items = Game.CookingData.GetItems(level);
             print("items: " + items.Count);
             menu.Init(items);
-            mainPiece.Init();
-            InitIngredient();
+            mainPiece.Init(InitIngredient);
         }
         void InitIngredient()
         {
             num = 0;
             state = states.playing;
             total = items[itemID].num;
+
+            string ingredient = items[itemID].item.ToString();
+            if(lastIngredient != "")  
+                mainPiece.InitIngredient("qty_" + lastIngredient, 0);// RESET LAST
+            lastIngredient = ingredient;
+
+            piecesContainer.Initialize(OnPieceContainerDone);
+        }
+        void OnPieceContainerDone()
+        {
+            piecesContainer.InitIngredient(this, items[itemID].item, total);
+            Invoke("Delayed", 0.1f);
+        }
+        void Delayed()
+        {
             string ingredient = items[itemID].item.ToString();
             mainPiece.InitIngredient("qty_" + ingredient, total);
-            if(lastIngredient != "")  mainPiece.InitIngredient("qty_" + lastIngredient, 0); // RESET LAST
-            lastIngredient = ingredient;
-            piecesContainer.Initialize();
-            piecesContainer.InitIngredient(this, items[itemID].item, total);
+
         }
         public void OnPieceAdded()
         {

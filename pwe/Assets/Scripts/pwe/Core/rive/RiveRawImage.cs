@@ -14,7 +14,6 @@ namespace Pwe
         public Fit fit = Fit.contain;
         public Alignment alignment = Alignment.Center;
 
-
         private Rive.RenderQueue m_renderQueue;
         private Rive.Renderer m_riveRenderer;
         private CommandBuffer m_commandBuffer;
