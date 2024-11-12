@@ -9,6 +9,7 @@ namespace Pwe
 {
     public class RiveRawImage : MonoBehaviour
     {
+        [SerializeField] Vector2 size = new Vector2(256, 256);
         public RenderTexture _renderTexture;
         public RawImage image;
         public Fit fit = Fit.contain;
@@ -38,8 +39,9 @@ namespace Pwe
         {
             m_file = Rive.File.Load(riveName, data, data.GetHashCode());
 
-            RenderTexture renderTexture = new RenderTexture(_renderTexture);
-            _renderTexture = null;
+            RenderTexture renderTexture = new RenderTexture(TextureHelper.Descriptor((int)size.x, (int)size.y));
+            renderTexture.Create();
+
             m_renderQueue = new Rive.RenderQueue(renderTexture);
 
             

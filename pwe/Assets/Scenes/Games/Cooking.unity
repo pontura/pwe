@@ -352,6 +352,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 261828859876863876, guid: 41c9eab2edc7c474faa1c6d6d499d5b9, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 261828859876863876, guid: 41c9eab2edc7c474faa1c6d6d499d5b9, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5073353217931750912, guid: 41c9eab2edc7c474faa1c6d6d499d5b9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -396,32 +404,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Game_Cooking
       objectReference: {fileID: 0}
-    - target: {fileID: 5881316577244911058, guid: 41c9eab2edc7c474faa1c6d6d499d5b9, type: 3}
-      propertyPath: m_IsActive
-      value: 1
+    - target: {fileID: 6201039876289376708, guid: 41c9eab2edc7c474faa1c6d6d499d5b9, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5933635216073463420, guid: 41c9eab2edc7c474faa1c6d6d499d5b9, type: 3}
+    - target: {fileID: 6201039876289376708, guid: 41c9eab2edc7c474faa1c6d6d499d5b9, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5933635216073463420, guid: 41c9eab2edc7c474faa1c6d6d499d5b9, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5933635216073463420, guid: 41c9eab2edc7c474faa1c6d6d499d5b9, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5933635216073463420, guid: 41c9eab2edc7c474faa1c6d6d499d5b9, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8815233640036088511, guid: 41c9eab2edc7c474faa1c6d6d499d5b9, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8815233640036088511, guid: 41c9eab2edc7c474faa1c6d6d499d5b9, type: 3}
-      propertyPath: m_SizeDelta.y
+    - target: {fileID: 6201039876289376708, guid: 41c9eab2edc7c474faa1c6d6d499d5b9, type: 3}
+      propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

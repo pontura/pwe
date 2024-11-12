@@ -18,7 +18,8 @@ namespace Pwe.Games.Cooking
 
         private void Awake()
         {
-            riveTexture = GetComponent<RiveTexture>();
+            riveTexture = GetComponent<RiveTexture>(); 
+          
         }
         public void Initialize(System.Action OnReady)
         {

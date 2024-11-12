@@ -32,8 +32,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 5880147652230321521}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -353,7 +353,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8368847126194479770
 Transform:
   m_ObjectHideFlags: 0
@@ -803,7 +803,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &9140110801355716874
 Transform:
   m_ObjectHideFlags: 0
@@ -988,7 +988,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -110.47998, y: -313.3919}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &203236611729156767
 MonoBehaviour:
@@ -1499,7 +1499,7 @@ RectTransform:
   m_Father: {fileID: 4800535774211164919}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1605,7 +1605,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: bb359e288fce8f54c995bdb30cf7fdcb, type: 2}
+  - {fileID: 2100000, guid: e081abb327dce3948bf47b12ce48af8b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1843,7 +1843,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: bb359e288fce8f54c995bdb30cf7fdcb, type: 2}
+  - {fileID: 2100000, guid: e081abb327dce3948bf47b12ce48af8b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2688,7 +2688,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: bb359e288fce8f54c995bdb30cf7fdcb, type: 2}
+  - {fileID: 2100000, guid: e081abb327dce3948bf47b12ce48af8b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3005,7 +3005,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d9f084a83c9b5f947a14dee4365c2400, type: 2}
+  - {fileID: 2100000, guid: e081abb327dce3948bf47b12ce48af8b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3201,7 +3201,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8324142670473703437
 Transform:
   m_ObjectHideFlags: 0
@@ -4753,7 +4753,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6b859776fa568a843855d67ae7148355, type: 2}
+  - {fileID: 2100000, guid: e081abb327dce3948bf47b12ce48af8b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5240,7 +5240,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7007337732035681089, guid: 97cd3c49dd7d7a14397a5bedb51294b7, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7007337732035681089, guid: 97cd3c49dd7d7a14397a5bedb51294b7, type: 3}
       propertyPath: m_AnchorMin.x
@@ -5248,7 +5248,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7007337732035681089, guid: 97cd3c49dd7d7a14397a5bedb51294b7, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7007337732035681089, guid: 97cd3c49dd7d7a14397a5bedb51294b7, type: 3}
       propertyPath: m_SizeDelta.x
@@ -5288,11 +5288,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7007337732035681089, guid: 97cd3c49dd7d7a14397a5bedb51294b7, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 91.785
       objectReference: {fileID: 0}
     - target: {fileID: 7007337732035681089, guid: 97cd3c49dd7d7a14397a5bedb51294b7, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -45.50025
       objectReference: {fileID: 0}
     - target: {fileID: 7007337732035681089, guid: 97cd3c49dd7d7a14397a5bedb51294b7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

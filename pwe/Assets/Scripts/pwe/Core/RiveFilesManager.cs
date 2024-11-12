@@ -18,7 +18,20 @@ namespace Pwe.Core
 #if !UNITY_EDITOR
             useLocalRives = false;
 #endif
-
+            Events.Reset += Reset;
+        }
+        private void OnDestroy()
+        {
+            Events.Reset -= Reset;
+        }
+        public void Reset()
+        {
+            foreach (string s in all.Keys)
+            {
+                byte[] arr = all[s];
+                arr = null;
+            }
+            all.Clear();
         }
 
 
