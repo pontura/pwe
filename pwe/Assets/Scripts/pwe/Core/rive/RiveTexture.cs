@@ -26,7 +26,6 @@ namespace Pwe
 
         Camera m_camera;
         System.Action OnReady;
-
         
         public void Init(string riveFileName, System.Action OnReady = null)
         {
@@ -93,7 +92,10 @@ namespace Pwe
                 }
             }
             if (OnReady != null)
+            {
                 OnReady();
+                OnReady = null;
+            }
         }
         //StateMachine GetArtboard(string s)
         //{
