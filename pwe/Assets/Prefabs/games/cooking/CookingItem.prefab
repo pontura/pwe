@@ -85,6 +85,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ffb35beadfb9d84b8acd8ea37f2a633, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  size: {x: 256, y: 256}
   _renderTexture: {fileID: 8400000, guid: ab1318de6bc75a64d8f16556a558cd91, type: 2}
   image: {fileID: 8696449690330596350}
   fit: 1

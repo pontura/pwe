@@ -39,7 +39,14 @@ namespace Pwe
         {
             m_file = Rive.File.Load(riveName, data, data.GetHashCode());
 
-            RenderTexture renderTexture = new RenderTexture(TextureHelper.Descriptor((int)size.x, (int)size.y));
+            RenderTexture renderTexture = new RenderTexture(
+                (int)size.x,
+                (int)size.y, 
+                0,
+                RenderTextureFormat.ARGB32);
+
+            renderTexture.enableRandomWrite = true;
+
             renderTexture.Create();
 
             m_renderQueue = new Rive.RenderQueue(renderTexture);

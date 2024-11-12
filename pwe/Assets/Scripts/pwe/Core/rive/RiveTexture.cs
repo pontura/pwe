@@ -78,7 +78,17 @@ namespace Pwe
             isOn = true;
             m_file = Rive.File.Load(riveName, data, data.GetHashCode());
 
-            renderTexture = new RenderTexture(TextureHelper.Descriptor((int)size.x, (int)size.y));
+            RenderTexture renderTexture = new RenderTexture(
+                (int)size.x,
+                (int)size.y,
+                0,
+                RenderTextureFormat.ARGB32);
+
+
+            renderTexture.enableRandomWrite = true;
+
+          //  renderTexture.antiAliasing = QualitySettings.antiAliasing;
+
             renderTexture.Create();
 
             MeshRenderer cubeRenderer = GetComponent<MeshRenderer>();
@@ -98,23 +108,28 @@ namespace Pwe
             //    m_file = Rive.File.Load(asset);
             m_artboard = m_file.Artboard(0);
             m_stateMachine = m_artboard?.StateMachine();
-           // renderTexture.enableRandomWrite = true;
             //}
             if (m_artboard != null && renderTexture != null)
             {
                 m_riveRenderer.Align(fit, alignment, m_artboard);
                 m_riveRenderer.Draw(m_artboard);
 
-                m_commandBuffer = m_riveRenderer.ToCommandBuffer();
+                //m_commandBuffer = m_riveRenderer.ToCommandBuffer();
+                //m_commandBuffer.SetRenderTarget(renderTexture);
+                //m_commandBuffer.ClearRenderTarget(true, true, UnityEngine.Color.clear, 0.0f);
+                //m_riveRenderer.AddToCommandBuffer(m_commandBuffer);
+
+                m_commandBuffer = new CommandBuffer();
                 m_commandBuffer.SetRenderTarget(renderTexture);
                 m_commandBuffer.ClearRenderTarget(true, true, UnityEngine.Color.clear, 0.0f);
                 m_riveRenderer.AddToCommandBuffer(m_commandBuffer);
-                m_camera = Camera.main;
 
-                if (m_camera != null)
-                {
-                    m_camera.AddCommandBuffer(CameraEvent.AfterEverything, m_commandBuffer);
-                }
+                //m_camera = Camera.main;
+
+                //if (m_camera != null)
+                //{
+                //    m_camera.AddCommandBuffer(CameraEvent.AfterEverything, m_commandBuffer);
+                //}
             }
             if (OnReady != null)
             {
@@ -161,11 +176,12 @@ namespace Pwe
         private void Update()
         {
             if (!isOn) return;
-            //if (m_riveRenderer != null)
-            //{
-            //    m_riveRenderer.Submit();
-            //    GL.InvalidateState();
-            //}
+            if (m_riveRenderer != null)
+            {
+                m_riveRenderer.Submit();
+                GL.InvalidateState();
+            }
+           // m_riveRenderer.Submit();
 
             if (m_stateMachine != null)
             {
