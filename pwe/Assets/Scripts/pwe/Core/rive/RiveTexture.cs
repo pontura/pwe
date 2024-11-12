@@ -161,11 +161,11 @@ namespace Pwe
         private void Update()
         {
             if (!isOn) return;
-            if (m_riveRenderer != null)
-            {
-                m_riveRenderer.Submit();
-                GL.InvalidateState();
-            }
+            //if (m_riveRenderer != null)
+            //{
+            //    m_riveRenderer.Submit();
+            //    GL.InvalidateState();
+            //}
 
             if (m_stateMachine != null)
             {

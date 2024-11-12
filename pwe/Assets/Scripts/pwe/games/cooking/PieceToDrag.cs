@@ -10,7 +10,7 @@ namespace Pwe.Games.Cooking
     {
         [SerializeField] CookingMainPiece mainPiece;
         RiveTexture riveTexture;
-        void Start()
+        public void Init()
         {
             riveTexture = GetComponent<RiveTexture>();
             riveTexture.Init("pwa-ingredient.riv", OnReady);

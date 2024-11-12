@@ -20,6 +20,7 @@ namespace Pwe.Games.Cooking
         [SerializeField] NumFeedback numFeedback;
         [SerializeField] CookingMainPiece mainPiece;
         [SerializeField] PiecesContainer piecesContainer;
+        [SerializeField] PieceToDrag pieceToDrag;
         int total;
         int num;
         List<ItemData> items;
@@ -74,7 +75,11 @@ namespace Pwe.Games.Cooking
         {
             string ingredient = items[itemID].item.ToString();
             mainPiece.InitIngredient("qty_" + ingredient, total);
-
+            Invoke("InitPieceToDragDelayed", 0.1f);
+        }
+        void InitPieceToDragDelayed()
+        {
+            pieceToDrag.Init();
         }
         public void OnPieceAdded()
         {
