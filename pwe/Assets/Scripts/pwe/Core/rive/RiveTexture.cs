@@ -20,6 +20,7 @@ namespace Pwe
 
         private CommandBuffer m_commandBuffer;
 
+        Rive.Renderer m_riveRenderer;
         private Rive.File m_file;
         private Artboard m_artboard;
         private StateMachine m_stateMachine;
@@ -67,7 +68,7 @@ namespace Pwe
             mat.mainTexture = renderTexture;
 
             Rive.RenderQueue m_renderQueue = new Rive.RenderQueue(renderTexture);
-            Rive.Renderer m_riveRenderer = m_renderQueue.Renderer();
+            m_riveRenderer = m_renderQueue.Renderer();
             //if (asset != null)
             //{
             //    m_file = Rive.File.Load(asset);
@@ -133,7 +134,13 @@ namespace Pwe
         }
         private void Update()
         {
-            if ( m_stateMachine != null)
+            if (m_riveRenderer != null)
+            {
+                m_riveRenderer.Submit();
+                GL.InvalidateState();
+            }
+
+            if (m_stateMachine != null)
             {
                 m_stateMachine.Advance(Time.deltaTime);
             }

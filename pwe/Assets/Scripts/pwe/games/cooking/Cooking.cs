@@ -44,11 +44,26 @@ namespace Pwe.Games.Cooking
             total = items[itemID].num;
 
             string ingredient = items[itemID].item.ToString();
-            if(lastIngredient != "")  
-                mainPiece.InitIngredient("qty_" + lastIngredient, 0);// RESET LAST
+
+            if(lastIngredient != null)      ResetIngredient(lastIngredient);
+            else                            ResetOtherIngredients(ingredient);
+
             lastIngredient = ingredient;
 
             piecesContainer.Initialize(OnPieceContainerDone);
+        }
+        void ResetOtherIngredients(string ingredient)
+        {
+            foreach (ItemData itemData in items)
+            {
+                string s = itemData.item.ToString();
+                if(s != ingredient)
+                    ResetIngredient(s);// RESET
+            }
+        }
+        void ResetIngredient(string ingredient)
+        {
+            mainPiece.InitIngredient("qty_" + ingredient, 0);
         }
         void OnPieceContainerDone()
         {

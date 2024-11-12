@@ -36,11 +36,6 @@ namespace Pwe.Core
         }
         IEnumerator LoadC(string riveFile, System.Action<byte[], string> OnDone)
         {
-            print("Dic____________________" + all.Count);
-            foreach(string s in all.Keys)
-            {
-                print("_____________s " + s + " rive to load: " + riveFile);
-            }
             string finalURL;
             if (useLocalRives)
                 finalURL = Application.dataPath + "/Rive/" + riveFile;
@@ -82,15 +77,16 @@ namespace Pwe.Core
             totalRives = rives.Length;
             foreach (string s in rives)
             {
-                if (all.ContainsKey(s + ".riv"))
+                string riveName = s + ".riv";
+                if (all.ContainsKey(riveName))
                 {
                     Debug.Log("Load done: " + s);
                     totalLoaded++;
-                    OnPreloaded(all[s + ".riv"], s + ".riv");
+                    OnPreloaded(all[riveName], riveName);
                 }
                 else
                 {
-                    string finalURL = s + ".riv";
+                    string finalURL = riveName;
                     StartCoroutine(LoadC(finalURL, OnPreloaded));
                 }
             }
