@@ -15,7 +15,7 @@ namespace Pwe.Games.SolarSystem
 
         public event System.Action<PlanetName> OnPlanetClicked;
 
-        public void Init(PlanetsData planetsData, SpaceData spaceData) {
+        public void Init(PlanetsData planetsData, SpaceData spaceData, Transform camTransform) {
             spaceData._minmaxDistance = planetsData.GetMinMaxDistance();
             spaceData._minmaxSize = planetsData.GetMinMaxSize();
             spaceData._minmaxSpeed = planetsData.GetMinMaxSpeed();
@@ -35,6 +35,8 @@ namespace Pwe.Games.SolarSystem
                 OrbitalPath op = Instantiate(li.orbitalPath, orbitsContainer);
                 index++;
             }
+
+            SetStaticObstacles(spaceData.staticObstacles, camTransform);
         }
 
         public void AddPlanet(PlanetData pd, SpaceData spaceData) {
@@ -51,13 +53,23 @@ namespace Pwe.Games.SolarSystem
         }
 
         public void AddOvni(int index, OrbitalItem oi, OrbitalPath path, SpaceData spaceData) {
-            OrbitalItem p = Instantiate(oi, obstaclesContainer);
+            OrbitalItem p = Instantiate(oi, planetsContainer);
             p.transform.localPosition = Vector3.zero;
             p.Init(index, spaceData, path, (correct) => {
                 Debug.Log("# " + PlanetName.none + ": " + correct);
                 OnPlanetClicked(PlanetName.none);
             });
         }        
+
+        void SetStaticObstacles(StaticObstacles s_obstacles, Transform camTransform) {
+            RemoveAllObstacles();
+            StaticObstacles so = Instantiate(s_obstacles, obstaclesContainer);
+            so.SetObstacles((correct) => {
+                Debug.Log("# " + PlanetName.none + ": " + correct);
+                OnPlanetClicked(PlanetName.none);
+            });
+            so.GetComponent<YaguarLib.Xtras.Parallax>().SetCam(camTransform);
+        }
 
         public void RemoveAllPlanets() {
             foreach (Transform child in planetsContainer) {
@@ -68,6 +80,13 @@ namespace Pwe.Games.SolarSystem
 
         public void RemoveAllOrbits() {
             foreach (Transform child in orbitsContainer) {
+                if (child != sun)
+                    Destroy(child.gameObject);
+            }
+        }
+
+        public void RemoveAllObstacles() {
+            foreach (Transform child in obstaclesContainer) {
                 if (child != sun)
                     Destroy(child.gameObject);
             }

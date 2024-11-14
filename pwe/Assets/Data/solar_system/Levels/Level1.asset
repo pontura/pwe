@@ -112,6 +112,7 @@ MonoBehaviour:
     colliderRadius: 1
     animClip: {fileID: 0}
   orbitSpeedFactor: 0.5
+  <staticObstacles>k__BackingField: {fileID: 7693609074493744318, guid: 05ff9fcfe782c044f87bc926f53ef304, type: 3}
   _minmaxSpeed: {x: 0.006, y: 4.15}
   _minmaxSize: {x: 0.35, y: 11}
   _minmaxDistance: {x: 36, y: 2800}

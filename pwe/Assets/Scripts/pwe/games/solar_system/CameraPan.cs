@@ -6,7 +6,7 @@ namespace Pwe.Games.SolarSystem
 {
     public class CameraPan : MonoBehaviour
     {
-        [SerializeField] Camera cam;
+        [field: SerializeField] public Camera cam { get; private set; }
         [SerializeField] float speed;
         [SerializeField] Vector2 horizontalLimits;
         [SerializeField] Vector3 initialPosition;
