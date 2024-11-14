@@ -38,8 +38,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  <MinSpeed>k__BackingField: 0.05
-  <MaxSpeed>k__BackingField: 0.125
+  <MinSpeed>k__BackingField: 0.1
+  <MaxSpeed>k__BackingField: 0.25
   speedCurve:
     serializedVersion: 2
     m_Curve:
@@ -64,8 +64,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  <MinSize>k__BackingField: 0.25
-  <MaxSize>k__BackingField: 1.5
+  <MinSize>k__BackingField: 0.5
+  <MaxSize>k__BackingField: 2
   sizeCurve:
     serializedVersion: 2
     m_Curve:
@@ -102,10 +102,15 @@ MonoBehaviour:
     colliderRadius: 1
     animClip: {fileID: 7400000, guid: 1f8198050380434489fb3aa6f7bb284b, type: 2}
   - orbitalItem: {fileID: 4874681517020087938, guid: c226ca83067129e4b8a20ac5a0035cce, type: 3}
-    orbitalPath: {fileID: 2355899697140836453, guid: 5d1fc75ce0e9f814db7e217c2f366476, type: 3}
+    orbitalPath: {fileID: 2853541376672596798, guid: bcaf3cc4285148b418d85d02c3d3c4bf, type: 3}
     planetName: 0
     colliderRadius: 1
-    animClip: {fileID: 7400000, guid: e9fb90ba6f6e6a24db296f554f8148fc, type: 2}
+    animClip: {fileID: 0}
+  - orbitalItem: {fileID: -4921058695821818843, guid: 5f6eb3156adea9847b1883fafdfc39cc, type: 3}
+    orbitalPath: {fileID: 8412587118133278462, guid: 4ec3b056846ff5d4ea580ff878a175c5, type: 3}
+    planetName: 0
+    colliderRadius: 1
+    animClip: {fileID: 0}
   orbitSpeedFactor: 0.5
   _minmaxSpeed: {x: 0.006, y: 4.15}
   _minmaxSize: {x: 0.35, y: 11}

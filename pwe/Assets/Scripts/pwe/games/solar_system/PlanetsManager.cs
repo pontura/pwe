@@ -9,6 +9,7 @@ namespace Pwe.Games.SolarSystem
     {
         [SerializeField] Transform sun;
         [SerializeField] Transform planetsContainer;
+        [SerializeField] Transform obstaclesContainer;
         [SerializeField] Transform orbitsContainer;
         [SerializeField] Planet planet_prefab;
 
@@ -50,7 +51,7 @@ namespace Pwe.Games.SolarSystem
         }
 
         public void AddOvni(int index, OrbitalItem oi, OrbitalPath path, SpaceData spaceData) {
-            OrbitalItem p = Instantiate(oi, planetsContainer);
+            OrbitalItem p = Instantiate(oi, obstaclesContainer);
             p.transform.localPosition = Vector3.zero;
             p.Init(index, spaceData, path, (correct) => {
                 Debug.Log("# " + PlanetName.none + ": " + correct);

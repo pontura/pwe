@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b01ef64e713e22a4d89342076734c948, type: 3}
-  m_Name: Level3 1
+  m_Name: Level3
   m_EditorClassIdentifier: 
   <MinDistance>k__BackingField: 1
   <MaxDistance>k__BackingField: 15
@@ -64,8 +64,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  <MinSize>k__BackingField: 0.1
-  <MaxSize>k__BackingField: 4
+  <MinSize>k__BackingField: 0.22
+  <MaxSize>k__BackingField: 1
   sizeCurve:
     serializedVersion: 2
     m_Curve:
@@ -101,13 +101,18 @@ MonoBehaviour:
     m_RotationOrder: 4
   <LevelItems>k__BackingField:
   - orbitalItem: {fileID: 0}
+    orbitalPath: {fileID: 2355899697140836453, guid: 5d1fc75ce0e9f814db7e217c2f366476, type: 3}
+    planetName: 6
+    colliderRadius: 1.25
+    animClip: {fileID: 7400000, guid: 7b562d074ca4e5548b7c3f8ee7339c09, type: 2}
+  - orbitalItem: {fileID: 0}
     orbitalPath: {fileID: 2853541376672596798, guid: 0f89845a15bb6884b9036a7e0859f032, type: 3}
-    planetName: 4
+    planetName: 7
     colliderRadius: 1
     animClip: {fileID: 7400000, guid: 9f49763166c36ae46a840ce33cfa0aa9, type: 2}
   - orbitalItem: {fileID: 0}
     orbitalPath: {fileID: 8412587118133278462, guid: b233002bde61bfa48b87b10494036eb4, type: 3}
-    planetName: 5
+    planetName: 8
     colliderRadius: 1
     animClip: {fileID: 7400000, guid: 0b544850194f4514484012941e24e4d5, type: 2}
   - orbitalItem: {fileID: -4921058695821818843, guid: 2e0dbdf1e47865e4597700f391440068, type: 3}
@@ -117,5 +122,5 @@ MonoBehaviour:
     animClip: {fileID: 0}
   orbitSpeedFactor: 0.5
   _minmaxSpeed: {x: 0.006, y: 4.15}
-  _minmaxSize: {x: 0.35, y: 11}
+  _minmaxSize: {x: 0.35, y: 90000}
   _minmaxDistance: {x: 36, y: 2800}
