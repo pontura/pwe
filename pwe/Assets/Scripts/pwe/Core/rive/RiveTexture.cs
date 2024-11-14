@@ -1,12 +1,7 @@
 using UnityEngine;
 using Rive;
 using UnityEngine.Rendering;
-using System.Linq;
 using Pwe.Core;
-using UnityEngine.UI;
-using System.Collections.Generic;
-using System.Collections;
-using SimpleJSON;
 
 namespace Pwe
 {
@@ -15,7 +10,7 @@ namespace Pwe
     {
         //public RenderTexture renderTexture;
         [SerializeField] Vector2 size = new Vector2(256, 256);
-        private RenderTexture renderTexture;
+        [SerializeField] RenderTexture renderTexture;
         public Fit fit = Fit.contain;
         public Alignment alignment = Alignment.Center;
 
@@ -29,10 +24,9 @@ namespace Pwe
         Camera m_camera;
         System.Action OnReady;
         bool isOn;
-        
+
         public void Init(string riveFileName, System.Action OnReady = null)
         {
-            print("_________________________Init " + gameObject);
             this.OnReady = OnReady;
             //Vector2 s = transform.localScale;
             //s.y = Mathf.Abs(transform.localScale.y)*-1;
@@ -63,7 +57,8 @@ namespace Pwe
 #if UNITY_EDITOR
             return false;
 #endif
-            return true;
+            return true; // para android se necesita FlipY
+
             //switch (UnityEngine.SystemInfo.graphicsDeviceType)
             //{
             //    case UnityEngine.Rendering.GraphicsDeviceType.Metal:
@@ -78,18 +73,29 @@ namespace Pwe
             isOn = true;
             m_file = Rive.File.Load(riveName, data, data.GetHashCode());
 
-            RenderTexture renderTexture = new RenderTexture(
-                (int)size.x,
-                (int)size.y,
-                0,
-                RenderTextureFormat.ARGB32);
+            print("renderTexture: " + renderTexture);
+
+            if (renderTexture == null)
+            {
+                renderTexture = new RenderTexture(
+                    (int)size.x,
+                    (int)size.y,
+                    0,
+                    RenderTextureFormat.ARGB32);
 
 
-            renderTexture.enableRandomWrite = true;
+                renderTexture.enableRandomWrite = true;
 
-          //  renderTexture.antiAliasing = QualitySettings.antiAliasing;
+                //  renderTexture.antiAliasing = QualitySettings.antiAliasing;
 
-            renderTexture.Create();
+                renderTexture.Create();
+            }
+            else
+            {
+                renderTexture.format = RenderTextureFormat.ARGB32;
+                renderTexture.enableRandomWrite = true;
+                renderTexture.Create();
+            }
 
             MeshRenderer cubeRenderer = GetComponent<MeshRenderer>();
             Material mat = cubeRenderer.material;
@@ -211,6 +217,7 @@ namespace Pwe
             m_file = null;
             m_artboard = null;
             m_stateMachine = null;
+            renderTexture = null;
         }
 
 
