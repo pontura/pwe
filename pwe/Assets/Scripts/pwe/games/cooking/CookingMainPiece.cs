@@ -1,12 +1,11 @@
-using JetBrains.Annotations;
 using UnityEngine;
-using Yaguar.Inputs;
 using Yaguar.Inputs2D;
 
 namespace Pwe.Games.Cooking
 {
     public class CookingMainPiece : InteractiveElement
     {
+        [SerializeField] Animation anim;
         [SerializeField] Cooking cooking;
         RiveTexture riveTexture;
         bool pieceOver;
@@ -15,11 +14,17 @@ namespace Pwe.Games.Cooking
         [SerializeField] string trigger;
         [SerializeField] PiecesContainer piecesContainer;
 
+        public void SetPieceContainer(PiecesContainer piecesContainer)
+        {
+            this.piecesContainer = piecesContainer;
+        }
+
         public string Ingredient { get { return piecesContainer.ActionKey; }  }
         System.Action OnLoaded;
 
         public void Init(System.Action OnLoaded)
         {
+            anim = GetComponent<Animation>();
             this.OnLoaded = OnLoaded;
             riveTexture = GetComponent<RiveTexture>();
             riveTexture.Init("pwa-pizza.riv", OnReady);
@@ -28,29 +33,32 @@ namespace Pwe.Games.Cooking
         public override void OnIECollisionEnter(InteractiveElement ie)
         {
             pieceOver = true;
-            Debug.Log("Piece is over!");
         }
         public override void OnIECollisionExit(InteractiveElement ie)
         {
             pieceOver = false;
-            Debug.Log("Piece is out...");
         }
         public void InitIngredient(string key, int num)
         {
             riveTexture.SetNumber(key, num);
         }
-        public void OnPieceReleased()
+        public void OnPieceReleased(PieceToDrag pieceToDrag)
         {
             if (pieceOver == false)
             {
                 OnDropItemOut();
+                Destroy(pieceToDrag.gameObject);
             }
-            else {
-                cooking.OnPieceAdded();
-                Debug.Log("On Piece Released over!");
-                riveTexture.SetTrigger("add");
+            else
+            {
+                cooking.OnPieceAdded(Ingredient);
+                Add();
                 pieceOver = false;
             }
+        }
+        public void Add()
+        {
+            anim.Play();
         }
         void OnDropItemOut()
         {

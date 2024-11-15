@@ -1,10 +1,8 @@
 using Pwe.Core;
 using Pwe.Games.Common;
-using Pwe.Games.Cooking.UI;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static Pwe.Games.Cooking.CookingData;
+using Yaguar.Inputs2D;
 
 namespace Pwe.Games.Cooking
 {
@@ -16,28 +14,56 @@ namespace Pwe.Games.Cooking
             playing,
             done
         }
-        [SerializeField] CookingMenuUI menu;
         [SerializeField] NumFeedback numFeedback;
         [SerializeField] CookingMainPiece mainPiece;
-        [SerializeField] PiecesContainer piecesContainer;
+        [SerializeField] CookingPieces pieces;
         [SerializeField] PieceToDrag pieceToDrag;
+        [SerializeField] Transform dragContainer;
+        PieceToDrag newPieceToDrag;
+
+        [SerializeField] ButtonProgressBar buttonProgressBar;
+
+        Dictionary<string, int> ingredients;
+        Dictionary<string, int> ingredientsAdded;
+        int totalPieces;
+
+        [SerializeField] DragInputManager dragInputManager;
+
         int total;
         int num;
         List<ItemData> items;
         int itemID;
         string lastIngredient;
+        [SerializeField] List<string> added;
         public override void OnInit()
         {
+            buttonProgressBar.Init(NextClicked);
+            added = new List<string>();
             int level = 0;
 
             if(GamesManager.Instance != null)
                 level = GamesManager.Instance.GetGame(GameData.GAMES.COOKING).level;
 
+            items = new List<ItemData>();
             items = Game.CookingData.GetItems(level);
-            print("items: " + items.Count);
-            menu.Init(items);
+            ingredients = new Dictionary<string, int>();
+            ingredientsAdded = new Dictionary<string, int>();
+            foreach (ItemData item in items)
+            {
+                totalPieces += item.num;
+                ingredients.Add(item.item.ToString(), item.num);
+                ingredientsAdded.Add(item.item.ToString(), 0);
+            }
             mainPiece.Init(InitIngredient);
+            buttonProgressBar.SetProgress(0, totalPieces);
         }
+
+        private void NextClicked()
+        {
+            if (buttonProgressBar.IsReady())
+                Next();
+        }
+
         void InitIngredient()
         {
             num = 0;
@@ -51,7 +77,8 @@ namespace Pwe.Games.Cooking
 
             lastIngredient = ingredient;
 
-            piecesContainer.Initialize(OnPieceContainerDone);
+
+            pieces.Initialize(this, items, mainPiece);
         }
         void ResetOtherIngredients(string ingredient)
         {
@@ -62,53 +89,58 @@ namespace Pwe.Games.Cooking
                     ResetIngredient(s);// RESET
             }
         }
+        public void InitDrag()
+        {
+            newPieceToDrag = Instantiate(pieceToDrag, dragContainer);
+            newPieceToDrag.Init(OnPieceToDragReady);           
+        }
+        void OnPieceToDragReady()
+        {
+            string ingredient = items[itemID].item.ToString();
+            //mainPiece.InitIngredient("qty_" + ingredient, total);
+            Invoke("InitPieceToDragDelayed", 0.1f);
+            dragInputManager.ForceDrag(Input.mousePosition, newPieceToDrag);
+        }
         void ResetIngredient(string ingredient)
         {
             mainPiece.InitIngredient("qty_" + ingredient, 0);
         }
-        void OnPieceContainerDone()
+        void CheckFinish()
         {
-            piecesContainer.InitIngredient(this, items[itemID].item, total);
-            Invoke("Delayed", 0.1f);
+            print("DONE_____________" + ingredients.Keys.Count);
+            if (ingredients.Keys.Count <= 0)
+                print("DONE");
         }
-        void Delayed()
+        public void OnPieceAdded(string ingredient)
         {
-            string ingredient = items[itemID].item.ToString();
-            mainPiece.InitIngredient("qty_" + ingredient, total);
-            Invoke("InitPieceToDragDelayed", 0.1f);
-        }
-        void InitPieceToDragDelayed()
-        {
-            pieceToDrag.Init();
-        }
-        public void OnPieceAdded()
-        {
-            Game.CookingData.PieceDone(itemID);
-            total--; num++;
-
-            numFeedback.Init(num);
-
-            if (total <= 0)
-               StartCoroutine( NextIngredient() );
-
-          //  menu.Refresh(cookingData.items[itemID]);
-        }
-        IEnumerator NextIngredient()
-        {
-            YaguarLib.Events.Events.OnPlaySound(YaguarLib.Audio.AudioManager.types.REWARD);
-            state = states.done;
-            yield return new WaitForSeconds(2);
-            itemID++;
-            if (itemID >= items.Count)
-                Next();
-            else
+            if (ingredients.ContainsKey(ingredient))
             {
-                InitIngredient();
+                ingredientsAdded[ingredient]++;
+                print(ingredient + " ingredientsAdded[ingredient] " + ingredientsAdded[ingredient]);
+                int value = 0;
+                foreach (string s in ingredientsAdded.Keys)
+                {
+                    int v = ingredientsAdded[s];
+                    if (ingredientsAdded[s] == ingredients[s])
+                        pieces.OnIngredientReady(s);
+
+                    value += v;
+                }
+                if (ingredientsAdded[ingredient] <= ingredients[ingredient])
+                {
+                    buttonProgressBar.SetProgress(value, totalPieces);
+                    numFeedback.Init(ingredientsAdded[ingredient]);
+                }
+            }
+            if(state != states.done && buttonProgressBar.IsReady())
+            {
+                state = states.done;
+                YaguarLib.Events.Events.OnPlaySound(YaguarLib.Audio.AudioManager.types.REWARD);
             }
         }
         public bool CanMove()
         {
-            return state == states.playing;
+            return true;
         }
     }
 }

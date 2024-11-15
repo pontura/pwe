@@ -59,7 +59,7 @@ public class RivaRaw : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             RenderTextureFormat.ARGB32
         );
 
-        _renderTexture.antiAliasing = QualitySettings.antiAliasing;
+       // _renderTexture.antiAliasing = QualitySettings.antiAliasing;
 
         if (SystemInfo.graphicsDeviceType == GraphicsDeviceType.Direct3D11)
         {

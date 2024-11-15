@@ -92,7 +92,7 @@ namespace Pwe
             }
             else
             {
-                renderTexture.format = RenderTextureFormat.ARGB32;
+               // renderTexture.format = RenderTextureFormat.ARGB32;
                 renderTexture.enableRandomWrite = true;
                 renderTexture.Create();
             }
