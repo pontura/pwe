@@ -11,7 +11,7 @@ namespace Pwe.Games.Cooking
         [SerializeField] Transform container;
         [SerializeField] UIScroller uiScroller;
         List<ItemData> items;
-        int separation_y = 360;
+        int separation_y = 300;
         List<PiecesContainer> piecesContainers;
         public void Initialize(Cooking cooking, List<ItemData> items, CookingMainPiece mainPiece)
         {

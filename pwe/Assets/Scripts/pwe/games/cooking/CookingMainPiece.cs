@@ -7,7 +7,7 @@ namespace Pwe.Games.Cooking
     {
         [SerializeField] Animation anim;
         [SerializeField] Cooking cooking;
-        RiveTexture riveTexture;
+        RiveRawImage riveTexture;
         bool pieceOver;
 
         [SerializeField] string states_pizza;
@@ -26,7 +26,7 @@ namespace Pwe.Games.Cooking
         {
             anim = GetComponent<Animation>();
             this.OnLoaded = OnLoaded;
-            riveTexture = GetComponent<RiveTexture>();
+            riveTexture = GetComponent<RiveRawImage>();
             riveTexture.Init("pwa-pizza.riv", OnReady);
         }
         void OnReady() { OnLoaded();  }
@@ -54,6 +54,8 @@ namespace Pwe.Games.Cooking
                 cooking.OnPieceAdded(Ingredient);
                 Add();
                 pieceOver = false;
+                pieceToDrag.transform.SetParent(transform);
+                pieceToDrag.GetComponent<Collider2D>().enabled = false;
             }
         }
         public void Add()

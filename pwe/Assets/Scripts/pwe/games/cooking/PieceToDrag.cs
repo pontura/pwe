@@ -6,10 +6,11 @@ namespace Pwe.Games.Cooking
     public class PieceToDrag : DragElement
     {
         [SerializeField] CookingMainPiece mainPiece;
-        RiveTexture riveTexture;
-        public void Init(System.Action OnReady )
+        RiveRawImage riveTexture;
+        public void Init(System.Action OnReady, CookingMainPiece mainPiece)
         {
-            riveTexture = GetComponent<RiveTexture>();
+            this.mainPiece = mainPiece;
+            riveTexture = GetComponent<RiveRawImage>();
             riveTexture.Init("pwa-ingredient.riv", OnReady);
         }
         public override void OnInitDrag()

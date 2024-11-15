@@ -21,7 +21,7 @@ namespace Pwe.Core
         void Update()
         {
             float dest_y = id * separation_y * -1;
-            float _y = Mathf.Lerp(container.transform.localPosition.y, dest_y, 0.1f);
+            float _y = Mathf.Lerp(container.transform.localPosition.y, dest_y, 0.05f);
             container.transform.localPosition = new Vector2(container.transform.localPosition.x, _y);
         }
         public void Scroll(bool top)

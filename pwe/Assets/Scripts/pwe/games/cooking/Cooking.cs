@@ -92,7 +92,7 @@ namespace Pwe.Games.Cooking
         public void InitDrag()
         {
             newPieceToDrag = Instantiate(pieceToDrag, dragContainer);
-            newPieceToDrag.Init(OnPieceToDragReady);           
+            newPieceToDrag.Init(OnPieceToDragReady, mainPiece);           
         }
         void OnPieceToDragReady()
         {
