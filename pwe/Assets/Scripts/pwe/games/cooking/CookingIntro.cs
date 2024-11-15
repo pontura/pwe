@@ -25,7 +25,7 @@ namespace Pwe.Games.Cooking
             if (GamesManager.Instance != null)
                 level = GamesManager.Instance.GetGame(GameData.GAMES.COOKING).level;
 
-            items = Game.CookingData.GetItems(level);
+            items = (Game as CookingGame).CookingData.GetItems(level);
             menu.Init(items);
             button.Init(Play);
             mainPiece.Init(OnMainPieceLoaded);

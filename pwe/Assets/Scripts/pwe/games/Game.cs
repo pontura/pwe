@@ -12,8 +12,6 @@ namespace Pwe.Games
         [SerializeField] int screenID;
         GameMain active;
         [SerializeField] string[] allRivNames;
-        [SerializeField] CookingData cookingData;
-        public CookingData CookingData { get { return cookingData; } }
 
         void Start()
         {

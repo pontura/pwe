@@ -45,7 +45,7 @@ namespace Pwe.Games.Cooking
                 level = GamesManager.Instance.GetGame(GameData.GAMES.COOKING).level;
 
             items = new List<ItemData>();
-            items = Game.CookingData.GetItems(level);
+            items = (Game as CookingGame).CookingData.GetItems(level);
             ingredients = new Dictionary<string, int>();
             ingredientsAdded = new Dictionary<string, int>();
             foreach (ItemData item in items)

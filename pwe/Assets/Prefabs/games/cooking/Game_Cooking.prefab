@@ -3290,7 +3290,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5073353217931750912}
-  - component: {fileID: 6910866388624311303}
+  - component: {fileID: 8666142007337318734}
   - component: {fileID: 8055979562551126070}
   m_Layer: 0
   m_Name: Game_Cooking
@@ -3322,7 +3322,7 @@ Transform:
   - {fileID: 3355172005238361131}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6910866388624311303
+--- !u!114 &8666142007337318734
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3331,7 +3331,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5161400804714119547}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2ce6042982e2324cae597416e123573, type: 3}
+  m_Script: {fileID: 11500000, guid: 451cf42ba86c08d4ab82dc5a7c8f6cfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   screens:
@@ -3346,7 +3346,7 @@ MonoBehaviour:
   - pwa-pizza
   - pwa-bowl
   - pwa-ingredient
-  cookingData: {fileID: 8055979562551126070}
+  <CookingData>k__BackingField: {fileID: 8055979562551126070}
 --- !u!114 &8055979562551126070
 MonoBehaviour:
   m_ObjectHideFlags: 0
