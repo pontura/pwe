@@ -64,8 +64,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  <MinSize>k__BackingField: 0.22
-  <MaxSize>k__BackingField: 1
+  <MinSize>k__BackingField: 0.44
+  <MaxSize>k__BackingField: 2
   sizeCurve:
     serializedVersion: 2
     m_Curve:
@@ -122,5 +122,5 @@ MonoBehaviour:
     animClip: {fileID: 0}
   orbitSpeedFactor: 0.5
   _minmaxSpeed: {x: 0.006, y: 4.15}
-  _minmaxSize: {x: 0.35, y: 90000}
+  _minmaxSize: {x: 0.35, y: 11}
   _minmaxDistance: {x: 36, y: 2800}

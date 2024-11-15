@@ -27,6 +27,8 @@ namespace Pwe.Games.SolarSystem
 
         [field: SerializeField] public float orbitSpeedFactor;
 
+        [field: SerializeField] public StaticObstacles staticObstacles { get; private set; }
+
         [HideInInspector]
         public Vector2 _minmaxSpeed;
         [HideInInspector]

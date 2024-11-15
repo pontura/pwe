@@ -113,8 +113,8 @@ MonoBehaviour:
   initPoint: {fileID: 4298478738386979258}
   endPoint: {fileID: 3538839992888839801}
   controlPoint: {fileID: 7646071069643710492}
-  ShowOrbitPath: 1
   lineResolution: 200
+  _lineColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!120 &4935289952552568168
 LineRenderer:
   serializedVersion: 2
@@ -136,7 +136,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 276502c16e3d96d4c94a84c2a30e7686, type: 2}
+  - {fileID: 2100000, guid: 9b583bffebfb1ca488057042e9774775, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

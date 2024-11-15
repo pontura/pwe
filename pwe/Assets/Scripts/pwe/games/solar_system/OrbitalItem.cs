@@ -58,6 +58,13 @@ namespace Pwe.Games.SolarSystem
             Moving = true;
         }
 
+        public virtual void Init(int id, System.Action<bool> onclick) {
+            base.Init(id);
+            //OrbitCurve(Random.value);
+            onClick = onclick;
+            Moving = false;
+        }
+
         protected void Orbit(float time=0) {
             if (orbitData != null) {
                 time = time == 0 ? Time.deltaTime : time;

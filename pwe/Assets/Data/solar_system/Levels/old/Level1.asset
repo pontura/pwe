@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b01ef64e713e22a4d89342076734c948, type: 3}
-  m_Name: Level1 1
+  m_Name: Level1
   m_EditorClassIdentifier: 
   <MinDistance>k__BackingField: 1
   <MaxDistance>k__BackingField: 15
@@ -96,6 +96,11 @@ MonoBehaviour:
     planetName: 1
     colliderRadius: 1
     animClip: {fileID: 7400000, guid: 8ae1f45c6e9ce7d4e8ed49d595b999a8, type: 2}
+  - orbitalItem: {fileID: 0}
+    orbitalPath: {fileID: 2355899697140836453, guid: d950d82c0f3c7f644b1e83c70ca19665, type: 3}
+    planetName: 2
+    colliderRadius: 1
+    animClip: {fileID: 7400000, guid: 1f8198050380434489fb3aa6f7bb284b, type: 2}
   - orbitalItem: {fileID: 4874681517020087938, guid: c226ca83067129e4b8a20ac5a0035cce, type: 3}
     orbitalPath: {fileID: 2355899697140836453, guid: 5d1fc75ce0e9f814db7e217c2f366476, type: 3}
     planetName: 0
