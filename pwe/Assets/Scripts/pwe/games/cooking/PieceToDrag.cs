@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Yaguar.Inputs;
 using Yaguar.Inputs2D;
 
 namespace Pwe.Games.Cooking
@@ -9,22 +6,25 @@ namespace Pwe.Games.Cooking
     public class PieceToDrag : DragElement
     {
         [SerializeField] CookingMainPiece mainPiece;
-        RiveTexture riveTexture;
-        public void Init()
+        RiveRawImage riveTexture;
+        public void Init(System.Action OnReady, CookingMainPiece mainPiece)
         {
-            riveTexture = GetComponent<RiveTexture>();
+            this.mainPiece = mainPiece;
+            riveTexture = GetComponent<RiveRawImage>();
             riveTexture.Init("pwa-ingredient.riv", OnReady);
         }
         public override void OnInitDrag()
         {
-            Debug.Log(riveTexture + " OnInitDrag " + mainPiece.Ingredient);
+            Debug.Log(riveTexture);
+            Debug.Log( " OnInitDrag " + mainPiece);
+            Debug.Log( " Ingredient " + mainPiece.Ingredient);
             riveTexture.SetTrigger(mainPiece.Ingredient);
         }
         void OnReady() { }
         public override void OnEndDrag()
         {
-            mainPiece.OnPieceReleased();
-            transform.position = new Vector2(1000, 0);
+            mainPiece.OnPieceReleased(this);
+            //transform.position = new Vector2(1000, 0);
         }
     }
 }

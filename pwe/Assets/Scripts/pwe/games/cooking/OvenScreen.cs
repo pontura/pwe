@@ -18,29 +18,39 @@ namespace Pwe.Games.Cooking
             cooking,
             done
         }
+        [SerializeField] ButtonUI btnDone;
         [SerializeField] ButtonUI btnNext;
         [SerializeField] ButtonUI btnPrev;
         [SerializeField] GameObject clockGO;
         [SerializeField] NumFeedback numFeedback;
-        [SerializeField] BigNumberSignal bigNumberSignal;
+        [SerializeField] CookingMainPiece mainPiece;
+        [SerializeField] Transform mainPieceContainer;
         int num;
-        int ovenDuration = 4;
+       // int ovenDuration = 4;
         int totalNums = 10;
-        float speedWhenDone = 60;
-        float speed = 2;
+        float speedWhenDone = 100;
+        float speed = 8;
 
         public override void OnInitialize()
         {
             if (GamesManager.Instance != null)
             {
                 int level = GamesManager.Instance.GetGame(GameData.GAMES.COOKING).level;
-                ovenDuration = Game.CookingData.GetLevelData(level).ovenDuration;
+               // ovenDuration = Game.CookingData.GetLevelData(level).ovenDuration;
             }
 
-            bigNumberSignal.Init(ovenDuration);
+          //  bigNumberSignal.Init(ovenDuration);
+            btnDone.Init(OnDoneClicked);
             btnNext.Init(NextClicked);
             btnPrev.Init(PrevClicked);
-            btnPrev.SetInteraction(false);
+        }
+        public override void OnInit()
+        {
+            mainPiece.transform.SetParent(mainPieceContainer);
+            mainPiece.transform.localScale = Vector3.one;
+            mainPiece.transform.localPosition = Vector3.zero;
+            state = states.playing;
+            base.OnInit();
         }
         public override void OnUpdate()
         {
@@ -62,55 +72,52 @@ namespace Pwe.Games.Cooking
         }
         void UpdateClicks()
         {
-            float _a = (float)num * 360 / (float)totalNums;
+            float _a = (float)num * 340 / (float)totalNums;
             float _rot = Mathf.Lerp(clockGO.transform.localEulerAngles.z, _a, speed*Time.deltaTime);
             clockGO.transform.localEulerAngles = new Vector3(0, 0, _rot);
         }
-        public override void OnInit()
+        void OnDoneClicked()
         {
-            state = states.playing;
-            base.OnInit();
+            state = states.playing_done;
+            btnNext.SetInteraction(false);
+            btnPrev.SetInteraction(false);
+            YaguarLib.Events.Events.OnPlaySound(YaguarLib.Audio.AudioManager.types.REWARD);
+            StartCooking();
         }
         void NextClicked()
         {
-            if (Ended()) return;
+            if (num == 10) return;
             if (state != states.playing) return;
             num++;
-            numFeedback.Init(num);
-            Events.OnSayNumber(num);
-            if (num >= ovenDuration)
-                StartCooking();
-            SetButtonsState();
+            OnFeedback();
         }
         void PrevClicked()
         {
-            if (Ended()) return;
+            if (num < 1) return;
             if (state != states.playing) return;
             num--;
-            if (num < 0) num = 0;
+            OnFeedback();
+        }
+        void OnFeedback()
+        {
+            numFeedback.Init(num);
+            Events.OnSayNumber(num);
             SetButtonsState();
+
         }
         void SetButtonsState()
         {
-            if(state == states.playing)
-                btnPrev.SetInteraction(true);
+            btnNext.SetInteraction(true);
+            btnPrev.SetInteraction(true);
+            if (num>=10)
+                btnNext.SetInteraction(false);
             if (num<=0)
                 btnPrev.SetInteraction(false);
-            else if (Ended())
-            {
-                state = states.playing_done;
-                btnNext.SetInteraction(false);
-                btnPrev.SetInteraction(false);
-                YaguarLib.Events.Events.OnPlaySound(YaguarLib.Audio.AudioManager.types.REWARD);
-            }
         }
-        bool Ended()
-        {
-            return (num >= ovenDuration);
-        }
+      
         void StartCooking()
         {
-            Invoke("StartCookingDone", 2);
+            Invoke("StartCookingDone", 0.25f);
         }
         void StartCookingDone()
         {
@@ -123,7 +130,7 @@ namespace Pwe.Games.Cooking
         }
         IEnumerator NextIngredient()
         {       
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(0.5f);
             Next();
         }
     }

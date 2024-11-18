@@ -1644,6 +1644,10 @@ PrefabInstance:
       propertyPath: _lineColor.r
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5034918855001363881, guid: 1f731e72ff1c162488020bb63e18d1c7, type: 3}
+      propertyPath: controlPoint1
+      value: 
+      objectReference: {fileID: 6592265230793343819}
     - target: {fileID: 5303723511905375204, guid: 1f731e72ff1c162488020bb63e18d1c7, type: 3}
       propertyPath: m_Name
       value: Orbit2
@@ -1701,3 +1705,8 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f731e72ff1c162488020bb63e18d1c7, type: 3}
+--- !u!4 &6592265230793343819 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7646071069643710492, guid: 1f731e72ff1c162488020bb63e18d1c7, type: 3}
+  m_PrefabInstance: {fileID: 3557882653511885655}
+  m_PrefabAsset: {fileID: 0}

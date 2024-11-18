@@ -30,9 +30,9 @@ namespace Pwe
         public void Init(string riveFileName, System.Action OnReady = null)
         {
             this.OnReady = OnReady;
-            Vector2 s = transform.localScale;
-            s.y = Mathf.Abs(transform.localScale.y)*-1;
-            transform.localScale = s;
+            Vector2 s = image.transform.localScale;
+            s.y = Mathf.Abs(image.transform.localScale.y)*-1;
+            image.transform.localScale = s;
             MainApp.Instance.riveFilesManager.Load(riveFileName, OnDone);
         }
         void OnDone(byte[] data, string riveName)
@@ -51,8 +51,6 @@ namespace Pwe
 
             m_renderQueue = new Rive.RenderQueue(renderTexture);
 
-            
-
             m_riveRenderer = m_renderQueue.Renderer();
 
             m_artboard = m_file.Artboard(0);
@@ -63,15 +61,10 @@ namespace Pwe
                 m_riveRenderer.Align(fit, alignment, m_artboard);
                 m_riveRenderer.Draw(m_artboard);
 
-                m_commandBuffer = m_riveRenderer.ToCommandBuffer();
+                m_commandBuffer = new CommandBuffer();
                 m_commandBuffer.SetRenderTarget(renderTexture);
                 m_commandBuffer.ClearRenderTarget(true, true, UnityEngine.Color.clear, 0.0f);
                 m_riveRenderer.AddToCommandBuffer(m_commandBuffer);
-                m_camera = Camera.main;
-                if (m_camera != null)
-                {
-                    Camera.main.AddCommandBuffer(CameraEvent.AfterEverything, m_commandBuffer);
-                }
             }
             renderTexture.enableRandomWrite = true;
             image.texture = renderTexture;
@@ -116,6 +109,7 @@ namespace Pwe
         public void SetNumber(string triggerName, int number)
         {
             print("SetNumber : " + triggerName + " num: " + number);
+            if (number < 0) return;
             SMINumber someNumber = m_stateMachine.GetNumber(triggerName);
             if (someNumber == null) return;
             someNumber.Value = number;
@@ -124,6 +118,13 @@ namespace Pwe
         }
         private void Update()
         {
+            if (m_riveRenderer != null)
+            {
+                m_riveRenderer.Submit();
+                GL.InvalidateState();
+            }
+            // m_riveRenderer.Submit();
+
             if (m_stateMachine != null)
             {
                 m_stateMachine.Advance(Time.deltaTime);

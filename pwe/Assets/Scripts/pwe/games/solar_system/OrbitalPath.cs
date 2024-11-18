@@ -10,8 +10,9 @@ namespace Pwe.Games.SolarSystem
     {
         [SerializeField] Transform initPoint;
         [SerializeField] Transform endPoint;
-        [SerializeField] Transform controlPoint;
-        
+        [SerializeField] Transform controlPoint1;
+        [SerializeField] Transform controlPoint2;
+
         [SerializeField] int lineResolution = 200;
         [SerializeField] Color _lineColor;
 
@@ -27,8 +28,31 @@ namespace Pwe.Games.SolarSystem
 
 
         public Vector3 FollowPath(float position) {
-            Vector3 m1 = Vector3.Lerp(initPoint.position, controlPoint.position, position);
-            Vector3 m2 = Vector3.Lerp(controlPoint.position, endPoint.position, position);
+            if (controlPoint2 == null) {
+                return GetPoint(position);
+            } else {
+                return GetPoint(position, initPoint.position, controlPoint1.position, controlPoint2.position, endPoint.position);
+            }
+        }
+        private Vector2 GetPoint(float t, Vector2 p0, Vector2 p1, Vector2 p2, Vector2 p3) {
+            float cx = 3 * (p1.x - p0.x);
+            float cy = 3 * (p1.y - p0.y);
+            float bx = 3 * (p2.x - p1.x) - cx;
+            float by = 3 * (p2.y - p1.y) - cy;
+            float ax = p3.x - p0.x - cx - bx;
+            float ay = p3.y - p0.y - cy - by;
+            float Cube = t * t * t;
+            float Square = t * t;
+
+            float resX = (ax * Cube) + (bx * Square) + (cx * t) + p0.x;
+            float resY = (ay * Cube) + (by * Square) + (cy * t) + p0.y;
+
+            return new Vector2(resX, resY);
+        }
+
+        private Vector3 GetPoint(float position) {
+            Vector3 m1 = Vector3.Lerp(initPoint.position, controlPoint1.position, position);
+            Vector3 m2 = Vector3.Lerp(controlPoint1.position, endPoint.position, position);
             return Vector3.Lerp(m1, m2, position);
         }
 

@@ -17,8 +17,12 @@ namespace Pwe.Games.Cooking
             Debug.Log("Cooking Get Items level: " + level);
 
             LevelData levelData = levelsData.levels[level];
+            Debug.Log("num: " + num);
+            Debug.Log("levelData: " + levelData);
+            Debug.Log("ingredients: " + levelData.ingredients);
+            Debug.Log("ingredients Count: " + levelData.ingredients.Count);
             List<ItemData> items = levelData.ingredients;
-            num = items[num].num;  
+            num = items[0].num;  
             return items;
         }
         public LevelData GetLevelData(int level)

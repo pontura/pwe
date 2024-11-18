@@ -1,45 +1,63 @@
+using System.Collections.Generic;
 using UnityEngine;
-using Yaguar.Inputs;
-using Yaguar.Inputs2D;
-using static Pwe.Games.Cooking.CookingData;
 
 namespace Pwe.Games.Cooking
 {
-    public class PiecesContainer : InteractiveElement
+    public class PiecesContainer : MonoBehaviour
     {
-        RiveTexture riveTexture;
-        [SerializeField] DragInputManager dragInputManager;
-        [SerializeField] DragElement dragElement;
+       // Animation anim;
+        RiveRawImage riveTexture;
         string actionKey;
         public string ActionKey { get { return actionKey; } }
         string actionKeyQty;
         int num;
         Cooking cooking;
+        [SerializeField] TMPro.TMP_Text field;
+        CookingMainPiece mainPiece;
+        List<ItemData> items;
+        [SerializeField] GameObject signalNum;
+        [SerializeField] GameObject signalNumDone;
+        int itemID;
 
         private void Awake()
         {
-            riveTexture = GetComponent<RiveTexture>(); 
-          
+            signalNumDone.SetActive(false);
+            riveTexture = GetComponent<RiveRawImage>(); 
+          //  anim = GetComponent<Animation>();
         }
-        public void Initialize(System.Action OnReady)
-        {
-            riveTexture.Init("pwa-bowl.riv", OnReady);
-        }
-        public void InitIngredient(Cooking cooking, ItemData.Items item, int num)
+        public void Initialize(int itemID, List<ItemData> items, Cooking cooking, CookingMainPiece mainPiece)
         {
             this.cooking = cooking;
+            this.itemID = itemID;
+            this.items = items;
+            this.mainPiece = mainPiece;
+            riveTexture.Init("pwa-bowl.riv", OnReady);
+        }
+        public void SetSignalQty(int qty)
+        {
+            signalNum.SetActive(qty > 0);
+            if(qty>0)
+                field.text = qty.ToString();
+        }
+        void OnReady()
+        {
+            InitIngredient(items[itemID].item, 10);
+        }
+        public void InitIngredient(ItemData.Items item, int num)
+        {
             this.num = num;
             this.actionKey = item.ToString();
             actionKeyQty = actionKey + "_qty";
             riveTexture.SetTrigger(actionKey);
             riveTexture.SetNumber(actionKeyQty, num);
         }
-        public override void OnClicked()
+        public void OnClicked()
         {
+            mainPiece.SetPieceContainer(this);
             if (!cooking.CanMove()) return;
             Remove();
             Vector2 pos = Input.mousePosition;
-            dragInputManager.ForceDrag(pos, dragElement);
+            cooking.InitDrag();
         }
         public void Add() // if drop item out:
         {
@@ -50,6 +68,18 @@ namespace Pwe.Games.Cooking
         {
             num--;
             riveTexture.SetNumber(actionKeyQty, num);
+        }
+        public void AnimIn()
+        {
+          //  anim.Play("in");
+        }
+        public void AnimOut()
+        {
+           // anim.Play("out");
+        }
+        public void CheckIngredientReady(string ingredient)
+        {
+            signalNumDone.SetActive(ingredient == actionKey);
         }
     }
 }
