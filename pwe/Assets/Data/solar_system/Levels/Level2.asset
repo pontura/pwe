@@ -64,8 +64,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  <MinSize>k__BackingField: 0.4
-  <MaxSize>k__BackingField: 0.6
+  <MinSize>k__BackingField: 0.33
+  <MaxSize>k__BackingField: 1.3
   sizeCurve:
     serializedVersion: 2
     m_Curve:
@@ -101,11 +101,6 @@ MonoBehaviour:
     planetName: 4
     colliderRadius: 1
     animClip: {fileID: 7400000, guid: 9f49763166c36ae46a840ce33cfa0aa9, type: 2}
-  - orbitalItem: {fileID: 0}
-    orbitalPath: {fileID: 8412587118133278462, guid: b233002bde61bfa48b87b10494036eb4, type: 3}
-    planetName: 5
-    colliderRadius: 1
-    animClip: {fileID: 7400000, guid: 0b544850194f4514484012941e24e4d5, type: 2}
   - orbitalItem: {fileID: -4921058695821818843, guid: cd79c7b762c7cd840a14ae96cf4cc385, type: 3}
     orbitalPath: {fileID: 2853541376672596798, guid: 238bed0c963ff9d46806b70999a2927f, type: 3}
     planetName: 0
