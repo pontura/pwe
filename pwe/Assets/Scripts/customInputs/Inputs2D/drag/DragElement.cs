@@ -2,12 +2,12 @@ using UnityEngine;
 
 namespace Yaguar.Inputs2D
 {
-    public class DragElement : InteractiveElement
-    {
+    public class DragElement : InteractiveElement {
+        
         states state;
-        Vector2 offset;
+        Vector3 offset;
 
-        enum states
+        protected enum states
         {
             IDLE,
             DRAGGING
@@ -21,25 +21,23 @@ namespace Yaguar.Inputs2D
             coll.isTrigger = true;
             ie = GetComponent<InteractiveElement>();
         }
-        public void ForcePosition(Vector3 pos)
+        public virtual void ForcePosition(Vector3 pos)
         {
-           // Vector3 worldPos = GetWorldPos(pos);
-            transform.position = pos;
+            transform.position = GetWorldPos(pos);
         }
-        public void InitDrag(Vector3 pos)
+        public virtual void InitDrag(Vector3 pos)
         {
             if (state == states.DRAGGING) return;
             OnInitDrag();
-           // Vector3 worldPos = GetWorldPos(pos);
-            offset = transform.position - pos;
+            Vector3 worldPos = GetWorldPos(pos);
+            offset = transform.position - worldPos;
             state = states.DRAGGING;
         }
-        public void Move(Vector2 pos)
+        public virtual void Move(Vector2 pos)
         {
             if (state == states.IDLE) return;
-            //   Vector3 worldPos = GetWorldPos(pos);
-            pos += new Vector2(offset.x, offset.y);//, transform.position.z);
-            transform.position = pos;
+            Vector3 worldPos = GetWorldPos(pos);
+            transform.position = new Vector3(offset.x+worldPos.x, offset.y+worldPos.y, transform.position.z);
         }
         public void EndDrag()
         {
@@ -49,9 +47,8 @@ namespace Yaguar.Inputs2D
         }
         Vector3 GetWorldPos(Vector2 pos)
         {
-            // Vector3 worldPos = Camera.main.ScreenToWorldPoint(pos);
-           // pos.z = transform.position.z;
-            return pos;
+            Vector3 worldPos = Camera.main.ScreenToWorldPoint(pos);
+            return worldPos;
         }
         private void OnTriggerEnter2D(Collider2D other)
         {
