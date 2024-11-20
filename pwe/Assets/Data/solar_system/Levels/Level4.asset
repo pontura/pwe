@@ -64,37 +64,28 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  <MinSize>k__BackingField: 0.33
-  <MaxSize>k__BackingField: 1.3
+  <MinSize>k__BackingField: 0.3
+  <MaxSize>k__BackingField: 0.4
   sizeCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0.0067710876
-      value: 0.020355225
-      inSlope: 0.027345624
-      outSlope: 0.027345624
+      time: 0
+      value: 0
+      inSlope: 1
+      outSlope: 1
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.33333334
+      outWeight: 0
     - serializedVersion: 3
-      time: 0.47388226
-      value: 0.03312867
-      inSlope: 0.026046894
-      outSlope: 0.026046894
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 1
       tangentMode: 34
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1.0017395
-      value: 0.04619217
-      inSlope: 0.024748165
-      outSlope: 0.024748165
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
+      inWeight: 0
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
