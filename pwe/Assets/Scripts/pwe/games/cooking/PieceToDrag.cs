@@ -3,7 +3,7 @@ using Yaguar.Inputs2D;
 
 namespace Pwe.Games.Cooking
 {
-    public class PieceToDrag : DragElement
+    public class PieceToDrag : DragElementUI
     {
         [SerializeField] CookingMainPiece mainPiece;
         RiveRawImage riveTexture;
