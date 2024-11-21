@@ -11,16 +11,33 @@ using YaguarLib.Audio;
 namespace Pwe.Games.Abc
 {
     public class AbcGame : GameMain
-    {        
+    {
+        [SerializeField] Transform gameContainer;
+        [SerializeField] LevelsManager levelsManager;
+
+        LevelManager _levelManager;
 
         public override void OnInitialize() {
-            
+            levelsManager.OnLevelCompleted += OnLevelCompleted;
         }
 
         public override void OnInit() {
             base.OnInit();
-
             
+            InitLevel();
+
+        }
+
+        void InitLevel() {
+            AbcLevelData ld = levelsManager.InitLevel() as AbcLevelData;
+            foreach (Transform child in gameContainer)
+                Destroy(child.gameObject);
+            _levelManager = Instantiate(ld.LevelPrefab, gameContainer);
+            _levelManager.InitLevel();
+        }
+
+        void OnLevelCompleted() {
+            Debug.Log("#OnLevelCompleted");
         }
 
         private void OnDestroy() {

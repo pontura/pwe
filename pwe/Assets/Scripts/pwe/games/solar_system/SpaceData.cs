@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace Pwe.Games.SolarSystem
 {
     [CreateAssetMenu(fileName = "NewSpaceData", menuName = "SolarSystem/Data/Space", order = 0)]
-    public class SpaceData : ScriptableObject
+    public class SpaceData : Pwe.Games.Common.LevelData
     {
         //[Range(1, 6)]
         [HideInInspector] [field: SerializeField] public float MinDistance { get; private set; }

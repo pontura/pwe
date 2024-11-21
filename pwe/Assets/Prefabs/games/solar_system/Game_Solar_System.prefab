@@ -1222,6 +1222,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1e20beba9260574da0eaaf663e13982, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameType: 1
   levels:
   - {fileID: 11400000, guid: 2dd15040333b6a84e9287fd1689fb26c, type: 2}
   - {fileID: 11400000, guid: 6d2ca508c5b7b0541ae750c83d8b71b4, type: 2}

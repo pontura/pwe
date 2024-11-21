@@ -9,7 +9,8 @@ namespace Pwe.Core
         public enum GAMES
         {
             COOKING,
-            PHOTOS
+            PHOTOS,
+            ABC
         }
         public GAMES game;
         public GameObject gameGO;
