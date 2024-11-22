@@ -4,7 +4,6 @@ namespace Yaguar.Inputs2D
 {
     public class DragElementUI : DragElement{
         
-        states state;
         Vector2 offset;              
 
         public override void ForcePosition(Vector3 pos)

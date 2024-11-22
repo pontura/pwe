@@ -4,10 +4,10 @@ namespace Yaguar.Inputs2D
 {
     public class DragElement : InteractiveElement {
         
-        states state;
+        public states state;
         Vector3 offset;
 
-        protected enum states
+        public enum states
         {
             IDLE,
             DRAGGING
@@ -41,6 +41,7 @@ namespace Yaguar.Inputs2D
         }
         public void EndDrag()
         {
+            print("EndDrag " + state);
             if (state == states.IDLE) return;
             OnEndDrag();
             state = states.IDLE;
