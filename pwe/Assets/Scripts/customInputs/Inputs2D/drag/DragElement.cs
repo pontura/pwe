@@ -15,7 +15,11 @@ namespace Yaguar.Inputs2D
 
         BoxCollider2D coll;
         InteractiveElement ie;
-        void Start()
+
+        InteractiveElement overIE;
+        public InteractiveElement GetIeOver { get { return overIE; } }
+
+        public override void OnStart()
         {
             coll = GetComponent<BoxCollider2D>();
             coll.isTrigger = true;
@@ -55,9 +59,9 @@ namespace Yaguar.Inputs2D
         {
             print("OnTriggerEnter2D" + other);
             if (state != states.DRAGGING) return;
-            InteractiveElement ie = other.GetComponent<InteractiveElement>();
-            if (ie != null)
-                ie.OnIECollisionEnter(ie);
+            overIE = other.GetComponent<InteractiveElement>();
+            if (overIE != null)
+                overIE.OnIECollisionEnter(this);
         }
         private void OnTriggerExit2D(Collider2D other)
         {
@@ -65,7 +69,11 @@ namespace Yaguar.Inputs2D
             if (state != states.DRAGGING) return;
             InteractiveElement ie = other.GetComponent<InteractiveElement>();
             if (ie != null)
-                ie.OnIECollisionExit(ie);
+            {
+                ie.OnIECollisionExit(this);
+                if(overIE != null && overIE == ie)
+                    overIE = null;
+            }
         }
         public virtual void OnEndDrag() { }
         public virtual void OnInitDrag() { }

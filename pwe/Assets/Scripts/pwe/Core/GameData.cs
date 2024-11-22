@@ -10,7 +10,8 @@ namespace Pwe.Core
         {
             COOKING,
             PHOTOS,
-            ABC
+            ABC,
+            COMPARE_CONTRAST
         }
         public GAMES game;
         public GameObject gameGO;
