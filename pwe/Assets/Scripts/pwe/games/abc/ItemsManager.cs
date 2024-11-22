@@ -8,7 +8,7 @@ namespace Pwe.Games.Abc
     public class ItemsManager : MonoBehaviour {
 
         [SerializeField] Transform container;
-        [SerializeField] ItemToChange item_prefab;
+        [SerializeField] ItemToInteractWith item_prefab;
 
         List<GameObject> allItems;
 
@@ -22,14 +22,14 @@ namespace Pwe.Games.Abc
             //SetItemsToShow(item_prefab, container);
         }
 
-        public void SetItems(ItemToChange itemPrefab, Transform container) {
+        public void SetItems(ItemToInteractWith itemPrefab, Transform container) {
             _itemsCompletedCount = 0;
             allItems = new();
             foreach (Transform t in container.GetComponentsInChildren<Transform>()) {
                 if (t == container)
                     continue;
                 Debug.Log("#" + t.gameObject.name);
-                ItemToChange item = Instantiate(itemPrefab, container);
+                ItemToInteractWith item = Instantiate(itemPrefab, container);
                 allItems.Add(item.gameObject);
                 item.transform.localPosition = t.localPosition;
                 item.Init(OnChange);

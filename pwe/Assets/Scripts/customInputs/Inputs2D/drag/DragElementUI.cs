@@ -4,8 +4,6 @@ namespace Yaguar.Inputs2D
 {
     public class DragElementUI : DragElement{
         
-        Vector2 offset;              
-
         public override void ForcePosition(Vector3 pos)
         {
             transform.position = pos;

@@ -31,6 +31,10 @@ namespace Pwe.Games.Abc
             itemsManager.SetItems(ls.ItemPrefab, itemsContainer.transform);            
             GameObject drag = Instantiate(ls.ItemToDragPrefab, container);
             drag.transform.localPosition = ls.ItemToDragPosition.position;
+            if (ls.path != null) {
+                drag.GetComponent<DragPathElement>().linePath = ls.path;
+            }
+
         }
 
         void OnStepCompleted() {
@@ -39,7 +43,6 @@ namespace Pwe.Games.Abc
                 OnLevelCompleted();
                 return;
             }
-
             InitLevel();
         }
 

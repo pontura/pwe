@@ -5,7 +5,7 @@ using Yaguar.Inputs2D;
 
 namespace Pwe.Games.Abc
 {
-    public class ItemToChange : InteractiveElement
+    public class ItemToInteractWith : InteractiveElement
     {
         protected System.Action OnChange;
          

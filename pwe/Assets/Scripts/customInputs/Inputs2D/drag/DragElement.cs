@@ -5,7 +5,7 @@ namespace Yaguar.Inputs2D
     public class DragElement : InteractiveElement {
         
         public states state;
-        Vector3 offset;
+        protected Vector2 offset;
 
         public enum states
         {
