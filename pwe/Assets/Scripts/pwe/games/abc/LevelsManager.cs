@@ -11,5 +11,12 @@ namespace Pwe.Games.Abc
             SetCurrentLevelIndex();
         }
 
+        public void SetLevelCompleted() {
+            CurrentLevelIndex++;
+            if (CurrentLevelIndex >= levels.Count) {
+                CurrentLevelIndex = 0;
+                GamesManager.Instance.All[(int)(int)gameType].level = 0;
+            }
+        }
     }
 }

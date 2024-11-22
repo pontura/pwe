@@ -18,7 +18,7 @@ namespace Pwe.Games.Abc
         LevelManager _levelManager;
 
         public override void OnInitialize() {
-            levelsManager.OnLevelCompleted += OnLevelCompleted;
+            
         }
 
         public override void OnInit() {
@@ -33,11 +33,12 @@ namespace Pwe.Games.Abc
             foreach (Transform child in gameContainer)
                 Destroy(child.gameObject);
             _levelManager = Instantiate(ld.LevelPrefab, gameContainer);
+            _levelManager.OnLevelCompleted += OnLevelCompleted;
             _levelManager.InitLevel();
         }
 
         void OnLevelCompleted() {
-            Debug.Log("#OnLevelCompleted");
+            InitLevel();
         }
 
         private void OnDestroy() {

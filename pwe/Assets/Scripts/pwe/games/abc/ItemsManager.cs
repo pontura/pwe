@@ -8,9 +8,13 @@ namespace Pwe.Games.Abc
     public class ItemsManager : MonoBehaviour {
 
         [SerializeField] Transform container;
-        [SerializeField] Yaguar.Inputs2D.InteractiveElement item_prefab;
+        [SerializeField] ItemToChange item_prefab;
 
         List<GameObject> allItems;
+
+        public event System.Action OnStepCompleted;
+
+        int _itemsCompletedCount;
 
         // Start is called before the first frame update
         void Start () {
@@ -18,30 +22,25 @@ namespace Pwe.Games.Abc
             //SetItemsToShow(item_prefab, container);
         }
 
-        public void SetItemsToRemove(Yaguar.Inputs2D.InteractiveElement itemPrefab, Transform container) {
+        public void SetItems(ItemToChange itemPrefab, Transform container) {
+            _itemsCompletedCount = 0;
             allItems = new();
             foreach (Transform t in container.GetComponentsInChildren<Transform>()) {
                 if (t == container)
                     continue;
                 Debug.Log("#" + t.gameObject.name);
-                ItemToRemove item = Instantiate(itemPrefab, container) as ItemToRemove;
+                ItemToChange item = Instantiate(itemPrefab, container);
                 allItems.Add(item.gameObject);
                 item.transform.localPosition = t.localPosition;
+                item.Init(OnChange);
                 t.gameObject.SetActive(false);
             }
-        }
-
-        public void SetItemsToShow(Yaguar.Inputs2D.InteractiveElement itemPrefab, Transform container) {
-            allItems = new();
-            foreach (Transform t in container.GetComponentsInChildren<Transform>()) {
-                if (t == container)
-                    continue;
-                Debug.Log("#" + t.gameObject.name);
-                ItemToShow item = Instantiate(itemPrefab, container) as ItemToShow;
-                allItems.Add(item.gameObject);
-                item.transform.localPosition = t.localPosition;
-                item.Init(null);
-                t.gameObject.SetActive(false);
+        }     
+        
+        void OnChange() {
+            _itemsCompletedCount++;
+            if (_itemsCompletedCount >= allItems.Count) {
+                OnStepCompleted();
             }
         }
 

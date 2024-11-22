@@ -5,19 +5,16 @@ using Yaguar.Inputs2D;
 
 namespace Pwe.Games.Abc
 {
-    public class ItemToShow : InteractiveElement
+    public class ItemToShow : ItemToChange
     {
         [SerializeField] SpriteRenderer sr;
-        System.Action OnShow;
          
-        public void Init(System.Action onShow) {
-            OnShow = onShow;
+        public override void Init(System.Action onChange) {
+            base.Init(onChange);
             sr.enabled = false;
         }
         public override void OnIECollisionEnter(InteractiveElement ie) {
-            Debug.Log("#OnIECollisionEnter: " + gameObject.name);
-            if(OnShow!=null)
-                OnShow();
+            base.OnIECollisionEnter(ie);
             sr.enabled = true;
             GetComponent<Collider2D>().enabled = false;
         }
