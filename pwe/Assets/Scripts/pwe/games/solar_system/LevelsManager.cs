@@ -29,7 +29,7 @@ namespace Pwe.Games.SolarSystem
 
             if (CurrentLevelIndex >= levels.Count) {
                 CurrentLevelIndex = 0;
-                GamesManager.Instance.All[(int)GameData.GAMES.PHOTOS].level = 0;
+                GamesManager.Instance.All[(int)(int)gameType].level = 0;
             }
         }
 

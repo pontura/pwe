@@ -5,16 +5,10 @@ using Yaguar.Inputs2D;
 
 namespace Pwe.Games.Abc
 {
-    public class ItemToRemove : InteractiveElement
-    {
-        System.Action OnRemove;
-         
-        public void Init(System.Action onRemove) {
-            OnRemove = onRemove;
-        }
+    public class ItemToRemove : ItemToChange
+    {        
         public override void OnIECollisionEnter(InteractiveElement ie) {
-            if(OnRemove!=null)
-                OnRemove();
+            base.OnIECollisionEnter(ie);
             Destroy(gameObject);
         }
     }
