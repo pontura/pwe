@@ -12,7 +12,7 @@ namespace Pwe.Games.SolarSystem
         [SerializeField] protected OrbitData orbitData;
         protected SpaceData _spaceData;
         [SerializeField] protected SpriteRenderer _itemSR;
-        [SerializeField] CircleCollider2D _itemCollider;
+        [SerializeField] Collider2D _itemCollider;
         protected Transform _sun;
         protected float _orbitPosition;
         protected OrbitalPath _path;
@@ -42,9 +42,11 @@ namespace Pwe.Games.SolarSystem
             orbitData = od;
             _itemSR.sprite = sprite;
             //_itemCollider.radius = (_itemSR.bounds.size*0.15f).magnitude;
-            _itemCollider.radius = colliderRadius;
+            (_itemCollider as CircleCollider2D).radius = colliderRadius;
             _path = oPath;
-            OrbitCurve(Random.value);
+            float offset = id % 2 == 0 ? 0f : 0.5f;
+            float initPos = offset + 0.5f / (id + 1);
+            OrbitCurve(initPos);
             onClick = onclick;
             Moving = true;
         }
@@ -73,9 +75,9 @@ namespace Pwe.Games.SolarSystem
             //transform.RotateAround(_sun.position, _sun.transform.forward, orbitData.speed * Time.deltaTime * _spaceData.SpeedFactor);
         }
 
-        protected void OrbitCurve(float position = 0) {
+        protected void OrbitCurve(float position = -1) {
             if (orbitData != null) {
-                _orbitPosition = position==0 ? _orbitPosition : position;
+                _orbitPosition = position==-1 ? _orbitPosition : position;
                 _orbitPosition += _spaceData.GetSpeed(orbitData.speed) * Time.deltaTime;
                 if (_orbitPosition > 1f)
                     _orbitPosition = 0f;
@@ -91,7 +93,7 @@ namespace Pwe.Games.SolarSystem
         }
 
         public void OnClicked(Vector3 min, Vector3 max) {
-            if (onClick != null) {                
+            if (onClick != null) {
                 //Debug.Log(((PlanetName)id).ToString()+" x: "+(_itemSR.bounds.center.x + extentFactor * _itemSR.bounds.extents.x) +" > "+max.x +" || y: "+(_itemSR.bounds.center.y + extentFactor * _itemSR.bounds.extents.y) +" > "+max.y +" || x: "+(_itemSR.bounds.center.x - extentFactor * _itemSR.bounds.extents.x) +" < "+min.x+" || y: "+(_itemSR.bounds.center.y + extentFactor * _itemSR.bounds.extents.y) +" < "+min.y);
                 //Debug.Log(_itemSR.bounds.min.x + " "+_itemSR.bounds.min.y + ", " + _itemSR.bounds.max.x + " " + _itemSR.bounds.max.y);
                 onClick(!(_itemSR.bounds.center.x + extentFactor * _itemSR.bounds.extents.x > max.x || _itemSR.bounds.center.y + extentFactor * _itemSR.bounds.extents.y > max.y || _itemSR.bounds.center.x - extentFactor * _itemSR.bounds.extents.x < min.x || _itemSR.bounds.center.y - extentFactor * _itemSR.bounds.extents.y < min.y));

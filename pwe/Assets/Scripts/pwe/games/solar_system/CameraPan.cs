@@ -58,14 +58,14 @@ namespace Pwe.Games.SolarSystem
                 _currentSpeed = speed;
                 _turnTime = Mathf.PI*0.5f;
                 _isChangingDirection = false;
-                Debug.Log("#_isChangingDirection: " + _isChangingDirection);
+                //Debug.Log("#_isChangingDirection: " + _isChangingDirection);
             } 
         }
 
         void CheckLimits() {
             if (cam.transform.localPosition.x < horizontalLimits.x || cam.transform.localPosition.x > horizontalLimits.y) {
                 _isChangingDirection = true;
-                Debug.Log("#_isChangingDirection: " + _isChangingDirection);
+                //Debug.Log("#_isChangingDirection: " + _isChangingDirection);
             }
                 //goRight = !goRight;
         }

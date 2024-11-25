@@ -22,7 +22,7 @@ namespace Pwe.Games.UI
         bool _isRight;
 
         public void Init(Texture2D tex, Action callback) {
-            Debug.Log("#Init");
+            //Debug.Log("#Init");
             fullFlash.SetActive(true);
             Invoke(nameof(TurnFlashOff), 0.1f);
             onDone = callback;
@@ -93,10 +93,10 @@ namespace Pwe.Games.UI
         }
 
         void OnClose() {
-            Debug.Log("# Right: " + _isRight);
-            Debug.Log("# _delayedFly: " + _delayedFly);
-            Debug.Log("# _photoFly: " + _photoFly);
-            string animName = _isRight ? "photo__right" : "photo__wrong";
+            //Debug.Log("# Right: " + _isRight);
+            //Debug.Log("# _delayedFly: " + _delayedFly);
+            //Debug.Log("# _photoFly: " + _photoFly);
+            string animName = _isRight ? "photo_right" : "photo_wrong";
             anim.Play(animName);
             //done.SetActive(_isRight);
             if (_delayedFly) {
@@ -110,15 +110,15 @@ namespace Pwe.Games.UI
         }
 
         public void Fly() {
-            Debug.Log("#localPosition: " + frame.localPosition);
-            Debug.Log("#_photoFlyToPos: " + _photoFlyToPos);
+            //Debug.Log("#localPosition: " + frame.localPosition);
+            //Debug.Log("#_photoFlyToPos: " + _photoFlyToPos);
             StartCoroutine(FadeVector(frame.position, _photoFlyToPos, FlyDelay, (vector) => frame.position = vector, Close));
             StartCoroutine(FadeVector(frame.eulerAngles, Vector3.zero, FlyDelay, (vector) => frame.eulerAngles = vector));
             StartCoroutine(FadeVector(frame.sizeDelta, new Vector2(60, 60), FlyDelay, (vector) => frame.sizeDelta = vector));
         }
 
         void Close() {
-            Debug.Log("#Close");
+            //Debug.Log("#Close");
             _photoFly = false;
             _delayedFly = false;
             _isRight = false;            

@@ -9,7 +9,8 @@ namespace Pwe.Games.SolarSystem
         [SerializeField] OrbitalItem[] items;
         // Start is called before the first frame update
         void Start() {
-            items = GetComponentsInChildren<OrbitalItem>();
+            if(items==null)
+                items = GetComponentsInChildren<OrbitalItem>();
         }
         public void SetObstacles(System.Action<PlanetName> OnPlanetClicked) {
             for (int i = 0; i < items.Length; i++) {
