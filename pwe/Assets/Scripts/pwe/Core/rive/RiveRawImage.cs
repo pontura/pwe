@@ -34,6 +34,7 @@ namespace Pwe
             s.y = Mathf.Abs(image.transform.localScale.y)*-1;
             image.transform.localScale = s;
             MainApp.Instance.riveFilesManager.Load(riveFileName, OnDone);
+            SendMessage("Rescaled",SendMessageOptions.DontRequireReceiver); // For ResolutionFixer
         }
         void OnDone(byte[] data, string riveName)
         {

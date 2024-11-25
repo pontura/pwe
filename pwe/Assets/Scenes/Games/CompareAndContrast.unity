@@ -5345,9 +5345,9 @@ MonoBehaviour:
   isOn: 0
   state: 0
   pieces:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 450617786}
+  - {fileID: 2050805658}
+  - {fileID: 494849173}
   dragContainer: {fileID: 0}
 --- !u!114 &7827876856184384631
 MonoBehaviour:

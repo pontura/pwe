@@ -24,7 +24,6 @@ namespace Pwe.Games.Cooking
 
         public void Init(System.Action OnLoaded)
         {
-            anim = GetComponent<Animation>();
             this.OnLoaded = OnLoaded;
             riveTexture = GetComponent<RiveRawImage>();
             riveTexture.Init("pwa-pizza.riv", OnReady);

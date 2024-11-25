@@ -9,6 +9,7 @@ namespace Pwe.Games.Cooking
 {
     public class CookingIntro : GameMain
     {
+        [SerializeField] float autoskipInSeconds;
         [SerializeField] CookingMenuUI menu;
         [SerializeField] ButtonUI button;
         [SerializeField] CookingMainPiece mainPiece;
@@ -27,8 +28,17 @@ namespace Pwe.Games.Cooking
 
             items = (Game as CookingGame).CookingData.GetItems(level);
             menu.Init(items);
-            button.Init(Play);
+          
             mainPiece.Init(OnMainPieceLoaded);
+            if(autoskipInSeconds > 0 )
+            {
+                button.gameObject.SetActive(false);
+                Invoke("Play", 2);
+            }
+            else
+            {
+                button.Init(Play);
+            }
         }
         private void Play()
         {

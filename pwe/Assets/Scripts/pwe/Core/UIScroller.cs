@@ -27,7 +27,7 @@ namespace Pwe.Core
         public void Scroll(bool top)
         {
             if (top) id++; else id--;
-            if (id > total) id = total;
+            if (id > total-1) id = total-1;
             else if (id < 0) id = 0;
             print("scroll " + top + "id: " + id);
         }

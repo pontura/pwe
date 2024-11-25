@@ -1,5 +1,6 @@
 using Pwe.Core;
 using Pwe.Games.Common;
+using Pwe.Games.Cooking.UI;
 using System.Collections.Generic;
 using UnityEngine;
 using Yaguar.Inputs2D;
@@ -14,6 +15,10 @@ namespace Pwe.Games.Cooking
             playing,
             done
         }
+        //menu items:
+        [SerializeField] CookingMenuUI menu;
+        [SerializeField] Transform menuContainer;
+
         [SerializeField] NumFeedback numFeedback;
         [SerializeField] CookingMainPiece mainPiece;
         [SerializeField] CookingPieces pieces;
@@ -38,6 +43,7 @@ namespace Pwe.Games.Cooking
         public override void OnInit()
         {
             buttonProgressBar.Init(NextClicked);
+            buttonProgressBar.SetProgress(false);
             added = new List<string>();
             int level = 0;
 
@@ -56,8 +62,15 @@ namespace Pwe.Games.Cooking
             }
             mainPiece.Init(InitIngredient);
             buttonProgressBar.SetProgress(0, totalPieces);
-        }
 
+            SetMenu();
+        }
+        void SetMenu()
+        {
+            menu.transform.SetParent(menuContainer);
+            menu.transform.localPosition = Vector3.zero;
+            menu.transform.localScale = Vector3.one;
+        }
         private void NextClicked()
         {
             if (buttonProgressBar.IsReady())
