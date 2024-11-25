@@ -61,7 +61,7 @@ namespace Pwe.Core
 
             if (www.result != UnityWebRequest.Result.Success)
             {
-                Debug.LogError("Failed to download .rive file: " + www.error + " - rive file: " + riveFile);
+                Debug.LogError("Failed to download .rive file: " + www.error + " - rive file: " + finalURL);
                 OnDone(null, "");
             }
             else

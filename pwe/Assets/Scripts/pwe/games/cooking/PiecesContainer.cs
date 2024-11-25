@@ -35,7 +35,7 @@ namespace Pwe.Games.Cooking
         }
         public void SetSignalQty(int qty)
         {
-            signalNum.SetActive(qty > 0);
+            //signalNum.SetActive(qty > 0);
             if(qty>0)
                 field.text = qty.ToString();
         }
@@ -79,7 +79,7 @@ namespace Pwe.Games.Cooking
         }
         public void CheckIngredientReady(string ingredient)
         {
-            signalNumDone.SetActive(ingredient == actionKey);
+          //  signalNumDone.SetActive(ingredient == actionKey);
         }
     }
 }

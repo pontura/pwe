@@ -11,6 +11,10 @@ namespace Pwe.Core
         float progress = 0f;
         bool isDone;
 
+        public void SetProgress(bool isDone)
+        {
+            doneGO.SetActive(isDone);
+        }
         private void NextClicked()
         {
             OnClicked(isDone);
@@ -32,7 +36,7 @@ namespace Pwe.Core
             if (!isDone)
             {
                 isDone = true;
-                doneGO.SetActive(isDone);
+                SetProgress(isDone);
             }
         }
     }
