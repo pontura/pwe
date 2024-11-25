@@ -11,15 +11,14 @@ namespace YaguarLib.Xtras
         Vector2 originalPos = Vector2.zero;
         Vector2 oringialScale = Vector2.one;
 
-        private void Start()
+        public void Rescaled()
         {
-            aspect = (float)Screen.width / (float)Screen.height;
+            print(":::::::::::::::Rescaled");
+            originalPos = transform.localPosition;
+            oringialScale = transform.localScale;
+            Recalculate();
         }
         private void OnEnable()
-        {
-            Invoke("Delayed", 0.1f);
-        }
-        void Delayed()
         {
             if (originalPos == Vector2.zero)
             {
