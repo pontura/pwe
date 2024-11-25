@@ -1210,6 +1210,7 @@ MonoBehaviour:
   shotSizeScreenHeightFactor: 0.3
   shotInitialSize: {x: 220, y: 220}
   shotFinalSize: {x: 350, y: 350}
+  _cameraPan: {fileID: 0}
 --- !u!114 &1472948662031635338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1293,7 +1294,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e15563370f4c6df42bce0e0b3f15f98a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <cam>k__BackingField: {fileID: 0}
+  <cam>k__BackingField: {fileID: 8977960211059086314}
   speed: 0.003
   horizontalLimits: {x: -2.9, y: 3}
   initialPosition: {x: 0, y: 0, z: 0}
@@ -2797,7 +2798,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4194344426216433879}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!1 &4234532008272788534
 GameObject:
   m_ObjectHideFlags: 0
