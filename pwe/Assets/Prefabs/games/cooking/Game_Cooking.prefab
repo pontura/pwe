@@ -749,81 +749,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1.25
---- !u!1 &1190015745875035975
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3373420580208026277}
-  - component: {fileID: 1085227191922414648}
-  - component: {fileID: 3690720361880732117}
-  m_Layer: 5
-  m_Name: Image
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &3373420580208026277
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1190015745875035975}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1594931468729604853}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 51}
-  m_SizeDelta: {x: 1602, y: 841}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &1085227191922414648
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1190015745875035975}
-  m_CullTransparentMesh: 1
---- !u!114 &3690720361880732117
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1190015745875035975}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1c41bd5e4ffed7a4b8ab4873668f4154, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &1308067537036782169
 GameObject:
   m_ObjectHideFlags: 0
@@ -1283,7 +1208,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &9140110801355716874
 Transform:
   m_ObjectHideFlags: 0
@@ -1627,8 +1552,9 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3373420580208026277}
+  - {fileID: 2560237248531247600}
   - {fileID: 4615374138835916385}
+  - {fileID: 2557852653858960759}
   - {fileID: 3967424488890757386}
   - {fileID: 480807793789214181}
   - {fileID: 2046245837113309543}
@@ -3135,6 +3061,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   container: {fileID: 5879893843340487568}
+  speed: 0.03
 --- !u!114 &6887760925982529993
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4020,6 +3947,8 @@ MonoBehaviour:
   - Cooking/game_bg/Cooking-items
   - Cooking/game_bg/Cooking-left
   - Cooking/game_bg/Cooking-tablecloth
+  - Cooking/oven/oven
+  - Cooking/oven/ovenDoor
   <CookingData>k__BackingField: {fileID: 8055979562551126070}
 --- !u!114 &8055979562551126070
 MonoBehaviour:
@@ -4784,7 +4713,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8324142670473703437
 Transform:
   m_ObjectHideFlags: 0
@@ -5056,6 +4985,124 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
+--- !u!1 &6463685773126824530
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2557852653858960759}
+  - component: {fileID: 37381261513410223}
+  - component: {fileID: 8425846025144511414}
+  - component: {fileID: 8805208606270268740}
+  - component: {fileID: 5579861796439693629}
+  - component: {fileID: 9213393769579648015}
+  m_Layer: 0
+  m_Name: ovenDoor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2557852653858960759
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6463685773126824530}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1594931468729604853}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -53.99, y: 0}
+  m_SizeDelta: {x: 2752, y: 1272}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &37381261513410223
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6463685773126824530}
+  m_CullTransparentMesh: 1
+--- !u!114 &8425846025144511414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6463685773126824530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 0
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Texture: {fileID: 0}
+  m_UVRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+--- !u!114 &8805208606270268740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6463685773126824530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ffb35beadfb9d84b8acd8ea37f2a633, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: {x: 2752, y: 1272}
+  _renderTexture: {fileID: 0}
+  image: {fileID: 8425846025144511414}
+  fit: 1
+--- !u!114 &5579861796439693629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6463685773126824530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b731a4df1f35b3443850d58f7f8921c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  riveName: Cooking/oven/ovenDoor
+--- !u!114 &9213393769579648015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6463685773126824530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af07983fbf515d44f88036f486060e84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ipad_pos: {x: 0, y: 0}
+  ipad_scale: 0.8
 --- !u!1 &6663889514990645202
 GameObject:
   m_ObjectHideFlags: 0
@@ -5806,7 +5853,6 @@ GameObject:
   - component: {fileID: 5114054351251442596}
   - component: {fileID: 6763781487209287813}
   - component: {fileID: 3723264995606962995}
-  - component: {fileID: 6384388518673594662}
   - component: {fileID: 5608355261016114903}
   - component: {fileID: 6106050523439388961}
   m_Layer: 0
@@ -5912,33 +5958,17 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7353027997255634973}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9ef24d154ce2aa147bbc275f76f10cfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0
-  anim: {fileID: 6384388518673594662}
+  anim: {fileID: 0}
   cooking: {fileID: 6547004750030210574}
   states_pizza: states_pizza
   trigger: init_olives
   piecesContainer: {fileID: 4922457462750227936}
---- !u!111 &6384388518673594662
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7353027997255634973}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 8962587c864393c4983831d5f02fa793, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: 8962587c864393c4983831d5f02fa793, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 0
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!114 &5608355261016114903
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5946,7 +5976,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7353027997255634973}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4ffb35beadfb9d84b8acd8ea37f2a633, type: 3}
   m_Name: 
@@ -7014,6 +7044,124 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1.25
+--- !u!1 &8901621403463606206
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2560237248531247600}
+  - component: {fileID: 5158191624861433623}
+  - component: {fileID: 470925447542981411}
+  - component: {fileID: 8907267855346064008}
+  - component: {fileID: 4282576445373705219}
+  - component: {fileID: 1184452307731937143}
+  m_Layer: 0
+  m_Name: oven
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2560237248531247600
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8901621403463606206}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1594931468729604853}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -53.99, y: 0}
+  m_SizeDelta: {x: 2752, y: 1272}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &5158191624861433623
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8901621403463606206}
+  m_CullTransparentMesh: 1
+--- !u!114 &470925447542981411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8901621403463606206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 0
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Texture: {fileID: 0}
+  m_UVRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+--- !u!114 &8907267855346064008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8901621403463606206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ffb35beadfb9d84b8acd8ea37f2a633, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: {x: 2752, y: 1272}
+  _renderTexture: {fileID: 0}
+  image: {fileID: 470925447542981411}
+  fit: 1
+--- !u!114 &4282576445373705219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8901621403463606206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b731a4df1f35b3443850d58f7f8921c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  riveName: Cooking/oven/oven
+--- !u!114 &1184452307731937143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8901621403463606206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af07983fbf515d44f88036f486060e84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ipad_pos: {x: 0, y: 0}
+  ipad_scale: 0.8
 --- !u!1 &8996882110241080955
 GameObject:
   m_ObjectHideFlags: 0
