@@ -5,11 +5,11 @@ namespace YaguarLib.Xtras
     [ExecuteAlways]
     public class ResolutionFixer : MonoBehaviour
     {
-        [SerializeField] Vector2 ipad_pos_offset;
-        [SerializeField] Vector2 ipad_scale;
+        [SerializeField] Vector2 ipad_pos;
+        [SerializeField] float ipad_scale;
         float aspect = 0;
         Vector2 originalPos = Vector2.zero;
-        Vector2 oringialScale = Vector2.zero;
+        Vector2 oringialScale = Vector2.one;
 
         private void Start()
         {
@@ -17,7 +17,11 @@ namespace YaguarLib.Xtras
         }
         private void OnEnable()
         {
-            if(originalPos ==  Vector2.zero)
+            Invoke("Delayed", 0.1f);
+        }
+        void Delayed()
+        {
+            if (originalPos == Vector2.zero)
             {
                 originalPos = transform.localPosition;
                 oringialScale = transform.localScale;
@@ -48,8 +52,8 @@ namespace YaguarLib.Xtras
         {
             if(isIpad)
             {
-                transform.localPosition = ipad_pos_offset;
-                transform.localScale = ipad_scale;
+                transform.localPosition = ipad_pos;
+                transform.localScale= oringialScale * ipad_scale;
             }
             else
             {
