@@ -276,11 +276,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!111 &1438881125 stripped
-Animation:
-  m_CorrespondingSourceObject: {fileID: 6676189911588522435, guid: 41c9eab2edc7c474faa1c6d6d499d5b9, type: 3}
-  m_PrefabInstance: {fileID: 1331384191146497407}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1947948208
 GameObject:
   m_ObjectHideFlags: 0
@@ -357,17 +352,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2053897525822707890, guid: 41c9eab2edc7c474faa1c6d6d499d5b9, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2053897525822707890, guid: 41c9eab2edc7c474faa1c6d6d499d5b9, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3298397122089748396, guid: 41c9eab2edc7c474faa1c6d6d499d5b9, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.48000002
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 3298397122089748396, guid: 41c9eab2edc7c474faa1c6d6d499d5b9, type: 3}
       propertyPath: m_LocalScale.y
@@ -437,10 +424,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Game_Cooking
       objectReference: {fileID: 0}
-    - target: {fileID: 6910095693891515921, guid: 41c9eab2edc7c474faa1c6d6d499d5b9, type: 3}
-      propertyPath: anim
-      value: 
-      objectReference: {fileID: 1438881125}
     - target: {fileID: 7918256954821729451, guid: 41c9eab2edc7c474faa1c6d6d499d5b9, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
