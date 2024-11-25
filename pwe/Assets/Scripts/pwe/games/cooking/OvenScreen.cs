@@ -4,6 +4,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using YaguarLib.UI;
+using YaguarLib.Xtras;
 using static ItemData;
 
 namespace Pwe.Games.Cooking
@@ -46,11 +47,15 @@ namespace Pwe.Games.Cooking
         }
         public override void OnInit()
         {
+            base.OnInit();
             mainPiece.transform.SetParent(mainPieceContainer);
             mainPiece.transform.localScale = Vector3.one;
             mainPiece.transform.localPosition = Vector3.zero;
+            if(mainPiece.GetComponent<Animation>() != null)
+                Destroy(mainPiece.GetComponent<Animation>());
+            if (mainPiece.GetComponent<ResolutionFixer>() != null)
+                Destroy(mainPiece.GetComponent<ResolutionFixer>());
             state = states.playing;
-            base.OnInit();
         }
         public override void OnUpdate()
         {
