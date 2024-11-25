@@ -1,0 +1,113 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b01ef64e713e22a4d89342076734c948, type: 3}
+  m_Name: Level4
+  m_EditorClassIdentifier: 
+  <MinDistance>k__BackingField: 1
+  <MaxDistance>k__BackingField: 15
+  distanceCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  <MinSpeed>k__BackingField: 0.2
+  <MaxSpeed>k__BackingField: 0.5
+  speedCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  <MinSize>k__BackingField: 0.3
+  <MaxSize>k__BackingField: 0.4
+  sizeCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  <LevelItems>k__BackingField:
+  - orbitalItem: {fileID: 0}
+    orbitalPath: {fileID: 6738790668737137444, guid: 0749f2ddcccf34c41beabd2b85ee779d, type: 3}
+    planetName: 7
+    colliderRadius: 1
+    animClip: {fileID: 7400000, guid: 9f49763166c36ae46a840ce33cfa0aa9, type: 2}
+  - orbitalItem: {fileID: 0}
+    orbitalPath: {fileID: 5246354719751784644, guid: d32d30de3a3d01341b8775ecf5b1f8cb, type: 3}
+    planetName: 8
+    colliderRadius: 1
+    animClip: {fileID: 7400000, guid: 0b544850194f4514484012941e24e4d5, type: 2}
+  - orbitalItem: {fileID: -4921058695821818843, guid: 2e0dbdf1e47865e4597700f391440068, type: 3}
+    orbitalPath: {fileID: 8412587118133278462, guid: 4ec3b056846ff5d4ea580ff878a175c5, type: 3}
+    planetName: 0
+    colliderRadius: 0
+    animClip: {fileID: 0}
+  orbitSpeedFactor: 0.5
+  <staticObstacles>k__BackingField: {fileID: 7693609074493744318, guid: 631fe672826348749964efb5e50b7753, type: 3}
+  _minmaxSpeed: {x: 0.006, y: 4.15}
+  _minmaxSize: {x: 0.35, y: 11}
+  _minmaxDistance: {x: 36, y: 2800}

@@ -2,12 +2,12 @@ using UnityEngine;
 
 namespace Yaguar.Inputs2D
 {
-    public class DragElement : InteractiveElement
-    {
-        states state;
-        Vector2 offset;
+    public class DragElement : InteractiveElement {
+        
+        public states state;
+        protected Vector2 offset;
 
-        enum states
+        public enum states
         {
             IDLE,
             DRAGGING
@@ -15,51 +15,53 @@ namespace Yaguar.Inputs2D
 
         BoxCollider2D coll;
         InteractiveElement ie;
-        void Start()
+
+        InteractiveElement overIE;
+        public InteractiveElement GetIeOver { get { return overIE; } }
+
+        public override void OnStart()
         {
             coll = GetComponent<BoxCollider2D>();
             coll.isTrigger = true;
             ie = GetComponent<InteractiveElement>();
         }
-        public void ForcePosition(Vector3 pos)
+        public virtual void ForcePosition(Vector3 pos)
         {
-           // Vector3 worldPos = GetWorldPos(pos);
-            transform.position = pos;
+            transform.position = GetWorldPos(pos);
         }
-        public void InitDrag(Vector3 pos)
+        public virtual void InitDrag(Vector3 pos)
         {
             if (state == states.DRAGGING) return;
             OnInitDrag();
-           // Vector3 worldPos = GetWorldPos(pos);
-            offset = transform.position - pos;
+            Vector3 worldPos = GetWorldPos(pos);
+            offset = transform.position - worldPos;
             state = states.DRAGGING;
         }
-        public void Move(Vector2 pos)
+        public virtual void Move(Vector2 pos)
         {
             if (state == states.IDLE) return;
-            //   Vector3 worldPos = GetWorldPos(pos);
-            pos += new Vector2(offset.x, offset.y);//, transform.position.z);
-            transform.position = pos;
+            Vector3 worldPos = GetWorldPos(pos);
+            transform.position = new Vector3(offset.x+worldPos.x, offset.y+worldPos.y, transform.position.z);
         }
         public void EndDrag()
         {
+            print("EndDrag " + state);
             if (state == states.IDLE) return;
             OnEndDrag();
             state = states.IDLE;
         }
         Vector3 GetWorldPos(Vector2 pos)
         {
-            // Vector3 worldPos = Camera.main.ScreenToWorldPoint(pos);
-           // pos.z = transform.position.z;
-            return pos;
+            Vector3 worldPos = Camera.main.ScreenToWorldPoint(pos);
+            return worldPos;
         }
         private void OnTriggerEnter2D(Collider2D other)
         {
             print("OnTriggerEnter2D" + other);
             if (state != states.DRAGGING) return;
-            InteractiveElement ie = other.GetComponent<InteractiveElement>();
-            if (ie != null)
-                ie.OnIECollisionEnter(ie);
+            overIE = other.GetComponent<InteractiveElement>();
+            if (overIE != null)
+                overIE.OnIECollisionEnter(this);
         }
         private void OnTriggerExit2D(Collider2D other)
         {
@@ -67,7 +69,11 @@ namespace Yaguar.Inputs2D
             if (state != states.DRAGGING) return;
             InteractiveElement ie = other.GetComponent<InteractiveElement>();
             if (ie != null)
-                ie.OnIECollisionExit(ie);
+            {
+                ie.OnIECollisionExit(this);
+                if(overIE != null && overIE == ie)
+                    overIE = null;
+            }
         }
         public virtual void OnEndDrag() { }
         public virtual void OnInitDrag() { }

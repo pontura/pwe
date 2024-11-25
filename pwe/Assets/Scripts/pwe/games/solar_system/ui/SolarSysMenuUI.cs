@@ -64,7 +64,11 @@ namespace Pwe.Games.SolarSystem.UI
             }
         }
 
-        IEnumerator UpdatePhotoItemsState() {            
+        IEnumerator UpdatePhotoItemsState() {
+            yield return new WaitForEndOfFrame();
+            foreach (PlanetItemUI piui in allItems) {
+                piui.StopAnim();
+            }
             yield return new WaitForSecondsRealtime(Menu2Delay);
             Vector3 pos = transform.position;
             transform.position = new Vector3(pos.x, normalYPos, pos.z);

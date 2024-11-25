@@ -2,39 +2,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Pwe.Core;
+using Pwe.Games.Common;
 
 namespace Pwe.Games.SolarSystem
 {
-    public class LevelsManager : MonoBehaviour
+    public class LevelsManager : Pwe.Games.Common.LevelsManager
     {
-        [SerializeField] List<SpaceData> levels;
-
-        [field:SerializeField] public int CurrentLevelIndex { get; private set; }
 
         [SerializeField] private List<PlanetName> clickedPlanets;
 
         [SerializeField] private List<PlanetName> levelPlanets;
 
         public event System.Action<PlanetName> OnPlanetDone;
-        public event System.Action OnLevelCompleted;
+
+        public override event System.Action OnLevelCompleted;
 
         void Awake() {
             clickedPlanets = new List<PlanetName>();
-            if(GamesManager.Instance!=null)
-                CurrentLevelIndex = GamesManager.Instance.All[(int)GameData.GAMES.PHOTOS].level;
-            Debug.Log("CurrentLevelIndex: " + CurrentLevelIndex);
+            SetCurrentLevelIndex();
+        }
+
+        protected override void SetCurrentLevelIndex() {
+            base.SetCurrentLevelIndex();
+
+            //CurrentLevelIndex = PlayerPrefs.GetInt("solar_system_level", 0);
 
             if (CurrentLevelIndex >= levels.Count) {
                 CurrentLevelIndex = 0;
-                GamesManager.Instance.All[(int)GameData.GAMES.PHOTOS].level = 0;
-            }            
-
-            //CurrentLevelIndex = PlayerPrefs.GetInt("solar_system_level", 0);
+                GamesManager.Instance.All[(int)(int)gameType].level = 0;
+            }
         }
 
-        public SpaceData InitLevel() {
+        public override LevelData InitLevel() {
             levelPlanets = new();
-            foreach(SpaceData.LevelItem li in levels[CurrentLevelIndex].LevelItems) {
+            foreach(SpaceData.LevelItem li in (levels[CurrentLevelIndex] as SpaceData).LevelItems ) {
                 if(li.planetName!=PlanetName.none)
                     levelPlanets.Add(li.planetName);
             }

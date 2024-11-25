@@ -84,6 +84,14 @@ namespace Pwe.Games.SolarSystem.UI
             _button.onClick.AddListener(_buttonizeCall);
         }
 
+        public void StopAnim() {
+            if (_anim.GetCurrentAnimatorClipInfo(0).Length == 0)
+                return;
+            if (_anim.GetCurrentAnimatorClipInfo(0)[0].clip.name == "button") {
+                _anim.PlayInFixedTime("buttonize", -1, 30);
+            }
+        }
+
         public void SetButton(System.Action onClick) {
             if (onClick != null) {
                 if (_button == null)

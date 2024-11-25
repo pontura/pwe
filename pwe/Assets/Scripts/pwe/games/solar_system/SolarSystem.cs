@@ -132,7 +132,7 @@ namespace Pwe.Games.SolarSystem
         public void InitPlanets() {
             _levelCompleted = false;
             planetsManager.RemoveAllPlanets();
-            SpaceData sd = levelsManager.InitLevel();
+            SpaceData sd = levelsManager.InitLevel() as SpaceData;
             planetsManager.Init(planetsData, sd, _cameraPan.cam.transform);
             List<PlanetName> levelPlanetNames = sd.LevelItems.Select(item => item.planetName).ToList();
             //IEnumerable<PlanetData> levelPlanetsData = planetsData.planets.Where(item => sd.LevelItems.Any(category => category.planetName == item.planetName));
