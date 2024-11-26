@@ -2,6 +2,7 @@ using Pwe.Core;
 using Pwe.Games.Cooking.UI;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using YaguarLib.UI;
 
@@ -9,6 +10,8 @@ namespace Pwe.Games.Cooking
 {
     public class CookingIntro : GameMain
     {
+        [SerializeField] Animation anim;
+        [SerializeField] RiveRawImage riveRawImage;
         [SerializeField] float autoskipInSeconds;
         [SerializeField] CookingMenuUI menu;
         [SerializeField] ButtonUI button;
@@ -19,26 +22,34 @@ namespace Pwe.Games.Cooking
         int num = 0;
         string ingredient;
         float speed = 0.4f;
+
         public override void OnInit()
         {
+            riveRawImage.Init("Cooking/cutscenes/intro.riv", OnLoaded);
+            button.Init(Play);
             int level = 0;
-
             if (GamesManager.Instance != null)
                 level = GamesManager.Instance.GetGame(GameData.GAMES.COOKING).level;
-
             items = (Game as CookingGame).CookingData.GetItems(level);
-            menu.Init(items);
-          
+
+            StartCoroutine(Animate());
+        }
+        void OnLoaded() { }
+        IEnumerator Animate()
+        {
             mainPiece.Init(OnMainPieceLoaded);
-            if(autoskipInSeconds > 0 )
-            {
-                button.gameObject.SetActive(false);
-                Invoke("Play", 2);
-            }
-            else
-            {
-                button.Init(Play);
-            }
+            menu.Init(items);
+
+            button.gameObject.SetActive(false);
+            menu.gameObject.SetActive(false);
+
+            yield return new WaitForSeconds(3);
+            anim.Play("cutscene_2");
+            riveRawImage.SetTrigger("next");
+            menu.gameObject.SetActive(true);
+
+            yield return new WaitForSeconds(1);
+            button.gameObject.SetActive(true);
         }
         private void Play()
         {
@@ -47,8 +58,11 @@ namespace Pwe.Games.Cooking
 
         void OnMainPieceLoaded()
         {
-            //CancelInvoke();
-            //Invoke("SetNewIngredient", 0.5f);
+            foreach (ItemData itemData in items)
+            {
+                string s = itemData.item.ToString();
+                mainPiece.InitIngredient("qty_" + s, itemData.num);
+            }
         }
         void NextPiece()
         {
