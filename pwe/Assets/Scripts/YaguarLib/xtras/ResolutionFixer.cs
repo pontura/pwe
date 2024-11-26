@@ -12,7 +12,6 @@ namespace YaguarLib.Xtras
 
         public void Rescaled()
         {
-            print(":::::::::::::::Rescaled");
             originalPos = transform.localPosition;
             oringialScale = transform.localScale;
             Recalculate();
@@ -38,12 +37,10 @@ namespace YaguarLib.Xtras
                 aspect = newAspect;
                 Recalculate();
             }
-            print("Loop for IPAD: " + (aspect <= 1.34f) + " aspect: " + aspect);
             Invoke("Loop", 1);
         }
         void Recalculate()
         {
-            print("Recalculate for IPAD: " + (aspect <= 1.34f) + " aspect: " + aspect);
             RecalculateByDevice(aspect <= 1.34);
         }
         void RecalculateByDevice(bool isIpad)

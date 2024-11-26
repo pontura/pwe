@@ -20,7 +20,8 @@ namespace Pwe.Games.Common
             panel.SetActive(true);
             field.text = num.ToString();
             Invoke("Reset", 1);
-            Events.OnSayNumber(num);
+            if(num>0)
+                Events.OnSayNumber(num);
         }
         private void Reset()
         {

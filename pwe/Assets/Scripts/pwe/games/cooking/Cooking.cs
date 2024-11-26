@@ -1,6 +1,7 @@
 using Pwe.Core;
 using Pwe.Games.Common;
 using Pwe.Games.Cooking.UI;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Yaguar.Inputs2D;
@@ -44,6 +45,7 @@ namespace Pwe.Games.Cooking
         {
             buttonProgressBar.Init(NextClicked);
             buttonProgressBar.SetProgress(false);
+            buttonProgressBar.SetInteraction(false);
             added = new List<string>();
             int level = 0;
 
@@ -90,6 +92,7 @@ namespace Pwe.Games.Cooking
 
             lastIngredient = ingredient;
 
+           
 
             pieces.Initialize(this, items, mainPiece);
         }
@@ -102,27 +105,23 @@ namespace Pwe.Games.Cooking
                     ResetIngredient(s);// RESET
             }
         }
-        public void InitDrag()
+
+        ItemData.Items itemDragging;
+        public void InitDrag(ItemData.Items itemDragging)
         {
+            this.itemDragging = itemDragging;
             newPieceToDrag = Instantiate(pieceToDrag, dragContainer);
             newPieceToDrag.Init(OnPieceToDragReady, mainPiece);           
         }
         void OnPieceToDragReady()
         {
-            string ingredient = items[itemID].item.ToString();
-            //mainPiece.InitIngredient("qty_" + ingredient, total);
-            Invoke("InitPieceToDragDelayed", 0.1f);
+            string ingredient = itemDragging.ToString();
+           // mainPiece.InitIngredient("qty_" + ingredient, total);
             dragInputManager.ForceDrag(Input.mousePosition, newPieceToDrag);
         }
         void ResetIngredient(string ingredient)
         {
             mainPiece.InitIngredient("qty_" + ingredient, 0);
-        }
-        void CheckFinish()
-        {
-            print("DONE_____________" + ingredients.Keys.Count);
-            if (ingredients.Keys.Count <= 0)
-                print("DONE");
         }
         public void OnPieceAdded(string ingredient)
         {
@@ -147,6 +146,7 @@ namespace Pwe.Games.Cooking
             }
             if(state != states.done && buttonProgressBar.IsReady())
             {
+                buttonProgressBar.SetInteraction(true);
                 state = states.done;
                 YaguarLib.Events.Events.OnPlaySound(YaguarLib.Audio.AudioManager.types.REWARD);
             }

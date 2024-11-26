@@ -83,6 +83,7 @@ namespace Pwe.Games.Cooking
         }
         void OnDoneClicked()
         {
+            if (num == 0) return;
             state = states.playing_done;
             btnNext.SetInteraction(false);
             btnPrev.SetInteraction(false);
@@ -99,6 +100,7 @@ namespace Pwe.Games.Cooking
         void PrevClicked()
         {
             if (num < 1) return;
+            num = 1;
             if (state != states.playing) return;
             num--;
             OnFeedback();
@@ -106,7 +108,8 @@ namespace Pwe.Games.Cooking
         void OnFeedback()
         {
             numFeedback.Init(num);
-            Events.OnSayNumber(num);
+            if(num>0)
+                Events.OnSayNumber(num);
             SetButtonsState();
 
         }

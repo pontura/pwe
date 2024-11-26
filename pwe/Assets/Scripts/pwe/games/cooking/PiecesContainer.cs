@@ -14,10 +14,10 @@ namespace Pwe.Games.Cooking
         Cooking cooking;
         [SerializeField] TMPro.TMP_Text field;
         CookingMainPiece mainPiece;
-        List<ItemData> items;
         [SerializeField] GameObject signalNum;
         [SerializeField] GameObject signalNumDone;
         int itemID;
+        ItemData.Items item;
 
         private void Awake()
         {
@@ -25,11 +25,11 @@ namespace Pwe.Games.Cooking
             riveTexture = GetComponent<RiveRawImage>(); 
           //  anim = GetComponent<Animation>();
         }
-        public void Initialize(int itemID, List<ItemData> items, Cooking cooking, CookingMainPiece mainPiece)
+        public void Initialize(int itemID, ItemData.Items item, Cooking cooking, CookingMainPiece mainPiece)
         {
+            this.item = item;
             this.cooking = cooking;
             this.itemID = itemID;
-            this.items = items;
             this.mainPiece = mainPiece;
             riveTexture.Init("Cooking/bowls.riv", OnReady);
         }
@@ -41,7 +41,7 @@ namespace Pwe.Games.Cooking
         }
         void OnReady()
         {
-            InitIngredient(items[itemID].item, 10);
+            InitIngredient(item, 10);
         }
         public void InitIngredient(ItemData.Items item, int num)
         {
@@ -57,7 +57,7 @@ namespace Pwe.Games.Cooking
             if (!cooking.CanMove()) return;
             Remove();
             Vector2 pos = Input.mousePosition;
-            cooking.InitDrag();
+            cooking.InitDrag(item);
         }
         public void Add() // if drop item out:
         {

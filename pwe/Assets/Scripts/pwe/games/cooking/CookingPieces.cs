@@ -1,4 +1,5 @@
 using Pwe.Core;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using YaguarLib.Xtras;
@@ -19,16 +20,16 @@ namespace Pwe.Games.Cooking
             Utils.RemoveAllChildsIn(container);
             this.items = items;
             int id = 0;
-            foreach (ItemData item in items)
+            foreach (ItemData.Items item in Enum.GetValues(typeof(ItemData.Items)))
             {
                 PiecesContainer piecesContainer = Instantiate(piece_to_add, container);
-                piecesContainer.Initialize(id, items, cooking, mainPiece);
+                piecesContainer.Initialize(id, item, cooking, mainPiece);
                 piecesContainer.transform.localPosition = new Vector2(0, id * separation_y);
-                piecesContainer.SetSignalQty(item.num);
+               // piecesContainer.SetSignalQty(item.num);
                 piecesContainers.Add(piecesContainer);
                 id++;
             }
-            uiScroller.Init(0, items.Count, separation_y);
+            uiScroller.Init(0, id, separation_y);
         }
         public void OnIngredientReady(string ingredient)
         {

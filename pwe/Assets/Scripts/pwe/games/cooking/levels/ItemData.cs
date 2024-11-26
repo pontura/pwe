@@ -9,7 +9,8 @@ public class ItemData
     public enum Items
     {
         tomatoes,
-        olives
+        olives,
+        gummybears
     }
     public Items item;
     public int num;
