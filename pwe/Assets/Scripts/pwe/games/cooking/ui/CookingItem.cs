@@ -14,7 +14,7 @@ namespace Pwe.Games.Cooking.UI
         {
             this.data = data;
             field.text = "x" + data.num;
-            riveTexture.Init("pwa-ingredient.riv", OnReady);
+            riveTexture.Init("Cooking/ingredient.riv", OnReady);
         }
         void OnReady() { 
             Debug.Log("BTN OnInitDrag " + data.item.ToString());

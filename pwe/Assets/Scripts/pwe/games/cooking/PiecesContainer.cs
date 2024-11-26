@@ -31,7 +31,7 @@ namespace Pwe.Games.Cooking
             this.itemID = itemID;
             this.items = items;
             this.mainPiece = mainPiece;
-            riveTexture.Init("pwa-bowl.riv", OnReady);
+            riveTexture.Init("Cooking/bowls.riv", OnReady);
         }
         public void SetSignalQty(int qty)
         {

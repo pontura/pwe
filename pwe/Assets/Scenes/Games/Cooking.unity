@@ -396,6 +396,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Game_Cooking
       objectReference: {fileID: 0}
+    - target: {fileID: 6199883985375038937, guid: 41c9eab2edc7c474faa1c6d6d499d5b9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8666142007337318734, guid: 41c9eab2edc7c474faa1c6d6d499d5b9, type: 3}
+      propertyPath: allRivNames.Array.data[0]
+      value: Cooking/pizza
+      objectReference: {fileID: 0}
+    - target: {fileID: 8666142007337318734, guid: 41c9eab2edc7c474faa1c6d6d499d5b9, type: 3}
+      propertyPath: allRivNames.Array.data[1]
+      value: Cooking/bowls
+      objectReference: {fileID: 0}
+    - target: {fileID: 8666142007337318734, guid: 41c9eab2edc7c474faa1c6d6d499d5b9, type: 3}
+      propertyPath: allRivNames.Array.data[2]
+      value: Cooking/ingredient
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

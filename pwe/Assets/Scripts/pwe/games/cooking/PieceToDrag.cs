@@ -11,7 +11,7 @@ namespace Pwe.Games.Cooking
         {
             this.mainPiece = mainPiece;
             riveTexture = GetComponent<RiveRawImage>();
-            riveTexture.Init("pwa-ingredient.riv", OnReady);
+            riveTexture.Init("Cooking/ingredient.riv", OnReady);
         }
         public override void OnInitDrag()
         {

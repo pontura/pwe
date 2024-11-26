@@ -10,8 +10,6 @@ namespace Pwe.Games.Cooking
         RiveRawImage riveTexture;
         bool pieceOver;
 
-        [SerializeField] string states_pizza;
-        [SerializeField] string trigger;
         [SerializeField] PiecesContainer piecesContainer;
 
         public void SetPieceContainer(PiecesContainer piecesContainer)
@@ -26,7 +24,7 @@ namespace Pwe.Games.Cooking
         {
             this.OnLoaded = OnLoaded;
             riveTexture = GetComponent<RiveRawImage>();
-            riveTexture.Init("pwa-pizza.riv", OnReady);
+            riveTexture.Init("Cooking/pizza.riv", OnReady);
         }
         void OnReady() { OnLoaded();  }
         public override void OnIECollisionEnter(InteractiveElement ie)
