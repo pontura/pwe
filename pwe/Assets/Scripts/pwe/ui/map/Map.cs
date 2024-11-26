@@ -44,6 +44,9 @@ namespace Pwe.UI
                 case 1:
                     Events.OnPlayGame(GameData.GAMES.PHOTOS);
                     break;
+                case 2:
+                    Events.OnPlayGame(GameData.GAMES.COMPARE_CONTRAST);
+                    break;
             }
         }
         private void GameLeveled(GameData.GAMES game, int level)
