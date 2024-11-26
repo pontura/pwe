@@ -2,7 +2,6 @@ using PlasticGui;
 using UnityEngine;
 namespace YaguarLib.Xtras
 {
-    [ExecuteAlways]
     public class ResolutionFixer : MonoBehaviour
     {
         [SerializeField] Vector2 ipad_pos;
@@ -52,7 +51,9 @@ namespace YaguarLib.Xtras
             if(isIpad)
             {
                 transform.localPosition = ipad_pos;
-                transform.localScale= oringialScale * ipad_scale;
+                float _y = 1;
+                if (transform.localScale.y < 0) _y = -1;
+                transform.localScale= new Vector2(ipad_scale, ipad_scale * _y);
             }
             else
             {
