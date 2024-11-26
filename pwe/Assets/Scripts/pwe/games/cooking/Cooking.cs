@@ -3,6 +3,8 @@ using Pwe.Games.Common;
 using Pwe.Games.Cooking.UI;
 using System;
 using System.Collections.Generic;
+using Unity.Plastic.Newtonsoft.Json.Linq;
+using Unity.VisualScripting.YamlDotNet.Core.Tokens;
 using UnityEngine;
 using Yaguar.Inputs2D;
 
@@ -128,15 +130,15 @@ namespace Pwe.Games.Cooking
             if (ingredients.ContainsKey(ingredient))
             {
                 ingredientsAdded[ingredient]++;
-                print(ingredient + " ingredientsAdded[ingredient] " + ingredientsAdded[ingredient]);
                 int value = 0;
                 foreach (string s in ingredientsAdded.Keys)
                 {
                     int v = ingredientsAdded[s];
                     if (ingredientsAdded[s] == ingredients[s])
                         pieces.OnIngredientReady(s);
-
-                    value += v;
+                    else if (ingredientsAdded[s] > ingredients[s])
+                        v = ingredients[s];
+                    value +=v;
                 }
                 if (ingredientsAdded[ingredient] <= ingredients[ingredient])
                 {
