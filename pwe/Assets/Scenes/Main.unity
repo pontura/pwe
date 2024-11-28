@@ -1038,6 +1038,7 @@ GameObject:
   - component: {fileID: 522161897}
   - component: {fileID: 522161901}
   - component: {fileID: 522161902}
+  - component: {fileID: 522161903}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1124,6 +1125,7 @@ RectTransform:
   - {fileID: 791835748}
   - {fileID: 1088879031}
   - {fileID: 2138003190}
+  - {fileID: 550742217}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1161,6 +1163,55 @@ MonoBehaviour:
   button: {fileID: 1996474196}
   panel: {fileID: 2136345003}
   resetBtn: {fileID: 761268249}
+--- !u!114 &522161903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 522161896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d330ad7f706684743ac5a572082e4f05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  container: {fileID: 550742217}
+  particle: {fileID: 9047446239574272643, guid: 86c56a70685f11840b7b752ca9c0a36a, type: 3}
+--- !u!1 &550742216
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 550742217}
+  m_Layer: 5
+  m_Name: particles
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &550742217
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 550742216}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 522161900}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &572356236
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,7 +9,7 @@ using Rive;
 using System.Collections;
 namespace Pwe
 {
-    [ExecuteAlways]
+    //[ExecuteAlways]
     public class RiveUITexture : MonoBehaviour
     {
         public RawImage uiImage;

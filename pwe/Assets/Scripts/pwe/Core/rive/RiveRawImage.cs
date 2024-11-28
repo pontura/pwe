@@ -46,6 +46,7 @@ namespace Pwe
                 RenderTextureFormat.ARGB32);
 
             renderTexture.enableRandomWrite = true;
+            renderTexture.antiAliasing = 0;
 
             renderTexture.Create();
 
@@ -63,7 +64,7 @@ namespace Pwe
 
                 m_commandBuffer = new CommandBuffer();
                 m_commandBuffer.SetRenderTarget(renderTexture);
-                m_commandBuffer.ClearRenderTarget(true, true, UnityEngine.Color.clear, 0.0f);
+               // m_commandBuffer.ClearRenderTarget(true, true, UnityEngine.Color.clear, 0.0f);
                 m_riveRenderer.AddToCommandBuffer(m_commandBuffer);
             }
             renderTexture.enableRandomWrite = true;

@@ -1,3 +1,4 @@
+using Pwe.Core;
 using UnityEngine;
 using Yaguar.Inputs2D;
 
@@ -57,6 +58,7 @@ namespace Pwe.Games.Cooking
         }
         public void Add()
         {
+            Events.OnAddParticles(Input.mousePosition);
             anim.Play();
         }
         void OnDropItemOut()
