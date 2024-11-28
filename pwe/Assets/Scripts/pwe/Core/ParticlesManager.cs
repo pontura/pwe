@@ -6,7 +6,13 @@ namespace Pwe.Core
     public class ParticlesManager : MonoBehaviour
     {
         [SerializeField] Transform container;
-        [SerializeField] GameObject particle;
+        public enum types
+        {
+            pick,
+            drop
+        }
+        [SerializeField] GameObject pick;
+        [SerializeField] GameObject drop;
         void Start()
         {
             Events.OnAddParticles += OnAddParticles;
@@ -15,11 +21,16 @@ namespace Pwe.Core
         {
             Events.OnAddParticles -= OnAddParticles;
         }
-        void OnAddParticles(Vector2 pos)
+        void OnAddParticles(types type, Vector2 pos)
         {
-            GameObject go = Instantiate(particle, container);
-            go.transform.position = pos;
-            StartCoroutine(ParticleOn(go));
+            GameObject p;
+            switch (type) {
+                case types.pick: p =  pick; break;
+                default: p = drop; break;
+            }    
+            GameObject particle = Instantiate(p, container);
+            particle.transform.position = pos;
+            StartCoroutine(ParticleOn(particle));
         }
         IEnumerator ParticleOn(GameObject go)
         {

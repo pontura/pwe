@@ -1,3 +1,4 @@
+using Pwe.Core;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -55,6 +56,8 @@ namespace Pwe.Games.Cooking
         {
             mainPiece.SetPieceContainer(this);
             if (!cooking.CanMove()) return;
+
+            Events.OnAddParticles(ParticlesManager.types.pick, Input.mousePosition);
             Remove();
             Vector2 pos = Input.mousePosition;
             cooking.InitDrag(item);

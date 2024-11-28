@@ -1176,7 +1176,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   container: {fileID: 550742217}
-  particle: {fileID: 9047446239574272643, guid: 86c56a70685f11840b7b752ca9c0a36a, type: 3}
+  pick: {fileID: 9047446239574272643, guid: 86c56a70685f11840b7b752ca9c0a36a, type: 3}
+  drop: {fileID: 9047446239574272643, guid: 651eccb0a036ad14b8cf18f1039791af, type: 3}
 --- !u!1 &550742216
 GameObject:
   m_ObjectHideFlags: 0
