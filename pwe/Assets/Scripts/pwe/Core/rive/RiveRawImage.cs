@@ -29,9 +29,9 @@ namespace Pwe
         public void Init(string riveFileName, System.Action OnReady = null)
         {
             this.OnReady = OnReady;
-            Vector2 s = image.transform.localScale;
-           // s.y = Mathf.Abs(image.transform.localScale.y)*-1;
-            image.transform.localScale = s;
+           // Vector2 s = image.transform.localScale;
+           //// s.y = Mathf.Abs(image.transform.localScale.y)*-1;
+           // image.transform.localScale = s;
             MainApp.Instance.riveFilesManager.Load(riveFileName, OnDone);
             SendMessage("Rescaled",SendMessageOptions.DontRequireReceiver); // For ResolutionFixer
         }
@@ -69,9 +69,32 @@ namespace Pwe
             renderTexture.enableRandomWrite = true;
             image.texture = renderTexture;
 
+            if (!FlipY())
+            {
+                print("rotame: " + gameObject.name);
+                // Flip the render texture vertically for OpenGL
+                //image.material.mainTextureScale = new Vector2(1, -1);
+                //image.material.mainTextureOffset = new Vector2(0, 1);
+                image.transform.localEulerAngles = new Vector3(0, 180, 180);
+            }
+
             if (OnReady != null)
                 OnReady();
             Invoke("Invoked", 0.5f);
+        }
+        private static bool FlipY()
+        {
+#if UNITY_EDITOR
+            return true;
+#endif
+            switch (UnityEngine.SystemInfo.graphicsDeviceType)
+            {
+                case UnityEngine.Rendering.GraphicsDeviceType.Metal:
+                case UnityEngine.Rendering.GraphicsDeviceType.Direct3D11:
+                    return true;
+                default:
+                    return false;
+            }
         }
         private void Invoked()
         {
