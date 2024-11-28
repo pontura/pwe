@@ -11,7 +11,7 @@ namespace Pwe
         //public RenderTexture renderTexture;
         [SerializeField] Vector2 size = new Vector2(256, 256);
         [SerializeField] RenderTexture renderTexture;
-        public Fit fit = Fit.contain;
+        public Fit fit = Fit.Contain;
         public Alignment alignment = Alignment.Center;
 
         private CommandBuffer m_commandBuffer;
@@ -71,7 +71,7 @@ namespace Pwe
         void OnDone(byte[] data, string riveName)
         {
             isOn = true;
-            m_file = Rive.File.Load(riveName, data, data.GetHashCode());
+            m_file = Rive.File.Load(data, data.GetHashCode());
 
             print("renderTexture: " + renderTexture);
 

@@ -67,7 +67,7 @@ public class RiveScreen : MonoBehaviour
 {
     public Asset asset;
     public CameraEvent cameraEvent = CameraEvent.BeforeImageEffects;
-    public Fit fit = Fit.contain;
+    public Fit fit = Fit.Contain;
     public Alignment alignment = Alignment.Center;
 
 

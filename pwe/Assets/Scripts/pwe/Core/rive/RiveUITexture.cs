@@ -14,7 +14,7 @@ namespace Pwe
     {
         public RawImage uiImage;
         public Asset asset;
-        public Fit fit = Fit.contain;
+        public Fit fit = Fit.Contain;
         public Material UICompositeMaterial;
 
         [SerializeField]

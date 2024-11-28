@@ -11,7 +11,7 @@ using StoreAction = UnityEngine.Rendering.RenderBufferStoreAction;
 public class RiveTexture : MonoBehaviour
 {
     public Rive.Asset asset;
-    public Fit fit = Fit.contain;
+    public Fit fit = Fit.Contain;
     public Alignment alignment = Alignment.Center;
 
     private RenderTexture m_renderTexture;

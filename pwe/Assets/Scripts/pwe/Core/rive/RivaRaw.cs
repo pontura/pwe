@@ -17,7 +17,7 @@ public class RivaRaw : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     [Tooltip("Fit determines how the Rive content will be fitted to the view")]
     [SerializeField]
-    private Fit fit = Fit.fill;
+    private Fit fit = Fit.Fill;
 
     [Tooltip("Alignment determines how the content aligns with respect to the view bounds.")]
     private Alignment alignment = Alignment.Center;

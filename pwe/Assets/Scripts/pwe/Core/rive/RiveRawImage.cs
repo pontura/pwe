@@ -12,7 +12,7 @@ namespace Pwe
         [SerializeField] Vector2 size = new Vector2(256, 256);
         public RenderTexture _renderTexture;
         public RawImage image;
-        public Fit fit = Fit.contain;
+        public Fit fit = Fit.Contain;
         public Alignment alignment = Alignment.Center;
 
         private Rive.RenderQueue m_renderQueue;
@@ -26,19 +26,18 @@ namespace Pwe
         System.Action OnReady;
         private Camera m_camera;
 
-
         public void Init(string riveFileName, System.Action OnReady = null)
         {
             this.OnReady = OnReady;
             Vector2 s = image.transform.localScale;
-            s.y = Mathf.Abs(image.transform.localScale.y)*-1;
+           // s.y = Mathf.Abs(image.transform.localScale.y)*-1;
             image.transform.localScale = s;
             MainApp.Instance.riveFilesManager.Load(riveFileName, OnDone);
             SendMessage("Rescaled",SendMessageOptions.DontRequireReceiver); // For ResolutionFixer
         }
         void OnDone(byte[] data, string riveName)
         {
-            m_file = Rive.File.Load(riveName, data, data.GetHashCode());
+            m_file = Rive.File.Load(data, data.GetHashCode());
 
             RenderTexture renderTexture = new RenderTexture(
                 (int)size.x,
@@ -119,6 +118,10 @@ namespace Pwe
         }
         private void Update()
         {
+            if (m_stateMachine != null)
+            {
+                m_stateMachine.Advance(Time.deltaTime);
+            }
             if (m_riveRenderer != null)
             {
                 m_riveRenderer.Submit();
@@ -126,10 +129,7 @@ namespace Pwe
             }
             // m_riveRenderer.Submit();
 
-            if (m_stateMachine != null)
-            {
-                m_stateMachine.Advance(Time.deltaTime);
-            }
+           
         }
 
         //private void OnDisable()
