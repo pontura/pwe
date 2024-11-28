@@ -146,6 +146,7 @@ namespace Pwe.Games.Cooking
             }
             if(state != states.done && buttonProgressBar.IsReady())
             {
+                Events.OnWinParticles();
                 buttonProgressBar.SetInteraction(true);
                 state = states.done;
                 YaguarLib.Events.Events.OnPlaySound(YaguarLib.Audio.AudioManager.types.REWARD);

@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using static UnityEditor.PlayerSettings;
 
 namespace Pwe.Core
 {
@@ -13,13 +14,22 @@ namespace Pwe.Core
         }
         [SerializeField] GameObject pick;
         [SerializeField] GameObject drop;
+        [SerializeField] GameObject win;
         void Start()
         {
             Events.OnAddParticles += OnAddParticles;
+            Events.OnWinParticles += OnWinParticles;
         }
         void OnDestroy()
         {
             Events.OnAddParticles -= OnAddParticles;
+            Events.OnWinParticles -= OnWinParticles;
+        }
+        void OnWinParticles()
+        {
+            GameObject particle = Instantiate(win, container);
+            particle.transform.localPosition = new Vector2(450, 0);
+            StartCoroutine(ParticleOn(particle, 50));
         }
         void OnAddParticles(types type, Vector2 pos)
         {
@@ -30,11 +40,11 @@ namespace Pwe.Core
             }    
             GameObject particle = Instantiate(p, container);
             particle.transform.position = pos;
-            StartCoroutine(ParticleOn(particle));
+            StartCoroutine(ParticleOn(particle, 2));
         }
-        IEnumerator ParticleOn(GameObject go)
+        IEnumerator ParticleOn(GameObject go, int duration)
         {
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(duration);
             Destroy(go.gameObject);
         }
     }
