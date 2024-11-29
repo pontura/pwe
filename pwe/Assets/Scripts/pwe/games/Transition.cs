@@ -11,6 +11,7 @@ namespace Pwe.Games
         System.Action OnReady;
         private void Start()
         {
+            riveRawImage.gameObject.SetActive(false);
             Events.OnTransition += OnTransition;
         }
         private void OnDestroy()
@@ -19,6 +20,7 @@ namespace Pwe.Games
         }
         void OnTransition(System.Action OnReady)
         {
+            riveRawImage.gameObject.SetActive(true);
             print("OnTransition");
             this.OnReady = OnReady;
             riveRawImage.Init("Cooking/cutscenes/transitioncooking.riv", OnLoaded);
