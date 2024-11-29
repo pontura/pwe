@@ -76,7 +76,14 @@ namespace Pwe.Games.Cooking
         private void NextClicked()
         {
             if (buttonProgressBar.IsReady())
-                Next();
+            {
+                Events.OnTransition(OnTransitionDone);
+            }
+        }
+
+        void OnTransitionDone()
+        {
+            Next();
         }
 
         void InitIngredient()

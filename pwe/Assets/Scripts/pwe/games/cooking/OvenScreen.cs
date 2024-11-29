@@ -139,6 +139,10 @@ namespace Pwe.Games.Cooking
         IEnumerator NextIngredient()
         {       
             yield return new WaitForSeconds(0.5f);
+            Events.OnTransition(OnTransitionDone);
+        }
+        void OnTransitionDone()
+        {
             Next();
         }
     }

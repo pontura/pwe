@@ -390,42 +390,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 257471966372805569, guid: 41c9eab2edc7c474faa1c6d6d499d5b9, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1631811814129485288, guid: 41c9eab2edc7c474faa1c6d6d499d5b9, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3298882413003737974, guid: 41c9eab2edc7c474faa1c6d6d499d5b9, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3298882413003737974, guid: 41c9eab2edc7c474faa1c6d6d499d5b9, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3298882413003737974, guid: 41c9eab2edc7c474faa1c6d6d499d5b9, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3298882413003737974, guid: 41c9eab2edc7c474faa1c6d6d499d5b9, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3398430017659836829, guid: 41c9eab2edc7c474faa1c6d6d499d5b9, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3425956401298173288, guid: 41c9eab2edc7c474faa1c6d6d499d5b9, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3598411243789967308, guid: 41c9eab2edc7c474faa1c6d6d499d5b9, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
+    - target: {fileID: 1039975195392881612, guid: 41c9eab2edc7c474faa1c6d6d499d5b9, type: 3}
+      propertyPath: m_Texture
+      value: 
+      objectReference: {fileID: 1016201724}
     - target: {fileID: 5073353217931750912, guid: 41c9eab2edc7c474faa1c6d6d499d5b9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -470,30 +438,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Game_Cooking
       objectReference: {fileID: 0}
-    - target: {fileID: 7918256954821729451, guid: 41c9eab2edc7c474faa1c6d6d499d5b9, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7918256954821729451, guid: 41c9eab2edc7c474faa1c6d6d499d5b9, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7918256954821729451, guid: 41c9eab2edc7c474faa1c6d6d499d5b9, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7918256954821729451, guid: 41c9eab2edc7c474faa1c6d6d499d5b9, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8101216153093760220, guid: 41c9eab2edc7c474faa1c6d6d499d5b9, type: 3}
       propertyPath: m_Texture
       value: 
       objectReference: {fileID: 1016201724}
-    - target: {fileID: 8730630528772891386, guid: 41c9eab2edc7c474faa1c6d6d499d5b9, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

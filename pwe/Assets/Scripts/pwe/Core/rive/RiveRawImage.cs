@@ -46,7 +46,7 @@ namespace Pwe
                 RenderTextureFormat.ARGB32);
 
             renderTexture.enableRandomWrite = true;
-            renderTexture.antiAliasing = 0;
+            renderTexture.antiAliasing = 1;
 
             renderTexture.Create();
 

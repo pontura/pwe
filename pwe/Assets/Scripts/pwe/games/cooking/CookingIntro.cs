@@ -53,6 +53,10 @@ namespace Pwe.Games.Cooking
         }
         private void Play()
         {
+            Events.OnTransition(OnTransitionDone);
+        }
+        void OnTransitionDone()
+        {
             Next();
         }
 
