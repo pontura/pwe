@@ -245,9 +245,7 @@ MonoBehaviour:
   - {fileID: 6236325917280389968}
   _lineColor: {r: 1, g: 1, b: 1, a: 1}
   angleThresh: 45
-  _currentPoint: 0
-  _position: 0
-  _factor: 0.015
+  _factor: 1
 --- !u!120 &7403224920066386571
 LineRenderer:
   serializedVersion: 2
@@ -269,7 +267,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 9b583bffebfb1ca488057042e9774775, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

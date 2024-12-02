@@ -17,7 +17,7 @@ public class DragPathElement : Yaguar.Inputs2D.DragElement
     public override void Move(Vector2 pos) {
         if (state == states.IDLE) return;
         Vector3 worldPos = Camera.main.ScreenToWorldPoint(pos);
-        transform.position = linePath.GetPosition(_lastFrameMousePos, pos);
-        _lastFrameMousePos = pos;
+        transform.position = linePath.GetPosition(_lastFrameMousePos, worldPos);
+        _lastFrameMousePos = worldPos;
     }
 }

@@ -36,7 +36,7 @@ namespace Pwe.Games.Common
             _position = positiveDirection?0:1;
             _dir = points[_currentPoint + 1].position - points[_currentPoint].position;
             _angle = (360 + Mathf.Atan2(_dir.y, _dir.x) * Mathf.Rad2Deg)%360;
-            _invMgt = 1f / _dir.sqrMagnitude;
+            _invMgt = 1f / _dir.magnitude;
         }
 
 
@@ -65,11 +65,11 @@ namespace Pwe.Games.Common
             //Debug.Log("oldMouse: " + oldMousePos + " newMouse: " + newMousePos);
             Vector3 mouseDir = newMousePos - oldMousePos;
             float mouseAngle = (360 + Mathf.Atan2(mouseDir.y, mouseDir.x) * Mathf.Rad2Deg)%360;
-            //Debug.Log("mouseDir: " + mouseDir + " mouseAngle: " + mouseAngle + "mouseMag: "+ mouseDir.sqrMagnitude);
-            //Debug.Log("pointsDir: " + _dir + " pointsAngle: " + _angle + "pointsMag: " + _dir.sqrMagnitude);
+            Debug.Log("mouseDir: " + mouseDir + " mouseAngle: " + mouseAngle + "mouseMag: "+ mouseDir.magnitude);
+            Debug.Log("pointsDir: " + _dir + " pointsAngle: " + _angle + "pointsMag: " + _dir.magnitude);
             //Debug.Log("Negative: " + ((360 + _angle - 180) % 360 - angleThresh) + " & " + ((360 + _angle - 180) % 360 + angleThresh));
             if (mouseAngle>_angle-angleThresh&& mouseAngle < _angle + angleThresh) {
-                _position += _factor*mouseDir.sqrMagnitude * _invMgt;
+                _position += _factor*mouseDir.magnitude * _invMgt;
                 if (_position >= 1f) {
                     _currentPoint++;
                     if (_currentPoint > points.Count - 2)
@@ -78,7 +78,7 @@ namespace Pwe.Games.Common
                         ResetNode();
                 }
             }else if (mouseAngle > (360+_angle - 180)%360 - angleThresh && mouseAngle < (360+_angle - 180)%360 + angleThresh) {
-                _position -= _factor*mouseDir.sqrMagnitude * _invMgt;
+                _position -= _factor*mouseDir.magnitude * _invMgt;
                 if (_position <= 0f) {
                     _currentPoint--;
                     if (_currentPoint < 0)
