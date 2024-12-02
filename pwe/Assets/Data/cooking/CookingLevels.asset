@@ -18,16 +18,30 @@ MonoBehaviour:
       num: 3
     - item: 1
       num: 2
+    - item: 2
+      num: 0
     ovenDuration: 2
   - ingredients:
     - item: 1
       num: 2
     - item: 0
       num: 4
+    - item: 2
+      num: 0
     ovenDuration: 4
   - ingredients:
     - item: 0
       num: 5
     - item: 1
-      num: 6
+      num: 0
+    - item: 2
+      num: 3
+    ovenDuration: 5
+  - ingredients:
+    - item: 0
+      num: 5
+    - item: 1
+      num: 4
+    - item: 2
+      num: 2
     ovenDuration: 5

@@ -9,6 +9,10 @@ namespace Pwe
 {
     public class RiveRawImage : MonoBehaviour
     {
+
+        public event RiveEventDelegate OnRiveEvent;
+        public delegate void RiveEventDelegate(ReportedEvent reportedEvent);
+
         [SerializeField] Vector2 size = new Vector2(256, 256);
         public RenderTexture _renderTexture;
         public RawImage image;
@@ -141,7 +145,12 @@ namespace Pwe
 
         }
         private void Update()
-        {
+        {  
+            // Find reported Rive events before calling advance.
+            foreach (var report in m_stateMachine?.ReportedEvents() ?? Enumerable.Empty<ReportedEvent>())
+            {
+                OnRiveEvent?.Invoke(report);
+            }
             if (m_stateMachine != null)
             {
                 m_stateMachine.Advance(Time.deltaTime);
