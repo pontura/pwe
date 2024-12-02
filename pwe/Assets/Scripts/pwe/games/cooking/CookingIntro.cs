@@ -44,8 +44,12 @@ namespace Pwe.Games.Cooking
             button.gameObject.SetActive(false);
             menu.gameObject.SetActive(false);
 
-            yield return new WaitForSeconds(1);
-            riveRawImage.SetNumberNestedArtboard("PizzaBase", "qty_tomatoes", 3);
+            yield return new WaitForSeconds(0.1f);
+
+            foreach (ItemData item in items) 
+                riveRawImage.SetNumber(item.item.ToString(), item.num);
+
+            //riveRawImage.SetNumberNestedArtboard("PizzaBase", "qty_tomatoes", 3);
 
             yield return new WaitForSeconds(3);
             anim.Play("cutscene_2");
