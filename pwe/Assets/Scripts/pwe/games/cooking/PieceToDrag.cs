@@ -1,4 +1,3 @@
-using log4net.Core;
 using Pwe.Core;
 using UnityEngine;
 using UnityEngine.UI;

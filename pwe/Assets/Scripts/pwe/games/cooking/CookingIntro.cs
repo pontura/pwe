@@ -33,13 +33,19 @@ namespace Pwe.Games.Cooking
 
             StartCoroutine(Animate());
         }
-        void OnLoaded() { }
+        void OnLoaded() {
+        }
+       
         IEnumerator Animate()
         {
             menu.Init(items, (Game as CookingGame).CookingData);
 
+
             button.gameObject.SetActive(false);
             menu.gameObject.SetActive(false);
+
+            yield return new WaitForSeconds(1);
+            riveRawImage.SetNumberNestedArtboard("PizzaBase", "qty_tomatoes", 3);
 
             yield return new WaitForSeconds(3);
             anim.Play("cutscene_2");

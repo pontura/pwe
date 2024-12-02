@@ -1,9 +1,9 @@
 using UnityEngine;
 using Rive;
 using UnityEngine.Rendering;
-using System.Linq;
 using Pwe.Core;
 using UnityEngine.UI;
+using System.Linq;
 
 namespace Pwe
 {
@@ -86,6 +86,16 @@ namespace Pwe
             if (OnReady != null)
                 OnReady();
             Invoke("Invoked", 0.5f);
+
+
+            for(uint a = 0; a < m_file.ArtboardCount; a++)
+            {
+                Debug.Log($"_____________Artboard: {m_file.Artboard(a).StateMachineName(0)}");
+                var stateMachines = m_file.Artboard(a).StateMachine();
+               
+            }
+
+
         }
         private static bool FlipY()
         {
@@ -134,6 +144,22 @@ namespace Pwe
                 someTrigger.Fire();
             }
         }
+
+        public void SetNumberNestedArtboard(string nestedArtboardName, string triggerName, int number)
+        {
+            var nestedArtboard = m_file.Artboard(nestedArtboardName);
+            if (nestedArtboard != null)
+            {
+                var stateMachine = nestedArtboard.StateMachine(); // Asegúrate de usar el índice correcto
+                print("nestedArtboardName : " + nestedArtboardName + " triggerName: " + triggerName + " num: " + number + " stateMachine:" + stateMachine);
+                if (number < 0) return;
+                SMINumber someNumber = stateMachine.GetNumber(triggerName);
+                if (someNumber == null) return;
+                someNumber.Value = number;
+                print("SetNumber Done");
+            }
+        }
+
         public void SetNumber(string triggerName, int number)
         {
             print("SetNumber : " + triggerName + " num: " + number);
