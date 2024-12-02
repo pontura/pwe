@@ -2,12 +2,17 @@ using UnityEngine;
 using Rive;
 using UnityEngine.Rendering;
 using Pwe.Core;
+using System.Linq;
 
 namespace Pwe
 {
 
     public class RiveTexture : MonoBehaviour
     {
+
+        public event RiveEventDelegate OnRiveEvent;
+        public delegate void RiveEventDelegate(ReportedEvent reportedEvent);
+
         //public RenderTexture renderTexture;
         [SerializeField] Vector2 size = new Vector2(256, 256);
         [SerializeField] RenderTexture renderTexture;
@@ -28,29 +33,7 @@ namespace Pwe
         public void Init(string riveFileName, System.Action OnReady = null)
         {
             this.OnReady = OnReady;
-            //Vector2 s = transform.localScale;
-            //s.y = Mathf.Abs(transform.localScale.y)*-1;
-            //transform.localScale = s;
-
-            // If on D3d11, this is required
             MainApp.Instance.riveFilesManager.Load(riveFileName, OnDone);
-            //for (uint a = 0; a < m_file.ArtboardCount; a++)
-            //{
-            //    Artboard artb = m_file.Artboard(a);
-            //    // Try using the GetName() method or similar alternatives
-            //    for (uint b = 0; b < artb?.StateMachineCount; b++)
-            //    {
-            //       // StateMachine s = artb?.StateMachineName(b);
-            //        Debug.Log(a + " StateMachine: " + artb?.StateMachineName(b));
-            //    }
-            //}
-            //foreach (var reportedEvent in m_stateMachine?.ReportedEvents() ?? Enumerable.Empty<ReportedEvent>())
-            //{
-            //    Debug.Log($"Event received, name: \"{reportedEvent.Name}\", secondsDelay: {reportedEvent.SecondsDelay}");
-            //}
-
-            //// Important! Call `advance` after accessing events.
-            //m_stateMachine?.Advance(Time.deltaTime);
         }
         private static bool FlipY()
         {
@@ -101,11 +84,14 @@ namespace Pwe
             Material mat = cubeRenderer.material;
             mat.mainTexture = renderTexture;
 
-            if (!FlipY())
-            {
-                mat.mainTextureScale = new Vector2(1, -1);
-                mat.mainTextureOffset = new Vector2(0, 1);
-            }
+
+
+            //if (!FlipY())
+            //{
+            //    // Flip the render texture vertically for OpenGL
+            //    mat.mainTextureScale = new Vector2(1, -1);
+            //    mat.mainTextureOffset = new Vector2(0, 1);
+            //}
 
             Rive.RenderQueue m_renderQueue = new Rive.RenderQueue(renderTexture);
             m_riveRenderer = m_renderQueue.Renderer();
@@ -130,12 +116,12 @@ namespace Pwe
                 m_commandBuffer.ClearRenderTarget(true, true, UnityEngine.Color.clear, 0.0f);
                 m_riveRenderer.AddToCommandBuffer(m_commandBuffer);
 
-                //m_camera = Camera.main;
+                m_camera = Camera.main;
 
-                //if (m_camera != null)
-                //{
-                //    m_camera.AddCommandBuffer(CameraEvent.AfterEverything, m_commandBuffer);
-                //}
+                if (m_camera != null)
+                {
+                    m_camera.AddCommandBuffer(CameraEvent.AfterEverything, m_commandBuffer);
+                }
             }
             if (OnReady != null)
             {
@@ -182,13 +168,12 @@ namespace Pwe
         private void Update()
         {
             if (!isOn) return;
-            if (m_riveRenderer != null)
+            HitTesting();
+            // m_riveRenderer.Submit();
+            foreach (var report in m_stateMachine?.ReportedEvents() ?? Enumerable.Empty<ReportedEvent>())
             {
-                m_riveRenderer.Submit();
-                GL.InvalidateState();
+                OnRiveEvent?.Invoke(report);
             }
-           // m_riveRenderer.Submit();
-
             if (m_stateMachine != null)
             {
                 m_stateMachine.Advance(Time.deltaTime);
@@ -219,7 +204,55 @@ namespace Pwe
             m_stateMachine = null;
             renderTexture = null;
         }
+        bool m_wasMouseDown = false;
+        private Vector2 m_lastMousePosition;
 
+        void HitTesting()
+        {
+
+          //  if (camera == null || renderTexture == null || m_artboard == null) return;
+
+
+            if (!Physics.Raycast(m_camera.ScreenPointToRay(Input.mousePosition), out RaycastHit hit))
+                return;
+
+            //Artboard bowls = m_file.Artboard("Bowls");
+            //bowls.LocalCoordinate(new Vector2(200,500), new Rect(200, 0, Screen.width, Screen.height), fit, alignment);
+
+
+
+            UnityEngine.Renderer rend = hit.transform.GetComponent<UnityEngine.Renderer>();
+            MeshCollider meshCollider = hit.collider as MeshCollider;
+
+            if (rend == null || rend.sharedMaterial == null || rend.sharedMaterial.mainTexture == null || meshCollider == null)
+                return;
+
+            Vector2 pixelUV = hit.textureCoord;
+
+            pixelUV.x *= renderTexture.width;
+            pixelUV.y *= renderTexture.height;
+
+            Vector3 mousePos = m_camera.ScreenToViewportPoint(Input.mousePosition);
+            Vector2 mouseRiveScreenPos = new(mousePos.x * m_camera.pixelWidth, (1 - mousePos.y) * m_camera.pixelHeight);
+
+            if (m_lastMousePosition != mouseRiveScreenPos || transform.hasChanged)
+            {
+                Vector2 local = m_artboard.LocalCoordinate(pixelUV, new Rect(0, 0, renderTexture.width, renderTexture.height), fit, alignment);
+                m_stateMachine?.PointerMove(local);
+                m_lastMousePosition = mouseRiveScreenPos;
+            }
+            if (Input.GetMouseButtonDown(0))
+            {
+                Vector2 local = m_artboard.LocalCoordinate(pixelUV, new Rect(0, 0, renderTexture.width, renderTexture.height), fit, alignment);
+                m_stateMachine?.PointerDown(local);
+                m_wasMouseDown = true;
+            }
+            else if (m_wasMouseDown)
+            {
+                m_wasMouseDown = false; Vector2 local = m_artboard.LocalCoordinate(mouseRiveScreenPos, new Rect(0, 0, renderTexture.width, renderTexture.height), fit, alignment);
+                m_stateMachine?.PointerUp(local);
+            }
+        }
 
         public void PlayStateMachine(string stateMachine, string triggerName)
         {

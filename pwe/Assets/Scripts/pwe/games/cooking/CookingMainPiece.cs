@@ -1,5 +1,6 @@
 using Pwe.Core;
 using UnityEngine;
+using UnityEngine.UI;
 using Yaguar.Inputs2D;
 
 namespace Pwe.Games.Cooking
@@ -7,25 +8,22 @@ namespace Pwe.Games.Cooking
     public class CookingMainPiece : InteractiveElement
     {
         [SerializeField] Animation anim;
-        [SerializeField] Cooking cooking;
-        RiveRawImage riveTexture;
+        public Cooking cooking;
+        //RiveRawImage riveTexture;
+        [SerializeField] Image image;
         bool pieceOver;
 
-        [SerializeField] PiecesContainer piecesContainer;
 
-        public void SetPieceContainer(PiecesContainer piecesContainer)
-        {
-            this.piecesContainer = piecesContainer;
-        }
-
-        public string Ingredient { get { return piecesContainer.ActionKey; }  }
+        public string Ingredient { get { return cooking.itemDragging.ToString(); }  }
         System.Action OnLoaded;
 
         public void Init(System.Action OnLoaded)
         {
             this.OnLoaded = OnLoaded;
-            riveTexture = GetComponent<RiveRawImage>();
-            riveTexture.Init("Cooking/pizza.riv", OnReady);
+            //riveTexture = GetComponent<RiveRawImage>();
+            //riveTexture.Init("Cooking/pizza.riv", OnReady);
+
+            image.sprite = cooking.Data.GetBase("pizza"); // TO-DO:
         }
         void OnReady() { OnLoaded();  }
         public override void OnIECollisionEnter(InteractiveElement ie)
@@ -38,7 +36,7 @@ namespace Pwe.Games.Cooking
         }
         public void InitIngredient(string key, int num)
         {
-            riveTexture.SetNumber(key, num);
+           // riveTexture.SetNumber(key, num);
         }
         public void OnPieceReleased(PieceToDrag pieceToDrag)
         {
@@ -63,7 +61,7 @@ namespace Pwe.Games.Cooking
         }
         void OnDropItemOut()
         {
-            piecesContainer.Add();
+            cooking.ResetDrag();
         }
     }
 }

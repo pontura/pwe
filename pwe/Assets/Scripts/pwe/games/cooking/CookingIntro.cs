@@ -15,7 +15,6 @@ namespace Pwe.Games.Cooking
         [SerializeField] float autoskipInSeconds;
         [SerializeField] CookingMenuUI menu;
         [SerializeField] ButtonUI button;
-        [SerializeField] CookingMainPiece mainPiece;
         List<ItemData> items;
         ItemData itemData;
         int itemID = 0;
@@ -37,8 +36,7 @@ namespace Pwe.Games.Cooking
         void OnLoaded() { }
         IEnumerator Animate()
         {
-            mainPiece.Init(OnMainPieceLoaded);
-            menu.Init(items);
+            menu.Init(items, (Game as CookingGame).CookingData);
 
             button.gameObject.SetActive(false);
             menu.gameObject.SetActive(false);
@@ -65,7 +63,7 @@ namespace Pwe.Games.Cooking
             foreach (ItemData itemData in items)
             {
                 string s = itemData.item.ToString();
-                mainPiece.InitIngredient("qty_" + s, itemData.num);
+              //  mainPiece.InitIngredient("qty_" + s, itemData.num);
             }
         }
         void NextPiece()
@@ -78,7 +76,7 @@ namespace Pwe.Games.Cooking
             else
             {
                 num++;
-                mainPiece.Add();
+              //  mainPiece.Add();
                 Invoke("NextPiece", speed);
             }
         }
@@ -93,7 +91,7 @@ namespace Pwe.Games.Cooking
         }
         void ResetIngredient(string ingredient)
         {
-            mainPiece.InitIngredient("qty_" + ingredient, 0);
+         //   mainPiece.InitIngredient("qty_" + ingredient, 0);
         }
         void SetNewIngredient()
         {
@@ -106,7 +104,7 @@ namespace Pwe.Games.Cooking
                 num = 0;
                 itemID++;
                 ResetOtherIngredients(ingredient); 
-                mainPiece.InitIngredient("qty_" + ingredient, itemData.num);
+              //  mainPiece.InitIngredient("qty_" + ingredient, itemData.num);
                 Invoke("NextPiece", speed);
             }
         }

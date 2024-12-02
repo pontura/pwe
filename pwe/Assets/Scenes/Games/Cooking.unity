@@ -382,7 +382,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1591809156200491374
+--- !u!1001 &5410972158564078662
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -438,11 +438,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: Game_Cooking
       objectReference: {fileID: 0}
-    - target: {fileID: 7972468750536750950, guid: 41c9eab2edc7c474faa1c6d6d499d5b9, type: 3}
+    - target: {fileID: 5411205323439440648, guid: 41c9eab2edc7c474faa1c6d6d499d5b9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6657830970013428841, guid: 41c9eab2edc7c474faa1c6d6d499d5b9, type: 3}
       propertyPath: m_Texture
       value: 
       objectReference: {fileID: 1016201724}
-    - target: {fileID: 8101216153093760220, guid: 41c9eab2edc7c474faa1c6d6d499d5b9, type: 3}
+    - target: {fileID: 8419657280966537884, guid: 41c9eab2edc7c474faa1c6d6d499d5b9, type: 3}
       propertyPath: m_Texture
       value: 
       objectReference: {fileID: 1016201724}
@@ -456,6 +460,6 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 771712702}
-  - {fileID: 1591809156200491374}
+  - {fileID: 5410972158564078662}
   - {fileID: 1947948211}
   - {fileID: 547627042}

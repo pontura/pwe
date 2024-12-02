@@ -6,10 +6,16 @@ using Rive;
 
 using LoadAction = UnityEngine.Rendering.RenderBufferLoadAction;
 using StoreAction = UnityEngine.Rendering.RenderBufferStoreAction;
+using System.Collections.Generic;
+using System.Linq;
 
 //[ExecuteInEditMode]
 public class RiveTexture : MonoBehaviour
 {
+
+    public event RiveEventDelegate OnRiveEvent;
+    public delegate void RiveEventDelegate(ReportedEvent reportedEvent);
+
     public Rive.Asset asset;
     public Fit fit = Fit.Contain;
     public Alignment alignment = Alignment.Center;
@@ -21,6 +27,7 @@ public class RiveTexture : MonoBehaviour
 
     private Rive.File m_file;
     private Artboard m_artboard;
+    private List<Artboard> artboards;
     private StateMachine m_stateMachine;
 
     private Camera m_camera;
@@ -61,7 +68,25 @@ public class RiveTexture : MonoBehaviour
             m_file = Rive.File.Load(asset);
             m_artboard = m_file.Artboard(0);
             m_stateMachine = m_artboard?.StateMachine();
+            artboards = new List<Artboard>();
+
+            for (uint a = 0; a<m_file.ArtboardCount; a++)
+            {
+                Artboard artb  = m_file.Artboard(a);
+
+                artboards.Add(artb);
+                print("_____" + artb.StateMachineName(0));
+
+                
+
+            }
         }
+       
+
+        // Important! Call `advance` after accessing events.
+        m_stateMachine?.Advance(Time.deltaTime);
+
+
 
         if (m_artboard != null && m_renderTexture != null)
         {
@@ -89,6 +114,12 @@ public class RiveTexture : MonoBehaviour
 
         if (m_stateMachine != null)
         {
+            foreach (var report in m_stateMachine?.ReportedEvents() ?? Enumerable.Empty<ReportedEvent>())
+            {
+                print("REPORT");
+                OnRiveEvent?.Invoke(report);
+            }
+
             m_stateMachine.Advance(Time.deltaTime);
         }
     }
@@ -98,12 +129,19 @@ public class RiveTexture : MonoBehaviour
 
     void HitTesting()
     {
+
         Camera camera = Camera.main;
 
         if (camera == null || m_renderTexture == null || m_artboard == null) return;
+        
 
         if (!Physics.Raycast(camera.ScreenPointToRay(Input.mousePosition), out RaycastHit hit))
             return;
+
+        //Artboard bowls = m_file.Artboard("Bowls");
+        //bowls.LocalCoordinate(new Vector2(200,500), new Rect(200, 0, Screen.width, Screen.height), fit, alignment);
+
+
 
         UnityEngine.Renderer rend = hit.transform.GetComponent<UnityEngine.Renderer>();
         MeshCollider meshCollider = hit.collider as MeshCollider;
