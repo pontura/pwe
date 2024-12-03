@@ -22,10 +22,10 @@ MonoBehaviour:
       num: 0
     ovenDuration: 2
   - ingredients:
-    - item: 1
-      num: 2
     - item: 0
       num: 4
+    - item: 1
+      num: 2
     - item: 2
       num: 0
     ovenDuration: 4
