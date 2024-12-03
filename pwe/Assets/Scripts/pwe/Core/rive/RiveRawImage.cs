@@ -71,6 +71,14 @@ namespace Pwe
                // m_commandBuffer.ClearRenderTarget(true, true, UnityEngine.Color.clear, 0.0f);
                 m_riveRenderer.AddToCommandBuffer(m_commandBuffer);
             }
+
+            m_camera = Camera.main;
+
+            if (m_camera != null)
+            {
+                m_camera.AddCommandBuffer(CameraEvent.AfterEverything, m_commandBuffer);
+            }
+
             renderTexture.enableRandomWrite = true;
             image.texture = renderTexture;
 
@@ -86,7 +94,6 @@ namespace Pwe
 
             if (OnReady != null)
                 OnReady();
-            Invoke("Invoked", 0.5f);
 
 
             for(uint a = 0; a < m_file.ArtboardCount; a++)
@@ -115,13 +122,13 @@ namespace Pwe
                     return false;
             }
         }
-        private void Invoked()
-        {
-            if (m_camera != null && m_commandBuffer != null)
-            {
-                m_camera.RemoveCommandBuffer(CameraEvent.AfterEverything, m_commandBuffer);
-            }
-        }
+        //private void Invoked()
+        //{
+        //    if (m_camera != null && m_commandBuffer != null)
+        //    {
+        //        m_camera.RemoveCommandBuffer(CameraEvent.AfterEverything, m_commandBuffer);
+        //    }
+        //}
         //StateMachine GetArtboard(string s)
         //{
         //    for (uint a = 0; a < m_file.ArtboardCount; a++)
@@ -185,24 +192,31 @@ namespace Pwe
             {
                 m_stateMachine.Advance(Time.deltaTime);
             }
-            if (m_riveRenderer != null)
-            {
-                m_riveRenderer.Submit();
-                GL.InvalidateState();
-            }
+            //if (m_riveRenderer != null)
+            //{
+            //    m_riveRenderer.Submit();
+            //    GL.InvalidateState();
+            //}
             // m_riveRenderer.Submit();
 
            
         }
 
-        //private void OnDisable()
-        //{
-        //    if (m_camera != null && m_commandBuffer != null)
-        //    {
-        //        m_camera.RemoveCommandBuffer(CameraEvent.AfterEverything, m_commandBuffer);
-        //    }
-        //}
-
+        private void OnDisable()
+        {
+            if (m_camera != null && m_commandBuffer != null)
+            {
+                m_camera.RemoveCommandBuffer(CameraEvent.AfterEverything, m_commandBuffer);
+            }
+            if (_renderTexture != null)
+                _renderTexture.Release();
+        }
+        void OnDestroy()
+        {
+            // Release the RenderTexture when it's no longer needed
+            if (_renderTexture != null)
+                _renderTexture.Release();
+        }
 
 
 
