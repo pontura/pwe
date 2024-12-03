@@ -80,7 +80,8 @@ namespace Pwe
                 // Flip the render texture vertically for OpenGL
                 //image.material.mainTextureScale = new Vector2(1, -1);
                 //image.material.mainTextureOffset = new Vector2(0, 1);
-               // image.transform.localEulerAngles = new Vector3(0, 180, 180);
+                image.transform.localEulerAngles = new Vector3(180, 0, 0);
+                // 
             }
 
             if (OnReady != null)
@@ -101,6 +102,9 @@ namespace Pwe
         {
 #if UNITY_EDITOR
             return true;
+#endif
+#if UNITY_ANDROID
+            return false;
 #endif
             switch (UnityEngine.SystemInfo.graphicsDeviceType)
             {

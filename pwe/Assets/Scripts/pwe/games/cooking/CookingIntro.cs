@@ -10,6 +10,7 @@ namespace Pwe.Games.Cooking
 {
     public class CookingIntro : GameMain
     {
+        [SerializeField] CookingData cookingData;
         [SerializeField] Animation anim;
         [SerializeField] RiveRawImage riveRawImage;
         [SerializeField] float autoskipInSeconds;
@@ -24,21 +25,22 @@ namespace Pwe.Games.Cooking
 
         public override void OnInit()
         {
-            riveRawImage.Init("Cooking/cutscenes/intro.riv", OnLoaded);
             button.Init(Play);
             int level = 0;
             if (GamesManager.Instance != null)
                 level = GamesManager.Instance.GetGame(GameData.GAMES.COOKING).level;
-            items = (Game as CookingGame).CookingData.GetItems(level);
+            items = cookingData.GetItems(level);
+            riveRawImage.Init("Cooking/cutscenes/intro.riv", OnLoaded);
 
-            StartCoroutine(Animate());
         }
-        void OnLoaded() {
+        void OnLoaded()
+        {
+            StartCoroutine(Animate());
         }
        
         IEnumerator Animate()
         {
-            menu.Init(items, (Game as CookingGame).CookingData);
+            menu.Init(items, cookingData);
 
 
             button.gameObject.SetActive(false);

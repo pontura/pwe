@@ -84,7 +84,8 @@ namespace Pwe
             Material mat = cubeRenderer.material;
             mat.mainTexture = renderTexture;
 
-
+            mat.mainTextureScale = new Vector2(1, -1);
+            mat.mainTextureOffset = new Vector2(0, 1);
 
             //if (!FlipY())
             //{

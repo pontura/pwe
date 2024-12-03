@@ -23,7 +23,7 @@ namespace Pwe.Games.Cooking
             //riveTexture = GetComponent<RiveRawImage>();
             //riveTexture.Init("Cooking/pizza.riv", OnReady);
 
-            image.sprite = cooking.Data.GetBase("pizza"); // TO-DO:
+            image.sprite = cooking.cookingData.GetBase("pizza"); // TO-DO:
         }
         void OnReady() { OnLoaded();  }
         public override void OnIECollisionEnter(InteractiveElement ie)

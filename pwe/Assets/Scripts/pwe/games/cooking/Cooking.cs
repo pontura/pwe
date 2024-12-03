@@ -35,8 +35,8 @@ namespace Pwe.Games.Cooking
         Dictionary<string, int> ingredients;
         Dictionary<string, int> ingredientsAdded;
         int totalPieces;
-        public CookingData Data { get { return (Game as CookingGame).CookingData;  } }
 
+        public CookingData cookingData;
         [SerializeField] DragInputManager dragInputManager;
 
         int total;
