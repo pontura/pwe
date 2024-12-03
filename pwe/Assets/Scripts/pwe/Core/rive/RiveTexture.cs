@@ -38,7 +38,10 @@ namespace Pwe
         private static bool FlipY()
         {
 #if UNITY_EDITOR
-            return false;
+            return true;
+#endif
+#if UNITY_ANDROID
+            return false; 
 #endif
             return true; // para android se necesita FlipY
 
@@ -84,15 +87,13 @@ namespace Pwe
             Material mat = cubeRenderer.material;
             mat.mainTexture = renderTexture;
 
-            mat.mainTextureScale = new Vector2(1, -1);
-            mat.mainTextureOffset = new Vector2(0, 1);
 
-            //if (!FlipY())
-            //{
-            //    // Flip the render texture vertically for OpenGL
-            //    mat.mainTextureScale = new Vector2(1, -1);
-            //    mat.mainTextureOffset = new Vector2(0, 1);
-            //}
+            if (!FlipY())
+            {
+                // Flip the render texture vertically for OpenGL
+                mat.mainTextureScale = new Vector2(1, -1);
+                mat.mainTextureOffset = new Vector2(0, 1);
+            }
 
             Rive.RenderQueue m_renderQueue = new Rive.RenderQueue(renderTexture);
             m_riveRenderer = m_renderQueue.Renderer();
