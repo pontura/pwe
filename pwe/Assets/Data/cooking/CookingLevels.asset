@@ -33,9 +33,9 @@ MonoBehaviour:
     - item: 0
       num: 5
     - item: 1
-      num: 0
+      num: 1
     - item: 2
-      num: 3
+      num: 2
     ovenDuration: 5
   - ingredients:
     - item: 0

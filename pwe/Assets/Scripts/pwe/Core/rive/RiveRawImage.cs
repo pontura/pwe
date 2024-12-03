@@ -14,7 +14,7 @@ namespace Pwe
         public delegate void RiveEventDelegate(ReportedEvent reportedEvent);
 
         [SerializeField] Vector2 size = new Vector2(256, 256);
-        public RenderTexture _renderTexture;
+        RenderTexture _renderTexture;
         public RawImage image;
         public Fit fit = Fit.Contain;
         public Alignment alignment = Alignment.Center;
@@ -43,31 +43,33 @@ namespace Pwe
         {
             m_file = Rive.File.Load(data, data.GetHashCode());
 
-            RenderTexture renderTexture = new RenderTexture(
+            _renderTexture = new RenderTexture(
                 (int)size.x,
                 (int)size.y, 
                 0,
                 RenderTextureFormat.ARGB32);
 
-            renderTexture.enableRandomWrite = true;
-            renderTexture.antiAliasing = 1;
+            _renderTexture.enableRandomWrite = true;
+            _renderTexture.antiAliasing = 1;
 
-            renderTexture.Create();
+            _renderTexture.Create();
 
-            m_renderQueue = new Rive.RenderQueue(renderTexture);
-
+            m_renderQueue = new Rive.RenderQueue(_renderTexture);
             m_riveRenderer = m_renderQueue.Renderer();
+
+            image.texture = _renderTexture;
 
             m_artboard = m_file.Artboard(0);
             m_stateMachine = m_artboard?.StateMachine();
+
             //}
-            if (m_artboard != null && renderTexture != null)
+            if (m_artboard != null && _renderTexture != null)
             {
                 m_riveRenderer.Align(fit, alignment, m_artboard);
                 m_riveRenderer.Draw(m_artboard);
 
                 m_commandBuffer = new CommandBuffer();
-                m_commandBuffer.SetRenderTarget(renderTexture);
+                m_commandBuffer.SetRenderTarget(_renderTexture);
                // m_commandBuffer.ClearRenderTarget(true, true, UnityEngine.Color.clear, 0.0f);
                 m_riveRenderer.AddToCommandBuffer(m_commandBuffer);
             }
@@ -79,8 +81,7 @@ namespace Pwe
                 m_camera.AddCommandBuffer(CameraEvent.AfterEverything, m_commandBuffer);
             }
 
-            renderTexture.enableRandomWrite = true;
-            image.texture = renderTexture;
+          
 
             if (!FlipY())
             {
@@ -96,12 +97,12 @@ namespace Pwe
                 OnReady();
 
 
-            for(uint a = 0; a < m_file.ArtboardCount; a++)
-            {
-                Debug.Log($"_____________Artboard: {m_file.Artboard(a).StateMachineName(0)}");
-                var stateMachines = m_file.Artboard(a).StateMachine();
+            //for(uint a = 0; a < m_file.ArtboardCount; a++)
+            //{
+            //    Debug.Log($"_____________Artboard: {m_file.Artboard(a).StateMachineName(0)}");
+            //    var stateMachines = m_file.Artboard(a).StateMachine();
                
-            }
+            //}
 
 
         }
@@ -122,13 +123,7 @@ namespace Pwe
                     return false;
             }
         }
-        //private void Invoked()
-        //{
-        //    if (m_camera != null && m_commandBuffer != null)
-        //    {
-        //        m_camera.RemoveCommandBuffer(CameraEvent.AfterEverything, m_commandBuffer);
-        //    }
-        //}
+       
         //StateMachine GetArtboard(string s)
         //{
         //    for (uint a = 0; a < m_file.ArtboardCount; a++)
@@ -209,7 +204,10 @@ namespace Pwe
                 m_camera.RemoveCommandBuffer(CameraEvent.AfterEverything, m_commandBuffer);
             }
             if (_renderTexture != null)
+            {
                 _renderTexture.Release();
+                _renderTexture = null;
+            }
         }
         void OnDestroy()
         {
