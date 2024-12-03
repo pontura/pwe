@@ -390,50 +390,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 207352506831395230, guid: 41c9eab2edc7c474faa1c6d6d499d5b9, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 207352506831395230, guid: 41c9eab2edc7c474faa1c6d6d499d5b9, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 207352506831395230, guid: 41c9eab2edc7c474faa1c6d6d499d5b9, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 207352506831395230, guid: 41c9eab2edc7c474faa1c6d6d499d5b9, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 207352506831395230, guid: 41c9eab2edc7c474faa1c6d6d499d5b9, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 688
-      objectReference: {fileID: 0}
-    - target: {fileID: 207352506831395230, guid: 41c9eab2edc7c474faa1c6d6d499d5b9, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 318
-      objectReference: {fileID: 0}
-    - target: {fileID: 207352506831395230, guid: 41c9eab2edc7c474faa1c6d6d499d5b9, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.88
-      objectReference: {fileID: 0}
-    - target: {fileID: 207352506831395230, guid: 41c9eab2edc7c474faa1c6d6d499d5b9, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.88
-      objectReference: {fileID: 0}
     - target: {fileID: 1039975195392881612, guid: 41c9eab2edc7c474faa1c6d6d499d5b9, type: 3}
       propertyPath: m_Texture
       value: 
       objectReference: {fileID: 1016201724}
-    - target: {fileID: 1617124857069331161, guid: 41c9eab2edc7c474faa1c6d6d499d5b9, type: 3}
-      propertyPath: size.x
-      value: 1300
-      objectReference: {fileID: 0}
-    - target: {fileID: 1617124857069331161, guid: 41c9eab2edc7c474faa1c6d6d499d5b9, type: 3}
-      propertyPath: size.y
-      value: 600
-      objectReference: {fileID: 0}
     - target: {fileID: 3398430017659836829, guid: 41c9eab2edc7c474faa1c6d6d499d5b9, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
@@ -482,62 +442,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Game_Cooking
       objectReference: {fileID: 0}
-    - target: {fileID: 6572119906546193706, guid: 41c9eab2edc7c474faa1c6d6d499d5b9, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6572119906546193706, guid: 41c9eab2edc7c474faa1c6d6d499d5b9, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6572119906546193706, guid: 41c9eab2edc7c474faa1c6d6d499d5b9, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6572119906546193706, guid: 41c9eab2edc7c474faa1c6d6d499d5b9, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6572119906546193706, guid: 41c9eab2edc7c474faa1c6d6d499d5b9, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 688
-      objectReference: {fileID: 0}
-    - target: {fileID: 6572119906546193706, guid: 41c9eab2edc7c474faa1c6d6d499d5b9, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 318
-      objectReference: {fileID: 0}
-    - target: {fileID: 6572119906546193706, guid: 41c9eab2edc7c474faa1c6d6d499d5b9, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.88
-      objectReference: {fileID: 0}
-    - target: {fileID: 6572119906546193706, guid: 41c9eab2edc7c474faa1c6d6d499d5b9, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.88
-      objectReference: {fileID: 0}
     - target: {fileID: 6657830970013428841, guid: 41c9eab2edc7c474faa1c6d6d499d5b9, type: 3}
       propertyPath: m_Texture
       value: 
       objectReference: {fileID: 1016201724}
-    - target: {fileID: 8209481378275435047, guid: 41c9eab2edc7c474faa1c6d6d499d5b9, type: 3}
-      propertyPath: size.x
-      value: 1300
-      objectReference: {fileID: 0}
-    - target: {fileID: 8209481378275435047, guid: 41c9eab2edc7c474faa1c6d6d499d5b9, type: 3}
-      propertyPath: size.y
-      value: 600
-      objectReference: {fileID: 0}
     - target: {fileID: 8419657280966537884, guid: 41c9eab2edc7c474faa1c6d6d499d5b9, type: 3}
       propertyPath: m_Texture
       value: 
       objectReference: {fileID: 1016201724}
-    - target: {fileID: 9093500912130382995, guid: 41c9eab2edc7c474faa1c6d6d499d5b9, type: 3}
-      propertyPath: size.x
-      value: 1300
-      objectReference: {fileID: 0}
-    - target: {fileID: 9093500912130382995, guid: 41c9eab2edc7c474faa1c6d6d499d5b9, type: 3}
-      propertyPath: size.y
-      value: 600
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
