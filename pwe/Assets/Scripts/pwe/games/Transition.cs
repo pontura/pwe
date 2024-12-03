@@ -33,7 +33,13 @@ namespace Pwe.Games
         {
             print("OnTransition Done");
             OnReady();
+            OnReady = null;
             riveRawImage.SetTrigger("transition");
+            Invoke("OnDelayedDone", 0.5f);
+        }
+        void OnDelayedDone()
+        {
+            riveRawImage.gameObject.SetActive(false);
         }
     }
 }
