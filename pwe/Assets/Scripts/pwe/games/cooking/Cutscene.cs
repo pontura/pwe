@@ -9,7 +9,7 @@ namespace Pwe.Games.Cooking
         [SerializeField] RiveRawImage riveRawImage;
         [SerializeField] ButtonUI skipButton;
         [SerializeField] bool backToContinue;
-        [SerializeField] string riveName = "Cooking/cutscenes/outro.riv";
+        [SerializeField] string artboard = "outro";
 
         public override void OnInitialize()
         {
@@ -17,8 +17,7 @@ namespace Pwe.Games.Cooking
         }
         public override void OnInit()
         {
-            if(riveRawImage != null) // TO-DO
-                riveRawImage.Init(riveName, OnLoaded);
+            GetRiveTexture().ActivateArtboard(artboard);
             base.OnInit();
         }
         void OnLoaded() { }

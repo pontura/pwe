@@ -249,7 +249,14 @@ namespace Pwe.Core
             m_stateMachine?.Advance(Time.deltaTime);
 
         }
-
+        private void OnEnable()
+        {
+            Camera camera = gameObject.GetComponent<Camera>();
+            if (m_commandBuffer != null && camera != null)
+            {
+                camera.AddCommandBuffer(cameraEvent, m_commandBuffer);
+            }
+        }
         private void OnDisable()
         {
             Camera camera = gameObject.GetComponent<Camera>();

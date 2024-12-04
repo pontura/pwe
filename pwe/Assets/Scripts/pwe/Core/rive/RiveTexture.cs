@@ -15,8 +15,6 @@ namespace Pwe
         public event RiveEventDelegate OnRiveEvent;
         public delegate void RiveEventDelegate(ReportedEvent reportedEvent);
 
-        //public RenderTexture renderTexture;
-      //  [SerializeField] Vector2 size = new Vector2(256, 256);
         [SerializeField] RenderTexture renderTexture;
 
         Fit fit = Fit.Layout;
@@ -38,25 +36,7 @@ namespace Pwe
             this.OnReady = OnReady;
             MainApp.Instance.riveFilesManager.Load(riveFileName, OnDone);
         }
-        private static bool FlipY()
-        {
-#if UNITY_EDITOR
-            return true;
-#endif
-#if UNITY_ANDROID
-            return false; 
-#endif
-            return true; // para android se necesita FlipY
-
-            //switch (UnityEngine.SystemInfo.graphicsDeviceType)
-            //{
-            //    case UnityEngine.Rendering.GraphicsDeviceType.Metal:
-            //    case UnityEngine.Rendering.GraphicsDeviceType.Direct3D11:
-            //        return true;
-            //    default:
-            //        return false;
-            //}
-        }
+        
         void OnDone(byte[] data, string riveName)
         {
             isOn = true;
@@ -114,9 +94,10 @@ namespace Pwe
             artboardsData.Add(artName, ad);
             print("New artboard: " + artName);
         }
+
         List<Artboard> artboards = new List<Artboard>();
         List<Rive.StateMachine> stateMachines = new List<Rive.StateMachine>();
-        bool started = false;
+
         public void AddArtBoards(List<string> artboardsName)
         {
             artboardsData = new Dictionary<string, ArtboardData>();
@@ -146,28 +127,16 @@ namespace Pwe
             m_riveRenderer.Align(fit, alignment, m_artboard);
             m_riveRenderer.Draw(m_artboard);
 
-            if(m_commandBuffer != null)
-                m_commandBuffer.Clear();
-            m_commandBuffer = m_riveRenderer.ToCommandBuffer();
+            if (m_commandBuffer != null)
+                m_camera.RemoveCommandBuffer(CameraEvent.AfterEverything, m_commandBuffer);
 
-            //if (!started)
-            //{ 
-                m_commandBuffer.SetRenderTarget(renderTexture);
-           // }
+            m_commandBuffer = m_riveRenderer.ToCommandBuffer();
+           
+            m_commandBuffer.SetRenderTarget(renderTexture);
             m_commandBuffer.ClearRenderTarget(true, true, UnityEngine.Color.clear, 0.0f);
             m_riveRenderer.AddToCommandBuffer(m_commandBuffer);
-
-
-            //if (!started)
-            //{
-                m_camera = Camera.main;
-
-            //    if (m_camera != null)
-            //    {
-                    m_camera.AddCommandBuffer(CameraEvent.AfterEverything, m_commandBuffer);
-            //    }
-            //}
-            //started = true;
+            m_camera = Camera.main;
+            m_camera.AddCommandBuffer(CameraEvent.AfterEverything, m_commandBuffer);
         }
         public void SetTrigger(string artboardName, string triggerName)
         {
@@ -209,15 +178,16 @@ namespace Pwe
 
         private void OnDisable()
         {
-            isOn = false;           
+            isOn = false; 
+            if (m_commandBuffer != null && m_camera != null)
+            {
+                m_camera.RemoveCommandBuffer(CameraEvent.AfterEverything, m_commandBuffer);
+            }
+
         }
 
         void OnDestroy()
         {
-            if (m_camera != null && m_commandBuffer != null)
-            {
-                m_camera.RemoveCommandBuffer(CameraEvent.AfterEverything, m_commandBuffer);
-            }
             if (renderTexture != null)
                 renderTexture.Release();
 
@@ -274,6 +244,25 @@ namespace Pwe
                 m_wasMouseDown = false; Vector2 local = m_artboard.LocalCoordinate(mouseRiveScreenPos, new Rect(0, 0, renderTexture.width, renderTexture.height), fit, alignment);
                 m_stateMachine?.PointerUp(local);
             }
+        }
+        private static bool FlipY()
+        {
+#if UNITY_EDITOR
+            return true;
+#endif
+#if UNITY_ANDROID
+            return false;
+#endif
+            return true; // para android se necesita FlipY
+
+            //switch (UnityEngine.SystemInfo.graphicsDeviceType)
+            //{
+            //    case UnityEngine.Rendering.GraphicsDeviceType.Metal:
+            //    case UnityEngine.Rendering.GraphicsDeviceType.Direct3D11:
+            //        return true;
+            //    default:
+            //        return false;
+            //}
         }
 
         //public void PlayStateMachine(string stateMachine, string triggerName)

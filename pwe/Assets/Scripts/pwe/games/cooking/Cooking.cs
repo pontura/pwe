@@ -121,7 +121,7 @@ namespace Pwe.Games.Cooking
         {
             if (buttonProgressBar.IsReady())
             {
-                Events.OnTransition(OnTransitionDone, "game");
+                Events.OnTransition(OnTransitionDone, "oven");
             }
         }
 

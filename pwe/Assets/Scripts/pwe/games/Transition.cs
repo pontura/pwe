@@ -29,6 +29,7 @@ namespace Pwe.Games
         }
         IEnumerator Anim(System.Action OnReady, string nextArtboard)
         {
+            riveScreen.SetTrigger("init");
             yield return new WaitForSeconds(0.5f);
             riveScreen.SetTrigger("transition");
             game.rive.ActivateArtboard(nextArtboard);

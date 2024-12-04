@@ -37,10 +37,8 @@ namespace Pwe.Games.Cooking
             if (GamesManager.Instance != null)
             {
                 int level = GamesManager.Instance.GetGame(GameData.GAMES.COOKING).level;
-               // ovenDuration = Game.CookingData.GetLevelData(level).ovenDuration;
             }
 
-          //  bigNumberSignal.Init(ovenDuration);
             btnDone.Init(OnDoneClicked);
             btnNext.Init(NextClicked);
             btnPrev.Init(PrevClicked);
@@ -56,6 +54,8 @@ namespace Pwe.Games.Cooking
             if (mainPiece.GetComponent<ResolutionFixer>() != null)
                 Destroy(mainPiece.GetComponent<ResolutionFixer>());
             state = states.playing;
+
+            GetRiveTexture().ActivateArtboard("oven");
         }
         public override void OnUpdate()
         {
