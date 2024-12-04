@@ -21,7 +21,7 @@ namespace Pwe
         {
             string s = input.text;
             string s2 = input2.text;
-            riveTexture.PlayStateMachine(s, s2);
+           // riveTexture.PlayStateMachine(s, s2);
         }
         private void RiveScreen_OnRiveEvent(ReportedEvent reportedEvent)
         {

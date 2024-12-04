@@ -7,39 +7,40 @@ namespace Pwe.Games
 {
     public class Transition : MonoBehaviour
     {
-        [SerializeField] RiveRawImage riveRawImage;
-        System.Action OnReady;
+        [SerializeField] string transitionArtboardName = "transition";
+        Game game;
+        RiveScreen riveScreen;
         private void Start()
         {
-            riveRawImage.gameObject.SetActive(false);
+            riveScreen = Camera.main.GetComponent<RiveScreen>();
+            game = GetComponent<Game>();
             Events.OnTransition += OnTransition;
         }
         private void OnDestroy()
         {
             Events.OnTransition -= OnTransition;
         }
-        void OnTransition(System.Action OnReady)
+        void OnTransition(System.Action OnReady, string nextArtboard)
         {
-            riveRawImage.gameObject.SetActive(true);
+            riveScreen.enabled = true;
+           // game.rive.ActivateArtboard(transitionArtboardName);
             print("OnTransition");
-            this.OnReady = OnReady;
-            riveRawImage.Init("Cooking/cutscenes/transitioncooking.riv", OnLoaded);
+            StartCoroutine(Anim(OnReady, nextArtboard));
         }
-        void OnLoaded()
+        IEnumerator Anim(System.Action OnReady, string nextArtboard)
         {
-            Invoke("OnDelayed", 0.5f);        
-        }
-        void OnDelayed()
-        {
-            print("OnTransition Done");
+            yield return new WaitForSeconds(0.5f);
+            riveScreen.SetTrigger("transition");
+            game.rive.ActivateArtboard(nextArtboard);
+            print("OnTransition Done to: " + nextArtboard);
             OnReady();
             OnReady = null;
-            riveRawImage.SetTrigger("transition");
-            Invoke("OnDelayedDone", 0.5f);
-        }
-        void OnDelayedDone()
-        {
-            riveRawImage.gameObject.SetActive(false);
+            // game.rive.SetTrigger("transition", "transition");
+            yield return new WaitForSeconds(0.5f);
+            //if(nextArtboard != "")
+            //    game.rive.ActivateArtboard(nextArtboard);
+            nextArtboard = "";
+            riveScreen.enabled = false;
         }
     }
 }

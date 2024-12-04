@@ -103,6 +103,23 @@ namespace Pwe.Core
                 }
             }
         }
+        public void PreloadRiv(string riveName, System.Action AllPreloaded)
+        {
+            this.AllPreloaded = AllPreloaded;
+            totalLoaded = 0;
+            totalRives = 1;
+            riveName += ".riv";
+            if (all.ContainsKey(riveName))
+            {
+                Debug.Log("Load done: " + riveName);
+                OnPreloaded(all[riveName], riveName);
+            }
+            else
+            {
+                string finalURL = riveName;
+                StartCoroutine(LoadC(finalURL, OnPreloaded));
+            }
+        }
         void OnPreloaded(byte[] data, string riveName)
         {
             totalLoaded++;

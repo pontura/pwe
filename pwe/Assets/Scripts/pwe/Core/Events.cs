@@ -7,7 +7,7 @@ namespace Pwe.Core
         public static System.Action<GameData.GAMES> OnPlayGame = delegate { };
         public static System.Action Reset = delegate { };
         public static System.Action ExitGame = delegate { };
-        public static System.Action<System.Action> OnTransition = delegate { };
+        public static System.Action<System.Action, string> OnTransition = delegate { };
         public static System.Action OnWinParticles = delegate { };
         public static System.Action<ParticlesManager.types, Vector2> OnAddParticles = delegate { };
         public static System.Action GamePlayed = delegate { };

@@ -698,6 +698,7 @@ GameObject:
   - component: {fileID: 385024580}
   - component: {fileID: 385024579}
   - component: {fileID: 385024581}
+  - component: {fileID: 385024582}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -779,6 +780,21 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 385024577}
   m_Enabled: 1
+--- !u!114 &385024582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 385024577}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 609cbe8efbde09549aa45a5560f02c61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  asset: {fileID: -4516626237390682484, guid: deec263716ef1ea4385285c0a5ce4415, type: 3}
+  cameraEvent: 20
+  fit: 2
 --- !u!1 &417570912
 GameObject:
   m_ObjectHideFlags: 0
@@ -2675,7 +2691,7 @@ MonoBehaviour:
   container: {fileID: 666266095}
   all:
   - game: 0
-    gameGO: {fileID: 5161400804714119547, guid: 41c9eab2edc7c474faa1c6d6d499d5b9, type: 3}
+    gameGO: {fileID: 5161400804714119547, guid: 4d5d31fd3d68de546b71b4b7da6d5925, type: 3}
     level: 0
   - game: 1
     gameGO: {fileID: 5161400804714119547, guid: 2a4ae9fed5e940f418d5a3a255ac8c42, type: 3}

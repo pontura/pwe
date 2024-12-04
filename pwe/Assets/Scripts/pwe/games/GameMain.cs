@@ -6,6 +6,7 @@ namespace Pwe.Games
     {
         Game game;
         public Game Game { get { return game; } }
+        public RiveTexture GetRiveTexture() { return game.rive; }
 
         public bool isOn;
         public void Initialize(Game game)

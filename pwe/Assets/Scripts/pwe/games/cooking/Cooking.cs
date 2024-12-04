@@ -29,8 +29,6 @@ namespace Pwe.Games.Cooking
         PieceToDrag newPieceToDrag;
 
         [SerializeField] ButtonProgressBar buttonProgressBar;
-        [SerializeField] string riveName;
-        [SerializeField] RiveTexture riveTexture;
 
         Dictionary<string, int> ingredients;
         Dictionary<string, int> ingredientsAdded;
@@ -47,8 +45,8 @@ namespace Pwe.Games.Cooking
         [SerializeField] List<string> added;
         public override void OnInit()
         {
-            riveTexture.Init(riveName, null);
-            riveTexture.OnRiveEvent += RiveScreen_OnRiveEvent;
+            GetRiveTexture().OnRiveEvent += RiveScreen_OnRiveEvent;
+            GetRiveTexture().ActivateArtboard("game");
 
             buttonProgressBar.Init(NextClicked);
             buttonProgressBar.SetProgress(false);
@@ -74,6 +72,10 @@ namespace Pwe.Games.Cooking
 
             SetMenu();
         }
+        public override void OnHide()
+        {
+            GetRiveTexture().OnRiveEvent -= RiveScreen_OnRiveEvent;
+        }
         private void RiveScreen_OnRiveEvent(ReportedEvent reportedEvent)
         {
             Debug.Log($"Event received, name: \"{reportedEvent.Name}\", secondsDelay: {reportedEvent.SecondsDelay}");
@@ -92,14 +94,14 @@ namespace Pwe.Games.Cooking
                     {
                         if (ingredientsAdded[itemDragging.ToString()] >= 10) return;
                     }
-                    riveTexture.SetTrigger("remove_" + itemDragging);
+                    GetRiveTexture().SetTrigger("game", "remove_" + itemDragging);
                     InitDrag();  break;
             }
         }
         public void ResetDrag()
         {
             itemDragging = items[itemID].item;
-            riveTexture.SetTrigger("add_" + itemDragging);
+            GetRiveTexture().SetTrigger("game", "add_" + itemDragging);
         }
         void ChgangeNum(bool up)
         {
@@ -119,7 +121,7 @@ namespace Pwe.Games.Cooking
         {
             if (buttonProgressBar.IsReady())
             {
-                Events.OnTransition(OnTransitionDone);
+                Events.OnTransition(OnTransitionDone, "game");
             }
         }
 
