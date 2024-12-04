@@ -8,30 +8,38 @@ namespace Pwe.Games
 {
     public class Game : MonoBehaviour
     {
+        public RiveTexture rive;
         [SerializeField] GameMain[] screens;
         [SerializeField] int screenID;
         GameMain active;
-        [SerializeField] string[] allRivNames;
+        // [SerializeField] string[] allRivNames;
+        [SerializeField] string allRivName;
+        [SerializeField] List<string> artboards;
 
         void Start()
         {
             foreach (GameMain gm in screens) gm.Initialize(this);
            
-            if (allRivNames != null && allRivNames.Length > 0)
+            if (allRivName != "")
             {
-                MainApp.Instance.riveFilesManager.PreloadRivs(allRivNames, AllRivesLoaded);
+                MainApp.Instance.riveFilesManager.PreloadRiv(allRivName, AllRivesLoaded);
             }
             else
             {
                 AllRivesLoaded();
             }
         }
-        void AllRivesLoaded()
+        public virtual void AllRivesLoaded() { }
+        public void InitScreens()
         {
             Debug.Log("All Rives Loaded");
             if (SceneManager.GetActiveScene().name == "Main")
                 screenID = 0;
             SetScreen();
+        }
+        public void LoadAllArtBoards()
+        {
+            rive.AddArtBoards(artboards);
         }
         void SetScreen()
         {

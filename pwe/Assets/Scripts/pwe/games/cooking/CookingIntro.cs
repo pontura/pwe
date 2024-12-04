@@ -12,7 +12,6 @@ namespace Pwe.Games.Cooking
     {
         [SerializeField] CookingData cookingData;
         [SerializeField] Animation anim;
-        [SerializeField] RiveRawImage riveRawImage;
         [SerializeField] float autoskipInSeconds;
         [SerializeField] CookingMenuUI menu;
         [SerializeField] ButtonUI button;
@@ -30,11 +29,8 @@ namespace Pwe.Games.Cooking
             if (GamesManager.Instance != null)
                 level = GamesManager.Instance.GetGame(GameData.GAMES.COOKING).level;
             items = cookingData.GetItems(level);
-            riveRawImage.Init("Cooking/cutscenes/intro.riv", OnLoaded);
 
-        }
-        void OnLoaded()
-        {
+            GetRiveTexture().ActivateArtboard("intro");
             StartCoroutine(Animate());
         }
        
@@ -49,21 +45,21 @@ namespace Pwe.Games.Cooking
             yield return new WaitForSeconds(0.1f);
 
             foreach (ItemData item in items) 
-                riveRawImage.SetNumber(item.item.ToString(), item.num);
-
-            //riveRawImage.SetNumberNestedArtboard("PizzaBase", "qty_tomatoes", 3);
+                (Game as CookingGame).rive.SetNumber("intro", item.item.ToString(), item.num);
 
             yield return new WaitForSeconds(3);
+
             anim.Play("cutscene_2");
-            riveRawImage.SetTrigger("next");
+            (Game as CookingGame).rive.SetTrigger("intro", "next");
             menu.gameObject.SetActive(true);
 
             yield return new WaitForSeconds(1);
+
             button.gameObject.SetActive(true);
         }
         private void Play()
         {
-            Events.OnTransition(OnTransitionDone);
+            Events.OnTransition(OnTransitionDone, "game");
         }
         void OnTransitionDone()
         {

@@ -3,6 +3,8 @@ using Rive;
 using UnityEngine.Rendering;
 using Pwe.Core;
 using System.Linq;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace Pwe
 {
@@ -14,10 +16,11 @@ namespace Pwe
         public delegate void RiveEventDelegate(ReportedEvent reportedEvent);
 
         //public RenderTexture renderTexture;
-        [SerializeField] Vector2 size = new Vector2(256, 256);
+      //  [SerializeField] Vector2 size = new Vector2(256, 256);
         [SerializeField] RenderTexture renderTexture;
-        public Fit fit = Fit.Contain;
-        public Alignment alignment = Alignment.Center;
+
+        Fit fit = Fit.Layout;
+        Alignment alignment = Alignment.Center;
 
         private CommandBuffer m_commandBuffer;
 
@@ -59,30 +62,6 @@ namespace Pwe
             isOn = true;
             m_file = Rive.File.Load(data, data.GetHashCode());
 
-            print("renderTexture: " + renderTexture);
-
-            if (renderTexture == null)
-            {
-                renderTexture = new RenderTexture(
-                    (int)size.x,
-                    (int)size.y,
-                    0,
-                    RenderTextureFormat.ARGB32);
-
-
-                renderTexture.enableRandomWrite = true;
-
-                //  renderTexture.antiAliasing = QualitySettings.antiAliasing;
-
-                renderTexture.Create();
-            }
-            else
-            {
-               // renderTexture.format = RenderTextureFormat.ARGB32;
-                renderTexture.enableRandomWrite = true;
-                renderTexture.Create();
-            }
-
             MeshRenderer cubeRenderer = GetComponent<MeshRenderer>();
             Material mat = cubeRenderer.material;
             mat.mainTexture = renderTexture;
@@ -97,59 +76,104 @@ namespace Pwe
 
             Rive.RenderQueue m_renderQueue = new Rive.RenderQueue(renderTexture);
             m_riveRenderer = m_renderQueue.Renderer();
-            //if (asset != null)
-            //{
-            //    m_file = Rive.File.Load(asset);
-            m_artboard = m_file.Artboard(0);
-            m_stateMachine = m_artboard?.StateMachine();
-            //}
-            if (m_artboard != null && renderTexture != null)
-            {
-                m_riveRenderer.Align(fit, alignment, m_artboard);
-                m_riveRenderer.Draw(m_artboard);
 
-                //m_commandBuffer = m_riveRenderer.ToCommandBuffer();
-                //m_commandBuffer.SetRenderTarget(renderTexture);
-                //m_commandBuffer.ClearRenderTarget(true, true, UnityEngine.Color.clear, 0.0f);
-                //m_riveRenderer.AddToCommandBuffer(m_commandBuffer);
-
-                m_commandBuffer = new CommandBuffer();
-                m_commandBuffer.SetRenderTarget(renderTexture);
-                m_commandBuffer.ClearRenderTarget(true, true, UnityEngine.Color.clear, 0.0f);
-                m_riveRenderer.AddToCommandBuffer(m_commandBuffer);
-
-                m_camera = Camera.main;
-
-                if (m_camera != null)
-                {
-                    m_camera.AddCommandBuffer(CameraEvent.AfterEverything, m_commandBuffer);
-                }
-            }
             if (OnReady != null)
             {
                 OnReady();
                 OnReady = null;
+            }           
+        }
+        public void InitArtboard()
+        {
+
+        }
+        //IEnumerator Delayed()
+        //{
+        //    AddArtboard("intro");
+        //    yield return new WaitForSeconds(2);
+        //    AddArtboard("transition");
+        //    yield return new WaitForSeconds(1);
+        //    SetTrigger("transition");
+        //    yield return new WaitForSeconds(1);
+        //    m_stateMachine = stateMachines[0];
+        //    SetTrigger("next");
+        //}
+        Dictionary<string, ArtboardData> artboardsData;
+        class ArtboardData
+        {
+            public Artboard artboard;
+            public Rive.StateMachine stateMachine;
+        }
+        private void AddData(string artName, Artboard artboard, StateMachine sm)
+        {
+            if (artboardsData.ContainsKey(artName))
+                return;
+            ArtboardData ad = new ArtboardData();
+            ad.artboard = artboard;
+            ad.stateMachine = sm;
+            artboardsData.Add(artName, ad);
+            print("New artboard: " + artName);
+        }
+        List<Artboard> artboards = new List<Artboard>();
+        List<Rive.StateMachine> stateMachines = new List<Rive.StateMachine>();
+        bool started = false;
+        public void AddArtBoards(List<string> artboardsName)
+        {
+            artboardsData = new Dictionary<string, ArtboardData>();
+            foreach (string artName in artboardsName)
+            {
+                m_artboard = m_file.Artboard(artName);
+                m_stateMachine = m_artboard?.StateMachine();
+
+                AddData(artName, m_artboard, m_stateMachine);
             }
         }
-        //StateMachine GetArtboard(string s)
-        //{
-        //    for (uint a = 0; a < m_file.ArtboardCount; a++)
-        //    {
-        //        Artboard artb = m_file.Artboard(a);
-        //        // Try using the GetName() method or similar alternatives
-        //        for (uint b = 0; b < artb?.StateMachineCount; b++)
-        //        {
-        //            string _s = artb?.StateMachineName(b);
-        //            if (s == _s)
-        //                return artb.StateMachine();
-        //        }
-        //    }
-        //    return null;
-        //}
-        public void SetTrigger(string triggerName)
+        string activeArtboard;
+        public void ActivateArtboard(string artName)
+        {
+            if (activeArtboard == artName) return;
+            activeArtboard = artName;
+            if (!artboardsData.ContainsKey(artName))
+            {
+                Debug.LogError("No artboard nameed: " + artName + " loaded yet!");
+                return;
+            }
+            Debug.Log("Activating artboard " + artName);
+            ArtboardData ad = artboardsData[artName];
+            m_artboard = m_file.Artboard(artName);
+            m_stateMachine = m_artboard?.StateMachine();
+
+            m_riveRenderer.Align(fit, alignment, m_artboard);
+            m_riveRenderer.Draw(m_artboard);
+
+            if(m_commandBuffer != null)
+                m_commandBuffer.Clear();
+            m_commandBuffer = m_riveRenderer.ToCommandBuffer();
+
+            //if (!started)
+            //{ 
+                m_commandBuffer.SetRenderTarget(renderTexture);
+           // }
+            m_commandBuffer.ClearRenderTarget(true, true, UnityEngine.Color.clear, 0.0f);
+            m_riveRenderer.AddToCommandBuffer(m_commandBuffer);
+
+
+            //if (!started)
+            //{
+                m_camera = Camera.main;
+
+            //    if (m_camera != null)
+            //    {
+                    m_camera.AddCommandBuffer(CameraEvent.AfterEverything, m_commandBuffer);
+            //    }
+            //}
+            //started = true;
+        }
+        public void SetTrigger(string artboardName, string triggerName)
         {
             if (!isOn) return;
-            print("Set trigger: " + triggerName);
+            ActivateArtboard(artboardName);
+            print("Artboard: " + artboardName + " Set trigger: " + triggerName);
 
             SMITrigger someTrigger = m_stateMachine.GetTrigger(triggerName);
             if (someTrigger != null)
@@ -158,10 +182,11 @@ namespace Pwe
                 someTrigger.Fire();
             }
         }
-        public void SetNumber(string triggerName, int number)
+        public void SetNumber(string artboardName, string triggerName, int number)
         {
             if (!isOn) return;
-            print("SetNumber : " + triggerName + " num: " + number);
+            ActivateArtboard(artboardName);
+            print("Artboard: " + artboardName + " Set Number: " + triggerName + " num: " + number);
             SMINumber someNumber = m_stateMachine.GetNumber(triggerName);
             if (someNumber == null) return;
             someNumber.Value = number;
@@ -212,16 +237,11 @@ namespace Pwe
         void HitTesting()
         {
 
-          //  if (camera == null || renderTexture == null || m_artboard == null) return;
+            if (m_camera == null || renderTexture == null || m_artboard == null) return;
 
 
             if (!Physics.Raycast(m_camera.ScreenPointToRay(Input.mousePosition), out RaycastHit hit))
                 return;
-
-            //Artboard bowls = m_file.Artboard("Bowls");
-            //bowls.LocalCoordinate(new Vector2(200,500), new Rect(200, 0, Screen.width, Screen.height), fit, alignment);
-
-
 
             UnityEngine.Renderer rend = hit.transform.GetComponent<UnityEngine.Renderer>();
             MeshCollider meshCollider = hit.collider as MeshCollider;
@@ -256,15 +276,45 @@ namespace Pwe
             }
         }
 
-        public void PlayStateMachine(string stateMachine, string triggerName)
-        {
-            if (!isOn) return;
-            SMITrigger someTrigger = m_stateMachine.GetTrigger(triggerName);
-            if (someTrigger != null)
-            {
-                print("TRIGGER : " + triggerName);
-                someTrigger.Fire();
-            }
-        }
+        //public void PlayStateMachine(string stateMachine, string triggerName)
+        //{
+        //    if (!isOn) return;
+        //    SMITrigger someTrigger = m_stateMachine.GetTrigger(triggerName);
+        //    if (someTrigger != null)
+        //    {
+        //        print("TRIGGER : " + triggerName);
+        //        someTrigger.Fire();
+        //    }
+        //}
+
+        //public void SetNumberInArtboard(string nestedArtboardName, string triggerName, int number)
+        //{
+        //    var nestedArtboard = m_file.Artboard(nestedArtboardName);
+        //    if (nestedArtboard != null)
+        //    {
+        //        m_stateMachine = nestedArtboard.StateMachine(); // Asegúrate de usar el índice correcto
+        //        print("nestedArtboardName : " + nestedArtboardName + " triggerName: " + triggerName + " num: " + number);
+        //        if (number < 0) return;
+        //        SMINumber someNumber = m_stateMachine.GetNumber(triggerName);
+        //        if (someNumber == null) return;
+        //        someNumber.Value = number;
+        //        print("SetNumber Done");
+        //    }
+        //}
+        //public void SetTriggerInArtboard(string nestedArtboardName, string triggerName)
+        //{
+        //    m_artboard = m_file.Artboard(nestedArtboardName);
+        //    if (m_artboard != null)
+        //    {
+        //        m_stateMachine = m_artboard.StateMachine();
+        //        SMITrigger someTrigger = m_stateMachine.GetTrigger(triggerName);
+        //        if (someTrigger != null)
+        //        {
+        //            print("Set TRIGGER: " + triggerName + " in: " + nestedArtboardName);
+        //            someTrigger.Fire();
+        //            m_stateMachine.Advance(Time.deltaTime);
+        //        }
+        //    }
+        //}
     }
 }
