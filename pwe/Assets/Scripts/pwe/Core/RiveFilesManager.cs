@@ -9,7 +9,8 @@ namespace Pwe.Core
     public class RiveFilesManager : MonoBehaviour
     {
         [SerializeField] bool useLocalRives;
-        const string serverURL = "https://pontura.github.io/pwe/pwe/Assets/Rive/";
+        //const string serverURL = "https://pontura.github.io/pwe/pwe/Assets/Rive/";
+        const string serverURL = "https://www.yaguar.xyz/pwe/Rive/";
 
         Dictionary<string, byte[]> all;
         private void Awake()

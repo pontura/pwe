@@ -1065,6 +1065,7 @@ MonoBehaviour:
   id: 0
   anim: {fileID: 0}
   cooking: {fileID: 6547004750030210574}
+  riveMultiTexture: {fileID: 0}
   piecesContainer: {fileID: 0}
 --- !u!61 &8413228573262768094
 BoxCollider2D:
@@ -2403,6 +2404,7 @@ MonoBehaviour:
   pieceToDrag: {fileID: 3903754971774630711, guid: 8b17856a1b6292c4ba4f6eba3715ed4b, type: 3}
   dragContainer: {fileID: 4055252172246690942}
   buttonProgressBar: {fileID: 1742031001350054176}
+  riveMultiTexture: {fileID: 5630188653586245194}
   dragInputManager: {fileID: 8073790473648607465}
   added: []
 --- !u!114 &1664705559699885796
@@ -3530,6 +3532,7 @@ MonoBehaviour:
   id: 0
   anim: {fileID: 7757890829674565560}
   cooking: {fileID: 6547004750030210574}
+  riveMultiTexture: {fileID: 0}
   piecesContainer: {fileID: 0}
 --- !u!111 &7757890829674565560
 Animation:
@@ -4132,6 +4135,7 @@ MonoBehaviour:
   pieceToDrag: {fileID: 3903754971774630711, guid: 8b17856a1b6292c4ba4f6eba3715ed4b, type: 3}
   dragContainer: {fileID: 8455057761103713164}
   buttonProgressBar: {fileID: 4376568667306549811}
+  riveMultiTexture: {fileID: 0}
   dragInputManager: {fileID: 602529370367350850}
   added: []
 --- !u!114 &5416905063564627380
@@ -4430,6 +4434,7 @@ MonoBehaviour:
   id: 0
   anim: {fileID: 2487659208555585584}
   cooking: {fileID: 3424146231162313583}
+  riveMultiTexture: {fileID: 0}
   piecesContainer: {fileID: 8828718725104458002}
 --- !u!114 &2546049032199732995
 MonoBehaviour:
@@ -6169,6 +6174,7 @@ RectTransform:
   - {fileID: 4055252172246690942}
   - {fileID: 1734611665292321412}
   - {fileID: 6616264686504799326}
+  - {fileID: 4180663146101670232}
   m_Father: {fileID: 9140110801355716874}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -9505,6 +9511,7 @@ MonoBehaviour:
   id: 0
   anim: {fileID: 6676189911588522435}
   cooking: {fileID: 6547004750030210574}
+  riveMultiTexture: {fileID: 5630188653586245194}
   piecesContainer: {fileID: 0}
 --- !u!114 &32524536699511029
 MonoBehaviour:
@@ -9689,6 +9696,7 @@ MonoBehaviour:
   id: 0
   anim: {fileID: 0}
   cooking: {fileID: 6547004750030210574}
+  riveMultiTexture: {fileID: 0}
   piecesContainer: {fileID: 0}
 --- !u!114 &5608355261016114903
 MonoBehaviour:
@@ -11399,6 +11407,110 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1.25
+--- !u!1 &8716381952047453587
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4180663146101670232}
+  - component: {fileID: 8805917833190482885}
+  - component: {fileID: 1122619269423003436}
+  - component: {fileID: 5630188653586245194}
+  - component: {fileID: 8093653234602471226}
+  m_Layer: 0
+  m_Name: MultiRive
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &4180663146101670232
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8716381952047453587}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1212951472569240829}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &8805917833190482885
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8716381952047453587}
+  m_CullTransparentMesh: 1
+--- !u!114 &1122619269423003436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8716381952047453587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Texture: {fileID: 0}
+  m_UVRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+--- !u!114 &5630188653586245194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8716381952047453587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b6a72838013a9e488642924de67bbd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: {x: 640, y: 360}
+  _renderTexture: {fileID: 0}
+  image: {fileID: 1122619269423003436}
+  fit: 1
+--- !u!114 &8093653234602471226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8716381952047453587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86710e43de46f6f4bac7c8e50813a599, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AspectMode: 2
+  m_AspectRatio: 1.77
 --- !u!1 &8930141884289045986
 GameObject:
   m_ObjectHideFlags: 0

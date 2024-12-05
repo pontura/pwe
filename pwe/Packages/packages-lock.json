@@ -17,6 +17,13 @@
       },
       "hash": "598c85e0f455d38d7592758cffeeef7771609b16"
     },
+    "com.kuraiandras.numericsconverter": {
+      "version": "https://github.com/KuraiAndras/NumericsConverter.git?path=/NumericsConverter/Assets/NumericsConverter",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "8a28cc71613717af732771223efb562d737fc386"
+    },
     "com.unity.2d.sprite": {
       "version": "1.0.0",
       "depth": 0,

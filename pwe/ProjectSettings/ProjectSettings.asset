@@ -263,7 +263,7 @@ PlayerSettings:
   AndroidTargetDevices: 0
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: C:/Users/pontu/Documents/GitHub/yaguar-debug.keystore
+  AndroidKeystoreName: C:/Documentos/1_Working/Unity/Proyectos/Yaguar/yaguar-debug.keystore
   AndroidKeyaliasName: yaguar_debug
   AndroidEnableArmv9SecurityFeatures: 0
   AndroidBuildApkPerCpuArchitecture: 0

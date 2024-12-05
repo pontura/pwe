@@ -6,8 +6,8 @@ namespace Pwe.Games.Cooking
 {
     public class PiecesContainer : MonoBehaviour
     {
-       // Animation anim;
-        RiveRawImage riveTexture;
+        // Animation anim;
+        MultiRiveRawImage riveTexture;
         string actionKey;
         public string ActionKey { get { return actionKey; } }
         string actionKeyQty;
@@ -20,19 +20,24 @@ namespace Pwe.Games.Cooking
         int itemID;
         ItemData.Items item;
 
+        int _elementIndex;
+
         private void Awake()
         {
             signalNumDone.SetActive(false);
-            riveTexture = GetComponent<RiveRawImage>(); 
+            //riveTexture = GetComponent<RiveRawImage>(); 
           //  anim = GetComponent<Animation>();
         }
-        public void Initialize(int itemID, ItemData.Items item, Cooking cooking, CookingMainPiece mainPiece)
+        public void Initialize(MultiRiveRawImage riveTexture, int itemID, ItemData.Items item, Cooking cooking, CookingMainPiece mainPiece)
         {
+            this.riveTexture = riveTexture;
             this.item = item;
             this.cooking = cooking;
             this.itemID = itemID;
             this.mainPiece = mainPiece;
-            riveTexture.Init("Cooking/bowls.riv", OnReady);
+            //riveTexture.Init("Cooking/bowls.riv", OnReady);
+            riveTexture.LoadArtboard("Cooking/bowls.riv", t: transform, OnReady: OnReady);
+
         }
         public void SetSignalQty(int qty)
         {
@@ -40,8 +45,9 @@ namespace Pwe.Games.Cooking
             if(qty>0)
                 field.text = qty.ToString();
         }
-        void OnReady()
+        void OnReady(int index)
         {
+            _elementIndex = index;
             InitIngredient(item, 10);
         }
         public void InitIngredient(ItemData.Items item, int num)
@@ -49,8 +55,8 @@ namespace Pwe.Games.Cooking
             this.num = num;
             this.actionKey = item.ToString();
             actionKeyQty = actionKey + "_qty";
-            riveTexture.SetTrigger(actionKey);
-            riveTexture.SetNumber(actionKeyQty, num);
+            riveTexture.SetTrigger(_elementIndex, actionKey);
+            riveTexture.SetNumber(_elementIndex, actionKeyQty, num);
         }
         public void OnClicked()
         {
@@ -65,12 +71,12 @@ namespace Pwe.Games.Cooking
         public void Add() // if drop item out:
         {
             num++;
-            riveTexture.SetNumber(actionKeyQty, num);
+            riveTexture.SetNumber(_elementIndex, actionKeyQty, num);
         }
         public void Remove() // if drop item out:
         {
             num--;
-            riveTexture.SetNumber(actionKeyQty, num);
+            riveTexture.SetNumber(_elementIndex, actionKeyQty, num);
         }
         public void AnimIn()
         {

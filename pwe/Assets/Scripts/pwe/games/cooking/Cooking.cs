@@ -28,6 +28,7 @@ namespace Pwe.Games.Cooking
         PieceToDrag newPieceToDrag;
 
         [SerializeField] ButtonProgressBar buttonProgressBar;
+        [SerializeField] MultiRiveRawImage riveMultiTexture;
 
         Dictionary<string, int> ingredients;
         Dictionary<string, int> ingredientsAdded;
@@ -62,7 +63,8 @@ namespace Pwe.Games.Cooking
                 ingredients.Add(item.item.ToString(), item.num);
                 ingredientsAdded.Add(item.item.ToString(), 0);
             }
-            mainPiece.Init(InitIngredient);
+            riveMultiTexture.Init();
+            mainPiece.InitMulti(InitIngredient);
             buttonProgressBar.SetProgress(0, totalPieces);
 
             SetMenu();
@@ -97,11 +99,9 @@ namespace Pwe.Games.Cooking
             if(lastIngredient != null)      ResetIngredient(lastIngredient);
             else                            ResetOtherIngredients(ingredient);
 
-            lastIngredient = ingredient;
+            lastIngredient = ingredient;           
 
-           
-
-            pieces.Initialize(this, items, mainPiece);
+            pieces.Initialize(this, riveMultiTexture, items, mainPiece);
         }
         void ResetOtherIngredients(string ingredient)
         {

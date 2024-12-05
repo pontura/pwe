@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.kuraiandras.numericsconverter": "https://github.com/KuraiAndras/NumericsConverter.git?path=/NumericsConverter/Assets/NumericsConverter",
     "app.rive.rive-unity": "https://github.com/rive-app/rive-unity.git?path=package#v0.2.1",
     "com.coffee.ui-particle": "https://github.com/mob-sakai/ParticleEffectForUGUI.git",
     "com.unity.2d.sprite": "1.0.0",

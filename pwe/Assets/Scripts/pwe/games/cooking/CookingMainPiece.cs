@@ -8,10 +8,13 @@ namespace Pwe.Games.Cooking
     {
         [SerializeField] Animation anim;
         [SerializeField] Cooking cooking;
+        [SerializeField] MultiRiveRawImage riveMultiTexture;
         RiveRawImage riveTexture;
         bool pieceOver;
 
         [SerializeField] PiecesContainer piecesContainer;
+
+        int _elementIndex;
 
         public void SetPieceContainer(PiecesContainer piecesContainer)
         {
@@ -27,7 +30,20 @@ namespace Pwe.Games.Cooking
             riveTexture = GetComponent<RiveRawImage>();
             riveTexture.Init("Cooking/pizza.riv", OnReady);
         }
-        void OnReady() { OnLoaded();  }
+
+        public void InitMulti(System.Action OnLoaded) {
+            Debug.Log("% ACA");
+            this.OnLoaded = OnLoaded;
+            riveMultiTexture.LoadArtboard("Cooking/pizza.riv", t: transform, OnReady: OnReady);
+        }
+
+        void OnReady() { OnLoaded(); }
+
+        void OnReady(int index) {
+            Debug.Log("% StateMachine Index: " + index);
+            _elementIndex = index; 
+            OnLoaded();
+        }
         public override void OnIECollisionEnter(InteractiveElement ie)
         {
             pieceOver = true;
@@ -38,7 +54,10 @@ namespace Pwe.Games.Cooking
         }
         public void InitIngredient(string key, int num)
         {
-            riveTexture.SetNumber(key, num);
+            if(riveTexture!=null)
+                riveTexture.SetNumber(key, num);
+            if (riveMultiTexture!=null)
+                riveMultiTexture.SetNumber(_elementIndex,key, num);
         }
         public void OnPieceReleased(PieceToDrag pieceToDrag)
         {

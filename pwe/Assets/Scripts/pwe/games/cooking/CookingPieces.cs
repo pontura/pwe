@@ -14,7 +14,7 @@ namespace Pwe.Games.Cooking
         List<ItemData> items;
         int separation_y = 270;
         List<PiecesContainer> piecesContainers;
-        public void Initialize(Cooking cooking, List<ItemData> items, CookingMainPiece mainPiece)
+        public void Initialize(Cooking cooking, MultiRiveRawImage riveTexture, List<ItemData> items, CookingMainPiece mainPiece)
         {
             piecesContainers = new List<PiecesContainer>(); 
             Utils.RemoveAllChildsIn(container);
@@ -23,7 +23,7 @@ namespace Pwe.Games.Cooking
             foreach (ItemData.Items item in Enum.GetValues(typeof(ItemData.Items)))
             {
                 PiecesContainer piecesContainer = Instantiate(piece_to_add, container);
-                piecesContainer.Initialize(id, item, cooking, mainPiece);
+                piecesContainer.Initialize(riveTexture, id, item, cooking, mainPiece);
                 piecesContainer.transform.localPosition = new Vector2(0, id * separation_y);
                // piecesContainer.SetSignalQty(item.num);
                 piecesContainers.Add(piecesContainer);
