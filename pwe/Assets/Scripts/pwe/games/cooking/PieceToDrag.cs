@@ -7,9 +7,10 @@ namespace Pwe.Games.Cooking
 {
     public class PieceToDrag : DragElementUI
     {
+        [SerializeField] Animation anim;
         [SerializeField] CookingMainPiece mainPiece;
         [SerializeField] Image image;
-       // RiveRawImage riveTexture;
+        // RiveRawImage riveTexture;
         public void Init(System.Action OnReady, CookingMainPiece mainPiece)
         {
             this.mainPiece = mainPiece;
@@ -20,6 +21,7 @@ namespace Pwe.Games.Cooking
         }
         public override void OnInitDrag()
         {
+            anim.Play("get");
             //Debug.Log(riveTexture);
             //Debug.Log( " OnInitDrag " + mainPiece);
             //Debug.Log( " Ingredient " + mainPiece.Ingredient);
@@ -28,6 +30,7 @@ namespace Pwe.Games.Cooking
         void OnReady() { }
         public override void OnEndDrag()
         {
+            anim.Play("drop");
             mainPiece.OnPieceReleased(this);
             //transform.position = new Vector2(1000, 0);
         }

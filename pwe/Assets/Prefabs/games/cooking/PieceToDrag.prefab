@@ -89,6 +89,7 @@ GameObject:
   - component: {fileID: 4648547700420115637}
   - component: {fileID: 3903754971774630711}
   - component: {fileID: 3359792624614414480}
+  - component: {fileID: 4073073078786397229}
   m_Layer: 0
   m_Name: PieceToDrag
   m_TagString: Untagged
@@ -210,6 +211,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   state: 0
+  anim: {fileID: 4073073078786397229}
   mainPiece: {fileID: 0}
   image: {fileID: 5737021611262426301}
 --- !u!114 &3359792624614414480
@@ -225,6 +227,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   size: {x: 256, y: 256}
-  _renderTexture: {fileID: 0}
   image: {fileID: 7003212879330552747}
   fit: 1
+--- !u!111 &4073073078786397229
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7741486768360349408}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 0}
+  m_Animations:
+  - {fileID: 7400000, guid: 9315b6728f017b846bb9aab92923f222, type: 2}
+  - {fileID: 7400000, guid: 0cae135ef2e45e545a19682af22f5c17, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0

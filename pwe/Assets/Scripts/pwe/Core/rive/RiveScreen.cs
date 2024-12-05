@@ -254,7 +254,7 @@ namespace Pwe.Core
             Camera camera = gameObject.GetComponent<Camera>();
             if (m_commandBuffer != null && camera != null)
             {
-                camera.AddCommandBuffer(cameraEvent, m_commandBuffer);
+                    camera.AddCommandBuffer(cameraEvent, m_commandBuffer);
             }
         }
         private void OnDisable()

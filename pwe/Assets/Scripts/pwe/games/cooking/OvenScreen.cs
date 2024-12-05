@@ -23,6 +23,7 @@ namespace Pwe.Games.Cooking
         [SerializeField] ButtonUI btnNext;
         [SerializeField] ButtonUI btnPrev;
         [SerializeField] GameObject clockGO;
+        [SerializeField] GameObject smoke;
         [SerializeField] NumFeedback numFeedback;
         [SerializeField] CookingMainPiece mainPiece;
         [SerializeField] Transform mainPieceContainer;
@@ -38,7 +39,7 @@ namespace Pwe.Games.Cooking
             {
                 int level = GamesManager.Instance.GetGame(GameData.GAMES.COOKING).level;
             }
-
+            smoke.SetActive(false);
             btnDone.Init(OnDoneClicked);
             btnNext.Init(NextClicked);
             btnPrev.Init(PrevClicked);
@@ -84,6 +85,7 @@ namespace Pwe.Games.Cooking
         void OnDoneClicked()
         {
             if (num == 0) return;
+            smoke.SetActive(true);
             state = states.playing_done;
             btnNext.SetInteraction(false);
             btnPrev.SetInteraction(false);
