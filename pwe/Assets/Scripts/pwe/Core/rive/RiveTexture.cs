@@ -36,6 +36,7 @@ namespace Pwe
             this.OnReady = OnReady;
             MainApp.Instance.riveFilesManager.Load(riveFileName, OnDone);
         }
+        
         void OnDone(byte[] data, string riveName)
         {
             isOn = true;
@@ -44,7 +45,6 @@ namespace Pwe
             MeshRenderer cubeRenderer = GetComponent<MeshRenderer>();
             Material mat = cubeRenderer.material;
             mat.mainTexture = renderTexture;
-            renderTexture.DiscardContents();
 
 
             if (!FlipY())
@@ -163,12 +163,6 @@ namespace Pwe
         }
         private void Update()
         {
-            if (renderTexture != null)
-            {
-                renderTexture.DiscardContents();
-                Graphics.SetRenderTarget(renderTexture);
-                // Aquí dibujas en el render texture
-            }
             if (!isOn) return;
             HitTesting();
             // m_riveRenderer.Submit();
