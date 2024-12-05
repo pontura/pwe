@@ -37,7 +37,7 @@ namespace Pwe.Games.Cooking
         IEnumerator Animate()
         {
             menu.Init(items, cookingData);
-
+            menu.SetType(true);
 
             button.gameObject.SetActive(false);
             menu.gameObject.SetActive(false);

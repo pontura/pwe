@@ -17,31 +17,17 @@ MonoBehaviour:
     - item: 0
       num: 3
     - item: 1
-      num: 2
+      num: 3
     - item: 2
       num: 0
-    ovenDuration: 2
+    - item: 3
+      num: 0
   - ingredients:
     - item: 0
       num: 4
     - item: 1
-      num: 2
+      num: 6
     - item: 2
       num: 0
-    ovenDuration: 4
-  - ingredients:
-    - item: 0
-      num: 5
-    - item: 1
-      num: 1
-    - item: 2
-      num: 2
-    ovenDuration: 5
-  - ingredients:
-    - item: 0
-      num: 5
-    - item: 1
-      num: 4
-    - item: 2
-      num: 2
-    ovenDuration: 5
+    - item: 3
+      num: 0

@@ -56,7 +56,7 @@ namespace Pwe.Games.Cooking
         }
         public void Add()
         {
-            Events.OnAddParticles(ParticlesManager.types.drop, Input.mousePosition);
+            Events.OnAddParticles(ParticlesManager.types.drop, Input.mousePosition, Ingredient);
             anim.Play();
         }
         void OnDropItemOut()

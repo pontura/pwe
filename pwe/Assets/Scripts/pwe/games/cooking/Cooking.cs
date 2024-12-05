@@ -116,6 +116,7 @@ namespace Pwe.Games.Cooking
             menu.transform.SetParent(menuContainer);
             menu.transform.localPosition = Vector3.zero;
             menu.transform.localScale = Vector3.one;
+            menu.SetType(false);
         }
         private void NextClicked()
         {

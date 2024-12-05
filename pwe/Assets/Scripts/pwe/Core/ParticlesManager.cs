@@ -11,9 +11,10 @@ namespace Pwe.Core
             pick,
             drop
         }
-        [SerializeField] GameObject pick;
-        [SerializeField] GameObject drop;
-        [SerializeField] GameObject win;
+        [SerializeField] UIParticles pick;
+        [SerializeField] UIParticles drop;
+        [SerializeField] UIParticles win;
+
         void Start()
         {
             Events.OnAddParticles += OnAddParticles;
@@ -26,22 +27,24 @@ namespace Pwe.Core
         }
         void OnWinParticles()
         {
-            GameObject particle = Instantiate(win, container);
+            UIParticles particle = Instantiate(win, container);
             particle.transform.localPosition = new Vector2(450, 0);
             StartCoroutine(ParticleOn(particle, 50));
         }
-        void OnAddParticles(types type, Vector2 pos)
+        void OnAddParticles(types type, Vector2 pos, string nameID = "")
         {
-            GameObject p;
+            UIParticles p;
             switch (type) {
                 case types.pick: p =  pick; break;
                 default: p = drop; break;
-            }    
-            GameObject particle = Instantiate(p, container);
+            }
+            UIParticles particle = Instantiate(p, container);
             particle.transform.position = pos;
+            if (nameID != "")
+                particle.Init(nameID);
             StartCoroutine(ParticleOn(particle, 2));
         }
-        IEnumerator ParticleOn(GameObject go, int duration)
+        IEnumerator ParticleOn(UIParticles go, int duration)
         {
             yield return new WaitForSeconds(duration);
             Destroy(go.gameObject);

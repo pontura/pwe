@@ -8,6 +8,8 @@ namespace Pwe.Games.Cooking.UI
     public class CookingMenuUI : MonoBehaviour
     {
         [SerializeField] CookingItem items_to_add;
+        [SerializeField] GameObject[] ingameGO;
+        [SerializeField] GameObject[] cutsceneeGO;
         [SerializeField] Transform container;
         List<CookingItem> allItems;
 
@@ -25,6 +27,25 @@ namespace Pwe.Games.Cooking.UI
                     allItems.Add(ci);
                 }
             }
+        }
+        public void SetType(bool isCutscene)
+        {
+            foreach (GameObject go in cutsceneeGO)
+                go.SetActive(false);
+            foreach (GameObject go in ingameGO)
+                go.SetActive(false);
+
+            if (isCutscene)
+            {
+                foreach (GameObject go in cutsceneeGO)
+                    go.SetActive(true);
+            }
+            else
+            {
+                foreach (GameObject go in ingameGO)
+                    go.SetActive(true);
+            }
+
         }
         public void Refresh(ItemData itemData)
         {
