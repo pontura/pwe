@@ -18493,6 +18493,8 @@ MonoBehaviour:
     asset: {fileID: 21300000, guid: 8bc44ca8639dd9f4fa614cb1a8985b78, type: 3}
   - item: 2
     asset: {fileID: 21300000, guid: c723a32550b64074aafb484434b8cd75, type: 3}
+  - item: 3
+    asset: {fileID: 21300000, guid: 008d2d63f024c9e49a9b275b57755262, type: 3}
 --- !u!114 &2574940121553715126
 MonoBehaviour:
   m_ObjectHideFlags: 0

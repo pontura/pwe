@@ -10,7 +10,8 @@ public class ItemData
     {
         tomatoes,
         olives,
-        gummybears
+        gummybears,
+        onions
     }
     public Items item;
     public int num;
