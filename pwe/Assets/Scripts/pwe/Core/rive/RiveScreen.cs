@@ -105,6 +105,7 @@ namespace Pwe.Core
         private StateMachine m_stateMachine;
         private CameraTextureHelper m_helper;
 
+
         public StateMachine stateMachine => m_stateMachine;
 
         private static bool flipY()
@@ -189,8 +190,12 @@ namespace Pwe.Core
         private Vector2 m_lastMousePosition;
         bool m_wasMouseDown = false;
 
+       
+
         private void Update()
         {
+
+
             m_helper?.UpdateTextureHelper();
             if (m_artboard == null)
             {
