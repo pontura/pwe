@@ -192,7 +192,6 @@ namespace Pwe
                 renderTexture.Release();
 
             print("____________________OnDestroy");
-            Object.Destroy(renderTexture);
             m_camera = null;
             m_commandBuffer = null;
             m_riveRenderer = null;
