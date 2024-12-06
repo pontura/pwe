@@ -19,6 +19,7 @@ namespace Pwe.Games.Cooking
             cooking,
             done
         }
+        [SerializeField] Animation anim;
         [SerializeField] ButtonUI btnDone;
         [SerializeField] ButtonUI btnNext;
         [SerializeField] ButtonUI btnPrev;
@@ -57,6 +58,13 @@ namespace Pwe.Games.Cooking
             state = states.playing;
 
             GetRiveTexture().ActivateArtboard("oven");
+
+            Invoke("Delayed", 0.5f);
+        }
+        void Delayed()
+        {
+
+            anim.Play("close");
         }
         public override void OnUpdate()
         {
