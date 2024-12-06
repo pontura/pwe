@@ -157,7 +157,10 @@ namespace Pwe.Games.Cooking
         void InitDrag()
         {
             newPieceToDrag = Instantiate(pieceToDrag, dragContainer);
-            newPieceToDrag.Init(OnPieceToDragReady, mainPiece);           
+            int pieceToGetID = totalPieces;
+            if(ingredientsAdded.ContainsKey(itemDragging.ToString()))
+                pieceToGetID = totalPieces - ingredientsAdded[itemDragging.ToString()];
+            newPieceToDrag.Init(OnPieceToDragReady, mainPiece, pieceToGetID);           
         }
         void OnPieceToDragReady()
         {

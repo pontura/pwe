@@ -11,12 +11,33 @@ namespace Pwe.Games.Cooking
         [SerializeField] CookingMainPiece mainPiece;
         [SerializeField] Image image;
         // RiveRawImage riveTexture;
-        public void Init(System.Action OnReady, CookingMainPiece mainPiece)
+        public void Init(System.Action OnReady, CookingMainPiece mainPiece, int id)
         {
             this.mainPiece = mainPiece;
             //riveTexture = GetComponent<RiveRawImage>();
             //riveTexture.Init("Cooking/ingredient.riv", OnReady);
-            image.sprite = mainPiece.cooking.cookingData.GetIngredient(mainPiece.Ingredient);
+            string Ingredient = mainPiece.Ingredient;
+            
+            if(Ingredient == "gummybears")
+            {
+                switch(id)
+                {
+                    case 10:
+                    case 7:
+                    case 4:
+                    default: id = 0; break;
+
+                    case 9:
+                    case 6:
+                    case 3:  id = 1; break;
+
+                    case 8:
+                    case 5:
+                    case 2:  id = 2; break;
+
+                }
+            }
+            image.sprite = mainPiece.cooking.cookingData.GetIngredient(mainPiece.Ingredient, id);
             OnReady();
         }
         public override void OnInitDrag()

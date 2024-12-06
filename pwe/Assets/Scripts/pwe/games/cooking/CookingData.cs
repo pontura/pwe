@@ -12,11 +12,11 @@ namespace Pwe.Games.Cooking
         public List<BaseData> bases;
         public List<IngredientData> ingredients;
 
-        public Sprite GetIngredient(string ingredientName)
+        public Sprite GetIngredient(string ingredientName, int id = 0)
         {
             foreach (IngredientData ing in ingredients)
                 if (ing.item.ToString() == ingredientName)
-                    return ing.asset;
+                    return ing.GetSprite(id);
             return null;
         }
         public Sprite GetBase(string n)
@@ -38,6 +38,13 @@ namespace Pwe.Games.Cooking
         {
             public ItemData.Items item;
             public Sprite asset;
+            public Sprite[] assets;
+            public Sprite GetSprite(int id = 0)
+            {
+                if (id == 0 || asset == null || assets.Length == 0)
+                    return asset;
+                else return assets[id];
+            }
         }
         int num;
 
