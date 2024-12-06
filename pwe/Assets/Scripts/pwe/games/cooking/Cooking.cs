@@ -156,6 +156,7 @@ namespace Pwe.Games.Cooking
 
         void InitDrag()
         {
+            Events.OnAddParticles(ParticlesManager.types.pick, Input.mousePosition, itemDragging.ToString());
             newPieceToDrag = Instantiate(pieceToDrag, dragContainer);
             int pieceToGetID = totalPieces;
             if(ingredientsAdded.ContainsKey(itemDragging.ToString()))
