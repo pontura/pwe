@@ -1,24 +1,36 @@
+using Pwe.Core;
 using Pwe.Games.Cooking.UI;
+using Rive;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using YaguarLib.UI;
 using static ItemData;
+using static Pwe.Games.Compare.ItemData;
 
 namespace Pwe.Games.Cooking
 {
     public class CookingSelectFood : GameMain
     {
-        [SerializeField] ButtonUI[] buttons;
-        void Start()
+        public override void OnInit()
         {
-            foreach (ButtonUI b in buttons)
-            {
-                b.Init(Clicked);
-            }          
+            GetRiveTexture().OnRiveEvent += RiveScreen_OnRiveEvent;
+            GetRiveTexture().ActivateArtboard("mainMenu");
         }
-       
-        void Clicked()
+        public override void OnHide()
+        {
+            GetRiveTexture().OnRiveEvent -= RiveScreen_OnRiveEvent;
+        }
+        private void RiveScreen_OnRiveEvent(ReportedEvent reportedEvent)
+        {
+            Debug.Log($"Event received, name: \"{reportedEvent.Name}\", secondsDelay: {reportedEvent.SecondsDelay}");
+            Clicked();
+        }
+        private void Clicked()
+        {
+            Events.OnTransition(OnTransitionDone, "intro");
+        }
+        void OnTransitionDone()
         {
             Next();
         }
