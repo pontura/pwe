@@ -84,22 +84,31 @@ namespace Pwe
                 m_stateMachines.Add(stateMachine);
             //}
 
-            
             m_riveRenderer.Align(fit, alignment, artboard);
-            System.Numerics.Matrix3x2 m3 = System.Numerics.Matrix3x2.Identity;
+            float scaleFactor = 0.1f;
+            float scaleVal = _renderTexture.width * scaleFactor / artboard.Width;
+            System.Numerics.Matrix3x2 scale = System.Numerics.Matrix3x2.CreateScale(scaleVal);
+            System.Numerics.Matrix3x2 invScale = System.Numerics.Matrix3x2.CreateScale(1f/ scaleVal);
+
+            /*System.Numerics.Matrix3x2 m3 = System.Numerics.Matrix3x2.Identity;
             if (t != null) {
                 System.Numerics.Matrix4x4 m4 = t.localToWorldMatrix.ToSystem();
-                m3 = new System.Numerics.Matrix3x2(m4.M11, m4.M21, m4.M21, m4.M22, m4.M31, m4.M32);
-            }            
-            m_riveRenderer.Transform(m3);
-            Debug.Log("% Position: " + t.position);
+                m3 = new System.Numerics.Matrix3x2(m4.M11, m4.M12, m4.M21, m4.M22, m4.M31, m4.M32);
+            }*/
+
+            m_riveRenderer.Transform(scale);
+            /*Debug.Log("% Position: " + t.position);
             Debug.Log("% Screen: " + Screen.width+"x"+Screen.height);            
             Vector2 newPos = ((Vector2)(t.position) - new Vector2(Screen.width * 0.5f, Screen.height * 0.5f));
-            Debug.Log("% New Pos: " + newPos);
-            //t.TransformPoint            
-            m_riveRenderer.Translate(newPos.ToSystem());
+            Debug.Log("% New Pos: " + newPos);*/
+            //t.TransformPoint
+            Vector2 translate = new Vector2(_renderTexture.width * -0.5f, _renderTexture.height-artboard.Height);
+            m_riveRenderer.Translate(translate.ToSystem());
             //m_riveRenderer.Translate(new System.Numerics.Vector2(-100,0));
-            m_riveRenderer.Draw(artboard);                       
+            m_riveRenderer.Draw(artboard);
+
+            //m_riveRenderer.Translate(-1*translate.ToSystem());
+            m_riveRenderer.Transform(invScale);
 
             if (!FlipY())
             {
