@@ -178,11 +178,13 @@ namespace Pwe.Games.Cooking
                 foreach (string s in ingredientsAdded.Keys)
                 {
                     int v = ingredientsAdded[s];
-                    //if (ingredientsAdded[s] == ingredients[s])
-                    //    pieces.OnIngredientReady(s);
-                    //else 
-                    if (ingredientsAdded[s] > ingredients[s])
+                    if (ingredientsAdded[s] == ingredients[s])
+                    {
+                        menu.OnIngredientDone(s);
+                    } else  if (ingredientsAdded[s] > ingredients[s])
+                    {
                         v = ingredients[s];
+                    }
                     value +=v;
                 }
                 if (ingredientsAdded[ingredient] <= ingredients[ingredient])

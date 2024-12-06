@@ -86,7 +86,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   size: {x: 250, y: 250}
-  _renderTexture: {fileID: 8400000, guid: ab1318de6bc75a64d8f16556a558cd91, type: 2}
   image: {fileID: 8696449690330596350}
   fit: 1
 --- !u!1 &4099301460132330405
@@ -148,6 +147,7 @@ MonoBehaviour:
     item: 0
     num: 0
   image: {fileID: 8586427316731790058}
+  anim: {fileID: 759295237851296050}
 --- !u!95 &759295237851296050
 Animator:
   serializedVersion: 5

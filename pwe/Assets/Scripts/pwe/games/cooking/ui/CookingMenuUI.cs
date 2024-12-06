@@ -28,6 +28,14 @@ namespace Pwe.Games.Cooking.UI
                 }
             }
         }
+        public void OnIngredientDone(string s)
+        {
+            foreach (CookingItem c in allItems)
+            {
+                if (c.data.item.ToString() == s && !c.done)
+                    c.OnReady();
+            }
+        }
         public void SetType(bool isCutscene)
         {
             foreach (GameObject go in cutsceneeGO)
