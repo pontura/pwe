@@ -23296,8 +23296,9 @@ Animation:
   m_GameObject: {fileID: 6002801713194325893}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: b99020b2f8b6afa4797e4a8d5f679567, type: 2}
+  m_Animation: {fileID: 7400000, guid: a6ae991a8be119345bbfaa2472a77f41, type: 2}
   m_Animations:
+  - {fileID: 7400000, guid: a6ae991a8be119345bbfaa2472a77f41, type: 2}
   - {fileID: 7400000, guid: b99020b2f8b6afa4797e4a8d5f679567, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 1
@@ -23349,6 +23350,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOn: 0
+  anim: {fileID: 4491522550456726080}
   btnDone: {fileID: 2058253229771935143}
   btnNext: {fileID: 2684503634421624481}
   btnPrev: {fileID: 496075000171772337}
