@@ -18,6 +18,8 @@ namespace Pwe.Games
 
         void Start()
         {
+            Application.targetFrameRate = 60;
+
             foreach (GameMain gm in screens) gm.Initialize(this);
            
             if (allRivName != "")

@@ -6,7 +6,6 @@ namespace Pwe.Games.Cooking
 {
     public class Cutscene : GameMain
     {
-        [SerializeField] RiveRawImage riveRawImage;
         [SerializeField] ButtonUI skipButton;
         [SerializeField] bool backToContinue;
         [SerializeField] string artboard = "outro";
