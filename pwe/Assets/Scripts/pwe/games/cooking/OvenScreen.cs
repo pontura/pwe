@@ -147,9 +147,12 @@ namespace Pwe.Games.Cooking
             StartCoroutine(NextIngredient());
         }
         IEnumerator NextIngredient()
-        {       
-            yield return new WaitForSeconds(0.5f);
-            Events.OnTransition(OnTransitionDone, "outro");
+        {
+            yield return new WaitForSeconds(0.25f);
+            anim.Play("ready");
+            yield return new WaitForSeconds(1f);
+            // Events.OnTransition(OnTransitionDone, "outro");
+            OnTransitionDone();
         }
         void OnTransitionDone()
         {
