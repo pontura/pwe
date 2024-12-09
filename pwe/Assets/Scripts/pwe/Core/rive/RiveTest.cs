@@ -14,7 +14,7 @@ namespace Pwe
 
         private void Start()
         {
-            riveTexture.Init(riveName, null);
+           // riveTexture.Init(riveName, null);
             riveTexture.OnRiveEvent += RiveScreen_OnRiveEvent;
         }
         public void Clicked()

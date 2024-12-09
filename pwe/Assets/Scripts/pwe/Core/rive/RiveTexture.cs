@@ -12,6 +12,7 @@ namespace Pwe
     public class RiveTexture : MonoBehaviour
     {
 
+
         public event RiveEventDelegate OnRiveEvent;
         public delegate void RiveEventDelegate(ReportedEvent reportedEvent);
 
@@ -28,19 +29,21 @@ namespace Pwe
         private StateMachine m_stateMachine;
 
         Camera m_camera;
-        System.Action OnReady;
+       // System.Action OnReady;
         bool isOn;
 
-        public void Init(string riveFileName, System.Action OnReady = null)
+        // public void Init(string riveFileName, System.Action OnReady = null)
+        public void Init(Rive.Asset asset)
         {
-            this.OnReady = OnReady;
-            MainApp.Instance.riveFilesManager.Load(riveFileName, OnDone);
-        }
+        //    this.OnReady = OnReady;
+        //    MainApp.Instance.riveFilesManager.Load(riveFileName, OnDone);
+        //}
         
-        void OnDone(byte[] data, string riveName)
-        {
+        //void OnDone(byte[] data, string riveName)
+        //{
             isOn = true;
-            m_file = Rive.File.Load(data, data.GetHashCode());
+           // m_file = Rive.File.Load(data, data.GetHashCode());
+            m_file = Rive.File.Load(asset);
 
             MeshRenderer cubeRenderer = GetComponent<MeshRenderer>();
             Material mat = cubeRenderer.material;
@@ -57,11 +60,11 @@ namespace Pwe
             Rive.RenderQueue m_renderQueue = new Rive.RenderQueue(renderTexture);
             m_riveRenderer = m_renderQueue.Renderer();
 
-            if (OnReady != null)
-            {
-                OnReady();
-                OnReady = null;
-            }           
+            //if (OnReady != null)
+            //{
+            //    OnReady();
+            //    OnReady = null;
+            //}           
         }
         public void InitArtboard()
         {

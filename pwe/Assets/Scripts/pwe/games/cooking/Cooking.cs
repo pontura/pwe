@@ -4,6 +4,7 @@ using Pwe.Games.Cooking.UI;
 using Rive;
 using System;
 using System.Collections.Generic;
+using System.Net.NetworkInformation;
 using UnityEngine;
 using Yaguar.Inputs2D;
 
@@ -58,6 +59,7 @@ namespace Pwe.Games.Cooking
                 level = GamesManager.Instance.GetGame(GameData.GAMES.COOKING).level;
 
             items = new List<ItemData>();
+            print(Game);
             items = (Game as CookingGame).CookingData.GetItems(level);
             ingredients = new Dictionary<string, int>();
             ingredientsAdded = new Dictionary<string, int>();
