@@ -1,5 +1,6 @@
 using Pwe.Core;
 using Pwe.Games.Cooking.UI;
+using Rive;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -24,6 +25,9 @@ namespace Pwe.Games.Cooking
 
         public override void OnInit()
         {
+            print("___________1");
+            GetRiveTexture().OnRiveEvent += RiveScreen_OnRiveEvent;
+
             button.Init(Play);
             int level = 0;
             if (GamesManager.Instance != null)
@@ -31,23 +35,31 @@ namespace Pwe.Games.Cooking
             items = cookingData.GetItems(level);
 
             GetRiveTexture().ActivateArtboard("intro");
-            StartCoroutine(Animate());
-        }
-       
-        IEnumerator Animate()
-        {
+
             menu.Init(items, cookingData);
             menu.SetType(true);
 
             button.gameObject.SetActive(false);
             menu.gameObject.SetActive(false);
 
-            yield return new WaitForSeconds(0.1f);
-
-            foreach (ItemData item in items) 
+            foreach (ItemData item in items)
                 (Game as CookingGame).rive.SetNumber("intro", item.item.ToString(), item.num);
+        }
+        public override void OnHide()
+        {
+            print("___________OnHide");
+            GetRiveTexture().OnRiveEvent -= RiveScreen_OnRiveEvent;
+        }
+        private void RiveScreen_OnRiveEvent(ReportedEvent reportedEvent)
+        {
+            Debug.Log($"Event received, name: \"{reportedEvent.Name}\", secondsDelay: {reportedEvent.SecondsDelay}");
 
-            yield return new WaitForSeconds(3);
+            StartCoroutine(Animate());
+        }
+        IEnumerator Animate()
+        {            
+
+            yield return new WaitForSeconds(4.5f);
 
             anim.Play("cutscene_2");
             (Game as CookingGame).rive.SetTrigger("intro", "next");
