@@ -27,9 +27,9 @@ namespace Pwe.Games
             gameObject.SetActive(false);
             OnHide();
         }
-        public void Next() { game.Next(); }
+        public void Next() { if (!isOn) return; game.Next(); isOn = false; }
 
-        public void Back() { game.Back(); }
+        public void Back() { if (!isOn) return; game.Back(); isOn = false; }
 
         private void Update()  {  if (isOn) OnUpdate();  }
 

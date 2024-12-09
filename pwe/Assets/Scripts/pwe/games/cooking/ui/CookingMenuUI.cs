@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using YaguarLib.Xtras;
@@ -13,14 +14,28 @@ namespace Pwe.Games.Cooking.UI
         [SerializeField] Transform container;
         List<CookingItem> allItems;
 
+        List<ItemData> items;
+        CookingData cookingData;
+
         public void Init(List<ItemData> items, CookingData cookingData)
+        {
+            this.items = items;
+            this.cookingData = cookingData; 
+        }
+        void OnEnable()
+        {
+            if(items != null)
+                StartCoroutine(Anim(items, cookingData));
+        }
+        IEnumerator Anim(List<ItemData> items, CookingData cookingData)
         {
             allItems = new List<CookingItem>();
             Utils.RemoveAllChildsIn(container);
-            foreach(ItemData c in items)
+            foreach (ItemData c in items)
             {
                 if (c.num > 0)
                 {
+                    yield return new WaitForSeconds(0.5f);
                     CookingItem ci = Instantiate(items_to_add, container);
                     Sprite sprite = cookingData.GetIngredient(c.item.ToString());
                     ci.Init(c, sprite);
