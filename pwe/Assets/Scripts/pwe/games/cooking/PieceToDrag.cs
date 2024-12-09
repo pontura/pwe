@@ -37,6 +37,11 @@ namespace Pwe.Games.Cooking
 
                 }
             }
+            if (Ingredient == "tomatoes")
+                image.transform.localEulerAngles = new Vector3(0, 0, Random.Range(-30, 30));
+            else
+                image.transform.localEulerAngles = new Vector3(0, 0, Random.Range(0, 360));
+
             image.sprite = mainPiece.cooking.cookingData.GetIngredient(mainPiece.Ingredient, id);
             OnReady();
         }
