@@ -7,6 +7,7 @@ using YaguarLib.Xtras;
 using YaguarLib.UI;
 using System.Linq;
 using YaguarLib.Audio;
+using Rive;
 
 namespace Pwe.Games.SolarSystem
 {
@@ -50,9 +51,19 @@ namespace Pwe.Games.SolarSystem
         public override void OnInit() {
             base.OnInit();
 
+            GetRiveTexture().OnRiveEvent += RiveScreen_OnRiveEvent;
+            GetRiveTexture().ActivateArtboard("game");
+
             InitPlanets();
 
             _cameraPan.Panning = true;
+        }
+
+        public override void OnHide() {
+            GetRiveTexture().OnRiveEvent -= RiveScreen_OnRiveEvent;
+        }
+        private void RiveScreen_OnRiveEvent(ReportedEvent reportedEvent) {
+            Debug.Log($"Event received, name: \"{reportedEvent.Name}\", secondsDelay: {reportedEvent.SecondsDelay}");            
         }
 
         private void OnDestroy() {

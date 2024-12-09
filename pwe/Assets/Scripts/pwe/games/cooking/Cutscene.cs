@@ -16,7 +16,9 @@ namespace Pwe.Games.Cooking
         }
         public override void OnInit()
         {
-            GetRiveTexture().ActivateArtboard(artboard);
+            if (artboard != "")
+                GetRiveTexture().ActivateArtboard(artboard);
+
             base.OnInit();
         }
         void OnLoaded() { }

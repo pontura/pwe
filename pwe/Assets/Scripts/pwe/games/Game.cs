@@ -3,6 +3,7 @@ using Pwe.Games.Cooking;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Rive;
 
 namespace Pwe.Games
 {
@@ -14,6 +15,7 @@ namespace Pwe.Games
         GameMain active;
         // [SerializeField] string[] allRivNames;
         [SerializeField] string allRivName;
+        [SerializeField] string rivFilePath;
         [SerializeField] List<string> artboards;
 
         void Start()
@@ -31,7 +33,18 @@ namespace Pwe.Games
                 AllRivesLoaded();
             }
         }
-        public virtual void AllRivesLoaded() { }
+        public virtual void AllRivesLoaded() {
+            if(rivFilePath!="")
+                rive.Init(rivFilePath, OnLoaded);
+            else
+                InitScreens();
+        }
+
+        protected virtual void OnLoaded() {
+            LoadAllArtBoards();
+            InitScreens();            
+        }        
+
         public void InitScreens()
         {
             Debug.Log("All Rives Loaded");
