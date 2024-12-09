@@ -7,13 +7,14 @@ namespace Pwe.Games
 {
     public class Transition : MonoBehaviour
     {
-        [SerializeField] string transitionArtboardName = "transition";
-        Game game;
-        RiveScreen riveScreen;
-        private void Start()
+        [SerializeField] Animator anim;
+        [SerializeField] Canvas canvas;
+        [SerializeField] Game game;
+
+        private void Awake()
         {
-            riveScreen = Camera.main.GetComponent<RiveScreen>();
             game = GetComponent<Game>();
+            canvas.gameObject.SetActive(false);
             Events.OnTransition += OnTransition;
         }
         private void OnDestroy()
@@ -22,26 +23,22 @@ namespace Pwe.Games
         }
         void OnTransition(System.Action OnReady, string nextArtboard)
         {
-            riveScreen.enabled = true;
-           // game.rive.ActivateArtboard(transitionArtboardName);
             print("OnTransition");
             StartCoroutine(Anim(OnReady, nextArtboard));
         }
         IEnumerator Anim(System.Action OnReady, string nextArtboard)
         {
-            riveScreen.SetTrigger("init");
+            anim.Play("transition_in");
+            canvas.gameObject.SetActive(true);
             yield return new WaitForSeconds(0.5f);
-            riveScreen.SetTrigger("transition");
             game.rive.ActivateArtboard(nextArtboard);
-            print("OnTransition Done to: " + nextArtboard);
             OnReady();
             OnReady = null;
-            // game.rive.SetTrigger("transition", "transition");
+            anim.Play("transition_out");
             yield return new WaitForSeconds(0.5f);
-            //if(nextArtboard != "")
-            //    game.rive.ActivateArtboard(nextArtboard);
-            nextArtboard = "";
-            riveScreen.enabled = false;
+            if(nextArtboard != "")
+                game.rive.ActivateArtboard(nextArtboard);
+            canvas.gameObject.SetActive(false);
         }
     }
 }

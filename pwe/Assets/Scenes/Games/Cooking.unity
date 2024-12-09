@@ -134,7 +134,6 @@ GameObject:
   - component: {fileID: 483721558}
   - component: {fileID: 483721557}
   - component: {fileID: 483721556}
-  - component: {fileID: 483721555}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -142,21 +141,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &483721555
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 483721554}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 609cbe8efbde09549aa45a5560f02c61, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  asset: {fileID: -4516626237390682484, guid: 8e48da2110f06264889ea6d4ce8ca4f7, type: 3}
-  cameraEvent: 20
-  fit: 2
 --- !u!81 &483721556
 AudioListener:
   m_ObjectHideFlags: 0
@@ -300,26 +284,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1072878645647133491, guid: 4d5d31fd3d68de546b71b4b7da6d5925, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1072878645647133491, guid: 4d5d31fd3d68de546b71b4b7da6d5925, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1072878645647133491, guid: 4d5d31fd3d68de546b71b4b7da6d5925, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4491522550456726080, guid: 4d5d31fd3d68de546b71b4b7da6d5925, type: 3}
-      propertyPath: m_Animations.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4491522550456726080, guid: 4d5d31fd3d68de546b71b4b7da6d5925, type: 3}
-      propertyPath: m_Animations.Array.data[2]
-      value: 
-      objectReference: {fileID: 7400000, guid: 93afd461f3071604199ed9b9fe38f4bd, type: 2}
     - target: {fileID: 5073353217931750912, guid: 4d5d31fd3d68de546b71b4b7da6d5925, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -363,26 +327,6 @@ PrefabInstance:
     - target: {fileID: 5161400804714119547, guid: 4d5d31fd3d68de546b71b4b7da6d5925, type: 3}
       propertyPath: m_Name
       value: Game_Cooking
-      objectReference: {fileID: 0}
-    - target: {fileID: 6199883985375038937, guid: 4d5d31fd3d68de546b71b4b7da6d5925, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6436472341298072518, guid: 4d5d31fd3d68de546b71b4b7da6d5925, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7353027997255634973, guid: 4d5d31fd3d68de546b71b4b7da6d5925, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8488565768638544312, guid: 4d5d31fd3d68de546b71b4b7da6d5925, type: 3}
-      propertyPath: m_text
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8488565768638544312, guid: 4d5d31fd3d68de546b71b4b7da6d5925, type: 3}
-      propertyPath: m_fontSize
-      value: 102.84
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
