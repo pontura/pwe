@@ -9,14 +9,16 @@ namespace Pwe.Games.Cooking
 {
     public class CookingGame : Game
     {
-        [field:SerializeField] public CookingData CookingData { get; private set; }
+        [SerializeField] Rive.Asset asset;
+        public CookingData CookingData;
 
         public override void AllRivesLoaded()
         {
-            rive.Init("Cooking/cooking.riv", OnLoaded);
-        }
-        void OnLoaded()
-        {
+
+            rive.Init(asset);
+        //}
+        //void OnLoaded()
+        //{
             LoadAllArtBoards();
             InitScreens();
             rive.OnRiveEvent += RiveScreen_OnRiveEvent;

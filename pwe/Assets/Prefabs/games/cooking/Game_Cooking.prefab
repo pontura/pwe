@@ -16879,7 +16879,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8597944604358500604
 Transform:
   m_ObjectHideFlags: 0
@@ -28193,20 +28193,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rive: {fileID: 8215945255699743002}
   screens:
-  - {fileID: 8272621689023997195}
   - {fileID: 7239758560792860785}
   - {fileID: 6547004750030210574}
   - {fileID: 4620678044869534586}
   - {fileID: 8204636891139781473}
   screenID: 0
   allRivName: 
+  rivFilePath: 
   artboards:
   - mainMenu
   - intro
   - game
   - oven
   - outro
-  <CookingData>k__BackingField: {fileID: 8055979562551126070}
+  asset: {fileID: -4516626237390682484, guid: 9d0712fcd6132a04887866f70f782ba8, type: 3}
+  CookingData: {fileID: 8055979562551126070}
 --- !u!114 &8055979562551126070
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35434,7 +35435,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 285129777742400098, guid: 0bcdd1c5ca2a36149a0b63fe8a4d6f12, type: 3}
       propertyPath: m_SizeDelta.x
-      value: -52.965286
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 285129777742400098, guid: 0bcdd1c5ca2a36149a0b63fe8a4d6f12, type: 3}
       propertyPath: m_SizeDelta.y

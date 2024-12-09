@@ -24,19 +24,19 @@ namespace Pwe.Games
 
             foreach (GameMain gm in screens) gm.Initialize(this);
            
-            if (allRivName != "")
-            {
-                MainApp.Instance.riveFilesManager.PreloadRiv(allRivName, AllRivesLoaded);
-            }
-            else
-            {
+        //    if (allRivName != "")
+        //    {
+        //        MainApp.Instance.riveFilesManager.PreloadRiv(allRivName, AllRivesLoaded);
+        //    }
+        //    else
+        //    {
                 AllRivesLoaded();
-            }
+        //    }
         }
         public virtual void AllRivesLoaded() {
-            if(rivFilePath!="")
-                rive.Init(rivFilePath, OnLoaded);
-            else
+        //    if(rivFilePath!="")
+        //        rive.Init(rivFilePath, OnLoaded);
+        //    else
                 InitScreens();
         }
 
