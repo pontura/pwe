@@ -24,12 +24,12 @@ namespace Pwe.Games.Cooking
         private void RiveScreen_OnRiveEvent(ReportedEvent reportedEvent)
         {
             Debug.Log($"Event received, name: \"{reportedEvent.Name}\", secondsDelay: {reportedEvent.SecondsDelay}");
-            Clicked();
+            Invoke("OnTransitionDone", 1f);
         }
-        private void Clicked()
-        {
-            Events.OnTransition(OnTransitionDone, "intro");
-        }
+        //private void Clicked()
+        //{
+        //    Events.OnTransition(OnTransitionDone, "intro");
+        //}
         void OnTransitionDone()
         {
             Next();
