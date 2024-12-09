@@ -6,16 +6,11 @@ using UnityEngine;
 
 public class Outscene : Cutscene
 {
-
-    [SerializeField] CookingMainPiece mainPiece;
-    [SerializeField] Transform mainPieceContainer;
+    [SerializeField] SlicerCreator slicer;
 
     public override void OnInit()
     {
         base.OnInit();
-        mainPiece.transform.parent = mainPieceContainer; 
-        mainPiece.transform.localScale = Vector3.one;
-        mainPiece.transform.localPosition = Vector3.zero;
-
+        slicer.Init();
     }
 }
