@@ -25,13 +25,13 @@ namespace Pwe.Games.Cooking
         [SerializeField] ButtonUI btnPrev;
         [SerializeField] GameObject clockGO;
         [SerializeField] GameObject smoke;
-        [SerializeField] NumFeedback numFeedback;
+        [SerializeField] TMPro.TMP_Text field;
         [SerializeField] CookingMainPiece mainPiece;
         [SerializeField] Transform mainPieceContainer;
         int num;
        // int ovenDuration = 4;
         int totalNums = 10;
-        float speedWhenDone = 100;
+        float speedWhenDone = 70;
         float speed = 8;
 
         public override void OnInitialize()
@@ -82,11 +82,15 @@ namespace Pwe.Games.Cooking
                 rot.z = 0;
                 Done();
             }
+            print("rot.z " + rot.z + "rot: "+(rot.z/ 34) );
+            int f =  (int)Mathf.Ceil(rot.z/34);
+            field.text = f.ToString();
+
             clockGO.transform.localEulerAngles = rot;
         }
         void UpdateClicks()
         {
-            float _a = (float)num * 340 / (float)totalNums;
+            float _a = (float)num * 300 / (float)totalNums;
             float _rot = Mathf.Lerp(clockGO.transform.localEulerAngles.z, _a, speed*Time.deltaTime);
             clockGO.transform.localEulerAngles = new Vector3(0, 0, _rot);
         }
@@ -117,7 +121,7 @@ namespace Pwe.Games.Cooking
         }
         void OnFeedback()
         {
-            numFeedback.Init(num);
+            field.text = num.ToString();
             if(num>0)
                 Events.OnSayNumber(num);
             SetButtonsState();

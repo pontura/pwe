@@ -368,9 +368,21 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6436472341298072518, guid: 4d5d31fd3d68de546b71b4b7da6d5925, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7353027997255634973, guid: 4d5d31fd3d68de546b71b4b7da6d5925, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8488565768638544312, guid: 4d5d31fd3d68de546b71b4b7da6d5925, type: 3}
+      propertyPath: m_text
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8488565768638544312, guid: 4d5d31fd3d68de546b71b4b7da6d5925, type: 3}
+      propertyPath: m_fontSize
+      value: 102.84
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
