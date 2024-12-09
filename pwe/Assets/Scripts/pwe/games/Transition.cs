@@ -30,12 +30,12 @@ namespace Pwe.Games
         {
             anim.Play("transition_in");
             canvas.gameObject.SetActive(true);
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.7f);
             game.rive.ActivateArtboard(nextArtboard);
             OnReady();
             OnReady = null;
             anim.Play("transition_out");
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.7f);
             if(nextArtboard != "")
                 game.rive.ActivateArtboard(nextArtboard);
             canvas.gameObject.SetActive(false);
