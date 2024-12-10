@@ -3,7 +3,6 @@ using Pwe.Games.Common;
 using Pwe.Games.Cooking.UI;
 using Rive;
 using System.Collections.Generic;
-using Unity.Android.Gradle.Manifest;
 using UnityEngine;
 using Yaguar.Inputs2D;
 using static Pwe.Games.Cooking.CookingData;
