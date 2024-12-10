@@ -8,11 +8,13 @@ namespace Pwe.UI
 {
     public class UIManager : MonoBehaviour
     {
+        [SerializeField] TMPro.TMP_Text versionField;
         [SerializeField] MainScreen[] allMainScreens;
         MainScreen mainScreen;
         private void Start()
         {
-            foreach(MainScreen m in allMainScreens)
+            versionField.text = "v. " + Application.version;
+            foreach (MainScreen m in allMainScreens)
             {
                 m.Initialize(this);
                 m.Show(false);

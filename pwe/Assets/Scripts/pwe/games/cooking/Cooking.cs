@@ -208,6 +208,7 @@ namespace Pwe.Games.Cooking
                 {
                     buttonProgressBar.SetProgress(value, totalPieces);
                     numFeedback.Init(ingredientsAdded[ingredient]);
+                    numFeedback.transform.position = Input.mousePosition;
                 }
             }
             if(state != states.done && buttonProgressBar.IsReady())
