@@ -24,9 +24,45 @@ MonoBehaviour:
       num: 0
   - ingredients:
     - item: 0
-      num: 4
+      num: 0
     - item: 1
+      num: 5
+    - item: 2
+      num: 4
+    - item: 3
+      num: 0
+  - ingredients:
+    - item: 0
       num: 6
+    - item: 1
+      num: 0
+    - item: 2
+      num: 0
+    - item: 3
+      num: 6
+  - ingredients:
+    - item: 0
+      num: 3
+    - item: 1
+      num: 4
+    - item: 2
+      num: 0
+    - item: 3
+      num: 0
+  - ingredients:
+    - item: 0
+      num: 0
+    - item: 1
+      num: 4
+    - item: 2
+      num: 4
+    - item: 3
+      num: 0
+  - ingredients:
+    - item: 0
+      num: 6
+    - item: 1
+      num: 8
     - item: 2
       num: 0
     - item: 3
