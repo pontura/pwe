@@ -2,11 +2,11 @@ using Pwe.Core;
 using Pwe.Games.Common;
 using Pwe.Games.Cooking.UI;
 using Rive;
-using System;
 using System.Collections.Generic;
-using System.Net.NetworkInformation;
+using Unity.Android.Gradle.Manifest;
 using UnityEngine;
 using Yaguar.Inputs2D;
+using static Pwe.Games.Cooking.CookingData;
 
 namespace Pwe.Games.Cooking
 {
@@ -201,7 +201,20 @@ namespace Pwe.Games.Cooking
             }
             if(state != states.done && buttonProgressBar.IsReady())
             {
-                Events.OnWinParticles();
+                List<UnityEngine.Color> colors = new List<UnityEngine.Color>();
+                foreach (string s in ingredients.Keys)
+                {
+                    if (ingredients[s] > 0)
+                    { 
+                        foreach (IngredientData iData in (Game as CookingGame).CookingData.ingredients)
+                        {
+                            if (s == iData.item.ToString())
+                                colors.Add(iData.color);
+                        }
+                    }
+                }
+                print("______" + colors.Count);
+                Events.OnWinParticles(colors);
                 buttonProgressBar.SetInteraction(true);
                 state = states.done;
                 YaguarLib.Events.Events.OnPlaySound(YaguarLib.Audio.AudioManager.types.REWARD);

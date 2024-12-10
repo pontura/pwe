@@ -39,6 +39,7 @@ namespace Pwe.Games.Cooking
             public ItemData.Items item;
             public Sprite asset;
             public Sprite[] assets;
+            public Color color;
             public Sprite GetSprite(int id = 0)
             {
                 if (id == 0 || asset == null || assets.Length == 0)
