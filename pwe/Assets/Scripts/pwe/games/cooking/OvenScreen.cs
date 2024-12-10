@@ -28,6 +28,7 @@ namespace Pwe.Games.Cooking
         [SerializeField] TMPro.TMP_Text field;
         [SerializeField] CookingMainPiece mainPiece;
         [SerializeField] Transform mainPieceContainer;
+        [SerializeField] Transform[] hints;
         int num;
        // int ovenDuration = 4;
         int totalNums = 10;
@@ -63,7 +64,7 @@ namespace Pwe.Games.Cooking
         }
         void Delayed()
         {
-
+            Events.OnHint(hints[0].transform.position);
             anim.Play("close");
         }
         public override void OnUpdate()

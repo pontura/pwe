@@ -6,6 +6,7 @@ namespace Pwe.Core
 {
     public static class Events
     {
+        public static System.Action<Vector2> OnHint = delegate { };
         public static System.Action<GameData.GAMES> OnPlayGame = delegate { };
         public static System.Action Reset = delegate { };
         public static System.Action ExitGame = delegate { };

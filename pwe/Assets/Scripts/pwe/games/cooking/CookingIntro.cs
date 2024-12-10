@@ -36,8 +36,6 @@ namespace Pwe.Games.Cooking
 
             GetRiveTexture().ActivateArtboard("intro");
 
-            menu.Init(items, cookingData);
-            menu.SetType(true);
 
             button.gameObject.SetActive(false);
             menu.gameObject.SetActive(false);
@@ -53,9 +51,11 @@ namespace Pwe.Games.Cooking
         private void RiveScreen_OnRiveEvent(ReportedEvent reportedEvent)
         {
             Debug.Log($"Event received, name: \"{reportedEvent.Name}\", secondsDelay: {reportedEvent.SecondsDelay}");
-
+            if (clicked) return;
+            clicked = true;
             StartCoroutine(Animate());
         }
+        bool clicked;
         IEnumerator Animate()
         {            
 
@@ -64,6 +64,7 @@ namespace Pwe.Games.Cooking
             anim.Play("cutscene_2");
             (Game as CookingGame).rive.SetTrigger("intro", "next");
             menu.gameObject.SetActive(true);
+            menu.Init(items, cookingData);
 
             yield return new WaitForSeconds(1);
 

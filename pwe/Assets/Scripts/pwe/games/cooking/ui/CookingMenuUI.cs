@@ -20,12 +20,9 @@ namespace Pwe.Games.Cooking.UI
         public void Init(List<ItemData> items, CookingData cookingData)
         {
             this.items = items;
-            this.cookingData = cookingData; 
-        }
-        void OnEnable()
-        {
-            if(items != null)
-                StartCoroutine(Anim(items, cookingData));
+            this.cookingData = cookingData;
+            print("init" + items.Count);
+            StartCoroutine(Anim(items, cookingData));
         }
         IEnumerator Anim(List<ItemData> items, CookingData cookingData)
         {
@@ -35,6 +32,7 @@ namespace Pwe.Games.Cooking.UI
             {
                 if (c.num > 0)
                 {
+                    print("c " + c.item.ToString() + " num " + c.num);
                     yield return new WaitForSeconds(0.5f);
                     CookingItem ci = Instantiate(items_to_add, container);
                     Sprite sprite = cookingData.GetIngredient(c.item.ToString());
@@ -50,25 +48,6 @@ namespace Pwe.Games.Cooking.UI
                 if (c.data.item.ToString() == s && !c.done)
                     c.OnReady();
             }
-        }
-        public void SetType(bool isCutscene)
-        {
-            foreach (GameObject go in cutsceneeGO)
-                go.SetActive(false);
-            foreach (GameObject go in ingameGO)
-                go.SetActive(false);
-
-            if (isCutscene)
-            {
-                foreach (GameObject go in cutsceneeGO)
-                    go.SetActive(true);
-            }
-            else
-            {
-                foreach (GameObject go in ingameGO)
-                    go.SetActive(true);
-            }
-
         }
         public void Refresh(ItemData itemData)
         {

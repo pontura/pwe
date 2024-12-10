@@ -31,10 +31,10 @@ namespace Pwe.Games
             anim.Play("transition_in");
             canvas.gameObject.SetActive(true);
             yield return new WaitForSeconds(0.7f);
+            anim.Play("transition_out");
             game.rive.ActivateArtboard(nextArtboard);
             OnReady();
             OnReady = null;
-            anim.Play("transition_out");
             yield return new WaitForSeconds(0.7f);
             if(nextArtboard != "")
                 game.rive.ActivateArtboard(nextArtboard);

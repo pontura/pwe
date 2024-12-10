@@ -19,8 +19,9 @@ namespace Pwe.Games.Cooking
             done
         }
         //menu items:
+        [SerializeField] Transform[] hints;
+
         [SerializeField] CookingMenuUI menu;
-        [SerializeField] Transform menuContainer;
 
         [SerializeField] NumFeedback numFeedback;
         [SerializeField] CookingMainPiece mainPiece;
@@ -43,6 +44,7 @@ namespace Pwe.Games.Cooking
         int itemID;
         string lastIngredient;
         [SerializeField] List<string> added;
+        int hintID = 0;
         public override void OnInit()
         {
             GetRiveTexture().OnRiveEvent += RiveScreen_OnRiveEvent;
@@ -72,6 +74,11 @@ namespace Pwe.Games.Cooking
             buttonProgressBar.SetProgress(0, totalPieces);
 
             SetMenu();
+            if (hintID == 0)
+            {
+                Events.OnHint(hints[0].transform.position);
+                hintID++;
+            }
         }
         public override void OnHide()
         {
@@ -83,10 +90,12 @@ namespace Pwe.Games.Cooking
             print("itemID " + itemID);
             switch(reportedEvent.Name)
             {
-                case "up": 
+                case "up":
+                    if(hintID == 1) hintID++;
                     if (itemID > items.Count) return; 
                     ChgangeNum(true); break;
-                case "down": 
+                case "down":
+                    if (hintID == 1) hintID++;
                     if (itemID < 0) return;
                     ChgangeNum(false); break;
                 case "click":
@@ -114,10 +123,7 @@ namespace Pwe.Games.Cooking
         }
         void SetMenu()
         {
-            menu.transform.SetParent(menuContainer);
-            menu.transform.localPosition = Vector3.zero;
-            menu.transform.localScale = Vector3.one;
-            menu.SetType(false);
+            menu.Init(items, cookingData);
         }
         private void NextClicked()
         {
@@ -183,9 +189,15 @@ namespace Pwe.Games.Cooking
                 foreach (string s in ingredientsAdded.Keys)
                 {
                     int v = ingredientsAdded[s];
-                    if (ingredientsAdded[s] == ingredients[s])
+                    if (ingredients[s]>0 &&  ingredientsAdded[s] == ingredients[s])
                     {
                         menu.OnIngredientDone(s);
+                        if (hintID == 1)
+                        {
+                            print("Hint");
+                            Events.OnHint(hints[1].transform.position);
+                            hintID++;
+                        }
                     } else  if (ingredientsAdded[s] > ingredients[s])
                     {
                         v = ingredients[s];
