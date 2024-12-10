@@ -775,9 +775,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17b0b7594625e304ca3bf8974affbc36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: {x: 1024, y: 500}
+  size: {x: 600, y: 300}
   renderTexture: {fileID: 0}
-  fit: 1
+  fit: 2
 --- !u!114 &628344390
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -793,7 +793,7 @@ MonoBehaviour:
   input: {fileID: 0}
   input2: {fileID: 0}
   riveTexture: {fileID: 628344389}
-  riveName: Cooking/cookinggame.riv
+  riveName: Cooking/cutscenes/intro.riv
 --- !u!1 &820398517
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,6 +2,7 @@
 # Unity generated #
 # =============== #
 .vsconfig
+.utmp/
 obj/
 Assets/AssetBundles/WebGL/
 UnityGenerated/

@@ -28,7 +28,7 @@ namespace Pwe.Core
         void OnWinParticles()
         {
             UIParticles particle = Instantiate(win, container);
-            particle.transform.localPosition = new Vector2(450, 0);
+            particle.transform.localPosition = new Vector2(0, 0);
             StartCoroutine(ParticleOn(particle, 50));
         }
         void OnAddParticles(types type, Vector2 pos, string nameID = "")
