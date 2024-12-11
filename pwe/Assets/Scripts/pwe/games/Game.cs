@@ -10,6 +10,7 @@ namespace Pwe.Games
     public class Game : MonoBehaviour
     {
         public RiveTexture rive;
+        [SerializeField] protected Rive.Asset asset;
         [SerializeField] GameMain[] screens;
         [SerializeField] int screenID;
         GameMain active;
@@ -34,10 +35,11 @@ namespace Pwe.Games
         //    }
         }
         public virtual void AllRivesLoaded() {
-        //    if(rivFilePath!="")
-        //        rive.Init(rivFilePath, OnLoaded);
-        //    else
-                InitScreens();
+            //    if(rivFilePath!="")
+            //        rive.Init(rivFilePath, OnLoaded);
+            //    else
+            rive.Init(asset);
+            OnLoaded();
         }
 
         protected virtual void OnLoaded() {
