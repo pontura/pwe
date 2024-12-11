@@ -176,7 +176,6 @@ namespace YaguarLib.Audio
 
         public void PlaySound(AudioClip audioClip, channels channel = channels.GAME, float volume = 1f, bool loop = false, bool noRepeat = false)
         {
-            print("PlaySound " + audioClip.name + channel + " CanPlay() " + CanPlay());
             if (!CanPlay()) return;
             AudioSource audioSource = GetAudioSource(channel); if (audioSource == null) return;
             if (noRepeat)

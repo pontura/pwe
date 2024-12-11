@@ -391,6 +391,10 @@ PrefabInstance:
       propertyPath: m_PlayOnAwake
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4682522400148112765, guid: 73483f63e734b9e44b28b91027cff377, type: 3}
+      propertyPath: audios.Array.data[0].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 24270f5523e02a24cbb2dfda3b6f7632, type: 3}
     - target: {fileID: 5055766746676342669, guid: 73483f63e734b9e44b28b91027cff377, type: 3}
       propertyPath: m_PlayOnAwake
       value: 0

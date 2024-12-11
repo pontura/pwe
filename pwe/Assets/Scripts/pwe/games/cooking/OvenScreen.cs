@@ -21,6 +21,7 @@ namespace Pwe.Games.Cooking
             done
         }
         [SerializeField] Animation anim;
+        [SerializeField] Animation pizzaAnim;
         [SerializeField] ButtonUI btnDone;
         [SerializeField] ButtonUI btnNext;
         [SerializeField] ButtonUI btnPrev;
@@ -49,6 +50,7 @@ namespace Pwe.Games.Cooking
         }
         public override void OnInit()
         {
+            pizzaAnim.Play("in");
             base.OnInit();
             mainPiece.transform.SetParent(mainPieceContainer);
             mainPiece.transform.localScale = Vector3.one;
@@ -157,6 +159,7 @@ namespace Pwe.Games.Cooking
             YaguarLib.Events.Events.OnPlaySound(YaguarLib.Audio.AudioManager.types.FINISH);
             yield return new WaitForSeconds(0.25f);
             anim.Play("ready");
+            pizzaAnim.Play("out");
             yield return new WaitForSeconds(1f);
             // Events.OnTransition(OnTransitionDone, "outro");
             OnTransitionDone();
