@@ -8,14 +8,28 @@ namespace YaguarLib.Audio
     {
         static AudioManager mInstance = null;
 
-        public types TYPE;
+        public enum channels
+        {
+            UI,
+            GAME,
+            MUSIC
+        }
         public enum types
         {
             UI_GENERIC,
             REWARD,
             POPUP,
             CANCEL,
-            NONE
+            NONE,
+            DRAG,
+            DONE,
+            RELEASE,
+            RESPAWN,
+            SNAP,
+            COOK,
+            FINISH,
+            TAP,
+            COOKING_MUSIC
         }
 
         float masterVol, musicVol, sfxVol;
@@ -31,7 +45,7 @@ namespace YaguarLib.Audio
         [Serializable]
         public class AudioSourceManager
         {
-            public string sourceName;
+            public channels channel;
             public AudioSource audioSource;
         }
         [Serializable]
@@ -53,18 +67,19 @@ namespace YaguarLib.Audio
             if (!mInstance)
                 mInstance = this;
 
-            if (!masterGroup.audioMixer.GetFloat("masterVol", out masterVol))
-                masterVol = 0f;
+            //if (!masterGroup.audioMixer.GetFloat("masterVol", out masterVol))
+            //    masterVol = 0f;
 
-            if (!musicGroup.audioMixer.GetFloat("musicVol", out musicVol))
-                musicVol = 0f;
+            //if (!musicGroup.audioMixer.GetFloat("musicVol", out musicVol))
+            //    musicVol = 0f;
 
-            if (!sfxGroup.audioMixer.GetFloat("sfxVol", out sfxVol))
-                sfxVol = 0f;
+            //if (!sfxGroup.audioMixer.GetFloat("sfxVol", out sfxVol))
+            //    sfxVol = 0f;
 
             int muteValue = PlayerPrefs.GetInt("mute", 0);
             if (muteValue == 1) Mute = true;
-            DontDestroyOnLoad(this);
+
+            DontDestroyOnLoad(this.gameObject);
         }
         void Start()
         {
@@ -75,13 +90,14 @@ namespace YaguarLib.Audio
             }
             YaguarLib.Events.Events.OnPlaySound += OnPlaySound;
             YaguarLib.Events.Events.OnPlaySoundInChannel += OnPlaySoundInChannel;
+            YaguarLib.Events.Events.StopAllSounds += StopAllSounds;
         }
         void OnDestroy()
         {
             YaguarLib.Events.Events.OnPlaySound -= OnPlaySound;
             YaguarLib.Events.Events.OnPlaySoundInChannel -= OnPlaySoundInChannel;
+            YaguarLib.Events.Events.StopAllSounds -= StopAllSounds;
         }
-
         public void MusicEnable(bool enable) {
             Debug.Log("MusicEnable " + enable);
             float val = enable ? musicVol : -80f;
@@ -106,9 +122,9 @@ namespace YaguarLib.Audio
             if (Mute) return false;
             return true;
         }
-        public void StopAudioSource(string audioSourceName)
+        public void StopAudioSource(channels channel)
         {
-            AudioSource audioSource = GetAudioSource(audioSourceName);            
+            AudioSource audioSource = GetAudioSource(channel);            
             if (audioSource != null)
                 audioSource.Stop();
         }
@@ -122,12 +138,9 @@ namespace YaguarLib.Audio
         }
         void OnPlaySound(types type)
         {
-            string audioSource = "ui";
-            if (type == types.REWARD)
-                audioSource = "ui2";
-            OnPlaySoundInChannel(type, audioSource);
+            OnPlaySoundInChannel(type, channels.GAME);
         }
-        void OnPlaySoundInChannel(types type, string channel)
+        void OnPlaySoundInChannel(types type, channels channel)
         {
             AudioData ad = GetAudio(type);
             if (ad == null) return;
@@ -139,20 +152,20 @@ namespace YaguarLib.Audio
                 if (t == ad.TYPE) return ad;
             return null;
         }
-        public void ChangePitch(string sourceName, float pitch)
+        public void ChangePitch(channels channel, float pitch)
         {
             foreach (AudioSourceManager m in all)
             {
-                if (m.sourceName == sourceName)
+                if (m.channel == channel)
                     m.audioSource.pitch = pitch;
             }
         }
-        public void ChangeVolume(string sourceName, float volume)
+        public void ChangeVolume(channels channel, float volume)
         {
             if (!CanPlay()) return;
             foreach (AudioSourceManager m in all)
             {
-                if (m.sourceName == sourceName)
+                if (m.channel == channel)
                     m.audioSource.volume = volume;
             }
         }
@@ -161,10 +174,11 @@ namespace YaguarLib.Audio
             PlaySound(allClips[UnityEngine.Random.Range(0, allClips.Length)]);
         }
 
-        public void PlaySound(AudioClip audioClip, string sourceName = "common", float volume = 1f, bool loop = false, bool noRepeat = false)
+        public void PlaySound(AudioClip audioClip, channels channel = channels.GAME, float volume = 1f, bool loop = false, bool noRepeat = false)
         {
+            print("PlaySound " + audioClip.name + channel + " CanPlay() " + CanPlay());
             if (!CanPlay()) return;
-            AudioSource audioSource = GetAudioSource(sourceName); if (audioSource == null) return;
+            AudioSource audioSource = GetAudioSource(channel); if (audioSource == null) return;
             if (noRepeat)
             {
                 if (audioSource.clip == audioClip && audioSource.isPlaying)
@@ -173,9 +187,9 @@ namespace YaguarLib.Audio
             PlaySound(audioSource, audioClip, volume, loop);
         }
 
-        public void PlaySoundOneShot(string sourceName, string audioName, bool noRepeat = false)
+        public void PlaySoundOneShot(channels channel, string audioName, bool noRepeat = false)
         {
-            AudioSource audioSource = GetAudioSource(sourceName);
+            AudioSource audioSource = GetAudioSource(channel);
             if (audioSource == null) return;
 
             if (audioName == "")
@@ -195,6 +209,8 @@ namespace YaguarLib.Audio
         }
 
         public void PlaySound(AudioSource source, AudioClip clip, float volume = 1, bool loop = false) {
+
+            print("PlaySoundPlaySound " + source.name + clip.name + " loop " + loop);
             source.volume = volume;
             source.clip = clip;
             source.loop = loop;
@@ -210,11 +226,11 @@ namespace YaguarLib.Audio
             source.PlayOneShot(clip);
         }
 
-        AudioSource GetAudioSource(string sourceName)
+        AudioSource GetAudioSource(channels channel)
         {
             foreach (AudioSourceManager m in all)
             {
-                if (m.sourceName == sourceName)
+                if (m.channel == channel)
                     return m.audioSource;
             }
             return null;

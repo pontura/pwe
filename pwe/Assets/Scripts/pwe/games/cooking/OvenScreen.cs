@@ -3,6 +3,7 @@ using Pwe.Games.Common;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using YaguarLib.Audio;
 using YaguarLib.UI;
 using YaguarLib.Xtras;
 using static ItemData;
@@ -102,7 +103,7 @@ namespace Pwe.Games.Cooking
             state = states.playing_done;
             btnNext.SetInteraction(false);
             btnPrev.SetInteraction(false);
-            YaguarLib.Events.Events.OnPlaySound(YaguarLib.Audio.AudioManager.types.REWARD);
+            YaguarLib.Events.Events.OnPlaySound(YaguarLib.Audio.AudioManager.types.TAP);
             StartCooking();
         }
         void NextClicked()
@@ -122,6 +123,7 @@ namespace Pwe.Games.Cooking
         }
         void OnFeedback()
         {
+            YaguarLib.Events.Events.OnPlaySound(AudioManager.types.TAP);
             field.text = num.ToString();
             if(num>0)
                 Events.OnSayNumber(num);
@@ -153,6 +155,7 @@ namespace Pwe.Games.Cooking
         }
         IEnumerator NextIngredient()
         {
+            YaguarLib.Events.Events.OnPlaySound(YaguarLib.Audio.AudioManager.types.FINISH);
             yield return new WaitForSeconds(0.25f);
             anim.Play("ready");
             yield return new WaitForSeconds(1f);

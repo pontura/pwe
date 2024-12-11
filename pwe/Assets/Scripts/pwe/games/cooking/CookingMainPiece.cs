@@ -2,6 +2,7 @@ using Pwe.Core;
 using UnityEngine;
 using UnityEngine.UI;
 using Yaguar.Inputs2D;
+using YaguarLib.Audio;
 
 namespace Pwe.Games.Cooking
 {
@@ -56,11 +57,13 @@ namespace Pwe.Games.Cooking
         }
         public void Add()
         {
+            YaguarLib.Events.Events.OnPlaySound(AudioManager.types.DONE);
             Events.OnAddParticles(ParticlesManager.types.drop, Input.mousePosition, Ingredient);
             anim.Play();
         }
         void OnDropItemOut()
         {
+            YaguarLib.Events.Events.OnPlaySoundInChannel(AudioManager.types.RELEASE, AudioManager.channels.UI);
             cooking.ResetDrag();
         }
     }

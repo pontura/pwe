@@ -29,7 +29,10 @@ namespace YaguarLib.Audio
             ClipData cp = soundLibrary.GetClip(key);
             if (cp == null)
                 return;
-            AudioManager.Instance.PlaySound(cp.clip, sourceName:sourceKey, volume:cp.vol);
+            // AudioManager.Instance.PlaySound(cp.clip, sourceName:sourceKey, volume:cp.vol);
+
+            //TO-DO
+            AudioManager.Instance.PlaySound(cp.clip, AudioManager.channels.GAME, volume: cp.vol);
         }
 
     }

@@ -5,6 +5,7 @@ using Rive;
 using System.Collections.Generic;
 using UnityEngine;
 using Yaguar.Inputs2D;
+using YaguarLib.Audio;
 using static Pwe.Games.Cooking.CookingData;
 
 namespace Pwe.Games.Cooking
@@ -47,6 +48,7 @@ namespace Pwe.Games.Cooking
         int hintID = 0;
         public override void OnInit()
         {
+            YaguarLib.Events.Events.OnPlaySoundInChannel(AudioManager.types.COOKING_MUSIC, AudioManager.channels.MUSIC);
             GetRiveTexture().OnRiveEvent += RiveScreen_OnRiveEvent;
             GetRiveTexture().ActivateArtboard("game");
 
@@ -88,15 +90,17 @@ namespace Pwe.Games.Cooking
         {
             Debug.Log($"Event received, name: \"{reportedEvent.Name}\", secondsDelay: {reportedEvent.SecondsDelay}");
             print("itemID " + itemID);
-            switch(reportedEvent.Name)
+            switch (reportedEvent.Name)
             {
                 case "up":
-                    if(hintID == 1) hintID++;
-                    if (itemID > items.Count) return; 
+                    if (hintID == 1) hintID++;
+                    if (itemID > items.Count) return;
+                    YaguarLib.Events.Events.OnPlaySound(AudioManager.types.DRAG);
                     ChgangeNum(true); break;
                 case "down":
                     if (hintID == 1) hintID++;
                     if (itemID < 0) return;
+                    YaguarLib.Events.Events.OnPlaySound(AudioManager.types.DRAG);
                     ChgangeNum(false); break;
                 case "click":
                     itemDragging = items[itemID].item;
@@ -104,6 +108,7 @@ namespace Pwe.Games.Cooking
                     {
                         if (ingredientsAdded[itemDragging.ToString()] >= 10) return;
                     }
+                    YaguarLib.Events.Events.OnPlaySound(AudioManager.types.SNAP);
                     GetRiveTexture().SetTrigger("game", "remove_" + itemDragging);
                     InitDrag();  break;
             }
@@ -112,6 +117,8 @@ namespace Pwe.Games.Cooking
         {
             itemDragging = items[itemID].item;
             GetRiveTexture().SetTrigger("game", "add_" + itemDragging);
+
+            YaguarLib.Events.Events.OnPlaySound(AudioManager.types.RESPAWN);
         }
         void ChgangeNum(bool up)
         {

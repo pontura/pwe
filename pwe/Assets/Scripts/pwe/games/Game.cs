@@ -66,6 +66,7 @@ namespace Pwe.Games
         {
             if (screenID >= screens.Length) {
                 Core.Events.GamePlayed();
+                YaguarLib.Events.Events.StopAllSounds();
             } else {
                 if (screenID < 0)
                     screenID = 0;
@@ -81,6 +82,7 @@ namespace Pwe.Games
         }
 
         public void Back() {
+
             Debug.Log("Back");
             if (active) active.Hide();
             screenID--;
