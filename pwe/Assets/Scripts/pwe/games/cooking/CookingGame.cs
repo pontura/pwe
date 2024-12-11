@@ -9,7 +9,6 @@ namespace Pwe.Games.Cooking
 {
     public class CookingGame : Game
     {
-        [SerializeField] Rive.Asset asset;
         public CookingData CookingData;
 
         public override void AllRivesLoaded()
