@@ -115,8 +115,7 @@ namespace Pwe.Games.Cooking
         }
         void PrevClicked()
         {
-            if (num < 1) return;
-            num = 1;
+            if (num < 1) num = 1;
             if (state != states.playing) return;
             num--;
             OnFeedback();
