@@ -58384,7 +58384,7 @@ MonoBehaviour:
   btnNext: {fileID: 2684503634421624481}
   btnPrev: {fileID: 496075000171772337}
   clockGO: {fileID: 2542086914024353375}
-  smoke: {fileID: 4983696760660898373}
+  smoke: {fileID: 5902773628145841677}
   field: {fileID: 8488565768638544312}
   mainPiece: {fileID: 5113486022291081668}
   mainPieceContainer: {fileID: 2603820570869677439}
