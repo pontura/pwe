@@ -44,7 +44,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -181,7 +181,7 @@ MonoBehaviour:
   sfxGroup: {fileID: 0}
   audios:
   - TYPE: 0
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 24270f5523e02a24cbb2dfda3b6f7632, type: 3}
   - TYPE: 5
     clip: {fileID: 8300000, guid: bc9ad5294d1e219459ecb5f3687925c3, type: 3}
   - TYPE: 6
@@ -197,9 +197,13 @@ MonoBehaviour:
   - TYPE: 11
     clip: {fileID: 8300000, guid: d8c6d382b8a60c947bd0e7c41fc26965, type: 3}
   - TYPE: 13
-    clip: {fileID: 8300000, guid: 39a131bd799ea5040900758e5df5139c, type: 3}
+    clip: {fileID: 8300000, guid: 04f024898bab6aa4ca491900c6d582d7, type: 3}
   - TYPE: 12
     clip: {fileID: 8300000, guid: a1ed7ab7e50e69d43a5e00c9aff541ed, type: 3}
+  - TYPE: 14
+    clip: {fileID: 8300000, guid: 6d75c4e99ac6c5445a2670970da612cd, type: 3}
+  - TYPE: 15
+    clip: {fileID: 8300000, guid: 583bcee16673b14488a5a5a7f915d534, type: 3}
   all:
   - channel: 0
     audioSource: {fileID: 2245631316730206306}
@@ -251,7 +255,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -380,7 +384,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

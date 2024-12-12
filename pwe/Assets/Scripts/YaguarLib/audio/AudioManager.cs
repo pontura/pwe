@@ -29,7 +29,9 @@ namespace YaguarLib.Audio
             COOK,
             FINISH,
             TAP,
-            COOKING_MUSIC
+            COOKING_MUSIC,
+            INGREDIENT_OTHER,
+            GAME_DONE
         }
 
         float masterVol, musicVol, sfxVol;
@@ -91,12 +93,14 @@ namespace YaguarLib.Audio
             YaguarLib.Events.Events.OnPlaySound += OnPlaySound;
             YaguarLib.Events.Events.OnPlaySoundInChannel += OnPlaySoundInChannel;
             YaguarLib.Events.Events.StopAllSounds += StopAllSounds;
+            YaguarLib.Events.Events.StopChannel += StopChannel;
         }
         void OnDestroy()
         {
             YaguarLib.Events.Events.OnPlaySound -= OnPlaySound;
             YaguarLib.Events.Events.OnPlaySoundInChannel -= OnPlaySoundInChannel;
             YaguarLib.Events.Events.StopAllSounds -= StopAllSounds;
+            YaguarLib.Events.Events.StopChannel -= StopChannel;
         }
         public void MusicEnable(bool enable) {
             Debug.Log("MusicEnable " + enable);
@@ -134,6 +138,17 @@ namespace YaguarLib.Audio
             {
                 if (m.audioSource != null)
                     m.audioSource.Stop();
+            }
+        }
+        public void StopChannel(channels channel)
+        {
+            foreach (AudioSourceManager m in all)
+            {
+                if (m.channel == channel)
+                {
+                    m.audioSource.Stop();
+                    return;
+                }
             }
         }
         void OnPlaySound(types type)

@@ -142,6 +142,8 @@ namespace Pwe.Games.Cooking
 
         void OnTransitionDone()
         {
+
+            YaguarLib.Events.Events.StopChannel( AudioManager.channels.MUSIC);
             Next();
         }
 
@@ -189,7 +191,8 @@ namespace Pwe.Games.Cooking
         }
         public void OnPieceAdded(string ingredient)
         {
-            if (ingredients.ContainsKey(ingredient))
+            AudioManager.types audioType = AudioManager.types.INGREDIENT_OTHER;
+            if (ingredients.ContainsKey(ingredient) && ingredients[ingredient]>0)
             {
                 ingredientsAdded[ingredient]++;
                 int value = 0;
@@ -205,6 +208,7 @@ namespace Pwe.Games.Cooking
                             Events.OnHint(hints[1].transform.position);
                             hintID++;
                         }
+                        audioType = AudioManager.types.DONE;
                     } else  if (ingredientsAdded[s] > ingredients[s])
                     {
                         v = ingredients[s];
@@ -213,6 +217,7 @@ namespace Pwe.Games.Cooking
                 }
                 if (ingredientsAdded[ingredient] <= ingredients[ingredient])
                 {
+                    audioType = AudioManager.types.DONE;
                     buttonProgressBar.SetProgress(value, totalPieces);
                     numFeedback.Init(ingredientsAdded[ingredient]);
                     numFeedback.transform.position = Input.mousePosition;
@@ -220,6 +225,7 @@ namespace Pwe.Games.Cooking
             }
             if(state != states.done && buttonProgressBar.IsReady())
             {
+                audioType = AudioManager.types.GAME_DONE;
                 List<UnityEngine.Color> colors = new List<UnityEngine.Color>();
                 foreach (string s in ingredients.Keys)
                 {
@@ -236,8 +242,8 @@ namespace Pwe.Games.Cooking
                 Events.OnWinParticles(colors);
                 buttonProgressBar.SetInteraction(true);
                 state = states.done;
-                YaguarLib.Events.Events.OnPlaySound(YaguarLib.Audio.AudioManager.types.REWARD);
             }
+            YaguarLib.Events.Events.OnPlaySound(audioType);
         }
         public bool CanMove()
         {

@@ -57,7 +57,6 @@ namespace Pwe.Games.Cooking
         }
         public void Add()
         {
-            YaguarLib.Events.Events.OnPlaySound(AudioManager.types.DONE);
             Events.OnAddParticles(ParticlesManager.types.drop, Input.mousePosition, Ingredient);
             anim.Play();
         }
