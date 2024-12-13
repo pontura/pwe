@@ -268,7 +268,7 @@ namespace Pwe
         }
         public void SetNumberInArtboard(string nestedArtboardName, string triggerName, int value)
         {
-            print("SetNumberInArtboard " + nestedArtboardName + " - trigger " + triggerName);
+            print("SetNumberInArtboard " + nestedArtboardName + " - trigger " + triggerName + " value: " + value);
             m_artboard.SetNumberInputStateAtPath(triggerName, value, nestedArtboardName);
         }
         public void SetTriggerInArtboard(string nestedArtboardName, string triggerName)

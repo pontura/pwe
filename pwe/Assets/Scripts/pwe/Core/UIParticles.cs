@@ -45,7 +45,6 @@ namespace Pwe.Core
         }
         void SetParticlesColor(List<Color> colors)
         {
-            print("SetParticlesColor " + colors.Count);
             
             foreach (ParticleSystemData pData in particlesToColorize)
             {
@@ -54,7 +53,6 @@ namespace Pwe.Core
                 {
                     if (colorID < colors.Count)
                     {
-                        print("color " + colorID);
                         p.startColor = colors[colorID];
                         colorID++;
                     }

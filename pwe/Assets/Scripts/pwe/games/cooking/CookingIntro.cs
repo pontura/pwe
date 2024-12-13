@@ -40,8 +40,9 @@ namespace Pwe.Games.Cooking
             button.gameObject.SetActive(false);
             menu.gameObject.SetActive(false);
 
+
             foreach (ItemData item in items)
-                (Game as CookingGame).rive.SetNumber("intro", item.item.ToString(), item.num);
+                (Game as CookingGame).rive.SetNumberInArtboard("PizzaBase", "qty_" + item.item.ToString(), item.num);
         }
         public override void OnHide()
         {

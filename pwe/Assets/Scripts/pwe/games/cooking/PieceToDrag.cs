@@ -17,8 +17,10 @@ namespace Pwe.Games.Cooking
             //riveTexture = GetComponent<RiveRawImage>();
             //riveTexture.Init("Cooking/ingredient.riv", OnReady);
             string Ingredient = mainPiece.Ingredient;
-            
-            if(Ingredient == "gummybears")
+
+            print("init drag " + Ingredient + " id: " + id);
+
+            if (Ingredient == "gummybears")
             {
                 switch(id)
                 {

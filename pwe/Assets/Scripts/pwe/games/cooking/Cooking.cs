@@ -89,7 +89,6 @@ namespace Pwe.Games.Cooking
         private void RiveScreen_OnRiveEvent(ReportedEvent reportedEvent)
         {
             Debug.Log($"Event received, name: \"{reportedEvent.Name}\", secondsDelay: {reportedEvent.SecondsDelay}");
-            print("itemID " + itemID);
             switch (reportedEvent.Name)
             {
                 case "up":
@@ -109,14 +108,14 @@ namespace Pwe.Games.Cooking
                         if (ingredientsAdded[itemDragging.ToString()] >= 10) return;
                     }
                     YaguarLib.Events.Events.OnPlaySound(AudioManager.types.SNAP);
-                    GetRiveTexture().SetTrigger("game", "remove_" + itemDragging);
+                    GetRiveTexture().SetTriggerInArtboard("bowl_" + itemDragging, "remove");
                     InitDrag();  break;
             }
         }
         public void ResetDrag()
         {
             itemDragging = items[itemID].item;
-            GetRiveTexture().SetTrigger("game", "add_" + itemDragging);
+            GetRiveTexture().SetTriggerInArtboard("bowl_" + itemDragging, "add");
 
             YaguarLib.Events.Events.OnPlaySound(AudioManager.types.RESPAWN);
         }
@@ -174,9 +173,14 @@ namespace Pwe.Games.Cooking
         {
             Events.OnAddParticles(ParticlesManager.types.pick, Input.mousePosition, itemDragging.ToString());
             newPieceToDrag = Instantiate(pieceToDrag, dragContainer);
-            int pieceToGetID = totalPieces;
-            if(ingredientsAdded.ContainsKey(itemDragging.ToString()))
-                pieceToGetID = totalPieces - ingredientsAdded[itemDragging.ToString()];
+            int pieceToGetID = 10;
+
+            if (!ingredientsAdded.ContainsKey(itemDragging.ToString()))
+                ingredientsAdded.Add(itemDragging.ToString(), 0);
+
+            if (ingredientsAdded.ContainsKey(itemDragging.ToString()))
+                pieceToGetID = pieceToGetID - ingredientsAdded[itemDragging.ToString()];
+
             newPieceToDrag.Init(OnPieceToDragReady, mainPiece, pieceToGetID);           
         }
         void OnPieceToDragReady()
@@ -192,6 +196,13 @@ namespace Pwe.Games.Cooking
         public void OnPieceAdded(string ingredient)
         {
             AudioManager.types audioType = AudioManager.types.INGREDIENT_OTHER;
+            if (ingredients[ingredient] == 0)
+            {
+                ingredientsAdded[ingredient]++;
+                YaguarLib.Events.Events.OnPlaySound(audioType);
+                return;
+            }
+
             if (ingredients.ContainsKey(ingredient) && ingredients[ingredient]>0)
             {
                 ingredientsAdded[ingredient]++;
