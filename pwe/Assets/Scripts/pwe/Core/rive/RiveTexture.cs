@@ -141,6 +141,17 @@ namespace Pwe
             m_camera = Camera.main;
             m_camera.AddCommandBuffer(CameraEvent.AfterEverything, m_commandBuffer);
         }
+
+        public void SetBool(string artboardName, string triggerName, bool val) {
+            if (!isOn) return;
+            ActivateArtboard(artboardName);
+            print("Artboard: " + artboardName + " Set Number: " + triggerName + " val: " + val);
+            SMIBool someNumber = m_stateMachine.GetBool(triggerName);
+            if (someNumber == null) return;
+            someNumber.Value = val;
+            print("SetBool Done");
+        }
+
         public void SetTrigger(string artboardName, string triggerName)
         {
             if (!isOn) return;
@@ -266,6 +277,12 @@ namespace Pwe
             //        return false;
             //}
         }
+
+        public void SetBoolInArtboard(string nestedArtboardName, string triggerName, bool value) {
+            print("SetBoolInArtboard " + nestedArtboardName + " - input: " + triggerName);
+            m_artboard.SetBooleanInputStateAtPath(triggerName, value, nestedArtboardName);
+        }
+
         public void SetNumberInArtboard(string nestedArtboardName, string triggerName, int value)
         {
             print("SetNumberInArtboard " + nestedArtboardName + " - trigger " + triggerName + " value: " + value);
