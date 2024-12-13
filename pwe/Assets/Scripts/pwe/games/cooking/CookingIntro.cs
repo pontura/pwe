@@ -42,7 +42,10 @@ namespace Pwe.Games.Cooking
 
 
             foreach (ItemData item in items)
-                (Game as CookingGame).rive.SetNumberInArtboard("PizzaBase", "qty_" + item.item.ToString(), item.num);
+            {
+                print("item " + item.item.ToString() + " num: " + num);
+                (Game as CookingGame).rive.SetNumberInArtboard("PizzaBase/" + item.item.ToString(), "qty" , item.num);
+            }
         }
         public override void OnHide()
         {

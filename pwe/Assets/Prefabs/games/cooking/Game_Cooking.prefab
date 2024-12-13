@@ -52744,29 +52744,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelsData: {fileID: 11400000, guid: f5dbc968aa905ff4b97818a6ccd55d85, type: 2}
-  bases:
-  - baseName: pizza
-    asset: {fileID: 21300000, guid: 03852a5f29184b444a26451939adc2ac, type: 3}
-  ingredients:
-  - item: 0
-    asset: {fileID: 21300000, guid: 2b24fc8baa2310c4ab6b3df1b9dd045c, type: 3}
-    assets: []
-    color: {r: 1, g: 0.32156864, b: 0.20392159, a: 1}
-  - item: 1
-    asset: {fileID: 21300000, guid: 8bc44ca8639dd9f4fa614cb1a8985b78, type: 3}
-    assets: []
-    color: {r: 0.675804, g: 0.754717, b: 0.28123888, a: 1}
-  - item: 2
-    asset: {fileID: 21300000, guid: c723a32550b64074aafb484434b8cd75, type: 3}
-    assets:
-    - {fileID: 21300000, guid: c723a32550b64074aafb484434b8cd75, type: 3}
-    - {fileID: 21300000, guid: d66d151e5c5571942bee91381ea77f59, type: 3}
-    - {fileID: 21300000, guid: fa7c9aa9c7a088a40a3e29c05815357e, type: 3}
-    color: {r: 0.058823533, g: 0.96470594, b: 0.9333334, a: 1}
-  - item: 3
-    asset: {fileID: 21300000, guid: 008d2d63f024c9e49a9b275b57755262, type: 3}
-    assets: []
-    color: {r: 0.8638032, g: 0.748932, b: 0.9622642, a: 1}
+  ingredientsData: {fileID: 11400000, guid: 8ed9c6b7d17e57c429e9cdc11fa4cbbc, type: 2}
 --- !u!114 &2574940121553715126
 MonoBehaviour:
   m_ObjectHideFlags: 0
