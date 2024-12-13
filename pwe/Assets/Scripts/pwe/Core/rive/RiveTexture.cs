@@ -266,46 +266,15 @@ namespace Pwe
             //        return false;
             //}
         }
-
-        //public void PlayStateMachine(string stateMachine, string triggerName)
-        //{
-        //    if (!isOn) return;
-        //    SMITrigger someTrigger = m_stateMachine.GetTrigger(triggerName);
-        //    if (someTrigger != null)
-        //    {
-        //        print("TRIGGER : " + triggerName);
-        //        someTrigger.Fire();
-        //    }
-        //}
-
-        //public void SetNumberInArtboard(string nestedArtboardName, string triggerName, int number)
-        //{
-        //    var nestedArtboard = m_file.Artboard(nestedArtboardName);
-        //    if (nestedArtboard != null)
-        //    {
-        //        m_stateMachine = nestedArtboard.StateMachine(); // Asegúrate de usar el índice correcto
-        //        print("nestedArtboardName : " + nestedArtboardName + " triggerName: " + triggerName + " num: " + number);
-        //        if (number < 0) return;
-        //        SMINumber someNumber = m_stateMachine.GetNumber(triggerName);
-        //        if (someNumber == null) return;
-        //        someNumber.Value = number;
-        //        print("SetNumber Done");
-        //    }
-        //}
-        //public void SetTriggerInArtboard(string nestedArtboardName, string triggerName)
-        //{
-        //    m_artboard = m_file.Artboard(nestedArtboardName);
-        //    if (m_artboard != null)
-        //    {
-        //        m_stateMachine = m_artboard.StateMachine();
-        //        SMITrigger someTrigger = m_stateMachine.GetTrigger(triggerName);
-        //        if (someTrigger != null)
-        //        {
-        //            print("Set TRIGGER: " + triggerName + " in: " + nestedArtboardName);
-        //            someTrigger.Fire();
-        //            m_stateMachine.Advance(Time.deltaTime);
-        //        }
-        //    }
-        //}
+        public void SetNumberInArtboard(string nestedArtboardName, string triggerName, int value)
+        {
+            print("SetNumberInArtboard " + nestedArtboardName + " - trigger " + triggerName);
+            m_artboard.SetNumberInputStateAtPath(triggerName, value, nestedArtboardName);
+        }
+        public void SetTriggerInArtboard(string nestedArtboardName, string triggerName)
+        {
+            print("SetTriggerInArtboard " + nestedArtboardName + " - trigger " + triggerName);
+            m_artboard.FireInputStateAtPath(triggerName, nestedArtboardName);           
+        }
     }
 }
