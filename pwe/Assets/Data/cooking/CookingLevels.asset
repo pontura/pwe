@@ -12,58 +12,53 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21fec8003a5c2a54796862e4023ed744, type: 3}
   m_Name: CookingLevels
   m_EditorClassIdentifier: 
-  <levels>k__BackingField:
+  <pizza>k__BackingField:
   - ingredients:
     - item: 0
       num: 3
     - item: 1
       num: 3
-    - item: 2
-      num: 0
     - item: 3
       num: 0
   - ingredients:
     - item: 0
-      num: 0
+      num: 3
     - item: 1
+      num: 0
+    - item: 2
+      num: 3
+    - item: 4
+      num: 0
+  - ingredients:
+    - item: 0
+      num: 6
+    - item: 1
+      num: 0
+    - item: 7
+      num: 6
+    - item: 2
+      num: 0
+    - item: 3
+      num: 0
+    - item: 4
+      num: 0
+  <cake>k__BackingField:
+  - ingredients:
+    - item: 13
+      num: 4
+    - item: 15
+      num: 4
+    - item: 18
+      num: 3
+  <waffle>k__BackingField:
+  - ingredients:
+    - item: 8
       num: 5
-    - item: 2
-      num: 4
-    - item: 3
-      num: 0
-  - ingredients:
-    - item: 0
-      num: 6
-    - item: 1
-      num: 0
-    - item: 2
-      num: 0
-    - item: 3
-      num: 6
-  - ingredients:
-    - item: 0
-      num: 3
-    - item: 1
-      num: 4
-    - item: 2
+    - item: 6
       num: 0
     - item: 3
       num: 0
-  - ingredients:
-    - item: 0
-      num: 0
-    - item: 1
-      num: 4
-    - item: 2
-      num: 4
-    - item: 3
-      num: 0
-  - ingredients:
-    - item: 0
-      num: 6
-    - item: 1
-      num: 8
-    - item: 2
-      num: 0
-    - item: 3
+    - item: 11
+      num: 2
+    - item: 16
       num: 0

@@ -2,6 +2,7 @@ using Pwe.Core;
 using Pwe.Games.Common;
 using Pwe.Games.Cooking.UI;
 using Rive;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Yaguar.Inputs2D;
@@ -46,11 +47,15 @@ namespace Pwe.Games.Cooking
         string lastIngredient;
         [SerializeField] List<string> added;
         int hintID = 0;
+
+        
+
         public override void OnInit()
         {
             YaguarLib.Events.Events.OnPlaySoundInChannel(AudioManager.types.COOKING_MUSIC, AudioManager.channels.MUSIC);
             GetRiveTexture().OnRiveEvent += RiveScreen_OnRiveEvent;
             GetRiveTexture().ActivateArtboard("game");
+
 
             buttonProgressBar.Init(NextClicked);
             buttonProgressBar.SetProgress(false);
@@ -62,18 +67,11 @@ namespace Pwe.Games.Cooking
                 level = GamesManager.Instance.GetGame(GameData.GAMES.COOKING).level;
 
             items = new List<ItemData>();
-            print(Game);
             items = (Game as CookingGame).CookingData.GetItems(level);
             ingredients = new Dictionary<string, int>();
             ingredientsAdded = new Dictionary<string, int>();
-            foreach (ItemData item in items)
-            {
-                totalPieces += item.num;
-                ingredients.Add(item.item.ToString(), item.num);
-                ingredientsAdded.Add(item.item.ToString(), 0);
-            }
+            
             mainPiece.Init(InitIngredient);
-            buttonProgressBar.SetProgress(0, totalPieces);
 
             SetMenu();
             if (hintID == 0)
@@ -81,6 +79,21 @@ namespace Pwe.Games.Cooking
                 Events.OnHint(hints[0].transform.position);
                 hintID++;
             }
+            StartCoroutine(AnimIngredientsOn());
+        }
+        IEnumerator AnimIngredientsOn()
+        {
+            yield return new WaitForSeconds(1);
+            foreach (ItemData item in items)
+            {
+                yield return new WaitForSeconds(1f);
+                print("item " + item.item.ToString() + " num: " + num);
+                totalPieces += item.num;
+                ingredients.Add(item.item.ToString(), item.num);
+                ingredientsAdded.Add(item.item.ToString(), 0);
+                GetRiveTexture().SetBool("game", item.item.ToString(), true);
+            }
+            buttonProgressBar.SetProgress(0, totalPieces);
         }
         public override void OnHide()
         {
@@ -93,13 +106,13 @@ namespace Pwe.Games.Cooking
             {
                 case "up":
                     if (hintID == 1) hintID++;
-                    if (itemID > items.Count) return;
-                    YaguarLib.Events.Events.OnPlaySound(AudioManager.types.DRAG);
+                    if (itemID >= items.Count-1) return;
+                    GetRiveTexture().SetTrigger("game", "scroll_up");
                     ChgangeNum(true); break;
                 case "down":
                     if (hintID == 1) hintID++;
-                    if (itemID < 0) return;
-                    YaguarLib.Events.Events.OnPlaySound(AudioManager.types.DRAG);
+                    if (itemID <= 0) return;
+                    GetRiveTexture().SetTrigger("game", "scroll_down");
                     ChgangeNum(false); break;
                 case "click":
                     itemDragging = items[itemID].item;
@@ -123,9 +136,14 @@ namespace Pwe.Games.Cooking
         {
             if(up) itemID++;
             else itemID--;
-            
-            if(itemID>items.Count-1) itemID = items.Count - 1;
+
+            if (itemID > items.Count - 1) itemID = items.Count - 1;
             else if (itemID < 0) itemID = 0;
+            else
+            {
+                GetRiveTexture().SetTriggerInArtboard("bowl_" + items[itemID].item, "plate_jump");
+                YaguarLib.Events.Events.OnPlaySound(AudioManager.types.DRAG);
+            }
         }
         void SetMenu()
         {
@@ -242,7 +260,7 @@ namespace Pwe.Games.Cooking
                 {
                     if (ingredients[s] > 0)
                     { 
-                        foreach (IngredientData iData in (Game as CookingGame).CookingData.ingredients)
+                        foreach (IngredientsData.IngredientData iData in (Game as CookingGame).CookingData.GetIngredientsData())
                         {
                             if (s == iData.item.ToString())
                                 colors.Add(iData.color);

@@ -31,11 +31,11 @@ namespace Pwe.Games.Cooking
 
                     case 9:
                     case 6:
-                    case 3:  id = 1; break;
+                    case 3:  id = 2; break;
 
                     case 8:
                     case 5:
-                    case 2:  id = 2; break;
+                    case 2:  id = 1; break;
 
                 }
             }

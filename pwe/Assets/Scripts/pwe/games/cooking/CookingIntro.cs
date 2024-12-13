@@ -25,7 +25,6 @@ namespace Pwe.Games.Cooking
 
         public override void OnInit()
         {
-            print("___________1");
             GetRiveTexture().OnRiveEvent += RiveScreen_OnRiveEvent;
 
             button.Init(Play);
@@ -42,7 +41,10 @@ namespace Pwe.Games.Cooking
 
 
             foreach (ItemData item in items)
+            {
+                print("item " + item.item.ToString() + " num: " + num);
                 (Game as CookingGame).rive.SetNumberInArtboard("PizzaBase", "qty_" + item.item.ToString(), item.num);
+            }
         }
         public override void OnHide()
         {
