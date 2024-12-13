@@ -83,10 +83,10 @@ namespace Pwe.Games.Cooking
         }
         IEnumerator AnimIngredientsOn()
         {
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(0.25f);
             foreach (ItemData item in items)
             {
-                yield return new WaitForSeconds(1f);
+                yield return new WaitForSeconds(0.1f);
                 print("item " + item.item.ToString() + " num: " + num);
                 totalPieces += item.num;
                 ingredients.Add(item.item.ToString(), item.num);
