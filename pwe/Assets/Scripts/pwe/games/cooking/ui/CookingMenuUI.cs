@@ -12,6 +12,7 @@ namespace Pwe.Games.Cooking.UI
         [SerializeField] GameObject[] ingameGO;
         [SerializeField] GameObject[] cutsceneeGO;
         [SerializeField] Transform container;
+        [SerializeField] GameObject paper;
         List<CookingItem> allItems;
 
         List<ItemData> items;
@@ -27,7 +28,16 @@ namespace Pwe.Games.Cooking.UI
         IEnumerator Anim(List<ItemData> items, CookingData cookingData)
         {
             allItems = new List<CookingItem>();
+            if(paper != null) 
+                paper.transform.SetParent(transform);
+
             Utils.RemoveAllChildsIn(container);
+
+
+            if (paper != null)
+            {
+                paper.transform.SetParent(container);
+            }
             foreach (ItemData c in items)
             {
                 if (c.num > 0)

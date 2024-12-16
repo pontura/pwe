@@ -36,9 +36,24 @@ namespace Pwe.Games.Cooking
                 level = levelsData.GetPart(Part).Count - 1;
 
             LevelData levelData = levelsData.GetPart(Part)[level];
-            List<ItemData> items = levelData.ingredients;
+            List<ItemData> items = new List<ItemData>();
+            // items = levelData.ingredients;
+            foreach (ItemData.Items item in Enum.GetValues(typeof(ItemData.Items)))
+            {
+                ItemData itemData = ItemInLevel(levelData, item);
+                if (itemData != null)
+                    items.Add(itemData);
+            }
             num = items[0].num;  
             return items;
+        }
+        ItemData ItemInLevel(LevelData levelData, ItemData.Items item)
+        {
+            foreach(ItemData i in levelData.ingredients)
+            {
+                if (i.item == item) return i;
+            }      
+            return null;
         }
         public LevelData GetLevelData(int level)
         {
