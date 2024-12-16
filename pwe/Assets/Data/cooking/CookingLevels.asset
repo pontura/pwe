@@ -220,9 +220,88 @@ MonoBehaviour:
     - item: 2
       num: 5
   - ingredients:
-    - item: 14
+    - item: 11
+      num: 6
+    - item: 2
+      num: 0
+    - item: 26
+      num: 2
+  - ingredients:
+    - item: 13
       num: 3
-    - item: 2
+    - item: 24
       num: 5
-    - item: 2
+    - item: 3
+      num: 3
+  - ingredients:
+    - item: 18
+      num: 3
+    - item: 15
+      num: 4
+    - item: 28
       num: 5
+    - item: 23
+      num: 0
+  - ingredients:
+    - item: 29
+      num: 0
+    - item: 22
+      num: 3
+    - item: 19
+      num: 0
+    - item: 20
+      num: 3
+    - item: 10
+      num: 4
+  - ingredients:
+    - item: 1
+      num: 6
+    - item: 17
+      num: 3
+    - item: 11
+      num: 6
+    - item: 25
+      num: 0
+    - item: 0
+      num: 0
+  - ingredients:
+    - item: 4
+      num: 0
+    - item: 5
+      num: 0
+    - item: 29
+      num: 3
+    - item: 9
+      num: 4
+    - item: 8
+      num: 3
+    - item: 7
+      num: 6
+  - ingredients:
+    - item: 16
+      num: 5
+    - item: 11
+      num: 7
+    - item: 24
+      num: 8
+    - item: 23
+      num: 2
+    - item: 28
+      num: 0
+    - item: 14
+      num: 0
+  - ingredients:
+    - item: 27
+      num: 0
+    - item: 13
+      num: 9
+    - item: 3
+      num: 7
+    - item: 2
+      num: 3
+    - item: 4
+      num: 0
+    - item: 26
+      num: 0
+    - item: 15
+      num: 9
