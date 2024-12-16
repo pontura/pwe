@@ -56,9 +56,11 @@ namespace YaguarLib.Xtras
                 Rect r = new Rect();
 #if UNITY_EDITOR
                 r.xMin = System.Math.Max(0, (int)(shotCenter.x - (0.5f * shotRes.x)));
-                r.yMin = System.Math.Max(0, (int)(Screen.height - (shotCenter.y + (0.5f * shotRes.y))));
+                //r.yMin = System.Math.Max(0, (int)(Screen.height - (shotCenter.y + (0.5f * shotRes.y))));
+                r.yMin = System.Math.Max(0, (int)(shotCenter.y - (0.5f * shotRes.y)));
                 r.xMax = System.Math.Min(Screen.width, (int)(shotCenter.x + (0.5f * shotRes.x)));
-                r.yMax = System.Math.Min(Screen.height, (int)(Screen.height - (shotCenter.y - (0.5f * shotRes.y))));
+                //r.yMax = System.Math.Min(Screen.height, (int)(Screen.height - (shotCenter.y - (0.5f * shotRes.y))));
+                r.yMax = System.Math.Min(Screen.height, (int)(shotCenter.y + (0.5f * shotRes.y)));
 #elif UNITY_ANDROID
                 r.xMin = System.Math.Max(0, (int)(shotCenter.x - (0.5f * shotRes.x)));
                 r.yMin = System.Math.Max(0, (int)(shotCenter.y - (0.5f * shotRes.y)));

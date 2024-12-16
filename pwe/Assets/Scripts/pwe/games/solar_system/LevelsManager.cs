@@ -17,9 +17,15 @@ namespace Pwe.Games.SolarSystem
 
         public override event System.Action OnLevelCompleted;
 
+        RiveTexture _riveTexture;
+
         void Awake() {
             clickedPlanets = new List<PlanetName>();
             SetCurrentLevelIndex();
+        }
+
+        public void SetRiveTexture(RiveTexture rt) {
+            _riveTexture = rt;
         }
 
         protected override void SetCurrentLevelIndex() {
@@ -36,8 +42,10 @@ namespace Pwe.Games.SolarSystem
         public override LevelData InitLevel() {
             levelPlanets = new();
             foreach(SpaceData.LevelItem li in (levels[CurrentLevelIndex] as SpaceData).LevelItems ) {
-                if(li.planetName!=PlanetName.none)
+                if (li.planetName != PlanetName.none) {
+                    _riveTexture.SetBool("game",li.planetName.ToString(), true);
                     levelPlanets.Add(li.planetName);
+                }
             }
             return levels[CurrentLevelIndex];
         }

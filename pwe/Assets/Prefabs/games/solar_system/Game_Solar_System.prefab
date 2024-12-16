@@ -132,7 +132,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7642536782091750681
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1292,6 +1292,7 @@ GameObject:
   - component: {fileID: 9140110801355716874}
   - component: {fileID: 2227039788019846856}
   - component: {fileID: 1472948662031635338}
+  - component: {fileID: 4906607475820054110}
   - component: {fileID: 3534683824791078328}
   - component: {fileID: 3441783755040834749}
   - component: {fileID: 2346381606477202024}
@@ -1336,6 +1337,7 @@ MonoBehaviour:
   planetsData: {fileID: 6412669494029910803}
   levelsManager: {fileID: 1472948662031635338}
   planetsManager: {fileID: 3534683824791078328}
+  triviaManager: {fileID: 4906607475820054110}
   menuUI: {fileID: 6619654463916350899}
   backButton: {fileID: 873421680943039069}
   levelCompletedPopup: {fileID: 5343001088016792994}
@@ -1344,7 +1346,7 @@ MonoBehaviour:
   ingameAudio: {fileID: 6712749723797333973}
   photoUI: {fileID: 1797126396426129356}
   dinoFlash: {fileID: 217337550829801768}
-  shotSizeScreenHeightFactor: 0.3
+  shotSizeScreenHeightFactor: 0.5
   shotInitialSize: {x: 220, y: 220}
   shotFinalSize: {x: 350, y: 350}
 --- !u!114 &1472948662031635338
@@ -1371,6 +1373,18 @@ MonoBehaviour:
   <CurrentLevelIndex>k__BackingField: 0
   clickedPlanets: 
   levelPlanets: 
+--- !u!114 &4906607475820054110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2032732051771238932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c38acdd079a4a04d8b56ee326c2aa5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &3534683824791078328
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1395,7 +1409,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2032732051771238932}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 466fc6b6f57f46441b89af4b4e0b54d3, type: 3}
   m_Name: 
@@ -1974,7 +1988,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 22}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 80, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &599939203215723464
 MonoBehaviour:
@@ -4173,6 +4187,8 @@ MonoBehaviour:
   rivFilePath: Planets/planets.riv
   artboards:
   - game
+  - Trivia
+  - Trivia_Btn
 --- !u!114 &6412669494029910803
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8221,7 +8237,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7007337732035681089, guid: bd4da98a0c821574e9496442b2b5dd08, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7007337732035681089, guid: bd4da98a0c821574e9496442b2b5dd08, type: 3}
       propertyPath: m_AnchorMin.x
@@ -8229,7 +8245,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7007337732035681089, guid: bd4da98a0c821574e9496442b2b5dd08, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7007337732035681089, guid: bd4da98a0c821574e9496442b2b5dd08, type: 3}
       propertyPath: m_SizeDelta.x
@@ -8269,11 +8285,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7007337732035681089, guid: bd4da98a0c821574e9496442b2b5dd08, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 7007337732035681089, guid: bd4da98a0c821574e9496442b2b5dd08, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -40
       objectReference: {fileID: 0}
     - target: {fileID: 7007337732035681089, guid: bd4da98a0c821574e9496442b2b5dd08, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -8709,6 +8725,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3845078311542158226, guid: 8cbb8258f004e184a8bfedab8963930d, type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3987623608291034379, guid: 8cbb8258f004e184a8bfedab8963930d, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4540246527693443283, guid: 8cbb8258f004e184a8bfedab8963930d, type: 3}

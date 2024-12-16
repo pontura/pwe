@@ -15,7 +15,8 @@ namespace Pwe.Games.SolarSystem
     {
         [SerializeField] PlanetsData planetsData;
         [SerializeField] LevelsManager levelsManager;
-        [SerializeField] PlanetsManager planetsManager;        
+        [SerializeField] PlanetsManager planetsManager;
+        [SerializeField] TriviaManager triviaManager;
         [SerializeField] SolarSysMenuUI menuUI;
         [SerializeField] ButtonUI backButton;
         [SerializeField] IngamePopup levelCompletedPopup;
@@ -40,6 +41,8 @@ namespace Pwe.Games.SolarSystem
             //levelsManager.OnPlanetDone += menuUI.SetPlanetDone;
             levelsManager.OnPlanetDone += SetPhotoDone;
             levelsManager.OnLevelCompleted += OnLevelCompleted;
+
+            levelsManager.SetRiveTexture(Game.rive);
 
             screenshot.shotRes = new Vector2Int((int)(shotSizeScreenHeightFactor * Screen.height), (int)(shotSizeScreenHeightFactor * Screen.height));
 
@@ -67,8 +70,12 @@ namespace Pwe.Games.SolarSystem
             PlanetName planetName;
             if (System.Enum.TryParse(reportedEvent.Name, out planetName)) {
                 levelsManager.OnPlanetClicked(planetName);
-            } else if (System.Enum.TryParse(reportedEvent.Name.Replace("_btn",""), out planetName)) {
-                OnSelectSlot(planetName);
+            //} else if (System.Enum.TryParse(reportedEvent.Name.Replace("trivia_btn_", ""), out planetName)) {
+            } else {
+                if (int.TryParse(reportedEvent.Name.Replace("trivia_btn_", ""), out int btnId))
+                    triviaManager.OnButtonPressed(selectedPlanet, btnId);
+                else
+                    Debug.LogError("Error on parse trivia button index");
             }
         }
 
@@ -92,26 +99,27 @@ namespace Pwe.Games.SolarSystem
         }
 
         void OnCaptureDone(Texture2D tex, Vector2 pos) {
-            //Debug.Log("#OnCaptureDone");
+            Debug.Log("#OnCaptureDone");
             photoUI.Init(tex, OnContinueMoving);
             photoUI.FadeSize(shotInitialSize, shotFinalSize, 0.2f);
             photoUI.FadePosition(pos, Vector2.Lerp(pos,new Vector2(Screen.width*0.5f, Screen.height*0.5f),0.25f), 0.2f);
             photoUI.FadeAngle(Vector3.zero, new Vector3(0,0,Random.Range(-15,15)), 0.2f);
             ingameAudio.Play("photo", "ui");
-            //photoUI.FlyTo(new Vector2(Screen.width, Screen.height));
+            photoUI.FlyTo(new Vector2(Screen.width, Screen.height));
         }
 
         void SetPhotoDone(PlanetName planetName) {
-            //Debug.Log("#SetPhotoDone");
+            Debug.Log("#SetPhotoDone");
             if (planetName != PlanetName.none) {
                 selectedPlanet = planetName;
                 
                 photoUI.SetDone(true);
                 photoUI.SetDelayedFly(true);
                 planetsManager.Play(false);
-                //photoUI.FlyTo(menuUI.GetItemPosition(planetName));
+                photoUI.FlyTo(menuUI.GetItemPosition(planetName));
+
                 //StartCoroutine(menuUI.OpenSlotDialog(planetName, OnSelectSlot));
-                Game.rive.SetNumber("game", "trivia_level", 2);
+                triviaManager.ShowTrivia(true);
 
                 //planetsData.SavePlanetLastPhoto(planetName, screenshot.Texture);
 
@@ -123,26 +131,20 @@ namespace Pwe.Games.SolarSystem
         PlanetName selectedPlanet;
         void OnSelectSlot(PlanetName pressed) {
             if (pressed==selectedPlanet) {
-                Game.rive.SetNumber("game", "trivia_btn_" + pressed.ToString(), 2);
                 ingameAudio.Play("click_right", "ui");
                 StartCoroutine(OnSelectSlotDone());
             } else {
-                Game.rive.SetNumber("game", "trivia_btn_" + pressed.ToString(), 1);
                 ingameAudio.Play("click_wrong", "ui");
-            }
-            StartCoroutine(ResetTriviaBtns(pressed));            
+            }                    
         }
 
-        System.Collections.IEnumerator ResetTriviaBtns(PlanetName pressed) {
-            yield return new WaitForSecondsRealtime(0.3f);
-            Game.rive.SetNumber("game", "trivia_btn_" + pressed.ToString(), 0);
-        }
+        
 
         System.Collections.IEnumerator OnSelectSlotDone() {
             yield return new WaitForSecondsRealtime(0.5f);
             planetsManager.Play(true);
-            Game.rive.SetNumber("game", "trivia_level", 0);
-            //photoUI.Invoke(nameof(photoUI.Fly), 1);
+            triviaManager.ShowTrivia(false);
+            photoUI.Invoke(nameof(photoUI.Fly), 1);
             if (_levelCompleted) {
                 _cameraPan.Panning = false;
                 levelCompletedPopup.Popup("LEVEL COMPLETED!", delay: photoUI.CloseDelay + photoUI.FlyDelay + menuUI.Menu2Delay, onContinue: Pwe.Core.GamesManager.Instance != null ? Core.Events.ExitGame : Back);
@@ -166,13 +168,15 @@ namespace Pwe.Games.SolarSystem
             _levelCompleted = false;
             planetsManager.RemoveAllPlanets();
             SpaceData sd = levelsManager.InitLevel() as SpaceData;
-            
+
             //planetsManager.Init(planetsData, sd, _cameraPan.cam.transform);
-            
-            List<PlanetName> levelPlanetNames = sd.LevelItems.Select(item => item.planetName).ToList();
+
+            List<PlanetName> levelPlanetNames = sd.LevelItems.Where(e=>e.planetName!=PlanetName.none).Select(item => item.planetName).ToList();
             //IEnumerable<PlanetData> levelPlanetsData = planetsData.planets.Where(item => sd.LevelItems.Any(category => category.planetName == item.planetName));
-            //menuUI.Init(planetsData.planets, levelPlanetNames, ingameAudio.Play);
+            menuUI.Init(planetsData.planets, levelPlanetNames, ingameAudio.Play);
             photoUI.FlyOnWrong(new Vector2(Screen.width, Screen.height));
+
+            triviaManager.Init(Game.rive, levelPlanetNames,OnSelectSlot);
         }
     }
 
