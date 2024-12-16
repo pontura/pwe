@@ -36,7 +36,8 @@ public class ItemData
         flowers,
         glowingstars,
         shrimps,
-        strawberries
+        strawberries,
+        birthdaycandles
     }
     public Items item;
     public int num;
