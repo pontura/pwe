@@ -1,6 +1,7 @@
 using Pwe.Core;
 using Pwe.Games.Common;
 using System.Collections;
+using Unity.Android.Gradle.Manifest;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using YaguarLib.Audio;
@@ -31,6 +32,8 @@ namespace Pwe.Games.Cooking
         [SerializeField] CookingMainPiece mainPiece;
         [SerializeField] Transform mainPieceContainer;
         [SerializeField] Transform[] hints;
+        [SerializeField] CookingData cookingData;
+
         int num;
        // int ovenDuration = 4;
         int totalNums = 10;
@@ -52,6 +55,10 @@ namespace Pwe.Games.Cooking
         {
             pizzaAnim.Play("in");
             base.OnInit();
+
+            if (!mainPiece.WasInit()) 
+                mainPiece.Init(cookingData.Part);
+
             mainPiece.transform.SetParent(mainPieceContainer);
             mainPiece.transform.localScale = Vector3.one;
             mainPiece.transform.localPosition = Vector3.zero;

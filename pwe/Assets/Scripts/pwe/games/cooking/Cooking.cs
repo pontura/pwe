@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Yaguar.Inputs2D;
 using YaguarLib.Audio;
+using YaguarLib.Xtras;
 using static Pwe.Games.Cooking.CookingData;
 
 namespace Pwe.Games.Cooking
@@ -25,6 +26,7 @@ namespace Pwe.Games.Cooking
 
         [SerializeField] CookingMenuUI menu;
 
+        [SerializeField] Transform mainPieceContainer;
         [SerializeField] NumFeedback numFeedback;
         [SerializeField] CookingMainPiece mainPiece;
         [SerializeField] PieceToDrag pieceToDrag;
@@ -71,7 +73,18 @@ namespace Pwe.Games.Cooking
             ingredients = new Dictionary<string, int>();
             ingredientsAdded = new Dictionary<string, int>();
             
-            mainPiece.Init(InitIngredient, cookingData.Part);
+            if(mainPiece.WasInit())
+            {
+                mainPiece.transform.SetParent(mainPieceContainer);
+                mainPiece.transform.localScale = Vector3.one;
+                mainPiece.transform.localEulerAngles = Vector3.zero;
+                mainPiece.transform.localPosition = Vector3.zero;
+                if (mainPiece.GetComponent<Animation>() != null)
+                    Destroy(mainPiece.GetComponent<Animation>());
+                if (mainPiece.GetComponent<ResolutionFixer>() != null)
+                    Destroy(mainPiece.GetComponent<ResolutionFixer>());
+            } else
+                mainPiece.Init(cookingData.Part);
 
             SetMenu();
             if (hintID == 0)
@@ -153,7 +166,10 @@ namespace Pwe.Games.Cooking
         {
             if (buttonProgressBar.IsReady())
             {
-                Events.OnTransition(OnTransitionDone, "oven");
+                if (cookingData.Part == "pizza")
+                    Events.OnTransition(OnTransitionDone, "oven");
+                else
+                    Events.OnTransition(OnTransitionDone, "outro");
             }
         }
 

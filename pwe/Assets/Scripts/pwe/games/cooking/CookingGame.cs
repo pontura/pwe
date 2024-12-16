@@ -34,6 +34,17 @@ namespace Pwe.Games.Cooking
             //    Debug.Log($"click: {click}");
             //    Debug.Log($"type: {type}");
             //}
+            switch(reportedEvent.Name)
+            {
+                case "food2":
+                case "food3":
+                    GameMain g1 = screens[1];
+                    GameMain g2 = screens[2];
+                    screens[1] = g2;
+                    screens[2] = g1;
+                    break;
+
+            }
         }
     }
 }

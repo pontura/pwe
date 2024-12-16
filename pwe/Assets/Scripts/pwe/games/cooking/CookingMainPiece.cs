@@ -13,17 +13,16 @@ namespace Pwe.Games.Cooking
         //RiveRawImage riveTexture;
         [SerializeField] Image image;
         bool pieceOver;
-
+        bool wasInitialized;
+        public bool WasInit() { return wasInitialized; }
 
         public string Ingredient { get { return cooking.itemDragging.ToString(); }  }
-        System.Action OnLoaded;
 
-        public void Init(System.Action OnLoaded, string basePiece)
+        public void Init(string basePiece)
         {
-            this.OnLoaded = OnLoaded;
+            wasInitialized = true;
             image.sprite = cooking.cookingData.GetBase(basePiece); // TO-DO:
         }
-        void OnReady() { OnLoaded();  }
         public override void OnIECollisionEnter(InteractiveElement ie)
         {
             pieceOver = true;

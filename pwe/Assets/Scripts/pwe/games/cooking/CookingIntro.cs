@@ -82,7 +82,10 @@ namespace Pwe.Games.Cooking
         }
         private void Play()
         {
-            Events.OnTransition(OnTransitionDone, "game");
+            if(cookingData.Part == "pizza")
+                Events.OnTransition(OnTransitionDone, "game");
+            else
+                Events.OnTransition(OnTransitionDone, "oven");
         }
         void OnTransitionDone()
         {

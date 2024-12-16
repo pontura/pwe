@@ -11,7 +11,7 @@ namespace Pwe.Games
     {
         public RiveTexture rive;
         [SerializeField] protected Rive.Asset asset;
-        [SerializeField] GameMain[] screens;
+        public GameMain[] screens;
         [SerializeField] int screenID;
         GameMain active;
         // [SerializeField] string[] allRivNames;
