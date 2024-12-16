@@ -18,7 +18,7 @@ namespace Pwe.Games.SolarSystem.UI
         [field:SerializeField] public float Menu2Delay { get; private set; }
 
 
-        public void Init(List<PlanetData> allPlanets, List<PlanetName> itemsNames, System.Action<string,string> onClick)
+        public void Init(List<PlanetData> allPlanets, List<PlanetName> itemsNames, System.Action<string,YaguarLib.Audio.AudioManager.channels> onClick)
         {
             allItems = new List<PlanetItemUI>();
             photoItems = new List<PlanetItemUI>();
@@ -29,7 +29,7 @@ namespace Pwe.Games.SolarSystem.UI
                 if (itemsNames.Any(name => name == c.planetName))
                     planetState = PlanetItemUI.PlanetState.normal;
                 PlanetItemUI ci = Instantiate(items_to_add, container);
-                ci.Init(c, planetState, () => onClick(c.planetName.ToString(),"voices"));
+                ci.Init(c, planetState, () => onClick(c.planetName.ToString(),YaguarLib.Audio.AudioManager.channels.VOICES));
                 allItems.Add(ci);
                 if (planetState == PlanetItemUI.PlanetState.normal)
                     photoItems.Add(ci);

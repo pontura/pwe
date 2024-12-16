@@ -12,7 +12,8 @@ namespace YaguarLib.Audio
         {
             UI,
             GAME,
-            MUSIC
+            MUSIC,
+            VOICES
         }
         public enum types
         {
@@ -235,7 +236,7 @@ namespace YaguarLib.Audio
 
         public void PlaySound(AudioSource source, AudioClip clip, float volume = 1, bool loop = false) {
 
-            print("PlaySoundPlaySound " + source.name + clip.name + " loop " + loop);
+            print("PlaySoundPlaySound " + source.name + " " + clip.name + " loop " + loop);
             source.volume = volume;
             source.clip = clip;
             source.loop = loop;
