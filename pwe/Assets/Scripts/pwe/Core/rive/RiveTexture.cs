@@ -149,7 +149,6 @@ namespace Pwe
             SMIBool someNumber = m_stateMachine.GetBool(triggerName);
             if (someNumber == null) return;
             someNumber.Value = val;
-            print("SetBool Done");
         }
 
         public void SetTrigger(string artboardName, string triggerName)
@@ -173,7 +172,6 @@ namespace Pwe
             SMINumber someNumber = m_stateMachine.GetNumber(triggerName);
             if (someNumber == null) return;
             someNumber.Value = number;
-            print("SetNumber Done");
         }
         private void Update()
         {

@@ -56,6 +56,12 @@ namespace Pwe.Games.Cooking
         {
             Debug.Log($"Event received, name: \"{reportedEvent.Name}\", secondsDelay: {reportedEvent.SecondsDelay}");
             if (clicked) return;
+            switch(reportedEvent.Name)
+            {
+                case "food2": cookingData.Part = "cake"; break;
+                case "food3": cookingData.Part = "waffle"; break;
+                default: cookingData.Part = "pizza"; break;
+            }
             clicked = true;
             StartCoroutine(Animate());
         }

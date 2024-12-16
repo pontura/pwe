@@ -18,13 +18,10 @@ namespace Pwe.Games.Cooking
         public string Ingredient { get { return cooking.itemDragging.ToString(); }  }
         System.Action OnLoaded;
 
-        public void Init(System.Action OnLoaded)
+        public void Init(System.Action OnLoaded, string basePiece)
         {
             this.OnLoaded = OnLoaded;
-            //riveTexture = GetComponent<RiveRawImage>();
-            //riveTexture.Init("Cooking/pizza.riv", OnReady);
-
-            image.sprite = cooking.cookingData.GetBase("pizza"); // TO-DO:
+            image.sprite = cooking.cookingData.GetBase(basePiece); // TO-DO:
         }
         void OnReady() { OnLoaded();  }
         public override void OnIECollisionEnter(InteractiveElement ie)

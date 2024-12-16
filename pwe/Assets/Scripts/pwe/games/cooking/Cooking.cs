@@ -71,7 +71,7 @@ namespace Pwe.Games.Cooking
             ingredients = new Dictionary<string, int>();
             ingredientsAdded = new Dictionary<string, int>();
             
-            mainPiece.Init(InitIngredient);
+            mainPiece.Init(InitIngredient, cookingData.Part);
 
             SetMenu();
             if (hintID == 0)
