@@ -17,48 +17,212 @@ MonoBehaviour:
     - item: 0
       num: 3
     - item: 1
+      num: 4
+  - ingredients:
+    - item: 8
+      num: 4
+    - item: 10
+      num: 4
+  - ingredients:
+    - item: 21
       num: 3
+    - item: 0
+      num: 4
     - item: 3
       num: 0
   - ingredients:
-    - item: 0
-      num: 3
-    - item: 1
+    - item: 9
       num: 0
     - item: 2
-      num: 3
-    - item: 4
+      num: 4
+    - item: 10
+      num: 6
+    - item: 13
+      num: 5
+    - item: 16
       num: 0
   - ingredients:
     - item: 0
-      num: 6
-    - item: 1
+      num: 7
+    - item: 11
+      num: 3
+    - item: 27
+      num: 8
+    - item: 10
       num: 0
+    - item: 28
+      num: 0
+  - ingredients:
+    - item: 25
+      num: 5
     - item: 7
-      num: 6
-    - item: 2
+      num: 5
+    - item: 23
+      num: 5
+    - item: 14
       num: 0
+    - item: 8
+      num: 0
+  - ingredients:
+    - item: 9
+      num: 9
+    - item: 6
+      num: 6
+    - item: 4
+      num: 3
+    - item: 12
+      num: 0
+    - item: 29
+      num: 0
+  - ingredients:
+    - item: 2
+      num: 2
+    - item: 26
+      num: 4
+    - item: 17
+      num: 6
+    - item: 11
+      num: 8
     - item: 3
       num: 0
-    - item: 4
+  - ingredients:
+    - item: 20
+      num: 4
+    - item: 19
+      num: 8
+    - item: 18
+      num: 4
+    - item: 28
+      num: 8
+    - item: 1
+      num: 0
+    - item: 22
+      num: 0
+  - ingredients:
+    - item: 6
+      num: 9
+    - item: 14
+      num: 9
+    - item: 29
+      num: 9
+    - item: 16
+      num: 9
+    - item: 17
+      num: 0
+    - item: 25
       num: 0
   <cake>k__BackingField:
   - ingredients:
-    - item: 13
-      num: 4
-    - item: 15
-      num: 4
     - item: 18
       num: 3
-  <waffle>k__BackingField:
+    - item: 15
+      num: 3
   - ingredients:
-    - item: 8
+    - item: 13
+      num: 4
+    - item: 29
       num: 5
+  - ingredients:
+    - item: 2
+      num: 6
+    - item: 29
+      num: 0
+    - item: 28
+      num: 2
+  - ingredients:
+    - item: 19
+      num: 5
+    - item: 20
+      num: 0
+    - item: 7
+      num: 5
+    - item: 17
+      num: 3
+  - ingredients:
+    - item: 0
+      num: 6
+    - item: 8
+      num: 3
+    - item: 24
+      num: 0
+    - item: 27
+      num: 4
+  - ingredients:
+    - item: 7
+      num: 0
+    - item: 17
+      num: 6
+    - item: 4
+      num: 0
+    - item: 29
+      num: 4
+    - item: 26
+      num: 7
+  - ingredients:
+    - item: 18
+      num: 8
+    - item: 22
+      num: 4
     - item: 6
-      num: 0
-    - item: 3
-      num: 0
-    - item: 11
       num: 2
     - item: 16
       num: 0
+    - item: 11
+      num: 0
+  - ingredients:
+    - item: 24
+      num: 0
+    - item: 26
+      num: 6
+    - item: 15
+      num: 0
+    - item: 1
+      num: 5
+    - item: 19
+      num: 0
+    - item: 6
+      num: 4
+  - ingredients:
+    - item: 5
+      num: 1
+    - item: 2
+      num: 7
+    - item: 9
+      num: 0
+    - item: 22
+      num: 0
+    - item: 23
+      num: 5
+    - item: 21
+      num: 6
+  - ingredients:
+    - item: 2
+      num: 9
+    - item: 7
+      num: 0
+    - item: 17
+      num: 3
+    - item: 11
+      num: 0
+    - item: 16
+      num: 6
+    - item: 28
+      num: 9
+  <waffle>k__BackingField:
+  - ingredients:
+    - item: 15
+      num: 2
+    - item: 6
+      num: 4
+  - ingredients:
+    - item: 14
+      num: 3
+    - item: 2
+      num: 5
+  - ingredients:
+    - item: 14
+      num: 3
+    - item: 2
+      num: 5
+    - item: 2
+      num: 5
