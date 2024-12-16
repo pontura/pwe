@@ -5,7 +5,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using YaguarLib.Audio;
-using static log4net.Appender.ColoredConsoleAppender;
 
 namespace Pwe.Games.Cooking.UI
 {

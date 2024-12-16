@@ -26,7 +26,17 @@ public class ItemData
         chocolatehearts,
         lettuces,
         atoms,
-        oranges
+        oranges,
+        macarons,
+        meringues,
+        anchoives,
+        falafels,
+        meatballs,
+        gingerbreadmen,
+        flowers,
+        glowingstars,
+        shrimps,
+        strawberries
     }
     public Items item;
     public int num;

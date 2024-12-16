@@ -3515,14 +3515,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Game_Cooking
       objectReference: {fileID: 0}
-    - target: {fileID: 8666142007337318734, guid: 4d5d31fd3d68de546b71b4b7da6d5925, type: 3}
-      propertyPath: artboards.Array.size
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 8666142007337318734, guid: 4d5d31fd3d68de546b71b4b7da6d5925, type: 3}
-      propertyPath: 'artboards.Array.data[5]'
-      value: pizza
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

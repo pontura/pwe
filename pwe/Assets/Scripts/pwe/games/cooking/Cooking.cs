@@ -91,7 +91,7 @@ namespace Pwe.Games.Cooking
                 totalPieces += item.num;
                 ingredients.Add(item.item.ToString(), item.num);
                 ingredientsAdded.Add(item.item.ToString(), 0);
-                GetRiveTexture().SetBool("game", item.item.ToString(), true);
+                GetRiveTexture().SetTrigger("game", item.item.ToString() + "_on");
             }
             buttonProgressBar.SetProgress(0, totalPieces);
         }

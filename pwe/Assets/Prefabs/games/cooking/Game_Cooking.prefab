@@ -52730,6 +52730,7 @@ MonoBehaviour:
   - game
   - oven
   - outro
+  - pizza
   CookingData: {fileID: 8055979562551126070}
 --- !u!114 &8055979562551126070
 MonoBehaviour:

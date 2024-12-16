@@ -61,8 +61,12 @@ namespace YaguarLib.Audio
 
         public AudioClip GetGeneric(string name)
         {
+            print("GetGeneric");
             foreach (AudioClip c in generics)
-                if (c.name == name) return c;
+            {
+                print("AudioClip " + c.name.ToString().ToLower()  + " :: " +  name.ToString().ToLower());
+                if (c.name.ToString().ToLower() == name.ToString().ToLower()) return c;
+            }
             return null;
         }
 
