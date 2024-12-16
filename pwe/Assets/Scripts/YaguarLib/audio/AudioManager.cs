@@ -33,6 +33,7 @@ namespace YaguarLib.Audio
             INGREDIENT_OTHER,
             GAME_DONE
         }
+       
 
         float masterVol, musicVol, sfxVol;
         [SerializeField] AudioMixerGroup masterGroup;
@@ -40,7 +41,6 @@ namespace YaguarLib.Audio
         [SerializeField] AudioMixerGroup sfxGroup;
 
         public AudioData[] audios;
-        public AudioSourceManager[] all;
 
         public bool Mute { get; private set; }
 
@@ -56,6 +56,19 @@ namespace YaguarLib.Audio
             public types TYPE;
             public AudioClip clip;
         }
+        public AudioClip[] generics;
+        public AudioSourceManager[] all;
+
+        public AudioClip GetGeneric(string name)
+        {
+            print("GetGeneric");
+            foreach (AudioClip c in generics)
+            {
+                print("AudioClip " + c.name.ToString().ToLower()  + " :: " +  name.ToString().ToLower());
+                if (c.name.ToString().ToLower() == name.ToString().ToLower()) return c;
+            }
+            return null;
+        }
 
         public static AudioManager Instance
         {
@@ -68,15 +81,6 @@ namespace YaguarLib.Audio
         {
             if (!mInstance)
                 mInstance = this;
-
-            //if (!masterGroup.audioMixer.GetFloat("masterVol", out masterVol))
-            //    masterVol = 0f;
-
-            //if (!musicGroup.audioMixer.GetFloat("musicVol", out musicVol))
-            //    musicVol = 0f;
-
-            //if (!sfxGroup.audioMixer.GetFloat("sfxVol", out sfxVol))
-            //    sfxVol = 0f;
 
             int muteValue = PlayerPrefs.GetInt("mute", 0);
             if (muteValue == 1) Mute = true;
@@ -94,6 +98,7 @@ namespace YaguarLib.Audio
             YaguarLib.Events.Events.OnPlaySoundInChannel += OnPlaySoundInChannel;
             YaguarLib.Events.Events.StopAllSounds += StopAllSounds;
             YaguarLib.Events.Events.StopChannel += StopChannel;
+            YaguarLib.Events.Events.PlayGenericSound += PlayGenericSound;
         }
         void OnDestroy()
         {
@@ -101,6 +106,12 @@ namespace YaguarLib.Audio
             YaguarLib.Events.Events.OnPlaySoundInChannel -= OnPlaySoundInChannel;
             YaguarLib.Events.Events.StopAllSounds -= StopAllSounds;
             YaguarLib.Events.Events.StopChannel -= StopChannel;
+            YaguarLib.Events.Events.PlayGenericSound -= PlayGenericSound;
+        }
+
+        private void PlayGenericSound(AudioClip audioClip, channels channel)
+        {
+            PlaySound(audioClip, channel);
         }
         public void MusicEnable(bool enable) {
             Debug.Log("MusicEnable " + enable);

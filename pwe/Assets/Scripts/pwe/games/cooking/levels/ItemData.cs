@@ -11,7 +11,32 @@ public class ItemData
         tomatoes,
         olives,
         gummybears,
-        onions
+        onions,
+        eggs,
+        avocados,
+        almonds,
+        mushrooms,
+        salamis,
+        bellpeppers,
+        cheesecubes,
+        bubbles,
+        chickennuggets,
+        bonecookies,
+        beans,
+        chocolatehearts,
+        lettuces,
+        atoms,
+        oranges,
+        macarons,
+        meringues,
+        anchoives,
+        falafels,
+        meatballs,
+        gingerbreadmen,
+        flowers,
+        glowingstars,
+        shrimps,
+        strawberries
     }
     public Items item;
     public int num;

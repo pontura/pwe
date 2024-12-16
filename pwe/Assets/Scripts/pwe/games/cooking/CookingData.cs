@@ -2,76 +2,50 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using static ItemData;
+using static Pwe.Games.Cooking.IngredientsData;
 using static Pwe.Games.Cooking.LevelsData;
 namespace Pwe.Games.Cooking
 {
     public class CookingData : MonoBehaviour
     {
         [SerializeField] LevelsData levelsData;
+        [SerializeField] IngredientsData ingredientsData;
 
-        public List<BaseData> bases;
-        public List<IngredientData> ingredients;
+        string part = "pizza";
+        public string Part { get { return part; } set { part = value; } }
 
         public Sprite GetIngredient(string ingredientName, int id = 0)
         {
-            foreach (IngredientData ing in ingredients)
+            foreach (IngredientsData.IngredientData ing in ingredientsData.ingredients)
                 if (ing.item.ToString() == ingredientName)
                     return ing.GetSprite(id);
             return null;
         }
         public Sprite GetBase(string n)
         {
-            foreach (BaseData b in bases)
+            foreach (IngredientsData.BaseData b in ingredientsData.bases)
                 if (b.baseName == n)
                     return b.asset;
             return null;
         }
-
-        [Serializable]
-        public class BaseData
-        {
-            public string baseName;
-            public Sprite asset;
-        }
-        [Serializable]
-        public class IngredientData
-        {
-            public ItemData.Items item;
-            public Sprite asset;
-            public Sprite[] assets;
-            public Color color;
-            public Sprite GetSprite(int id = 0)
-            {
-                if (id == 0 || asset == null || assets.Length == 0)
-                    return asset;
-                else return assets[id];
-            }
-        }
+        public List<IngredientData> GetIngredientsData() { return ingredientsData.ingredients; } 
         int num;
-
         public List<ItemData> GetItems(int level)
         {
-            if (level >= levelsData.levels.Count - 1)
-                level = levelsData.levels.Count - 1;
+            if (level >= levelsData.GetPart(Part).Count - 1)
+                level = levelsData.GetPart(Part).Count - 1;
 
-          //  Debug.Log("Cooking Get Items level: " + level);
-
-            LevelData levelData = levelsData.levels[level];
-            //Debug.Log("num: " + num);
-            //Debug.Log("levelData: " + levelData);
-            //Debug.Log("ingredients: " + levelData.ingredients);
-            //Debug.Log("ingredients Count: " + levelData.ingredients.Count);
+            LevelData levelData = levelsData.GetPart(Part)[level];
             List<ItemData> items = levelData.ingredients;
             num = items[0].num;  
             return items;
         }
         public LevelData GetLevelData(int level)
         {
-            if (level >= levelsData.levels.Count - 1)
-                level = levelsData.levels.Count - 1;
+            if (level >= levelsData.GetPart(Part).Count - 1)
+                level = levelsData.GetPart(Part).Count - 1;
 
-           // Debug.Log("GetLevelData: " + level);
-            return levelsData.levels[level];
+            return levelsData.GetPart(Part)[level];
         }
         public void PieceDone(int itemID)
         {

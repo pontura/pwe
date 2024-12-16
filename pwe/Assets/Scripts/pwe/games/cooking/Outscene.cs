@@ -1,16 +1,42 @@
 using Pwe.Games.Cooking;
 using Rive;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using YaguarLib.Audio;
 
-public class Outscene : Cutscene
+namespace Pwe.Games.Cooking.UI
 {
-    [SerializeField] SlicerCreator slicer;
-
-    public override void OnInit()
+    public class Outscene : Cutscene
     {
-        base.OnInit();
-        slicer.Init();
+        [SerializeField] SlicerCreator slicer;
+
+        public override void OnInit()
+        {
+            base.OnInit();
+            slicer.Init();
+        }
+        public override void RiveScreen_OnRiveEvent(ReportedEvent reportedEvent)
+        {
+            foreach (string channel in reportedEvent.Properties.Keys)
+            {
+                print("Play cutscene audio  key " + channel + " value: " + reportedEvent.Properties[channel]);
+                string audioName = reportedEvent.Properties[channel].ToString(); 
+                AudioClip audioClip = AudioManager.Instance.GetGeneric(audioName);
+                if (audioClip != null)
+                {
+                    if (channel == "audio")
+                        YaguarLib.Events.Events.PlayGenericSound(audioClip, AudioManager.channels.GAME);
+                    else
+                        YaguarLib.Events.Events.PlayGenericSound(audioClip, AudioManager.channels.MUSIC);
+                }
+                else
+                {
+                    Debug.LogError("No generic audio named: " + audioName);
+                }
+            }
+        }
     }
+
 }

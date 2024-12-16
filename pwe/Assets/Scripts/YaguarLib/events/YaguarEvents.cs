@@ -1,4 +1,5 @@
-﻿using YaguarLib.Audio;
+﻿using UnityEngine;
+using YaguarLib.Audio;
 
 namespace YaguarLib.Events
 {
@@ -11,6 +12,7 @@ namespace YaguarLib.Events
         public static System.Action<AudioManager.channels> StopChannel = delegate { };
         public static System.Action OnPlaySounds = delegate { };
         public static System.Action<AudioManager.types> OnPlaySound = delegate { };
+        public static System.Action<AudioClip, AudioManager.channels> PlayGenericSound = delegate { };
         public static System.Action<AudioManager.types, AudioManager.channels> OnPlaySoundInChannel = delegate { };
     }
 }

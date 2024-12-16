@@ -1,0 +1,137 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b57dfb6b7cabba49b1d5ab31eaf580a, type: 3}
+  m_Name: CookingIngredients
+  m_EditorClassIdentifier: 
+  <bases>k__BackingField:
+  - baseName: pizza
+    asset: {fileID: 21300000, guid: 03852a5f29184b444a26451939adc2ac, type: 3}
+  <ingredients>k__BackingField:
+  - item: 0
+    asset: {fileID: 21300000, guid: 2b24fc8baa2310c4ab6b3df1b9dd045c, type: 3}
+    assets: []
+    color: {r: 1, g: 0.32156864, b: 0.20392159, a: 1}
+  - item: 1
+    asset: {fileID: 21300000, guid: 8bc44ca8639dd9f4fa614cb1a8985b78, type: 3}
+    assets: []
+    color: {r: 0.5764706, g: 0.6431373, b: 0.24313727, a: 1}
+  - item: 2
+    asset: {fileID: 21300000, guid: c723a32550b64074aafb484434b8cd75, type: 3}
+    assets:
+    - {fileID: 21300000, guid: c723a32550b64074aafb484434b8cd75, type: 3}
+    - {fileID: 21300000, guid: fa7c9aa9c7a088a40a3e29c05815357e, type: 3}
+    - {fileID: 21300000, guid: d66d151e5c5571942bee91381ea77f59, type: 3}
+    color: {r: 0.011764707, g: 0.8862746, b: 0.8862746, a: 1}
+  - item: 3
+    asset: {fileID: 21300000, guid: 008d2d63f024c9e49a9b275b57755262, type: 3}
+    assets: []
+    color: {r: 0.95294124, g: 0.8980393, b: 1, a: 1}
+  - item: 4
+    asset: {fileID: 21300000, guid: bdec0aa13a08fef48915df4b1ac037ad, type: 3}
+    assets: []
+    color: {r: 0.9803922, g: 0.9960785, b: 0.86274517, a: 1}
+  - item: 5
+    asset: {fileID: 21300000, guid: 834f49176ea0b9046be7609b556482e4, type: 3}
+    assets: []
+    color: {r: 0.9215687, g: 1, b: 0.45882356, a: 1}
+  - item: 6
+    asset: {fileID: 21300000, guid: 834f49176ea0b9046be7609b556482e4, type: 3}
+    assets: []
+    color: {r: 0.6171532, g: 0.6698113, b: 0.30647027, a: 1}
+  - item: 7
+    asset: {fileID: 21300000, guid: 7c080bcb9ab01f1469f6372c88b477a4, type: 3}
+    assets: []
+    color: {r: 1, g: 0.91372555, b: 0.76470596, a: 1}
+  - item: 8
+    asset: {fileID: 21300000, guid: 627ce46688a629d48a0e7260567bccb6, type: 3}
+    assets: []
+    color: {r: 0.909804, g: 0.3803922, b: 0.45098042, a: 1}
+  - item: 9
+    asset: {fileID: 21300000, guid: 87e342ab424a0da4d82426c7ae12ea14, type: 3}
+    assets: []
+    color: {r: 0.97647065, g: 0.23137257, b: 0.16862746, a: 1}
+  - item: 10
+    asset: {fileID: 21300000, guid: 1ffab5b8d27092245b0f80b8d78c3e81, type: 3}
+    assets: []
+    color: {r: 0.92549026, g: 0.5294118, b: 0.11764707, a: 1}
+  - item: 11
+    asset: {fileID: 21300000, guid: 042eeebf3baf62a46bfc9081defb1858, type: 3}
+    assets: []
+    color: {r: 0.5372549, g: 0.8000001, b: 0.8000001, a: 1}
+  - item: 12
+    asset: {fileID: 21300000, guid: e3a83a34ea2c9384185705766256cc9e, type: 3}
+    assets: []
+    color: {r: 0.9058824, g: 0.6156863, b: 0.21960786, a: 1}
+  - item: 13
+    asset: {fileID: 21300000, guid: ca9ab2aacd2ffe34597571d81696451e, type: 3}
+    assets: []
+    color: {r: 0.8745099, g: 0.57254905, b: 0.27058825, a: 1}
+  - item: 14
+    asset: {fileID: 21300000, guid: 6fd50da783a6fb6439362cdc1aa512cd, type: 3}
+    assets: []
+    color: {r: 0.69803923, g: 0.29411766, b: 0.17254902, a: 1}
+  - item: 15
+    asset: {fileID: 21300000, guid: 32189dc07e970cd438ba6f1a9bc23c24, type: 3}
+    assets: []
+    color: {r: 0.69803923, g: 0.29411766, b: 0.17254902, a: 1}
+  - item: 16
+    asset: {fileID: 21300000, guid: 8b03ea17f9e4bc5408efbed75bd20edd, type: 3}
+    assets: []
+    color: {r: 0.6509804, g: 0.82745105, b: 0.14117648, a: 1}
+  - item: 17
+    asset: {fileID: 21300000, guid: 1863da9b5d387b24ba32ee1223f5f658, type: 3}
+    assets: []
+    color: {r: 0.20714669, g: 0.58624977, b: 0.8962264, a: 1}
+  - item: 18
+    asset: {fileID: 21300000, guid: 236dd586c8583f948ab0fe5e5d8587ff, type: 3}
+    assets: []
+    color: {r: 1, g: 0.68469495, b: 0.21226418, a: 1}
+  - item: 19
+    asset: {fileID: 21300000, guid: cc487ed649471b54887bf34d1d7337ac, type: 3}
+    assets: []
+    color: {r: 0.9686275, g: 0.5764706, b: 0.427451, a: 1}
+  - item: 20
+    asset: {fileID: 21300000, guid: 4357cae736d2358439314e88a00ab5d7, type: 3}
+    assets: []
+    color: {r: 0.95294124, g: 0.95294124, b: 0.854902, a: 1}
+  - item: 21
+    asset: {fileID: 21300000, guid: 32f4be565caee8049b19a13d07826166, type: 3}
+    assets: []
+    color: {r: 0.76470596, g: 0.40784317, b: 0.37647063, a: 1}
+  - item: 22
+    asset: {fileID: 21300000, guid: 8df4003ee66288f4ab4cac558ec07fda, type: 3}
+    assets: []
+    color: {r: 0.6509804, g: 0.454902, b: 0.34901962, a: 1}
+  - item: 23
+    asset: {fileID: 21300000, guid: 3aa66072e30bb9b44bee758faaabf48b, type: 3}
+    assets: []
+    color: {r: 0.5568628, g: 0.3137255, b: 0.28627452, a: 1}
+  - item: 24
+    asset: {fileID: 21300000, guid: be5f08cd4b40498458bb286f0b8e75c2, type: 3}
+    assets: []
+    color: {r: 0.8235295, g: 0.49803925, b: 0.10980393, a: 1}
+  - item: 25
+    asset: {fileID: 21300000, guid: 7335e1621de19a5449b4e5edbe555439, type: 3}
+    assets: []
+    color: {r: 0.9803922, g: 0.25882354, b: 0.23529413, a: 1}
+  - item: 26
+    asset: {fileID: 21300000, guid: a2b956fea296aa749a013e183048a81e, type: 3}
+    assets: []
+    color: {r: 0.9921569, g: 0.64705884, b: 0.043137256, a: 1}
+  - item: 27
+    asset: {fileID: 21300000, guid: f0f6cd4dd456dc848872aeac26905da6, type: 3}
+    assets: []
+    color: {r: 0.9725491, g: 0.62352943, b: 0.50980395, a: 1}
+  - item: 28
+    asset: {fileID: 21300000, guid: 6def66b44e8fdfb49bcb1c04143bfa4e, type: 3}
+    assets: []
+    color: {r: 0.9843138, g: 0.28235295, b: 0.28627452, a: 1}
