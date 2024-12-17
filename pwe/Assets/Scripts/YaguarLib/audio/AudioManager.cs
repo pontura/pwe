@@ -21,18 +21,7 @@ namespace YaguarLib.Audio
             REWARD,
             POPUP,
             CANCEL,
-            NONE,
-            DRAG,
-            DONE,
-            RELEASE,
-            RESPAWN,
-            SNAP,
-            COOK,
-            FINISH,
-            TAP,
-            COOKING_MUSIC,
-            INGREDIENT_OTHER,
-            GAME_DONE
+            NONE
         }
        
 

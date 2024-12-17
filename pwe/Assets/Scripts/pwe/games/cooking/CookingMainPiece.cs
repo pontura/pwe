@@ -58,7 +58,7 @@ namespace Pwe.Games.Cooking
         }
         void OnDropItemOut()
         {
-            YaguarLib.Events.Events.OnPlaySoundInChannel(AudioManager.types.RELEASE, AudioManager.channels.UI);
+            YaguarLib.Events.Events.PlayGenericSound(cooking.Game.Sounds.GetClip("ingredient_release").clip, AudioManager.channels.GAME);
             cooking.ResetDrag();
         }
     }

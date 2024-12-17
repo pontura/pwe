@@ -167,7 +167,7 @@ namespace Pwe.Games.Cooking
             else
             {
                 GetRiveTexture().SetTriggerInArtboard("bowl_" + items[itemID].item, "plate_jump");
-                YaguarLib.Events.Events.OnPlaySound(AudioManager.types.DRAG);
+                YaguarLib.Events.Events.PlayGenericSound(Game.Sounds.GetClip("bowl_drag").clip, AudioManager.channels.GAME);
             }
         }
         void SetMenu()
