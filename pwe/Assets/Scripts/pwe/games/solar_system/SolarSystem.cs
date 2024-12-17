@@ -104,7 +104,7 @@ namespace Pwe.Games.SolarSystem
             photoUI.FadeSize(shotInitialSize, shotFinalSize, 0.2f);
             photoUI.FadePosition(pos, Vector2.Lerp(pos,new Vector2(Screen.width*0.5f, Screen.height*0.5f),0.25f), 0.2f);
             photoUI.FadeAngle(Vector3.zero, new Vector3(0,0,Random.Range(-15,15)), 0.2f);
-          //  ingameAudio.Play("photo", AudioManager.channels.UI);
+            ingameAudio.Play("photo", AudioManager.channels.UI);
             photoUI.FlyTo(new Vector2(Screen.width, Screen.height));
         }
 
@@ -123,20 +123,20 @@ namespace Pwe.Games.SolarSystem
 
                 //planetsData.SavePlanetLastPhoto(planetName, screenshot.Texture);
 
-             //   ingameAudio.Play(planetName.ToString(), AudioManager.channels.VOICES);
-             //   ingameAudio.Play("click_right", AudioManager.channels.UI);
+                ingameAudio.Play(planetName.ToString(), AudioManager.channels.VOICES);
+                ingameAudio.Play("click_right", AudioManager.channels.UI);
             }
         }
 
         PlanetName selectedPlanet;
         void OnSelectSlot(PlanetName pressed) {
             if (pressed==selectedPlanet) {
-             //   ingameAudio.Play("click_right", AudioManager.channels.UI);
+                ingameAudio.Play("click_right", AudioManager.channels.UI);
                 StartCoroutine(OnSelectSlotDone());
             } else {
-              //  ingameAudio.Play("click_wrong", AudioManager.channels.UI);
+                ingameAudio.Play("click_wrong", AudioManager.channels.UI);
             }
-           // ingameAudio.Play(pressed.ToString(), AudioManager.channels.VOICES);
+            ingameAudio.Play(pressed.ToString(), AudioManager.channels.VOICES);
         }
 
         
@@ -174,7 +174,7 @@ namespace Pwe.Games.SolarSystem
 
             List<PlanetName> levelPlanetNames = sd.LevelItems.Where(e=>e.planetName!=PlanetName.none).Select(item => item.planetName).ToList();
             //IEnumerable<PlanetData> levelPlanetsData = planetsData.planets.Where(item => sd.LevelItems.Any(category => category.planetName == item.planetName));
-         //   menuUI.Init(planetsData.planets, levelPlanetNames, ingameAudio.Play);
+            menuUI.Init(planetsData.planets, levelPlanetNames, ingameAudio.Play);
             photoUI.FlyOnWrong(new Vector2(Screen.width, Screen.height));
 
             triviaManager.Init(Game.rive, levelPlanetNames,OnSelectSlot);
