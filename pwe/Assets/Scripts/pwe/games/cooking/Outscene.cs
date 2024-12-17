@@ -22,8 +22,8 @@ namespace Pwe.Games.Cooking.UI
             foreach (string channel in reportedEvent.Properties.Keys)
             {
                 print("Play cutscene audio  key " + channel + " value: " + reportedEvent.Properties[channel]);
-                string audioName = reportedEvent.Properties[channel].ToString(); 
-                AudioClip audioClip = AudioManager.Instance.GetGeneric(audioName);
+                string audioName = reportedEvent.Properties[channel].ToString();
+                AudioClip audioClip = Game.Sounds.GetClip(audioName).clip;
                 if (audioClip != null)
                 {
                     if (channel == "audio")

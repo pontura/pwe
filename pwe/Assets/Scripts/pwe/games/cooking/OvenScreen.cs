@@ -118,7 +118,9 @@ namespace Pwe.Games.Cooking
             state = states.playing_done;
             btnNext.SetInteraction(false);
             btnPrev.SetInteraction(false);
-            YaguarLib.Events.Events.OnPlaySound(YaguarLib.Audio.AudioManager.types.TAP);
+
+            YaguarLib.Events.Events.PlayGenericSound(Game.Sounds.GetClip("oven_tap").clip, AudioManager.channels.GAME);
+
             StartCooking();
         }
         void NextClicked()
@@ -137,7 +139,7 @@ namespace Pwe.Games.Cooking
         }
         void OnFeedback()
         {
-            YaguarLib.Events.Events.OnPlaySound(AudioManager.types.TAP);
+            YaguarLib.Events.Events.PlayGenericSound(Game.Sounds.GetClip("oven_tap").clip, AudioManager.channels.GAME);
             field.text = num.ToString();
             if(num>0)
                 Events.OnSayNumber(num);
@@ -169,7 +171,7 @@ namespace Pwe.Games.Cooking
         }
         IEnumerator NextIngredient()
         {
-            YaguarLib.Events.Events.OnPlaySound(YaguarLib.Audio.AudioManager.types.FINISH);
+            YaguarLib.Events.Events.PlayGenericSound(Game.Sounds.GetClip("final_cutscene_music").clip, AudioManager.channels.MUSIC);
             yield return new WaitForSeconds(0.25f);
             anim.Play("ready");
             pizzaAnim.Play("out");

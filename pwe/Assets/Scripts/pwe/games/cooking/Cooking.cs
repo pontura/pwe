@@ -54,7 +54,7 @@ namespace Pwe.Games.Cooking
 
         public override void OnInit()
         {
-            YaguarLib.Events.Events.OnPlaySoundInChannel(AudioManager.types.COOKING_MUSIC, AudioManager.channels.MUSIC);
+            YaguarLib.Events.Events.PlayGenericSound(Game.Sounds.GetClip("background_music_ingame").clip, AudioManager.channels.MUSIC);
             GetRiveTexture().OnRiveEvent += RiveScreen_OnRiveEvent;
             GetRiveTexture().ActivateArtboard("game");
 
@@ -146,7 +146,7 @@ namespace Pwe.Games.Cooking
                     {
                         if (ingredientsAdded[itemDragging.ToString()] >= 10) return;
                     }
-                    YaguarLib.Events.Events.OnPlaySound(AudioManager.types.SNAP);
+                    YaguarLib.Events.Events.PlayGenericSound(Game.Sounds.GetClip("ingredient_snap").clip, AudioManager.channels.GAME);
                     GetRiveTexture().SetTriggerInArtboard("bowl_" + itemDragging, "remove");
                     InitDrag();  break;
             }
@@ -155,8 +155,7 @@ namespace Pwe.Games.Cooking
         {
             itemDragging = items[itemID].item;
             GetRiveTexture().SetTriggerInArtboard("bowl_" + itemDragging, "add");
-
-            YaguarLib.Events.Events.OnPlaySound(AudioManager.types.RESPAWN);
+            YaguarLib.Events.Events.PlayGenericSound(Game.Sounds.GetClip("ingredient_respawn").clip, AudioManager.channels.GAME);
         }
         void ChgangeNum(bool up)
         {
@@ -242,11 +241,11 @@ namespace Pwe.Games.Cooking
         }
         public void OnPieceAdded(string ingredient)
         {
-            AudioManager.types audioType = AudioManager.types.INGREDIENT_OTHER;
+
             if (ingredients[ingredient] == 0)
             {
                 ingredientsAdded[ingredient]++;
-                YaguarLib.Events.Events.OnPlaySound(audioType);
+                YaguarLib.Events.Events.PlayGenericSound(Game.Sounds.GetClip("ingredient_other").clip, AudioManager.channels.GAME);
                 return;
             }
 
@@ -266,7 +265,7 @@ namespace Pwe.Games.Cooking
                             Events.OnHint(hints[1].transform.position);
                             hintID++;
                         }
-                        audioType = AudioManager.types.DONE;
+                        YaguarLib.Events.Events.PlayGenericSound(Game.Sounds.GetClip("ingredient_done").clip, AudioManager.channels.GAME);
                     } else  if (ingredientsAdded[s] > ingredients[s])
                     {
                         v = ingredients[s];
@@ -275,7 +274,7 @@ namespace Pwe.Games.Cooking
                 }
                 if (ingredientsAdded[ingredient] <= ingredients[ingredient])
                 {
-                    audioType = AudioManager.types.DONE;
+                    YaguarLib.Events.Events.PlayGenericSound(Game.Sounds.GetClip("ingredient_done").clip, AudioManager.channels.GAME);
                     buttonProgressBar.SetProgress(value, totalPieces);
                     numFeedback.Init(ingredientsAdded[ingredient]);
                     numFeedback.transform.position = Input.mousePosition;
@@ -283,7 +282,7 @@ namespace Pwe.Games.Cooking
             }
             if(state != states.done && buttonProgressBar.IsReady())
             {
-                audioType = AudioManager.types.GAME_DONE;
+                YaguarLib.Events.Events.PlayGenericSound(Game.Sounds.GetClip("recipe_done").clip, AudioManager.channels.GAME);
                 List<UnityEngine.Color> colors = new List<UnityEngine.Color>();
                 foreach (string s in ingredients.Keys)
                 {
@@ -296,12 +295,10 @@ namespace Pwe.Games.Cooking
                         }
                     }
                 }
-                print("______" + colors.Count);
                 Events.OnWinParticles(colors);
                 buttonProgressBar.SetInteraction(true);
                 state = states.done;
             }
-            YaguarLib.Events.Events.OnPlaySound(audioType);
         }
         public bool CanMove()
         {

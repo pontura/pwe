@@ -335,14 +335,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 6d75c4e99ac6c5445a2670970da612cd, type: 3}
   - TYPE: 15
     clip: {fileID: 8300000, guid: 583bcee16673b14488a5a5a7f915d534, type: 3}
-  generics:
-  - {fileID: 8300000, guid: c98957830c7dd174c80d0b2c26afcf37, type: 3}
-  - {fileID: 8300000, guid: 763326c9edfda8a4284e0800fb42eaca, type: 3}
-  - {fileID: 8300000, guid: b2bb7ee03a304464caadd5b92ad3b04d, type: 3}
-  - {fileID: 8300000, guid: a0b43b5b5b059ea4fb08e4502a37e55f, type: 3}
-  - {fileID: 8300000, guid: 761e3d96a6560334384600797d3a37f9, type: 3}
-  - {fileID: 8300000, guid: 2dac4ff3ccd72e74c8d52ae0613edf87, type: 3}
-  - {fileID: 8300000, guid: 5b36c6bdcac4cb44191f50b85b617c9b, type: 3}
+  generics: []
   all:
   - channel: 0
     audioSource: {fileID: 2245631316730206306}

@@ -57,19 +57,8 @@ namespace YaguarLib.Audio
             public types TYPE;
             public AudioClip clip;
         }
-        public AudioClip[] generics;
         public AudioSourceManager[] all;
 
-        public AudioClip GetGeneric(string name)
-        {
-            print("GetGeneric");
-            foreach (AudioClip c in generics)
-            {
-                print("AudioClip " + c.name.ToString().ToLower()  + " :: " +  name.ToString().ToLower());
-                if (c.name.ToString().ToLower() == name.ToString().ToLower()) return c;
-            }
-            return null;
-        }
 
         public static AudioManager Instance
         {

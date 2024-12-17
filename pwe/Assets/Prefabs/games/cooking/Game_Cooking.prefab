@@ -52731,6 +52731,7 @@ MonoBehaviour:
   - oven
   - outro
   - pizza
+  sounds: {fileID: 11400000, guid: 5429ae915c97b854bb379cf9b53dec42, type: 2}
   CookingData: {fileID: 8055979562551126070}
 --- !u!114 &8055979562551126070
 MonoBehaviour:

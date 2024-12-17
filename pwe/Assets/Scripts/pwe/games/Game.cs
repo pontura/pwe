@@ -18,7 +18,8 @@ namespace Pwe.Games
         [SerializeField] string allRivName;
         [SerializeField] string rivFilePath;
         [SerializeField] List<string> artboards;
-
+        [SerializeField] YaguarLib.Audio.SoundLibrary sounds;
+        public YaguarLib.Audio.SoundLibrary Sounds { get { return sounds; } }   
         void Start()
         {
             Application.targetFrameRate = 60;
