@@ -50,7 +50,7 @@ namespace Pwe.Games.Cooking
         [SerializeField] List<string> added;
         int hintID = 0;
 
-        
+        int level = 0;
 
         public override void OnInit()
         {
@@ -63,13 +63,14 @@ namespace Pwe.Games.Cooking
             buttonProgressBar.SetProgress(false);
             buttonProgressBar.SetInteraction(false);
             added = new List<string>();
-            int level = 0;
+           
 
             if(GamesManager.Instance != null)
-                level = GamesManager.Instance.GetGame(GameData.GAMES.COOKING).level;
+                level = GamesManager.Instance.GetGame(GameData.GAMES.COOKING).level.level;
 
             items = new List<ItemData>();
             items = (Game as CookingGame).CookingData.GetItems(level);
+
             ingredients = new Dictionary<string, int>();
             ingredientsAdded = new Dictionary<string, int>();
             
@@ -87,12 +88,16 @@ namespace Pwe.Games.Cooking
                 mainPiece.Init(cookingData.Part);
 
             SetMenu();
-            if (hintID == 0)
+            if (HintsAvailable() && hintID == 0)
             {
                 Events.OnHint(hints[0].transform.position);
                 hintID++;
             }
             StartCoroutine(AnimIngredientsOn());
+        }
+        bool HintsAvailable()
+        {
+            return (level <= 0);
         }
         IEnumerator AnimIngredientsOn()
         {
@@ -118,13 +123,21 @@ namespace Pwe.Games.Cooking
             switch (reportedEvent.Name)
             {
                 case "up":
-                    if (hintID == 1) hintID++;
-                    if (itemID >= items.Count-1) return;
+                    if (HintsAvailable())
+                    {
+                        if (hintID == 1) hintID++;
+                        Events.OnHideAllHints();
+                    }
+                    if (itemID >= items.Count-1) return; 
                     GetRiveTexture().SetTrigger("game", "scroll_up");
                     ChgangeNum(true); break;
                 case "down":
-                    if (hintID == 1) hintID++;
-                    if (itemID <= 0) return;
+                    if (HintsAvailable())
+                    {
+                        if (hintID == 1) hintID++;
+                        Events.OnHideAllHints();
+                    }
+                    if (itemID <= 0) return; 
                     GetRiveTexture().SetTrigger("game", "scroll_down");
                     ChgangeNum(false); break;
                 case "click":
@@ -247,7 +260,7 @@ namespace Pwe.Games.Cooking
                     if (ingredients[s]>0 &&  ingredientsAdded[s] == ingredients[s])
                     {
                         menu.OnIngredientDone(s);
-                        if (hintID == 1)
+                        if ( HintsAvailable() && hintID == 1)
                         {
                             print("Hint");
                             Events.OnHint(hints[1].transform.position);

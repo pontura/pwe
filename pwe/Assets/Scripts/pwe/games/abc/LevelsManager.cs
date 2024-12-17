@@ -15,7 +15,7 @@ namespace Pwe.Games.Abc
             CurrentLevelIndex++;
             if (CurrentLevelIndex >= levels.Count) {
                 CurrentLevelIndex = 0;
-                GamesManager.Instance.All[(int)(int)gameType].level = 0;
+               // GamesManager.Instance.All[(int)(int)gameType].level = 0;
             }
         }
     }

@@ -32,8 +32,8 @@ namespace Pwe.Games.Compare
     {
         int level = 0;
 
-        if (GamesManager.Instance != null)
-            level = GamesManager.Instance.GetGame(GameData.GAMES.COOKING).level;
+        //if (GamesManager.Instance != null)
+        //    level = GamesManager.Instance.GetGame(GameData.GAMES.COOKING).level;
 
         items = new List<ItemData>();
         //items = (Game as CompareGame).CompareData.GetItems(level);

@@ -1,3 +1,4 @@
+using log4net.Core;
 using Pwe.Core;
 using Pwe.Games.Common;
 using System.Collections;
@@ -39,13 +40,14 @@ namespace Pwe.Games.Cooking
         int totalNums = 10;
         float speedWhenDone = 70;
         float speed = 8;
+        int level;
 
+        bool HintsAvailable()
+        {
+            return (level <= 0);
+        }
         public override void OnInitialize()
         {
-            if (GamesManager.Instance != null)
-            {
-                int level = GamesManager.Instance.GetGame(GameData.GAMES.COOKING).level;
-            }
             smoke.SetActive(false);
             btnDone.Init(OnDoneClicked);
             btnNext.Init(NextClicked);
@@ -58,6 +60,9 @@ namespace Pwe.Games.Cooking
 
             if (!mainPiece.WasInit()) 
                 mainPiece.Init(cookingData.Part);
+
+            if (GamesManager.Instance != null)
+                level = GamesManager.Instance.GetGame(GameData.GAMES.COOKING).level.level;
 
             mainPiece.transform.SetParent(mainPieceContainer);
             mainPiece.transform.localScale = Vector3.one;
@@ -74,7 +79,8 @@ namespace Pwe.Games.Cooking
         }
         void Delayed()
         {
-            Events.OnHint(hints[0].transform.position);
+            if(HintsAvailable())
+                Events.OnHint(hints[0].transform.position);
             anim.Play("close");
         }
         public override void OnUpdate()

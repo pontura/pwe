@@ -12,13 +12,26 @@ public class HintsManager : MonoBehaviour
 
     private void Awake()
     {
-        Events.OnHint += OnHint; 
+        Events.OnHint += OnHint;
+        Events.OnHideAllHints += OnHideAllHints;
+        Events.ExitGame += ExitGame;
         SetOff();
     }
     private void OnDestroy()
     {
         Events.OnHint -= OnHint;
+        Events.ExitGame -= ExitGame;
+        Events.OnHideAllHints -= OnHideAllHints;
     }
+    void OnHideAllHints()
+    {
+        SetOff();
+    }
+    private void ExitGame()
+    {
+        SetOff();
+    }
+
     private void OnHint(Vector2 pos)
     {
         hint.SetActive(true);

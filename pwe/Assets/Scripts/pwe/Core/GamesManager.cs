@@ -31,6 +31,7 @@ namespace Pwe.Core
         }
         private void ExitGame()
         {
+            YaguarLib.Events.Events.StopAllSounds();
             Destroy(newGame.gameObject);
         }
         private void OnPlayGame(GameData.GAMES game)
@@ -41,7 +42,7 @@ namespace Pwe.Core
             newGame.SetActive(true);
           //  newGame.SendMessage("OnInit");
         }
-        public GameData GetGame(GameData.GAMES game)
+        public GameData GetGame(GameData.GAMES game, string levelName = "main")
         {
             foreach (GameData g in all)
                 if (g.game == game)

@@ -30,7 +30,7 @@ namespace Pwe.UI
             {
                 games[a].Init(OnClick, a);
                 GameData gameData = GamesManager.Instance.All[a];
-                string text = gameData.game.ToString() + " (" + gameData.level + ")";
+                string text = gameData.game.ToString();
                 games[a].SetText(text);
             }
         }

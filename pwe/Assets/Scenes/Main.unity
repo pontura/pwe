@@ -3046,15 +3046,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   container: {fileID: 666266095}
   all:
-  - game: 0
+  - name: cooking
     gameGO: {fileID: 5161400804714119547, guid: 4d5d31fd3d68de546b71b4b7da6d5925, type: 3}
-    level: 0
-  - game: 1
+    level:
+      levelName: main
+      level: 0
+    levels:
+    - levelName: pizza
+      level: 0
+    - levelName: cake
+      level: 0
+    - levelName: waffle
+      level: 0
+    game: 0
+  - name: solar system
     gameGO: {fileID: 5161400804714119547, guid: 2a4ae9fed5e940f418d5a3a255ac8c42, type: 3}
-    level: 0
-  - game: 3
+    level:
+      levelName: main
+      level: 0
+    levels:
+    - levelName: main
+      level: 0
+    game: 1
+  - name: compare
     gameGO: {fileID: 5688661468827006586, guid: 2c7e193519e57db4783d0b6d25d1d5f0, type: 3}
-    level: 0
+    level:
+      levelName: main
+      level: 0
+    levels:
+    - levelName: main
+      level: 0
+    game: 3
 --- !u!1 &1618451887
 GameObject:
   m_ObjectHideFlags: 0

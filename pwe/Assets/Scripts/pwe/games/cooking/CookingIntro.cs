@@ -29,27 +29,26 @@ namespace Pwe.Games.Cooking
             GetRiveTexture().OnRiveEvent += RiveScreen_OnRiveEvent;
 
             button.Init(Play);
-            int level = 0;
-            if (GamesManager.Instance != null)
-                level = GamesManager.Instance.GetGame(GameData.GAMES.COOKING).level;
-            items = cookingData.GetItems(level);
 
             GetRiveTexture().ActivateArtboard("intro");
 
-
             button.gameObject.SetActive(false);
             menu.gameObject.SetActive(false);
-
-
+        }
+        void InitLevel(string levelName)
+        {
+            int level = 0;
+            if (GamesManager.Instance != null)
+                level = GamesManager.Instance.GetGame(GameData.GAMES.COOKING).GetLevelData(levelName).level;
+            items = cookingData.GetItems(level);
             foreach (ItemData item in items)
             {
                 print("item " + item.item.ToString() + " num: " + num);
-                (Game as CookingGame).rive.SetNumberInArtboard("PizzaBase/" + item.item.ToString(), "qty" , item.num);
+                (Game as CookingGame).rive.SetNumberInArtboard("PizzaBase/" + item.item.ToString(), "qty", item.num);
             }
         }
         public override void OnHide()
         {
-            print("___________OnHide");
             GetRiveTexture().OnRiveEvent -= RiveScreen_OnRiveEvent;
         }
         private void RiveScreen_OnRiveEvent(ReportedEvent reportedEvent)
@@ -62,6 +61,7 @@ namespace Pwe.Games.Cooking
                 case "food3": cookingData.Part = "waffle"; break;
                 default: cookingData.Part = "pizza"; break;
             }
+            InitLevel(cookingData.Part);
             clicked = true;
             StartCoroutine(Animate());
         }

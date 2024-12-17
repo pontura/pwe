@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Pwe.Core
@@ -6,6 +7,7 @@ namespace Pwe.Core
     [Serializable]
     public class GameData
     {
+        public string name;
         public enum GAMES
         {
             COOKING,
@@ -13,24 +15,69 @@ namespace Pwe.Core
             ABC,
             COMPARE_CONTRAST
         }
-        public GAMES game;
         public GameObject gameGO;
-        public int level;
+        public LevelData level;
 
+        public List<LevelData> levels;
+        public GAMES game;
+
+        [Serializable]
+        public class LevelData
+        {
+            public string levelName = "main";
+            public int level;
+        }
+        public LevelData LevelMain
+        {
+            get
+            {
+                foreach (LevelData levelData in levels)
+                {
+                    if (levelData.levelName == "main") return levelData;
+                }
+                return null;
+            }
+        }
+        public LevelData GetLevelData(string levelName)
+        {
+            foreach (LevelData levelData in levels)
+            {
+                if (levelData.levelName == levelName)
+                {
+                    level = levelData;
+                    return levelData;
+                }
+            }
+            return null;
+        }
+        LevelData AddLevel(GAMES game, string levelName)
+        {
+            LevelData l = new LevelData();
+            l.levelName = levelName;
+            levels.Add(l);
+            return l;
+        }
         public void LevelUp()
         {
-            Debug.Log("LevelUp");
-            level++;
-            PlayerPrefs.SetInt(game.ToString(), level);
-            Events.GameLeveled(game, level);
+            Debug.Log("LevelUp " + game + " level: " + level.levelName);
+            level.level++;
+            PlayerPrefs.SetInt(game.ToString() + "_" + level.levelName, level.level);
+            Events.GameLeveled(game, level.level);
         }
         public void Init()
         {
-            level = PlayerPrefs.GetInt(game.ToString(), level);
+            foreach(LevelData levelData in levels)
+            {
+                levelData.level = PlayerPrefs.GetInt(game.ToString() + "_" + levelData.levelName, 0);
+            }           
         }
         public void Reset()
         {
-            level = 0;
+            foreach (LevelData levelData in levels)
+            {
+                levelData.level = 0;
+                PlayerPrefs.SetInt(game.ToString() + "_" + levelData.levelName, 0);
+            }
         }
     }
 }

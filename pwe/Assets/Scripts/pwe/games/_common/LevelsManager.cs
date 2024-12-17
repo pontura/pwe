@@ -20,7 +20,7 @@ namespace Pwe.Games.Common
 
         protected virtual void SetCurrentLevelIndex() {
             if (GamesManager.Instance != null)
-                CurrentLevelIndex = GamesManager.Instance.All[(int)gameType].level;
+                CurrentLevelIndex = GamesManager.Instance.All[(int)gameType].LevelMain.level;
             Debug.Log("CurrentLevelIndex: " + CurrentLevelIndex);
         }
 
