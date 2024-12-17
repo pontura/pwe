@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using YaguarLib.Audio;
 using YaguarLib.UI;
 
 namespace Pwe.Games.Cooking
@@ -25,6 +26,7 @@ namespace Pwe.Games.Cooking
 
         public override void OnInit()
         {
+            YaguarLib.Events.Events.PlayGenericSound(Game.Sounds.GetClip("intro_cutscene_music").clip, AudioManager.channels.MUSIC);
             print("___________1");
             GetRiveTexture().OnRiveEvent += RiveScreen_OnRiveEvent;
 
@@ -82,7 +84,7 @@ namespace Pwe.Games.Cooking
         }
         private void Play()
         {
-            if(cookingData.Part == "pizza")
+            if(cookingData.Part == "pizza" || cookingData.Part == "waffle")
                 Events.OnTransition(OnTransitionDone, "game");
             else
                 Events.OnTransition(OnTransitionDone, "oven");

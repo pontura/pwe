@@ -37,11 +37,13 @@ namespace Pwe.Games.Cooking
             switch(reportedEvent.Name)
             {
                 case "food2":
-                case "food3":
                     GameMain g1 = screens[1];
                     GameMain g2 = screens[2];
                     screens[1] = g2;
                     screens[2] = g1;
+                    break;
+                case "food3":
+                    screens.RemoveAt(2);
                     break;
 
             }

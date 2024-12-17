@@ -11,7 +11,7 @@ namespace Pwe.Games
     {
         public RiveTexture rive;
         [SerializeField] protected Rive.Asset asset;
-        public GameMain[] screens;
+        public List<GameMain> screens;
         [SerializeField] int screenID;
         GameMain active;
         // [SerializeField] string[] allRivNames;
@@ -67,7 +67,7 @@ namespace Pwe.Games
         }
         GameMain GetScreen()
         {
-            if (screenID >= screens.Length) {
+            if (screenID >= screens.Count) {
                 Core.Events.GamePlayed();
                 YaguarLib.Events.Events.StopAllSounds();
             } else {
