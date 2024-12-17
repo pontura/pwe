@@ -72,14 +72,14 @@ MonoBehaviour:
       num: 3
     - item: 12
       num: 0
-    - item: 29
+    - item: 3
       num: 0
   - ingredients:
     - item: 2
       num: 2
     - item: 26
       num: 4
-    - item: 17
+    - item: 25
       num: 6
     - item: 11
       num: 8
@@ -103,11 +103,11 @@ MonoBehaviour:
       num: 9
     - item: 14
       num: 9
-    - item: 29
+    - item: 27
       num: 9
     - item: 16
       num: 9
-    - item: 17
+    - item: 23
       num: 0
     - item: 25
       num: 0
@@ -120,12 +120,12 @@ MonoBehaviour:
   - ingredients:
     - item: 13
       num: 4
-    - item: 29
+    - item: 11
       num: 5
   - ingredients:
     - item: 2
       num: 6
-    - item: 29
+    - item: 25
       num: 0
     - item: 28
       num: 2
@@ -136,7 +136,7 @@ MonoBehaviour:
       num: 0
     - item: 7
       num: 5
-    - item: 17
+    - item: 28
       num: 3
   - ingredients:
     - item: 0
@@ -150,11 +150,11 @@ MonoBehaviour:
   - ingredients:
     - item: 7
       num: 0
-    - item: 17
+    - item: 11
       num: 6
     - item: 4
       num: 0
-    - item: 29
+    - item: 18
       num: 4
     - item: 26
       num: 7
@@ -200,9 +200,9 @@ MonoBehaviour:
       num: 9
     - item: 7
       num: 0
-    - item: 17
-      num: 3
     - item: 11
+      num: 3
+    - item: 8
       num: 0
     - item: 16
       num: 6
@@ -243,7 +243,7 @@ MonoBehaviour:
     - item: 23
       num: 0
   - ingredients:
-    - item: 29
+    - item: 0
       num: 0
     - item: 22
       num: 3
@@ -256,7 +256,7 @@ MonoBehaviour:
   - ingredients:
     - item: 1
       num: 6
-    - item: 17
+    - item: 24
       num: 3
     - item: 11
       num: 6
@@ -269,7 +269,7 @@ MonoBehaviour:
       num: 0
     - item: 5
       num: 0
-    - item: 29
+    - item: 10
       num: 3
     - item: 9
       num: 4
