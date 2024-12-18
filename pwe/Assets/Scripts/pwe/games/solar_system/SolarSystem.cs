@@ -18,6 +18,7 @@ namespace Pwe.Games.SolarSystem
         [SerializeField] LevelsManager levelsManager;
         [SerializeField] PlanetsManager planetsManager;
         [SerializeField] TriviaManager triviaManager;
+        [SerializeField] PlanetListManager planetListManager;
         [SerializeField] SolarSysMenuUI menuUI;
         [SerializeField] ButtonUI backButton;
         [SerializeField] IngamePopup levelCompletedPopup;
@@ -142,8 +143,7 @@ namespace Pwe.Games.SolarSystem
             }
         }
 
-        IEnumerator PhotoDone(PlanetName planetName) {
-            
+        IEnumerator PhotoDone(PlanetName planetName) {           
 
             yield return new WaitForEndOfFrame();
             shotAction();
@@ -175,13 +175,14 @@ namespace Pwe.Games.SolarSystem
             ingameAudio.Play(pressed.ToString(), AudioManager.channels.VOICES);
         }
 
-        
+
 
         System.Collections.IEnumerator OnSelectSlotDone() {
             yield return new WaitForSecondsRealtime(0.5f);
             //planetsManager.Play(true);
             triviaManager.ShowTrivia(false);
             photoUI.Invoke(nameof(photoUI.Fly), 1);
+            planetListManager.SetPlanetDone(selectedPlanet);
             if (_levelCompleted) {
                 _cameraPan.Panning = false;
                 levelCompletedPopup.Popup("LEVEL COMPLETED!", delay: photoUI.CloseDelay + photoUI.FlyDelay + menuUI.Menu2Delay, onContinue: Pwe.Core.GamesManager.Instance != null ? Core.Events.ExitGame : Back);
@@ -215,6 +216,7 @@ namespace Pwe.Games.SolarSystem
             photoUI.FlyTo(new Vector2(Screen.width, Screen.height));
 
             triviaManager.Init(Game.rive, levelPlanetNames,OnSelectSlot);
+            planetListManager.Init(Game.rive, levelPlanetNames);
         }
     }
 

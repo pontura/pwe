@@ -1294,6 +1294,7 @@ GameObject:
   - component: {fileID: 2227039788019846856}
   - component: {fileID: 1472948662031635338}
   - component: {fileID: 4906607475820054110}
+  - component: {fileID: 1657523347003659115}
   - component: {fileID: 3534683824791078328}
   - component: {fileID: 3441783755040834749}
   - component: {fileID: 2346381606477202024}
@@ -1339,6 +1340,7 @@ MonoBehaviour:
   levelsManager: {fileID: 1472948662031635338}
   planetsManager: {fileID: 3534683824791078328}
   triviaManager: {fileID: 4906607475820054110}
+  planetListManager: {fileID: 1657523347003659115}
   menuUI: {fileID: 6619654463916350899}
   backButton: {fileID: 873421680943039069}
   levelCompletedPopup: {fileID: 5343001088016792994}
@@ -1386,7 +1388,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c38acdd079a4a04d8b56ee326c2aa5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3534683824791078328
+--- !u!114 &1657523347003659115
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1394,6 +1396,18 @@ MonoBehaviour:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2032732051771238932}
   m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b192e821d04d16241934f1421fe46e75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3534683824791078328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2032732051771238932}
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 107518f422eb63a42bd5e034441e6b33, type: 3}
   m_Name: 
@@ -3127,9 +3141,9 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1024, y: 474}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 1
+  m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
