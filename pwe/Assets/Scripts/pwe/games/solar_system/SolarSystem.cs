@@ -136,7 +136,7 @@ namespace Pwe.Games.SolarSystem
             if (planetName != PlanetName.none) {
                 photoUI.SetDone(true);
                 photoUI.SetDelayedFly(true);
-                photoUI.FlyTo(new Vector2((int)(Screen.width * 0.5f), 0));
+                //photoUI.FlyTo(new Vector2((int)(Screen.width * 0.5f), 0));
                 //photoUI.FlyTo(menuUI.GetItemPosition(planetName));
                 Game.rive.SetBoolInArtboard(planetName.ToString(), "face", true);
                 StartCoroutine(PhotoDone(planetName));
@@ -181,7 +181,8 @@ namespace Pwe.Games.SolarSystem
             yield return new WaitForSecondsRealtime(0.5f);
             //planetsManager.Play(true);
             triviaManager.ShowTrivia(false);
-            photoUI.Invoke(nameof(photoUI.Fly), 1);
+            photoUI.Close();
+            //photoUI.Invoke(nameof(photoUI.Close), 0.5f);
             planetListManager.SetPlanetDone(selectedPlanet);
             if (_levelCompleted) {
                 _cameraPan.Panning = false;
@@ -212,8 +213,8 @@ namespace Pwe.Games.SolarSystem
             List<PlanetName> levelPlanetNames = sd.LevelItems.Where(e=>e.planetName!=PlanetName.none).Select(item => item.planetName).ToList();
             //IEnumerable<PlanetData> levelPlanetsData = planetsData.planets.Where(item => sd.LevelItems.Any(category => category.planetName == item.planetName));
             menuUI.Init(planetsData.planets, levelPlanetNames, ingameAudio.Play);
-            photoUI.FlyOnWrong(new Vector2(Screen.width, Screen.height));
-            photoUI.FlyTo(new Vector2(Screen.width, Screen.height));
+            //photoUI.FlyOnWrong(new Vector2(Screen.width, Screen.height));
+            //photoUI.FlyTo(new Vector2(Screen.width, Screen.height));
 
             triviaManager.Init(Game.rive, levelPlanetNames,OnSelectSlot);
             planetListManager.Init(Game.rive, levelPlanetNames);

@@ -117,7 +117,7 @@ namespace Pwe.Games.UI
             StartCoroutine(FadeVector(frame.sizeDelta, new Vector2(60, 60), FlyDelay, (vector) => frame.sizeDelta = vector));
         }
 
-        void Close() {
+        public void Close() {
             //Debug.Log("#Close");
             _photoFly = false;
             _delayedFly = false;
