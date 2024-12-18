@@ -19,6 +19,8 @@ namespace Pwe.Games.SolarSystem
 
         RiveTexture _riveTexture;
 
+        float planetDelayRange = 2; // 2 seconds delay max
+
         void Awake() {
             clickedPlanets = new List<PlanetName>();
             SetCurrentLevelIndex();
@@ -45,12 +47,20 @@ namespace Pwe.Games.SolarSystem
                 if (li.planetName != PlanetName.none) {
                     _riveTexture.SetBool("game",li.planetName.ToString(), true);
                     levelPlanets.Add(li.planetName);
+                    StartCoroutine(SetPlanetInitialSpeed(li.planetName));
                 }
             }
             return levels[CurrentLevelIndex];
         }
 
+        IEnumerator SetPlanetInitialSpeed(PlanetName pn) {
+            yield return new WaitForSecondsRealtime(Random.value * planetDelayRange);
+            _riveTexture.SetNumber("game", pn.ToString()+"_speed", 1);
+        }
+
         public void OnPlanetClicked(PlanetName planetName) {
+            if (planetName != PlanetName.none)
+                _riveTexture.SetNumber("game", planetName.ToString() + "_speed", 0);
             clickedPlanets.Add(planetName);
             StartCoroutine(CheckLevelDone());
         }
@@ -60,6 +70,7 @@ namespace Pwe.Games.SolarSystem
             if (clickedPlanets.Count == 1) {
                 if (OnPlanetDone != null) {
                     Debug.Log("# CheckLevelDone: Done");
+                    _riveTexture.SetBoolInArtboard(clickedPlanets[0].ToString(),"face",true);
                     OnPlanetDone(clickedPlanets[0]);
                     if (levelPlanets.Count > 0) {
                         levelPlanets.Remove(clickedPlanets[0]);

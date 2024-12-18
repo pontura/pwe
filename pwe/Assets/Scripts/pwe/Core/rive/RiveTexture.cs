@@ -32,6 +32,8 @@ namespace Pwe
        // System.Action OnReady;
         bool isOn;
 
+        [SerializeField] bool pause;
+
         // public void Init(string riveFileName, System.Action OnReady = null)
         public void Init(Rive.Asset asset)
         {
@@ -182,7 +184,7 @@ namespace Pwe
             {
                 OnRiveEvent?.Invoke(report);
             }
-            if (m_stateMachine != null)
+            if (m_stateMachine != null && !pause)
             {
                 m_stateMachine.Advance(Time.deltaTime);
             }

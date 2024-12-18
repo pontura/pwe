@@ -1,5 +1,6 @@
 using Pwe.Games.SolarSystem.UI;
 using Pwe.Games.UI;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
@@ -67,10 +68,13 @@ namespace Pwe.Games.SolarSystem
         }
         private void RiveScreen_OnRiveEvent(ReportedEvent reportedEvent) {
             Debug.Log($"Event received, name: \"{reportedEvent.Name}\", secondsDelay: {reportedEvent.SecondsDelay}");
-            PlanetName planetName;
-            if (System.Enum.TryParse(reportedEvent.Name, out planetName)) {
+            if (System.Enum.TryParse(reportedEvent.Name, out PlanetName planetName)) {
+                if(planetName!=PlanetName.none)
+                    _captureDelay = 1;
                 levelsManager.OnPlanetClicked(planetName);
-            //} else if (System.Enum.TryParse(reportedEvent.Name.Replace("trivia_btn_", ""), out planetName)) {
+                //} else if (System.Enum.TryParse(reportedEvent.Name.Replace("trivia_btn_", ""), out planetName)) {
+            } else if (System.Enum.TryParse(reportedEvent.Name.Replace("list_", ""), out planetName)) {
+                ingameAudio.Play(planetName.ToString(), AudioManager.channels.VOICES);
             } else {
                 if (int.TryParse(reportedEvent.Name.Replace("trivia_btn_", ""), out int btnId))
                     triviaManager.OnButtonPressed(selectedPlanet, btnId);
@@ -88,17 +92,27 @@ namespace Pwe.Games.SolarSystem
         }
 
         void Takeshot(Vector2 pos) {
+            StartCoroutine(Shot(pos));
+        }
+
+        IEnumerator Shot(Vector2 pos) {
             if (!_paused) {
-                //Debug.Log("#Mouse Pos: " + pos.x + ", " + pos.y);
+                yield return new WaitForEndOfFrame();
+                yield return new WaitForEndOfFrame();
+                Debug.Log("%_captureDelay: " + _captureDelay);
+                yield return new WaitForSecondsRealtime(_captureDelay);
+                Debug.Log("#Mouse Pos: " + pos.x + ", " + pos.y);
                 _paused = true;
                 camClickInput.SetShotSize(screenshot.shotRes);
-                screenshot.TakeShot(pos, (tex) => OnCaptureDone(tex,pos));
+                screenshot.TakeShot(pos, (tex) => StartCoroutine(OnCaptureDone(tex, pos)));
                 //planetsManager.Play(false);
                 dinoFlash.SetActive(true);
             }
         }
 
-        void OnCaptureDone(Texture2D tex, Vector2 pos) {
+        float _captureDelay = 0;
+        IEnumerator OnCaptureDone(Texture2D tex, Vector2 pos) {
+            yield return new WaitForSecondsRealtime(_captureDelay);
             Debug.Log("#OnCaptureDone");
             photoUI.Init(tex, OnContinueMoving);
             photoUI.FadeSize(shotInitialSize, shotFinalSize, 0.2f);
@@ -106,11 +120,18 @@ namespace Pwe.Games.SolarSystem
             photoUI.FadeAngle(Vector3.zero, new Vector3(0,0,Random.Range(-15,15)), 0.2f);
             ingameAudio.Play("photo", AudioManager.channels.UI);
             photoUI.FlyTo(new Vector2(Screen.width, Screen.height));
+            _captureDelay = 0;
         }
 
         void SetPhotoDone(PlanetName planetName) {
             Debug.Log("#SetPhotoDone");
             if (planetName != PlanetName.none) {
+                StartCoroutine(PhotoDone(planetName));
+            }
+        }
+
+        IEnumerator PhotoDone(PlanetName planetName) {
+            yield return new WaitForSecondsRealtime(2);
                 selectedPlanet = planetName;
                 
                 photoUI.SetDone(true);
@@ -125,7 +146,6 @@ namespace Pwe.Games.SolarSystem
 
                 ingameAudio.Play(planetName.ToString(), AudioManager.channels.VOICES);
                 ingameAudio.Play("click_right", AudioManager.channels.UI);
-            }
         }
 
         PlanetName selectedPlanet;

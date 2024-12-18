@@ -22,7 +22,7 @@ namespace Pwe.Games.SolarSystem
                     return;
             
             OnClickInput(pos);
-            Check();
+            //Check();
         }
 
         public void SetShotSize(Vector2 shotSize) {
