@@ -1,8 +1,6 @@
-using log4net.Core;
 using Pwe.Core;
 using Pwe.Games.Common;
 using System.Collections;
-using Unity.Android.Gradle.Manifest;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using YaguarLib.Audio;
