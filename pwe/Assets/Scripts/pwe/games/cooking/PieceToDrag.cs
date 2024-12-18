@@ -19,8 +19,13 @@ namespace Pwe.Games.Cooking
             string Ingredient = mainPiece.Ingredient;
 
             print("init drag " + Ingredient + " id: " + id);
-
-            if (Ingredient == "gummybears")
+            if (Ingredient == "flowers")
+            {
+                if (id > 5) id = id - 5;
+            } else  if (Ingredient == "meringues")
+            {
+                if (id > 5) id = id - 5;
+            } else if (Ingredient == "gummybears")
             {
                 switch(id)
                 {
