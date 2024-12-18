@@ -17,11 +17,14 @@ namespace Pwe.Games.Cooking.UI
             this.data = data;
             field.text = "x" + data.num;
             image.sprite = s;
-            anim.Play("entry");
         }
         public void OnReady() {
             done = true;
             anim.Play("done");
+        }
+        public void SetOn()
+        {
+            anim.SetTrigger("seton");
         }
     }
 }

@@ -32,8 +32,6 @@ namespace Pwe.Games.Cooking.UI
                 paper.transform.SetParent(transform);
 
             Utils.RemoveAllChildsIn(container);
-
-
             if (paper != null)
             {
                 paper.transform.SetParent(container);
@@ -43,12 +41,17 @@ namespace Pwe.Games.Cooking.UI
                 if (c.num > 0)
                 {
                     print("c " + c.item.ToString() + " num " + c.num);
-                    yield return new WaitForSeconds(0.5f);
                     CookingItem ci = Instantiate(items_to_add, container);
                     Sprite sprite = cookingData.GetIngredient(c.item.ToString());
                     ci.Init(c, sprite);
                     allItems.Add(ci);
                 }
+            }
+            
+            foreach (CookingItem c in allItems)
+            {
+                yield return new WaitForSeconds(0.5f);
+                c.SetOn();
             }
         }
         public void OnIngredientDone(string s)

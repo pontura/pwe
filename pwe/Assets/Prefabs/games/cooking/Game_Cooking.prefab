@@ -65271,21 +65271,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 185480130306242549, guid: 0bcdd1c5ca2a36149a0b63fe8a4d6f12, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 285129777742400098, guid: 0bcdd1c5ca2a36149a0b63fe8a4d6f12, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 285129777742400098, guid: 0bcdd1c5ca2a36149a0b63fe8a4d6f12, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 285129777742400098, guid: 0bcdd1c5ca2a36149a0b63fe8a4d6f12, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 285129777742400098, guid: 0bcdd1c5ca2a36149a0b63fe8a4d6f12, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 285129777742400098, guid: 0bcdd1c5ca2a36149a0b63fe8a4d6f12, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 112.74
       objectReference: {fileID: 0}
     - target: {fileID: 285129777742400098, guid: 0bcdd1c5ca2a36149a0b63fe8a4d6f12, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 202.4753
       objectReference: {fileID: 0}
     - target: {fileID: 285129777742400098, guid: 0bcdd1c5ca2a36149a0b63fe8a4d6f12, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 27.95
+      value: -92.00008
       objectReference: {fileID: 0}
     - target: {fileID: 285129777742400098, guid: 0bcdd1c5ca2a36149a0b63fe8a4d6f12, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 30.82
+      value: 212.20529
       objectReference: {fileID: 0}
     - target: {fileID: 293796690403886812, guid: 0bcdd1c5ca2a36149a0b63fe8a4d6f12, type: 3}
       propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
@@ -65306,6 +65326,10 @@ PrefabInstance:
     - target: {fileID: 1629077968583923902, guid: 0bcdd1c5ca2a36149a0b63fe8a4d6f12, type: 3}
       propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
       value: 1801810542
+      objectReference: {fileID: 0}
+    - target: {fileID: 2654031528479136296, guid: 0bcdd1c5ca2a36149a0b63fe8a4d6f12, type: 3}
+      propertyPath: m_ChildAlignment
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2903877820265847445, guid: 0bcdd1c5ca2a36149a0b63fe8a4d6f12, type: 3}
       propertyPath: m_SizeDelta.y
