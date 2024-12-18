@@ -34,7 +34,7 @@ public class ItemData
         meatballs,
         gingerbreadmen,
         flowers,
-        glowingstars,
+        glowinstars,
         shrimps,
         strawberries,
         birthdaycandles

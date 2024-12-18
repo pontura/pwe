@@ -48,9 +48,9 @@ MonoBehaviour:
     assets: []
     color: {r: 0.9215687, g: 1, b: 0.45882356, a: 1}
   - item: 6
-    asset: {fileID: 21300000, guid: 834f49176ea0b9046be7609b556482e4, type: 3}
+    asset: {fileID: 21300000, guid: b751a67a0d2ccd64ca3208827cb39905, type: 3}
     assets: []
-    color: {r: 0.6171532, g: 0.6698113, b: 0.30647027, a: 1}
+    color: {r: 0.93725497, g: 0.54509807, b: 0.14117648, a: 1}
   - item: 7
     asset: {fileID: 21300000, guid: 7c080bcb9ab01f1469f6372c88b477a4, type: 3}
     assets: []
