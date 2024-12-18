@@ -56,16 +56,40 @@ namespace Pwe.Games.Cooking
         private void RiveScreen_OnRiveEvent(ReportedEvent reportedEvent)
         {
             Debug.Log($"Event received, name: \"{reportedEvent.Name}\", secondsDelay: {reportedEvent.SecondsDelay}");
-            if (clicked) return;
-            switch(reportedEvent.Name)
+            
+            if (reportedEvent.Name.Contains("food"))
             {
-                case "food2": cookingData.Part = "cake"; break;
-                case "food3": cookingData.Part = "waffle"; break;
-                default: cookingData.Part = "pizza"; break;
+                if (clicked) return;
+                switch (reportedEvent.Name)
+                {
+                    case "food2": cookingData.Part = "cake"; break;
+                    case "food3": cookingData.Part = "waffle"; break;
+                    default: cookingData.Part = "pizza"; break;
+                }
+                InitLevel(cookingData.Part);
+                clicked = true;
+                StartCoroutine(Animate());
             }
-            InitLevel(cookingData.Part);
-            clicked = true;
-            StartCoroutine(Animate());
+            else
+            {
+                foreach (string channel in reportedEvent.Properties.Keys)
+                {
+                    print("Play cutscene audio  key " + channel + " value: " + reportedEvent.Properties[channel]);
+                    string audioName = reportedEvent.Properties[channel].ToString();
+                    AudioClip audioClip = Game.Sounds.GetClip(audioName).clip;
+                    if (audioClip != null)
+                    {
+                        if (channel == "audio")
+                            YaguarLib.Events.Events.PlayGenericSound(audioClip, AudioManager.channels.GAME);
+                        else
+                            YaguarLib.Events.Events.PlayGenericSound(audioClip, AudioManager.channels.MUSIC);
+                    }
+                    else
+                    {
+                        Debug.LogError("No generic audio named: " + audioName);
+                    }
+                }
+            }
         }
         bool clicked;
         IEnumerator Animate()
