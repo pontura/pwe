@@ -22,7 +22,9 @@ namespace Pwe.Games.Cooking
             {
                 if (id == 0 || asset == null || assets.Length == 0)
                     return asset;
-                else return assets[id];
+                else if (id<assets.Length)
+                    return assets[id];
+                else return asset;
             }
         }
 

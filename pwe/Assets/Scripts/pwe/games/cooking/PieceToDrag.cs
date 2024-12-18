@@ -19,10 +19,15 @@ namespace Pwe.Games.Cooking
             string Ingredient = mainPiece.Ingredient;
 
             print("init drag " + Ingredient + " id: " + id);
-
-            if (Ingredient == "gummybears")
+            if (Ingredient == "flowers") // TO-DO ingredient per color:
+                 { if (id > 5) id = id - 5; }
+            else if (Ingredient == "macarons") // TO-DO ingredient per color:
+                { if (id > 5) id = id - 5; }
+            else if (Ingredient == "meringues") // TO-DO ingredient per color:
+                { if (id > 5) id = id - 5; }
+            else if (Ingredient == "gummybears")
             {
-                switch(id)
+                switch (id)
                 {
                     case 10:
                     case 7:
@@ -31,11 +36,11 @@ namespace Pwe.Games.Cooking
 
                     case 9:
                     case 6:
-                    case 3:  id = 2; break;
+                    case 3: id = 2; break;
 
                     case 8:
                     case 5:
-                    case 2:  id = 1; break;
+                    case 2: id = 1; break;
 
                 }
             }
