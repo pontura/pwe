@@ -1377,7 +1377,6 @@ MonoBehaviour:
   <CurrentLevelIndex>k__BackingField: 0
   clickedPlanets: 
   levelPlanets: 
-  planetsData: {fileID: 6412669494029910803}
 --- !u!114 &4906607475820054110
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4228,7 +4227,7 @@ MonoBehaviour:
       distance: 36
     size: 0.35
     sprite: {fileID: 21300000, guid: 6d006f8d8c02d9649a5cf3b2422cc81e, type: 3}
-    color: {r: 1, g: 1, b: 1, a: 1}
+    color: {r: 0.93725497, g: 0.6039216, b: 0.37647063, a: 1}
     particleColors:
     - {r: 1, g: 0, b: 0.5254902, a: 1}
     lastPhoto: {fileID: 0}
@@ -4239,7 +4238,7 @@ MonoBehaviour:
       distance: 67
     size: 1
     sprite: {fileID: 21300000, guid: 0eaddf91c9b9c0e4ca3b50a43ade3876, type: 3}
-    color: {r: 1, g: 0, b: 0.41911507, a: 1}
+    color: {r: 0.97647065, g: 0.68235296, b: 0.25490198, a: 1}
     particleColors:
     - {r: 1, g: 0, b: 0.5254902, a: 1}
     lastPhoto: {fileID: 0}
@@ -4250,7 +4249,7 @@ MonoBehaviour:
       distance: 93
     size: 1
     sprite: {fileID: 21300000, guid: 7f6c97ed9dd415441b6273abf4046554, type: 3}
-    color: {r: 0, g: 0.5335841, b: 1, a: 1}
+    color: {r: 0.38823533, g: 0.6039216, b: 0.9176471, a: 1}
     particleColors:
     - {r: 1, g: 0, b: 0.5254902, a: 1}
     lastPhoto: {fileID: 0}
@@ -4261,7 +4260,7 @@ MonoBehaviour:
       distance: 141
     size: 0.5
     sprite: {fileID: 21300000, guid: 9450e9ca97d925c4dbb0a91748606a1d, type: 3}
-    color: {r: 1, g: 0, b: 0, a: 1}
+    color: {r: 0.87843144, g: 0.32941177, b: 0.054901965, a: 1}
     particleColors:
     - {r: 1, g: 0, b: 0.5254902, a: 1}
     lastPhoto: {fileID: 0}
@@ -4272,7 +4271,7 @@ MonoBehaviour:
       distance: 483
     size: 11
     sprite: {fileID: 21300000, guid: 7fd1afcff6577d549b027e81f44da1d2, type: 3}
-    color: {r: 1, g: 0.7238611, b: 0, a: 1}
+    color: {r: 0.9215687, g: 0.54901963, b: 0.1764706, a: 1}
     particleColors:
     - {r: 1, g: 0, b: 0.5254902, a: 1}
     lastPhoto: {fileID: 0}
@@ -4283,7 +4282,7 @@ MonoBehaviour:
       distance: 889
     size: 9
     sprite: {fileID: 21300000, guid: d55ba5a7e324e5246ac1cd141e337ea8, type: 3}
-    color: {r: 1, g: 0.5556786, b: 0, a: 1}
+    color: {r: 1, g: 0.72156864, b: 0.23529413, a: 1}
     particleColors:
     - {r: 1, g: 0, b: 0.5254902, a: 1}
     lastPhoto: {fileID: 0}
@@ -4294,7 +4293,7 @@ MonoBehaviour:
       distance: 1800
     size: 4
     sprite: {fileID: 21300000, guid: d74c8a2b99b00cb4695d8259a82459ef, type: 3}
-    color: {r: 0, g: 1, b: 0.95051575, a: 1}
+    color: {r: 0.2901961, g: 0.7686275, b: 0.8196079, a: 1}
     particleColors:
     - {r: 1, g: 0, b: 0.5254902, a: 1}
     lastPhoto: {fileID: 0}
@@ -4305,7 +4304,7 @@ MonoBehaviour:
       distance: 2800
     size: 4
     sprite: {fileID: 21300000, guid: d72d9f5b85f247c4a809bc1dece24028, type: 3}
-    color: {r: 0.11199522, g: 0, b: 1, a: 1}
+    color: {r: 0.15686275, g: 0.42352945, b: 0.8980393, a: 1}
     particleColors:
     - {r: 1, g: 0, b: 0.5254902, a: 1}
     lastPhoto: {fileID: 0}
@@ -4530,7 +4529,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -0.000030517578, y: 29.999973}
+  m_AnchoredPosition: {x: -0.000030517578, y: 30}
   m_SizeDelta: {x: 654.75, y: 100}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &1641120410593122038
