@@ -60,29 +60,41 @@ namespace Pwe.Games.Cooking
             if (reportedEvent.Name.Contains("food"))
             {
                 if (clicked) return;
+
+                YaguarLib.Events.Events.PlayGenericSound(Game.Sounds.GetClip("intro_cutscene_fx").clip, AudioManager.channels.UI);
+                YaguarLib.Events.Events.PlayGenericSound(Game.Sounds.GetClip("button_continue").clip, AudioManager.channels.GAME);
+
+
                 switch (reportedEvent.Name)
                 {
-                    case "food2": cookingData.Part = "cake"; break;
-                    case "food3": cookingData.Part = "waffle"; break;
-                    default: cookingData.Part = "pizza"; break;
+                    case "food2": 
+                        cookingData.Part = "cake"; 
+                        YaguarLib.Events.Events.PlayGenericSound(Game.Sounds.GetClip("vo_cake").clip, AudioManager.channels.VOICES);
+                        break;
+                    case "food3": 
+                        cookingData.Part = "waffle"; 
+                        YaguarLib.Events.Events.PlayGenericSound(Game.Sounds.GetClip("vo_waffle").clip, AudioManager.channels.VOICES);
+                        break;
+                    default: 
+                        cookingData.Part = "pizza"; 
+                        YaguarLib.Events.Events.PlayGenericSound(Game.Sounds.GetClip("vo_pizza").clip, AudioManager.channels.VOICES);
+                        break;
                 }
+
                 InitLevel(cookingData.Part);
                 clicked = true;
                 StartCoroutine(Animate());
             }
-            else
+            else if (reportedEvent.Name.Contains("audio_"))
             {
+                string audioName = reportedEvent.Name.Remove(0, 6); // borra: "audio_"
                 foreach (string channel in reportedEvent.Properties.Keys)
                 {
-                    print("Play cutscene audio  key " + channel + " value: " + reportedEvent.Properties[channel]);
-                    string audioName = reportedEvent.Properties[channel].ToString();
+                    print("Play cutscene audio  key " + audioName);
                     AudioClip audioClip = Game.Sounds.GetClip(audioName).clip;
                     if (audioClip != null)
                     {
-                        if (channel == "audio")
-                            YaguarLib.Events.Events.PlayGenericSound(audioClip, AudioManager.channels.GAME);
-                        else
-                            YaguarLib.Events.Events.PlayGenericSound(audioClip, AudioManager.channels.MUSIC);
+                        YaguarLib.Events.Events.PlayGenericSound(audioClip, AudioManager.channels.GAME);
                     }
                     else
                     {

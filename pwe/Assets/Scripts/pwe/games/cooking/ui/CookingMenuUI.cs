@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using YaguarLib.Audio;
 using YaguarLib.Xtras;
 using static Pwe.Games.Cooking.CookingData;
 
@@ -50,7 +51,9 @@ namespace Pwe.Games.Cooking.UI
             
             foreach (CookingItem c in allItems)
             {
-                yield return new WaitForSeconds(0.5f);
+                yield return new WaitForSeconds(0.5f); 
+                YaguarLib.Events.Events.PlayGenericSound(cookingData.GetComponent<Game>().Sounds.GetClip("ingredient_quantity").clip, AudioManager.channels.UI);
+
                 c.SetOn();
             }
         }

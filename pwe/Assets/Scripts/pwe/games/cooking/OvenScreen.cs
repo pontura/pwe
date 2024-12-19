@@ -156,6 +156,8 @@ namespace Pwe.Games.Cooking
       
         void StartCooking()
         {
+            YaguarLib.Events.Events.PlayGenericSound(Game.Sounds.GetClip("oven_cook").clip, AudioManager.channels.MUSIC);
+
             Invoke("StartCookingDone", 0.25f);
         }
         void StartCookingDone()
@@ -169,7 +171,7 @@ namespace Pwe.Games.Cooking
         }
         IEnumerator NextIngredient()
         {
-            YaguarLib.Events.Events.PlayGenericSound(Game.Sounds.GetClip("final_cutscene_music").clip, AudioManager.channels.MUSIC);
+            YaguarLib.Events.Events.PlayGenericSound(Game.Sounds.GetClip("oven_finish").clip, AudioManager.channels.MUSIC);
             yield return new WaitForSeconds(0.25f);
             anim.Play("ready");
             pizzaAnim.Play("out");
