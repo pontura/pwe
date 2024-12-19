@@ -295,7 +295,7 @@ namespace Pwe.Games.Cooking
                         }
                     }
                 }
-                Events.OnWinParticles(colors);
+                Events.OnWinParticles(colors, new Vector2(-89,-32));
                 buttonProgressBar.SetInteraction(true);
                 state = states.done;
             }

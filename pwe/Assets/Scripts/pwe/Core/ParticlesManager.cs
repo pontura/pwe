@@ -27,12 +27,12 @@ namespace Pwe.Core
             Events.OnAddParticles -= OnAddParticles;
             Events.OnWinParticles -= OnWinParticles;
         }
-        void OnWinParticles(List<Color> colors)
+        void OnWinParticles(List<Color> colors, Vector2 pos)
         {
             UIParticles particle = Instantiate(win, container);
             particle.transform.localPosition = new Vector2(0, 0);
             StartCoroutine(ParticleOn(particle, 50));
-            particle.Init("", colors);
+            particle.Init("", colors, pos);
         }
         void OnAddParticles(types type, Vector2 pos, string nameID = "")
         {
