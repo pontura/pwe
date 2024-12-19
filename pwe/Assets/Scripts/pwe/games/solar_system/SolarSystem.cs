@@ -182,8 +182,7 @@ namespace Pwe.Games.SolarSystem
             if (pressed==selectedPlanet) {
                 ingameAudio.Play("click_right", AudioManager.channels.UI);
                 if (!planetsDone.Contains(selectedPlanet))
-                    planetsDone.Add(selectedPlanet);
-                Events.OnWinParticles(planetsData.planets.Find(x => x.planetName == selectedPlanet).particleColors);
+                    planetsDone.Add(selectedPlanet);                
                 StartCoroutine(OnSelectSlotDone());
             } else {
                 ingameAudio.Play("click_wrong", AudioManager.channels.UI);
@@ -202,10 +201,13 @@ namespace Pwe.Games.SolarSystem
             planetListManager.SetPlanetDone(selectedPlanet);
             buttonProgressBar.SetProgress(planetsDone.Count, totalPlanets);
             if (_levelCompleted) {
+                List<UnityEngine.Color> colors = planetsData.planets.Where(e => planetsDone.Any(x=>e.planetName==x)).Select(item => item.color).ToList();
+                Events.OnWinParticles(colors, new Vector2());
                 buttonProgressBar.SetInteraction(true);
                 _cameraPan.Panning = false;
+                _levelCompleted = false;
                 //levelCompletedPopup.Popup("LEVEL COMPLETED!", delay: photoUI.CloseDelay + photoUI.FlyDelay + menuUI.Menu2Delay, onContinue: Pwe.Core.GamesManager.Instance != null ? Core.Events.ExitGame : Back);
-                
+
                 //levelCompletedPopup.Popup("LEVEL COMPLETED!",onContinue: Pwe.Core.GamesManager.Instance != null ? Core.Events.ExitGame : Back);
             }
         }

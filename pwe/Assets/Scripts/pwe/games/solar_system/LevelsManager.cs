@@ -47,6 +47,7 @@ namespace Pwe.Games.SolarSystem
             foreach (SpaceData.LevelItem li in (levels[CurrentLevelIndex] as SpaceData).LevelItems) {
                 if (li.planetName != PlanetName.none) {
                     _riveTexture.SetBool("game", li.planetName.ToString(), true);
+                    _riveTexture.SetBoolInArtboard(li.planetName.ToString(), "spin", true);
                     levelPlanets.Add(li.planetName);
                     StartCoroutine(SetPlanetInitialSpeed(li.planetName));
                 } else {
