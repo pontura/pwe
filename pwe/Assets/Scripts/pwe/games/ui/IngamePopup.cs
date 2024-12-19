@@ -9,12 +9,9 @@ namespace Pwe.Games.UI
         [SerializeField] ButtonUI continueButton;
 
         bool _activeSelf;
-        private void Start() {
-            gameObject.SetActive(true);
-            Invoke(nameof(SetActive), Time.deltaTime*2);
-        }
-
+                
         public void Popup(string title, float delay = 0, System.Action onContinue=null) {
+            gameObject.SetActive(false);
             Debug.Log("#Popup");
             this.title.text = title;
             continueButton.Init(() => {

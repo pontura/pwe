@@ -186,7 +186,8 @@ namespace Pwe.Games.SolarSystem
             planetListManager.SetPlanetDone(selectedPlanet);
             if (_levelCompleted) {
                 _cameraPan.Panning = false;
-                levelCompletedPopup.Popup("LEVEL COMPLETED!", delay: photoUI.CloseDelay + photoUI.FlyDelay + menuUI.Menu2Delay, onContinue: Pwe.Core.GamesManager.Instance != null ? Core.Events.ExitGame : Back);
+                //levelCompletedPopup.Popup("LEVEL COMPLETED!", delay: photoUI.CloseDelay + photoUI.FlyDelay + menuUI.Menu2Delay, onContinue: Pwe.Core.GamesManager.Instance != null ? Core.Events.ExitGame : Back);
+                levelCompletedPopup.Popup("LEVEL COMPLETED!",onContinue: Pwe.Core.GamesManager.Instance != null ? Core.Events.ExitGame : Back);
             }
         }
 
