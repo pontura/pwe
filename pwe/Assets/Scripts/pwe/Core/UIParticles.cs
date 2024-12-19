@@ -7,13 +7,15 @@ using UnityEngine;
 namespace Pwe.Core
 {
     public class UIParticles : MonoBehaviour
-    {
+    {       
+
         [Serializable] class ParticlesData
         {
             public string nameID;
             public GameObject go;
         }
         [SerializeField] ParticlesData[] byId;
+        [SerializeField] RectTransform localizable;
 
         public ParticleSystemData[] particlesToColorize;
 
@@ -23,12 +25,15 @@ namespace Pwe.Core
             public ParticleSystem[] particles;
         }
 
-        public void Init(string nameID = "", List<Color> colors = null)
+        public void Init(string nameID = "", List<Color> colors = null, Vector2 pos=new Vector2())
         {
             if (nameID != "" && byId.Length > 0)
                 SetParticlesByName(nameID);
             if (colors != null)
                 SetParticlesColor(colors);
+
+            if(localizable!=null)
+                localizable.localPosition = pos;
         }
         void SetParticlesByName(string nameID)
         {
