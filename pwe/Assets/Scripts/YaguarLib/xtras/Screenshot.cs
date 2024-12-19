@@ -18,6 +18,8 @@ namespace YaguarLib.Xtras
         void Start() {
             if (cameraToScreen == null)
                 cameraToScreen = GetComponent<Camera>();
+            if (cameraToScreen == null)
+                cameraToScreen = Camera.main;
         }
 
         public void TakeShot(System.Action<Texture2D> copytex) {
