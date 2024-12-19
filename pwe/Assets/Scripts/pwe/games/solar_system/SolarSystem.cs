@@ -1,5 +1,6 @@
 using Pwe.Games.SolarSystem.UI;
 using Pwe.Games.UI;
+using Pwe.Core;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -33,9 +34,14 @@ namespace Pwe.Games.SolarSystem
 
         [SerializeField] Vector2 shotInitialSize, shotFinalSize;
 
+        [SerializeField] ButtonProgressBar buttonProgressBar;
+
         bool _paused;
 
         CameraPan _cameraPan;
+
+        int totalPlanets;
+        List<PlanetName> planetsDone;
 
         public override void OnInitialize() {
             camClickInput.OnClickInput += OnClickInput;
@@ -52,6 +58,10 @@ namespace Pwe.Games.SolarSystem
 
             backButton.Init(Back);
             ingameAudio.PlayMusic("music");
+
+            buttonProgressBar.Init(()=>levelCompletedPopup.Popup("LEVEL COMPLETED!", onContinue: Pwe.Core.GamesManager.Instance != null ? Core.Events.ExitGame : Back));
+            buttonProgressBar.SetProgress(false);
+            buttonProgressBar.SetInteraction(false);
         }
 
         public override void OnInit() {
@@ -171,6 +181,9 @@ namespace Pwe.Games.SolarSystem
         void OnSelectSlot(PlanetName pressed) {
             if (pressed==selectedPlanet) {
                 ingameAudio.Play("click_right", AudioManager.channels.UI);
+                if (!planetsDone.Contains(selectedPlanet))
+                    planetsDone.Add(selectedPlanet);
+                Events.OnWinParticles(planetsData.planets.Find(x => x.planetName == selectedPlanet).particleColors);
                 StartCoroutine(OnSelectSlotDone());
             } else {
                 ingameAudio.Play("click_wrong", AudioManager.channels.UI);
@@ -187,10 +200,13 @@ namespace Pwe.Games.SolarSystem
             photoUI.Close();
             //photoUI.Invoke(nameof(photoUI.Close), 0.5f);
             planetListManager.SetPlanetDone(selectedPlanet);
+            buttonProgressBar.SetProgress(planetsDone.Count, totalPlanets);
             if (_levelCompleted) {
+                buttonProgressBar.SetInteraction(true);
                 _cameraPan.Panning = false;
                 //levelCompletedPopup.Popup("LEVEL COMPLETED!", delay: photoUI.CloseDelay + photoUI.FlyDelay + menuUI.Menu2Delay, onContinue: Pwe.Core.GamesManager.Instance != null ? Core.Events.ExitGame : Back);
-                levelCompletedPopup.Popup("LEVEL COMPLETED!",onContinue: Pwe.Core.GamesManager.Instance != null ? Core.Events.ExitGame : Back);
+                
+                //levelCompletedPopup.Popup("LEVEL COMPLETED!",onContinue: Pwe.Core.GamesManager.Instance != null ? Core.Events.ExitGame : Back);
             }
         }
 
@@ -219,6 +235,9 @@ namespace Pwe.Games.SolarSystem
             //menuUI.Init(planetsData.planets, levelPlanetNames, ingameAudio.Play);
             //photoUI.FlyOnWrong(new Vector2(Screen.width, Screen.height));
             //photoUI.FlyTo(new Vector2(Screen.width, Screen.height));
+
+            planetsDone = new();
+            totalPlanets = levelPlanetNames.Count;
 
             triviaManager.Init(Game.rive, levelPlanetNames,OnSelectSlot);
             planetListManager.Init(Game.rive, levelPlanetNames);

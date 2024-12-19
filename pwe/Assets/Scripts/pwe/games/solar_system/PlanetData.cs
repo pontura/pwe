@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using System.Collections.Generic;
 
 namespace Pwe.Games.SolarSystem
 {
@@ -11,6 +12,7 @@ namespace Pwe.Games.SolarSystem
         public float size;
         public Sprite sprite;
         public Color color;
+        public List<Color> particleColors;
         public Texture2D lastPhoto;
         public bool hasNewPhoto;
     }

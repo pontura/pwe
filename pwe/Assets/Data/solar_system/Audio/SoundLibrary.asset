@@ -14,28 +14,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioClips:
   - key: earth
-    clip: {fileID: 8300000, guid: c144c6133fb148f499905ecd1e19c704, type: 3}
+    clip: {fileID: 8300000, guid: d011edf42d1a2854a8150ecf1051fe68, type: 3}
     vol: 1
   - key: jupiter
-    clip: {fileID: 8300000, guid: 8b9dd808ba8a18b4087bbdc6b6f83c68, type: 3}
+    clip: {fileID: 8300000, guid: 8b83af587df99104a9725045cd310c4a, type: 3}
     vol: 1
   - key: mars
-    clip: {fileID: 8300000, guid: 614443995d28c4246a9e15588b08453a, type: 3}
+    clip: {fileID: 8300000, guid: 8c1e8aee1ee039c4bb0909017eb00ed1, type: 3}
     vol: 1
   - key: mercury
-    clip: {fileID: 8300000, guid: 1ebc631a0166e4e45b0bb8f7549e91b6, type: 3}
+    clip: {fileID: 8300000, guid: 4a5e12c19fb190f4690dce4b081d7e1e, type: 3}
     vol: 1
   - key: neptune
-    clip: {fileID: 8300000, guid: 7fac0d9c21dc436428b70642769f675a, type: 3}
+    clip: {fileID: 8300000, guid: cba4b55d87e3cb74695aa96849b33fc4, type: 3}
     vol: 1
   - key: saturn
-    clip: {fileID: 8300000, guid: 1792c4dd22150f149aaea3a5bc900ef5, type: 3}
+    clip: {fileID: 8300000, guid: e9c9afcf3bf9b124c802064839542d23, type: 3}
     vol: 1
   - key: uranus
-    clip: {fileID: 8300000, guid: d91367390cdede5449ccedbf1365c8fc, type: 3}
+    clip: {fileID: 8300000, guid: 7a83959f4c9e0ea40b9b6372a67021ba, type: 3}
     vol: 1
   - key: venus
-    clip: {fileID: 8300000, guid: df4e40a7d74733b4181810b8fa1263fb, type: 3}
+    clip: {fileID: 8300000, guid: 4365b6f0fe095a24589404c00dd55323, type: 3}
     vol: 1
   - key: click_right
     clip: {fileID: 8300000, guid: 0e8dc5f1ceb1f2d408364f2e2e9eef48, type: 3}
@@ -45,5 +45,8 @@ MonoBehaviour:
     vol: 1
   - key: photo
     clip: {fileID: 8300000, guid: 516108579817da746a875a28e5f034c1, type: 3}
+    vol: 0.35
+  - key: music
+    clip: {fileID: 8300000, guid: fdf3869efe15dad4ea975bae3029837e, type: 3}
     vol: 0.35
   audioClipGroups: []

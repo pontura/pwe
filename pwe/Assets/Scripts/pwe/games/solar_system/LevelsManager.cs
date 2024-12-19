@@ -6,8 +6,7 @@ using Pwe.Games.Common;
 
 namespace Pwe.Games.SolarSystem
 {
-    public class LevelsManager : Pwe.Games.Common.LevelsManager
-    {
+    public class LevelsManager : Pwe.Games.Common.LevelsManager {
 
         [SerializeField] private List<PlanetName> clickedPlanets;
 
@@ -19,18 +18,18 @@ namespace Pwe.Games.SolarSystem
 
         RiveTexture _riveTexture;
 
-        float planetDelayRange = 2; // 2 seconds delay max
+        float planetDelayRange = 2; // 2 seconds delay max        
 
         List<int> obstacles = new List<int>(){ 1, 2, 3, 4, 5, 6, 7, 8 };
 
         void Awake() {
             clickedPlanets = new List<PlanetName>();
-            SetCurrentLevelIndex();
+            SetCurrentLevelIndex();            
         }
 
         public void SetRiveTexture(RiveTexture rt) {
             _riveTexture = rt;
-        }
+        }       
 
         protected override void SetCurrentLevelIndex() {
             base.SetCurrentLevelIndex();
@@ -45,17 +44,18 @@ namespace Pwe.Games.SolarSystem
 
         public override LevelData InitLevel() {
             levelPlanets = new();
-            foreach(SpaceData.LevelItem li in (levels[CurrentLevelIndex] as SpaceData).LevelItems ) {
+            foreach (SpaceData.LevelItem li in (levels[CurrentLevelIndex] as SpaceData).LevelItems) {
                 if (li.planetName != PlanetName.none) {
-                    _riveTexture.SetBool("game",li.planetName.ToString(), true);
+                    _riveTexture.SetBool("game", li.planetName.ToString(), true);
                     levelPlanets.Add(li.planetName);
                     StartCoroutine(SetPlanetInitialSpeed(li.planetName));
                 } else {
                     int id = obstacles[Random.Range(0, obstacles.Count)];
-                    _riveTexture.SetBool("game", "obstacle_"+id, true);
+                    _riveTexture.SetBool("game", "obstacle_" + id, true);
                     obstacles.Remove(id);
                 }
-            }
+            }           
+            
             return levels[CurrentLevelIndex];
         }
 
@@ -85,7 +85,7 @@ namespace Pwe.Games.SolarSystem
                 if (OnPlanetDone != null) {
                     Debug.Log("# CheckLevelDone: Done");
                     OnPlanetDone(clickedPlanets[0]);
-                    if (levelPlanets.Count > 0) {
+                    if (levelPlanets.Count > 0) {                        
                         levelPlanets.Remove(clickedPlanets[0]);
                         if (levelPlanets.Count == 0 && OnLevelCompleted != null) {
                             CurrentLevelIndex++;
