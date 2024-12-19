@@ -42740,6 +42740,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   renderTexture: {fileID: 8400000, guid: 74845b3885a11e84b9e66112839d7bd6, type: 2}
+  pause: 0
 --- !u!1 &4983696760660898373
 GameObject:
   m_ObjectHideFlags: 0
@@ -65029,11 +65030,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4062698439563423681, guid: ca779384c57682943b0980bbdffbc12f, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.85
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 4062698439563423681, guid: ca779384c57682943b0980bbdffbc12f, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.85
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 4062698439563423681, guid: ca779384c57682943b0980bbdffbc12f, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -65141,7 +65142,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7652600462948686651, guid: ca779384c57682943b0980bbdffbc12f, type: 3}
       propertyPath: m_Spacing
-      value: 2
+      value: -4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
