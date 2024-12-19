@@ -22,6 +22,19 @@ namespace Pwe.Games.Cooking
         {
             wasInitialized = true;
             image.sprite = cooking.cookingData.GetBase(basePiece); // TO-DO:
+            switch(basePiece)
+            {
+                case "cake":
+                    Vector2 offset = new Vector2();
+                    offset.y = 44;
+                    GetComponent<CircleCollider2D>().offset = offset;
+                    break;
+                case "waffle":
+                    //Vector2 offset = new Vector2();
+                    //offset.y = 44;
+                    //GetComponent<CircleCollider2D>().offset = offset;
+                    break;
+            }
         }
         public override void OnIECollisionEnter(InteractiveElement ie)
         {
