@@ -13,65 +13,17 @@ MonoBehaviour:
   m_Name: Audio
   m_EditorClassIdentifier: 
   audioClips:
-  - key: body_turn
-    clip: {fileID: 8300000, guid: c98957830c7dd174c80d0b2c26afcf37, type: 3}
-    vol: 0
-  - key: eating
-    clip: {fileID: 8300000, guid: 763326c9edfda8a4284e0800fb42eaca, type: 3}
-    vol: 0
-  - key: elbow
-    clip: {fileID: 8300000, guid: b2bb7ee03a304464caadd5b92ad3b04d, type: 3}
-    vol: 0
-  - key: final_cutscene_music
-    clip: {fileID: 8300000, guid: 5b36c6bdcac4cb44191f50b85b617c9b, type: 3}
-    vol: 0
-  - key: mmm
-    clip: {fileID: 8300000, guid: a0b43b5b5b059ea4fb08e4502a37e55f, type: 3}
-    vol: 0
   - key: background_music_ingame
     clip: {fileID: 8300000, guid: 04f024898bab6aa4ca491900c6d582d7, type: 3}
     vol: 0
-  - key: blink_eyes_one
-    clip: {fileID: 8300000, guid: 75927c8194756de478d75dc68b83951f, type: 3}
-    vol: 0
-  - key: blink_eyes_two
-    clip: {fileID: 8300000, guid: a0bd41221f445bc4687962bf9c8ddf8f, type: 3}
-    vol: 0
   - key: bowl_drag
     clip: {fileID: 8300000, guid: bc9ad5294d1e219459ecb5f3687925c3, type: 3}
-    vol: 0
-  - key: button_continue
-    clip: {fileID: 8300000, guid: 5623a394ef5081e4badf746c3fed169a, type: 3}
-    vol: 0
-  - key: food_choose
-    clip: {fileID: 8300000, guid: dfdb4c23485d4b64d87f578c3fca343f, type: 3}
-    vol: 0
-  - key: foods_appear
-    clip: {fileID: 8300000, guid: 590ae1700e770d742bc96d49a219df47, type: 3}
-    vol: 0
-  - key: hat_put
-    clip: {fileID: 8300000, guid: 679413708c23cd441bffda7891521c85, type: 3}
-    vol: 0
-  - key: hat_take
-    clip: {fileID: 8300000, guid: 554b851d5787b8448b84f4d9c8b9441e, type: 3}
-    vol: 0
-  - key: head_movement
-    clip: {fileID: 8300000, guid: f1a8c05deab25304da377d4098816ea0, type: 3}
-    vol: 0
-  - key: pizza_take1
-    clip: {fileID: 8300000, guid: 761e3d96a6560334384600797d3a37f9, type: 3}
-    vol: 0
-  - key: pizza_take2
-    clip: {fileID: 8300000, guid: 2dac4ff3ccd72e74c8d52ae0613edf87, type: 3}
     vol: 0
   - key: ingredient_other
     clip: {fileID: 8300000, guid: 6d75c4e99ac6c5445a2670970da612cd, type: 3}
     vol: 0
   - key: ingredient_done
     clip: {fileID: 8300000, guid: 3613fba72b70a1843b3ab5802b07e09f, type: 3}
-    vol: 0
-  - key: ingredient_quantity
-    clip: {fileID: 8300000, guid: f8992341448d0c44591c7e53a2137a2c, type: 3}
     vol: 0
   - key: ingredient_release
     clip: {fileID: 8300000, guid: 1a79d61ad6ae8f046804f0bb06dd687c, type: 3}
@@ -81,9 +33,6 @@ MonoBehaviour:
     vol: 0
   - key: ingredient_snap
     clip: {fileID: 8300000, guid: 102afe2d1ad292c44be10454239d8b27, type: 3}
-    vol: 0
-  - key: intro_cutscene_music
-    clip: {fileID: 8300000, guid: 6018081151d35794595b417f7710f220, type: 3}
     vol: 0
   - key: oven_cook
     clip: {fileID: 8300000, guid: 4154ab0c2846c1543897b58cd21ccb11, type: 3}
@@ -97,8 +46,26 @@ MonoBehaviour:
   - key: recipe_done
     clip: {fileID: 8300000, guid: 583bcee16673b14488a5a5a7f915d534, type: 3}
     vol: 0
-  - key: thinking_balloon
-    clip: {fileID: 8300000, guid: 81cf0b002afc4ff42accfa3c384534bb, type: 3}
+  - key: button_continue
+    clip: {fileID: 8300000, guid: 342db164896be55419b277400c06fee1, type: 3}
+    vol: 0
+  - key: foods_appear
+    clip: {fileID: 8300000, guid: 1aba7487200330b4daa31cd925d830d9, type: 3}
+    vol: 0
+  - key: intro_cutscene_music
+    clip: {fileID: 8300000, guid: a6274b581c2fa354799511ef249aa533, type: 3}
+    vol: 0
+  - key: intro_cutscene_fx
+    clip: {fileID: 8300000, guid: 003b23a8ac2251f4a89df8a6fbda28dc, type: 3}
+    vol: 0
+  - key: outro_cutscene_music
+    clip: {fileID: 8300000, guid: b5707c7106e644e4697580535519ec68, type: 3}
+    vol: 0
+  - key: outro_cutscene_fx
+    clip: {fileID: 8300000, guid: 3b7ea27a9c2c4f34cbe3b950652ae854, type: 3}
+    vol: 0
+  - key: ingredient_quantity
+    clip: {fileID: 8300000, guid: a737e6c2108696846b7add84ed9e8303, type: 3}
     vol: 0
   - key: vo_cake
     clip: {fileID: 8300000, guid: 547499b87afbbd74b84c2e9c5104ed7f, type: 3}
@@ -108,8 +75,5 @@ MonoBehaviour:
     vol: 0
   - key: vo_waffle
     clip: {fileID: 8300000, guid: 984a079f37b7e6c459101bbbb3edc3ed, type: 3}
-    vol: 0
-  - key: zoom_in
-    clip: {fileID: 8300000, guid: d34c74ef2e4ff0b4794665e2e7472c8d, type: 3}
     vol: 0
   audioClipGroups: []
