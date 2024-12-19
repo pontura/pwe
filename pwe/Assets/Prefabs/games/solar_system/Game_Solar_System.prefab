@@ -1430,7 +1430,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOn: 0
-  cam: {fileID: 8977960211059086314}
+  cam: {fileID: 0}
 --- !u!114 &2346381606477202024
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1445,7 +1445,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shotRes: {x: 150, y: 150}
   shotCenter: {x: 400, y: 300}
-  cameraToScreen: {fileID: 8977960211059086314}
+  cameraToScreen: {fileID: 0}
   <Texture>k__BackingField: {fileID: 0}
 --- !u!114 &1762378699218725685
 MonoBehaviour:
