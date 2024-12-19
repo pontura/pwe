@@ -25,14 +25,18 @@ namespace YaguarLib.Audio
             AudioManager.Instance.PlaySoundOneShot(source, cp.clip, cp.vol);
         }
 
-        public void Play(string key, AudioManager.channels channel) {
+        public void Play(string key, AudioManager.channels channel, bool loop=false) {
             ClipData cp = soundLibrary.GetClip(key);
             if (cp == null)
                 return;
             //AudioManager.Instance.PlaySound(cp.clip, sourceName:sourceKey, volume:cp.vol);
 
             //TO-DO
-            AudioManager.Instance.PlaySound(cp.clip, channel, volume: cp.vol);
+            AudioManager.Instance.PlaySound(cp.clip, channel, volume: cp.vol, loop:loop);
+        }
+
+        public void PlayMusic(string key) {
+            Play(key, AudioManager.channels.MUSIC, true);
         }
 
     }

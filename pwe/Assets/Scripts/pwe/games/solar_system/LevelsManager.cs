@@ -21,6 +21,8 @@ namespace Pwe.Games.SolarSystem
 
         float planetDelayRange = 2; // 2 seconds delay max
 
+        List<int> obstacles = new List<int>(){ 1, 2, 3, 4, 5, 6, 7, 8 };
+
         void Awake() {
             clickedPlanets = new List<PlanetName>();
             SetCurrentLevelIndex();
@@ -48,6 +50,10 @@ namespace Pwe.Games.SolarSystem
                     _riveTexture.SetBool("game",li.planetName.ToString(), true);
                     levelPlanets.Add(li.planetName);
                     StartCoroutine(SetPlanetInitialSpeed(li.planetName));
+                } else {
+                    int id = obstacles[Random.Range(0, obstacles.Count)];
+                    _riveTexture.SetBool("game", "obstacle_"+id, true);
+                    obstacles.Remove(id);
                 }
             }
             return levels[CurrentLevelIndex];

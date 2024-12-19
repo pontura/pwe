@@ -51,6 +51,7 @@ namespace Pwe.Games.SolarSystem
             _cameraPan = GetComponent<CameraPan>();
 
             backButton.Init(Back);
+            ingameAudio.PlayMusic("music");
         }
 
         public override void OnInit() {
@@ -76,6 +77,8 @@ namespace Pwe.Games.SolarSystem
                 levelsManager.OnPlanetClicked(planetName);
             } else if (System.Enum.TryParse(reportedEvent.Name.Replace("list_", ""), out planetName)) {
                 ingameAudio.Play(planetName.ToString(), AudioManager.channels.VOICES);
+            } else if (System.Enum.TryParse(reportedEvent.Name.Replace("_path", ""), out planetName)) {
+                Game.rive.SetNumber("game", reportedEvent.Name, Random.Range(0,3));
             } else {
                 if (int.TryParse(reportedEvent.Name.Replace("trivia_btn_", ""), out int btnId))
                     triviaManager.OnButtonPressed(selectedPlanet, btnId);
@@ -213,7 +216,7 @@ namespace Pwe.Games.SolarSystem
 
             List<PlanetName> levelPlanetNames = sd.LevelItems.Where(e=>e.planetName!=PlanetName.none).Select(item => item.planetName).ToList();
             //IEnumerable<PlanetData> levelPlanetsData = planetsData.planets.Where(item => sd.LevelItems.Any(category => category.planetName == item.planetName));
-            menuUI.Init(planetsData.planets, levelPlanetNames, ingameAudio.Play);
+            //menuUI.Init(planetsData.planets, levelPlanetNames, ingameAudio.Play);
             //photoUI.FlyOnWrong(new Vector2(Screen.width, Screen.height));
             //photoUI.FlyTo(new Vector2(Screen.width, Screen.height));
 
