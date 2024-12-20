@@ -182,7 +182,8 @@ namespace Pwe.Games.SolarSystem
             if (pressed==selectedPlanet) {
                 ingameAudio.Play("click_right", AudioManager.channels.UI);
                 if (!planetsDone.Contains(selectedPlanet))
-                    planetsDone.Add(selectedPlanet);                
+                    planetsDone.Add(selectedPlanet);
+                Game.rive.SetBoolInArtboard(selectedPlanet.ToString(), "face", false);
                 StartCoroutine(OnSelectSlotDone());
             } else {
                 ingameAudio.Play("click_wrong", AudioManager.channels.UI);
