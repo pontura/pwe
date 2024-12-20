@@ -13,7 +13,7 @@ namespace Pwe.Games.SolarSystem
             _itemsNames = itemsNames;
 
             foreach (PlanetName pn in System.Enum.GetValues(typeof(PlanetName))) {
-                _riveTexture.SetBoolInArtboard("planetsList/"+ pn.ToString(), "active", _itemsNames.Contains(pn));
+                _riveTexture.SetBoolInArtboard("planetsList/"+ pn.ToString(), "inactive", !_itemsNames.Contains(pn));
             }
         }
 
