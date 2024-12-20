@@ -31,7 +31,10 @@ namespace Pwe.Games.Cooking
         public virtual void RiveScreen_OnRiveEvent(ReportedEvent reportedEvent)
         {
             Debug.Log($"Event received, name: \"{reportedEvent.Name}\", secondsDelay: {reportedEvent.Properties}");
-            foreach(string key in reportedEvent.Properties.Keys)  { print("key " + key); }
+            //foreach(string key in reportedEvent.Properties.Keys)  { print("key " + key); }
+            if (reportedEvent.Name=="next") {
+                Next();
+            }
         }
         void OnLoaded() { }
         void Skip()
