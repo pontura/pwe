@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Pwe.Core;
 using Pwe.Games.Common;
+using System.Linq;
 
 namespace Pwe.Games.SolarSystem
 {
@@ -40,6 +41,10 @@ namespace Pwe.Games.SolarSystem
                 CurrentLevelIndex = 0;
                 GamesManager.Instance.All[(int)(int)gameType].LevelMain.level = 0;//
             }
+        }
+
+        public List<PlanetName> GetCurrentLevelPlanets() {
+            return (levels[CurrentLevelIndex] as SpaceData).LevelItems.Where(e => e.planetName != PlanetName.none).Select(item => item.planetName).ToList();
         }
 
         public override LevelData InitLevel() {
@@ -104,4 +109,5 @@ namespace Pwe.Games.SolarSystem
             clickedPlanets = new List<PlanetName>();
         }
     }
+
 }

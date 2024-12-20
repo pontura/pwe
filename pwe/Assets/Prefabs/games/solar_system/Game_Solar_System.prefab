@@ -1292,7 +1292,6 @@ GameObject:
   m_Component:
   - component: {fileID: 9140110801355716874}
   - component: {fileID: 2227039788019846856}
-  - component: {fileID: 1472948662031635338}
   - component: {fileID: 4906607475820054110}
   - component: {fileID: 1657523347003659115}
   - component: {fileID: 3534683824791078328}
@@ -1337,7 +1336,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isOn: 0
   planetsData: {fileID: 6412669494029910803}
-  levelsManager: {fileID: 1472948662031635338}
+  levelsManager: {fileID: 6228801277571197440}
   planetsManager: {fileID: 3534683824791078328}
   triviaManager: {fileID: 4906607475820054110}
   planetListManager: {fileID: 1657523347003659115}
@@ -1353,30 +1352,6 @@ MonoBehaviour:
   shotInitialSize: {x: 220, y: 220}
   shotFinalSize: {x: 350, y: 350}
   buttonProgressBar: {fileID: 6346958493893414990}
---- !u!114 &1472948662031635338
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2032732051771238932}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1e20beba9260574da0eaaf663e13982, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameType: 1
-  levels:
-  - {fileID: 11400000, guid: 2dd15040333b6a84e9287fd1689fb26c, type: 2}
-  - {fileID: 11400000, guid: 6d2ca508c5b7b0541ae750c83d8b71b4, type: 2}
-  - {fileID: 11400000, guid: 078c054dd87449c4da8fe3b098e11427, type: 2}
-  - {fileID: 11400000, guid: 1ee951adbec982245940b55e711a0b23, type: 2}
-  - {fileID: 11400000, guid: ae76c4f60c1b1e943afd89e920d9a478, type: 2}
-  - {fileID: 11400000, guid: e8f2fac59d09d5344bed9e1f4228c0e7, type: 2}
-  - {fileID: 11400000, guid: acab50e91dc72044f95e2aa5eeb18420, type: 2}
-  <CurrentLevelIndex>k__BackingField: 0
-  clickedPlanets: 
-  levelPlanets: 
 --- !u!114 &4906607475820054110
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2099,7 +2074,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7856045680351801593
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2195,6 +2170,7 @@ MonoBehaviour:
   - {fileID: 7092026756905227093}
   - {fileID: 155876676301436680}
   ingameVoiceOvers: {fileID: 6712749723797333973}
+  levelsManager: {fileID: 6228801277571197440}
 --- !u!1 &3233628397373117486
 GameObject:
   m_ObjectHideFlags: 0
@@ -4153,6 +4129,7 @@ GameObject:
   - component: {fileID: 6412669494029910803}
   - component: {fileID: 6712749723797333973}
   - component: {fileID: 5189021205187324077}
+  - component: {fileID: 6228801277571197440}
   m_Layer: 0
   m_Name: Game_Solar_System
   m_TagString: Untagged
@@ -4205,8 +4182,7 @@ MonoBehaviour:
   rivFilePath: Planets/planets.riv
   artboards:
   - game
-  - Trivia
-  - Trivia_Btn
+  - summary
   sounds: {fileID: 0}
 --- !u!114 &6412669494029910803
 MonoBehaviour:
@@ -4228,9 +4204,8 @@ MonoBehaviour:
     size: 0.35
     sprite: {fileID: 21300000, guid: 6d006f8d8c02d9649a5cf3b2422cc81e, type: 3}
     color: {r: 0.93725497, g: 0.6039216, b: 0.37647063, a: 1}
-    particleColors:
-    - {r: 1, g: 0, b: 0.5254902, a: 1}
     lastPhoto: {fileID: 0}
+    levelCompleted: 0
     hasNewPhoto: 0
   - planetName: 2
     orbitData:
@@ -4239,9 +4214,8 @@ MonoBehaviour:
     size: 1
     sprite: {fileID: 21300000, guid: 0eaddf91c9b9c0e4ca3b50a43ade3876, type: 3}
     color: {r: 0.97647065, g: 0.68235296, b: 0.25490198, a: 1}
-    particleColors:
-    - {r: 1, g: 0, b: 0.5254902, a: 1}
     lastPhoto: {fileID: 0}
+    levelCompleted: 0
     hasNewPhoto: 0
   - planetName: 3
     orbitData:
@@ -4250,9 +4224,8 @@ MonoBehaviour:
     size: 1
     sprite: {fileID: 21300000, guid: 7f6c97ed9dd415441b6273abf4046554, type: 3}
     color: {r: 0.38823533, g: 0.6039216, b: 0.9176471, a: 1}
-    particleColors:
-    - {r: 1, g: 0, b: 0.5254902, a: 1}
     lastPhoto: {fileID: 0}
+    levelCompleted: 0
     hasNewPhoto: 0
   - planetName: 4
     orbitData:
@@ -4261,9 +4234,8 @@ MonoBehaviour:
     size: 0.5
     sprite: {fileID: 21300000, guid: 9450e9ca97d925c4dbb0a91748606a1d, type: 3}
     color: {r: 0.87843144, g: 0.32941177, b: 0.054901965, a: 1}
-    particleColors:
-    - {r: 1, g: 0, b: 0.5254902, a: 1}
     lastPhoto: {fileID: 0}
+    levelCompleted: 0
     hasNewPhoto: 0
   - planetName: 5
     orbitData:
@@ -4272,9 +4244,8 @@ MonoBehaviour:
     size: 11
     sprite: {fileID: 21300000, guid: 7fd1afcff6577d549b027e81f44da1d2, type: 3}
     color: {r: 0.9215687, g: 0.54901963, b: 0.1764706, a: 1}
-    particleColors:
-    - {r: 1, g: 0, b: 0.5254902, a: 1}
     lastPhoto: {fileID: 0}
+    levelCompleted: 0
     hasNewPhoto: 0
   - planetName: 6
     orbitData:
@@ -4283,9 +4254,8 @@ MonoBehaviour:
     size: 9
     sprite: {fileID: 21300000, guid: d55ba5a7e324e5246ac1cd141e337ea8, type: 3}
     color: {r: 1, g: 0.72156864, b: 0.23529413, a: 1}
-    particleColors:
-    - {r: 1, g: 0, b: 0.5254902, a: 1}
     lastPhoto: {fileID: 0}
+    levelCompleted: 0
     hasNewPhoto: 0
   - planetName: 7
     orbitData:
@@ -4294,9 +4264,8 @@ MonoBehaviour:
     size: 4
     sprite: {fileID: 21300000, guid: d74c8a2b99b00cb4695d8259a82459ef, type: 3}
     color: {r: 0.2901961, g: 0.7686275, b: 0.8196079, a: 1}
-    particleColors:
-    - {r: 1, g: 0, b: 0.5254902, a: 1}
     lastPhoto: {fileID: 0}
+    levelCompleted: 0
     hasNewPhoto: 0
   - planetName: 8
     orbitData:
@@ -4305,9 +4274,8 @@ MonoBehaviour:
     size: 4
     sprite: {fileID: 21300000, guid: d72d9f5b85f247c4a809bc1dece24028, type: 3}
     color: {r: 0.15686275, g: 0.42352945, b: 0.8980393, a: 1}
-    particleColors:
-    - {r: 1, g: 0, b: 0.5254902, a: 1}
     lastPhoto: {fileID: 0}
+    levelCompleted: 0
     hasNewPhoto: 0
 --- !u!114 &6712749723797333973
 MonoBehaviour:
@@ -4420,6 +4388,30 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &6228801277571197440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5161400804714119547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1e20beba9260574da0eaaf663e13982, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameType: 1
+  levels:
+  - {fileID: 11400000, guid: 2dd15040333b6a84e9287fd1689fb26c, type: 2}
+  - {fileID: 11400000, guid: 6d2ca508c5b7b0541ae750c83d8b71b4, type: 2}
+  - {fileID: 11400000, guid: 078c054dd87449c4da8fe3b098e11427, type: 2}
+  - {fileID: 11400000, guid: 1ee951adbec982245940b55e711a0b23, type: 2}
+  - {fileID: 11400000, guid: ae76c4f60c1b1e943afd89e920d9a478, type: 2}
+  - {fileID: 11400000, guid: e8f2fac59d09d5344bed9e1f4228c0e7, type: 2}
+  - {fileID: 11400000, guid: acab50e91dc72044f95e2aa5eeb18420, type: 2}
+  <CurrentLevelIndex>k__BackingField: 0
+  clickedPlanets: 
+  levelPlanets: 
 --- !u!1 &5474785526587527522
 GameObject:
   m_ObjectHideFlags: 0

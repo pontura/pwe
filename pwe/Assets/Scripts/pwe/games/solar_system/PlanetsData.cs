@@ -12,10 +12,15 @@ namespace Pwe.Games.SolarSystem
 
         private string folderName = "";
         private string lastPhoto_file_suffix = "_lastPhoto.png";
+        private string levelCompleted_suffix = "_levelCompleted";
+        private string hasNewPhoto_suffix = "_hasNewPhoto";
+
 
         private void Start() {
             foreach(PlanetData pd in planets) {
-                pd.lastPhoto = MainApp.Instance.photosManager.LoadPhoto(pd.planetName.ToString() + lastPhoto_file_suffix);
+                //pd.lastPhoto = MainApp.Instance.photosManager.LoadPhoto(pd.planetName.ToString() + lastPhoto_file_suffix);
+                pd.levelCompleted = PlayerPrefs.GetInt(pd.planetName + levelCompleted_suffix, 0)==1?true:false;
+                pd.hasNewPhoto = PlayerPrefs.GetInt(pd.planetName + hasNewPhoto_suffix, 0) == 1 ? true : false;
             }
         }
 
@@ -44,6 +49,18 @@ namespace Pwe.Games.SolarSystem
             pd.lastPhoto = tex;
             pd.hasNewPhoto = true;
             MainApp.Instance.photosManager.SavePhoto(pd.planetName.ToString() + lastPhoto_file_suffix, tex);
+        }
+
+        public void SetPlanetLevelComplete(PlanetName planetName) {
+            PlanetData pd = planets.Find(x => x.planetName == planetName);
+            if (pd == null)
+                return;
+            if (!pd.levelCompleted) {
+                pd.levelCompleted = true;
+                pd.hasNewPhoto = true;
+                PlayerPrefs.SetInt(pd.planetName + levelCompleted_suffix, 1);
+                PlayerPrefs.SetInt(pd.planetName + hasNewPhoto_suffix, 1);
+            }            
         }
     }
     public enum PlanetName

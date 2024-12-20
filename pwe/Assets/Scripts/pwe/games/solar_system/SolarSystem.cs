@@ -144,6 +144,7 @@ namespace Pwe.Games.SolarSystem
             photoUI.FadeAngle(Vector3.zero, new Vector3(0,0,Random.Range(-15,15)), 0.2f);
             ingameAudio.Play("photo", AudioManager.channels.UI);
             planetListManager.Show(true);
+            _paused = false;
         }
 
         void SetPhotoDone(PlanetName planetName) {
@@ -174,6 +175,8 @@ namespace Pwe.Games.SolarSystem
             triviaManager.ShowTrivia(true);
 
             //planetsData.SavePlanetLastPhoto(planetName, screenshot.Texture);
+            
+            planetsData.SetPlanetLevelComplete(planetName);
 
             ingameAudio.Play(planetName.ToString(), AudioManager.channels.VOICES);
             ingameAudio.Play("click_right", AudioManager.channels.UI);
@@ -215,8 +218,7 @@ namespace Pwe.Games.SolarSystem
             }
         }
 
-        void OnContinueMoving() {
-            _paused = false;
+        void OnContinueMoving() {            
             //planetsManager.Play(true);
             dinoFlash.SetActive(false);
         }
