@@ -23,12 +23,18 @@ MonoBehaviour:
       num: 4
     - item: 10
       num: 4
+    - item: 13
+      num: 0
+    - item: 3
+      num: 0
   - ingredients:
     - item: 21
       num: 3
     - item: 0
       num: 4
     - item: 3
+      num: 0
+    - item: 18
       num: 0
   - ingredients:
     - item: 9
@@ -52,6 +58,8 @@ MonoBehaviour:
       num: 0
     - item: 28
       num: 0
+    - item: 7
+      num: 0
   - ingredients:
     - item: 25
       num: 5
@@ -62,6 +70,8 @@ MonoBehaviour:
     - item: 14
       num: 0
     - item: 8
+      num: 0
+    - item: 28
       num: 0
   - ingredients:
     - item: 9
@@ -74,6 +84,8 @@ MonoBehaviour:
       num: 0
     - item: 3
       num: 0
+    - item: 16
+      num: 0
   - ingredients:
     - item: 2
       num: 2
@@ -84,6 +96,10 @@ MonoBehaviour:
     - item: 11
       num: 8
     - item: 3
+      num: 0
+    - item: 22
+      num: 0
+    - item: 16
       num: 0
   - ingredients:
     - item: 20
@@ -98,6 +114,8 @@ MonoBehaviour:
       num: 0
     - item: 22
       num: 0
+    - item: 14
+      num: 0
   - ingredients:
     - item: 6
       num: 9
@@ -111,6 +129,10 @@ MonoBehaviour:
       num: 0
     - item: 25
       num: 0
+    - item: 0
+      num: 0
+    - item: 15
+      num: 0
   <cake>k__BackingField:
   - ingredients:
     - item: 18
@@ -122,6 +144,8 @@ MonoBehaviour:
       num: 4
     - item: 11
       num: 5
+    - item: 18
+      num: 0
   - ingredients:
     - item: 2
       num: 6
@@ -129,6 +153,8 @@ MonoBehaviour:
       num: 0
     - item: 28
       num: 2
+    - item: 26
+      num: 0
   - ingredients:
     - item: 19
       num: 5
@@ -138,6 +164,8 @@ MonoBehaviour:
       num: 5
     - item: 28
       num: 3
+    - item: 16
+      num: 0
   - ingredients:
     - item: 0
       num: 6
@@ -147,6 +175,10 @@ MonoBehaviour:
       num: 0
     - item: 27
       num: 4
+    - item: 15
+      num: 0
+    - item: 12
+      num: 0
   - ingredients:
     - item: 7
       num: 0
@@ -158,6 +190,8 @@ MonoBehaviour:
       num: 4
     - item: 26
       num: 7
+    - item: 9
+      num: 0
   - ingredients:
     - item: 18
       num: 8
@@ -168,6 +202,8 @@ MonoBehaviour:
     - item: 16
       num: 0
     - item: 11
+      num: 0
+    - item: 15
       num: 0
   - ingredients:
     - item: 24
