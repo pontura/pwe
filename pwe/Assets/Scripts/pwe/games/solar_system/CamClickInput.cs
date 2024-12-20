@@ -8,18 +8,23 @@ namespace Pwe.Games.SolarSystem
     public class CamClickInput : InputManager
     {
         public event Action<Vector2> OnClickInput;
+        public event Action OnClickBlocked;
 
         [SerializeField] Camera cam;
 
         Vector3 _halfShotSize;
 
-        public override void OnInitPress(Vector2 pos)
-        {
-            if (EventSystem.current.IsPointerOverGameObject())
+        public override void OnInitPress(Vector2 pos) {
+            if (EventSystem.current.IsPointerOverGameObject()) {
+                OnClickBlocked();
                 return;
-            if (Input.touchCount > 0)
-                if (EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
+            }
+            if (Input.touchCount > 0) {
+                if (EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId)) {
+                    OnClickBlocked();
                     return;
+                }
+            }
             
             OnClickInput(pos);
             //Check();
