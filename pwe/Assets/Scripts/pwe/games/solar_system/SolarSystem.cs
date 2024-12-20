@@ -45,6 +45,7 @@ namespace Pwe.Games.SolarSystem
 
         public override void OnInitialize() {
             camClickInput.OnClickInput += OnClickInput;
+            camClickInput.OnClickBlocked += OnClickBlocked;
             //planetsManager.OnPlanetClicked += levelsManager.OnPlanetClicked;
             //levelsManager.OnPlanetDone += menuUI.SetPlanetDone;
             levelsManager.OnPlanetDone += SetPhotoDone;
@@ -99,6 +100,7 @@ namespace Pwe.Games.SolarSystem
 
         private void OnDestroy() {
             camClickInput.OnClickInput -= OnClickInput;
+            camClickInput.OnClickBlocked -= OnClickBlocked;
             //planetsManager.OnPlanetClicked -= levelsManager.OnPlanetClicked;
             //levelsManager.OnPlanetDone -= menuUI.SetPlanetDone;
             levelsManager.OnPlanetDone -= SetPhotoDone;
@@ -107,6 +109,10 @@ namespace Pwe.Games.SolarSystem
 
         void OnClickInput(Vector2 pos) {
             StartCoroutine(Takeshot(pos));
+        }
+
+        void OnClickBlocked() {
+            levelsManager.OnPlanetClicked(PlanetName.none);
         }
 
         IEnumerator Takeshot(Vector2 pos) {
@@ -158,7 +164,10 @@ namespace Pwe.Games.SolarSystem
                 Game.rive.SetBoolInArtboard(planetName.ToString(), "face", true);
                 StartCoroutine(PhotoDone(planetName));
             } else {
-                shotAction();
+                if (shotAction != null) {
+                    shotAction();
+                    shotAction = null;
+                }
             }
         }
 
@@ -166,6 +175,7 @@ namespace Pwe.Games.SolarSystem
             //Debug.Log("#PhotoDone");
             yield return new WaitForEndOfFrame();
             shotAction();
+            shotAction = null;
             yield return new WaitForEndOfFrame();
             selectedPlanet = planetName;              
             
