@@ -144,7 +144,6 @@ namespace Pwe.Games.SolarSystem
             photoUI.FadeAngle(Vector3.zero, new Vector3(0,0,Random.Range(-15,15)), 0.2f);
             ingameAudio.Play("photo", AudioManager.channels.UI);
             planetListManager.Show(true);
-            _paused = false;
         }
 
         void SetPhotoDone(PlanetName planetName) {
@@ -218,7 +217,8 @@ namespace Pwe.Games.SolarSystem
             }
         }
 
-        void OnContinueMoving() {            
+        void OnContinueMoving() {
+            _paused = false;
             //planetsManager.Play(true);
             dinoFlash.SetActive(false);
         }
