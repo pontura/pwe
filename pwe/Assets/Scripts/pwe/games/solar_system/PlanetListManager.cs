@@ -13,13 +13,17 @@ namespace Pwe.Games.SolarSystem
             _itemsNames = itemsNames;
 
             foreach (PlanetName pn in System.Enum.GetValues(typeof(PlanetName))) {
-                _riveTexture.SetBoolInArtboard("planetsList/"+ pn.ToString(), "inactive", !_itemsNames.Contains(pn));
+                _riveTexture.SetBoolInArtboard("planetsList/" + pn.ToString(), "inactive", !_itemsNames.Contains(pn));
             }
         }
 
         public void SetPlanetDone(PlanetName pn) {
             _riveTexture.SetBoolInArtboard("planetsList/" + pn.ToString(), "face", true);
             _riveTexture.SetTriggerInArtboard("planetsList/" + pn.ToString(), "popup");
+        }
+
+        public void Show(bool enable) {
+            _riveTexture.SetBoolInArtboard("planetsList", "hide", !enable);
         }
     }
 }

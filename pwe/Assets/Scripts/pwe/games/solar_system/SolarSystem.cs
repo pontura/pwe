@@ -109,8 +109,9 @@ namespace Pwe.Games.SolarSystem
             StartCoroutine(Takeshot(pos));
         }
 
-        IEnumerator Takeshot(Vector2 pos) {
+        IEnumerator Takeshot(Vector2 pos) {            
             yield return new WaitForEndOfFrame();
+            planetListManager.Show(false);
             yield return new WaitForEndOfFrame();
             if (delayedShot) {
                 shotAction = () => Shot(pos);
@@ -124,7 +125,7 @@ namespace Pwe.Games.SolarSystem
         void Shot(Vector2 pos) {
             if (!_paused) {
                 Debug.Log("#Mouse Pos: " + pos.x + ", " + pos.y);                
-                _paused = true;
+                _paused = true;                
                 camClickInput.SetShotSize(screenshot.shotRes);
                 screenshot.TakeShot(pos, (tex) => OnCaptureDone(tex, pos));
                 //planetsManager.Play(false);
@@ -141,7 +142,8 @@ namespace Pwe.Games.SolarSystem
             photoUI.FadeSize(shotInitialSize, shotFinalSize, 0.2f);
             photoUI.FadePosition(pos, Vector2.Lerp(pos,new Vector2(Screen.width*0.5f, Screen.height*0.5f),0.25f), 0.2f);
             photoUI.FadeAngle(Vector3.zero, new Vector3(0,0,Random.Range(-15,15)), 0.2f);
-            ingameAudio.Play("photo", AudioManager.channels.UI);            
+            ingameAudio.Play("photo", AudioManager.channels.UI);
+            planetListManager.Show(true);
         }
 
         void SetPhotoDone(PlanetName planetName) {
@@ -156,8 +158,8 @@ namespace Pwe.Games.SolarSystem
             }
         }
 
-        IEnumerator PhotoDone(PlanetName planetName) {           
-
+        IEnumerator PhotoDone(PlanetName planetName) {
+            
             yield return new WaitForEndOfFrame();
             shotAction();
             yield return new WaitForEndOfFrame();
