@@ -55,14 +55,20 @@ namespace YaguarLib.Xtras
                 //Debug.Log("# " + (int)(shotCenter.x - (0.5f * shotRes.x)) + " x " + (int)(shotCenter.y - (0.5f * shotRes.y)));
                 //Debug.Log("# " + (Screen.height - (int)(shotCenter.y + (0.5f * shotRes.y))));
                 //texture.ReadPixels(new Rect(0, 0, rt.width, rt.height), (int) (shotCenter.x-(0.5f*shotRes.x)), (int) (shotCenter.y - (0.5f * shotRes.y)));
+
+                shotCenter.x = System.Math.Max((0.5f * shotRes.x), shotCenter.x);
+                shotCenter.x = System.Math.Min(Screen.width-(0.5f * shotRes.x), shotCenter.x);
+                shotCenter.y = System.Math.Max((0.5f * shotRes.y), shotCenter.y);
+                shotCenter.y = System.Math.Min(Screen.height - (0.5f * shotRes.y), shotCenter.y);
+
                 Rect r = new Rect();
 #if UNITY_EDITOR
-                r.xMin = System.Math.Max(0, (int)(shotCenter.x - (0.5f * shotRes.x)));
+                r.xMin = (int)(shotCenter.x - (0.5f * shotRes.x));
                 //r.yMin = System.Math.Max(0, (int)(Screen.height - (shotCenter.y + (0.5f * shotRes.y))));
-                r.yMin = System.Math.Max(0, (int)(shotCenter.y - (0.5f * shotRes.y)));
-                r.xMax = System.Math.Min(Screen.width, (int)(shotCenter.x + (0.5f * shotRes.x)));
+                r.yMin = (int)(shotCenter.y - (0.5f * shotRes.y));
+                r.xMax = (int)(shotCenter.x + (0.5f * shotRes.x));
                 //r.yMax = System.Math.Min(Screen.height, (int)(Screen.height - (shotCenter.y - (0.5f * shotRes.y))));
-                r.yMax = System.Math.Min(Screen.height, (int)(shotCenter.y + (0.5f * shotRes.y)));
+                r.yMax = (int)(shotCenter.y + (0.5f * shotRes.y));
 #elif UNITY_ANDROID
                 r.xMin = System.Math.Max(0, (int)(shotCenter.x - (0.5f * shotRes.x)));
                 r.yMin = System.Math.Max(0, (int)(shotCenter.y - (0.5f * shotRes.y)));
