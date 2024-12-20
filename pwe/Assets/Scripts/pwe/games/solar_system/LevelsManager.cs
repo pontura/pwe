@@ -49,6 +49,10 @@ namespace Pwe.Games.SolarSystem
 
         public override LevelData InitLevel() {
             levelPlanets = new();
+            foreach (PlanetName pn in System.Enum.GetValues(typeof(PlanetName))) {
+                _riveTexture.SetBool("game", pn.ToString(), false);
+            }
+            
             foreach (SpaceData.LevelItem li in (levels[CurrentLevelIndex] as SpaceData).LevelItems) {
                 if (li.planetName != PlanetName.none) {
                     _riveTexture.SetBool("game", li.planetName.ToString(), true);
@@ -94,16 +98,19 @@ namespace Pwe.Games.SolarSystem
                     if (levelPlanets.Count > 0) {                        
                         levelPlanets.Remove(clickedPlanets[0]);
                         if (levelPlanets.Count == 0 && OnLevelCompleted != null) {
+                            Debug.Log("# Level Advance");
                             CurrentLevelIndex++;
                             if(GamesManager.Instance!=null)
-                                GamesManager.Instance.All[(int)GameData.GAMES.PHOTOS].LevelUp();
+                                GamesManager.Instance.All[(int)GameData.GAMES.PHOTOS].LevelMain.LevelUp(GameData.GAMES.PHOTOS);
                             if (CurrentLevelIndex >= levels.Count)
                                 CurrentLevelIndex = 0;
                             PlayerPrefs.SetInt("solar_system_level", CurrentLevelIndex);
                             OnLevelCompleted();
                         }
                     }
-                }                
+                }
+            } else {
+                OnPlanetDone(PlanetName.none);
             }
             yield return new WaitForEndOfFrame();
             clickedPlanets = new List<PlanetName>();

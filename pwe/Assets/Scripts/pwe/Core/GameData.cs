@@ -26,6 +26,13 @@ namespace Pwe.Core
         {
             public string levelName = "main";
             public int level;
+
+            public void LevelUp(GAMES game) {
+                Debug.Log("LevelUp " + game + " level: " + levelName);
+                level++;
+                PlayerPrefs.SetInt(game.ToString() + "_" + levelName, level);
+                Events.GameLeveled(game, level);
+            }
         }
         public LevelData LevelMain
         {
@@ -59,10 +66,7 @@ namespace Pwe.Core
         }
         public void LevelUp()
         {
-            Debug.Log("LevelUp " + game + " level: " + level.levelName);
-            level.level++;
-            PlayerPrefs.SetInt(game.ToString() + "_" + level.levelName, level.level);
-            Events.GameLeveled(game, level.level);
+            level.LevelUp(game);
         }
         public void Init()
         {

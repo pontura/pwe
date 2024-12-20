@@ -109,7 +109,8 @@ namespace Pwe.Games.SolarSystem
             StartCoroutine(Takeshot(pos));
         }
 
-        IEnumerator Takeshot(Vector2 pos) {            
+        IEnumerator Takeshot(Vector2 pos) {
+            //Debug.Log("#delayedShot: " + delayedShot);
             yield return new WaitForEndOfFrame();
             planetListManager.Show(false);
             yield return new WaitForEndOfFrame();
@@ -123,6 +124,7 @@ namespace Pwe.Games.SolarSystem
         bool delayedShot;
         System.Action shotAction;
         void Shot(Vector2 pos) {
+            //Debug.Log("% shot");
             if (!_paused) {
                 Debug.Log("#Mouse Pos: " + pos.x + ", " + pos.y);                
                 _paused = true;                
@@ -133,8 +135,8 @@ namespace Pwe.Games.SolarSystem
             }
         }
         
-        void  OnCaptureDone(Texture2D tex, Vector2 pos) {
-            Debug.Log("#OnCaptureDone");
+        void OnCaptureDone(Texture2D tex, Vector2 pos) {
+            //Debug.Log("#OnCaptureDone");
             photoUI.Init(tex, OnContinueMoving);
             /*photoUI.FadeSize(screenshot.shotRes, screenshot.shotRes, 0.2f);
             photoUI.FadePosition(pos, pos, 0.2f);
@@ -147,7 +149,7 @@ namespace Pwe.Games.SolarSystem
         }
 
         void SetPhotoDone(PlanetName planetName) {
-            Debug.Log("#SetPhotoDone");
+            //Debug.Log("#SetPhotoDone");
             if (planetName != PlanetName.none) {
                 photoUI.SetDone(true);
                 photoUI.SetDelayedFly(true);
@@ -155,15 +157,17 @@ namespace Pwe.Games.SolarSystem
                 //photoUI.FlyTo(menuUI.GetItemPosition(planetName));
                 Game.rive.SetBoolInArtboard(planetName.ToString(), "face", true);
                 StartCoroutine(PhotoDone(planetName));
+            } else {
+                shotAction();
             }
         }
 
         IEnumerator PhotoDone(PlanetName planetName) {
-            
+            //Debug.Log("#PhotoDone");
             yield return new WaitForEndOfFrame();
             shotAction();
             yield return new WaitForEndOfFrame();
-            selectedPlanet = planetName;                
+            selectedPlanet = planetName;              
             
             
             //planetsManager.Play(false);
